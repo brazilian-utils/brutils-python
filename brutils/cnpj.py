@@ -1,11 +1,11 @@
 from itertools import chain
-from secrets import randbelow
+from random import randint
 
 
 # FORMATTING
 ############
 
-def sieve(dirty: str) -> str:
+def sieve(dirty):  # type: (str) -> str
     """
     Filters out CNPJ formatting symbols. Symbols that are not used
     in the CNPJ formatting are left unfiltered on purpose so that
@@ -15,7 +15,7 @@ def sieve(dirty: str) -> str:
     return ''.join(filter(lambda char: char not in './-', dirty))
 
 
-def display(cnpj: str) -> str:
+def display(cnpj):  # type: (str) -> str
     """
     Will format an adequately formatted numbers-only CNPJ string,
     adding in standard formatting visual aid symbols for display.
@@ -27,7 +27,7 @@ def display(cnpj: str) -> str:
 # CALCULATORS
 #############
 
-def hashdigit(cnpj: str, position: int) -> int:
+def hashdigit(cnpj, position):  # type: (str, int) -> int
     """
     Will compute the given `position` checksum digit for the `cnpj`
     input. The input needs to contain all elements previous to
@@ -38,7 +38,7 @@ def hashdigit(cnpj: str, position: int) -> int:
     return 0 if val < 2 else 11 - val
 
 
-def checksum(basenum: str) -> str:
+def checksum(basenum):  # type: (str) -> str
     """
     Will compute the checksum digits for a given CNPJ base number.
     `basenum` needs to be a digit-string of adequate length.
@@ -52,7 +52,7 @@ def checksum(basenum: str) -> str:
 # OPERATIONS
 ############
 
-def validate(cnpj: str) -> bool:
+def validate(cnpj):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the
     given `cnpj` match it's base number. Input should be a digit
@@ -62,11 +62,11 @@ def validate(cnpj: str) -> bool:
     return all(hashdigit(cnpj, i +13) == int(v) for i, v in enumerate(cnpj[12:]))
 
 
-def generate(branch: int = 1) -> str:
+def generate(branch=1):  # type: (int) -> str
     """
     Generates a random valid CNPJ digit string. An optional branch
     number parameter can be given, it defaults to 1.
     """
-    base = str(randbelow(100000000)).zfill(8) + str(branch % 10000).zfill(4)
+    base = str(randint(1, 99999998)).zfill(8) + str(branch % 10000).zfill(4)
     return base + checksum(base)
 
