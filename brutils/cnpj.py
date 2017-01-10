@@ -67,6 +67,10 @@ def generate(branch=1):  # type: (int) -> str
     Generates a random valid CNPJ digit string. An optional branch
     number parameter can be given, it defaults to 1.
     """
-    base = str(randint(1, 99999998)).zfill(8) + str(branch % 10000).zfill(4)
+    branch %= 10000
+    branch += int(branch == 0)
+    branch = str(branch).zfill(4)
+    base = str(randint(0, 99999999)).zfill(8) + branch
+    while len(set(base)) == 1: base = str(randint(0, 99999999)).zfill(8) + branch
     return base + checksum(base)
 

@@ -63,5 +63,6 @@ def validate(cpf):  # type: (str) -> bool
 def generate():  # type: () -> str
     """Generates a random valid CPF digit string."""
     base = str(randint(1, 999999998)).zfill(9)
+    while len(set(base)) == 1: base = str(randint(1, 999999998)).zfill(9)
     return base + checksum(base)
 
