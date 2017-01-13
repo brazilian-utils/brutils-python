@@ -13,6 +13,13 @@ outras coisas a se validar (preferencialmente de maneira determinística) são b
 vindas.
 
 
+## Instalação
+
+```
+pip install brutils
+```
+
+
 ## Utilização
 
 ### Importando a Biblioteca:

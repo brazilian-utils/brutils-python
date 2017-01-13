@@ -11,6 +11,13 @@ It's main functionality is the validation of CPF and CNPJ numbers, but suggestio
 for other (preferrably deterministic) things to validate are welcome.
 
 
+## Installation
+
+```
+pip install brutils
+```
+
+
 ## Utilization
 
 ### Importing:
