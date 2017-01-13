@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='brutils',
-      version='0.1.0',
+      version='1.0.0',
       license='BSD 3-Clause License',
       author='Luiz Berti',
       url='https://github.com/luizfb/brutils',
@@ -11,7 +11,7 @@ setup(name='brutils',
       packages=['brutils'],
       zip_safe=True,
       classifiers=[
-          'Development Status :: 4 - Beta',
+          'Development Status :: 5 - Production/Stable',
           'License :: OSI Approved :: BSD License',
           'Programming Language :: Python :: 2.7',
           'Programming Language :: Python :: 3',
