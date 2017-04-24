@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 setup(name='brutils',
-      version='1.0.1',
+      version='1.0.2',
       license='CC0',
       author='Luiz Berti',
       url='https://github.com/luizberti/brutils',

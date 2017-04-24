@@ -43,8 +43,7 @@ def checksum(basenum):  # type: (str) -> str
     Will compute the checksum digits for a given CNPJ base number.
     `basenum` needs to be a digit-string of adequate length.
     """
-    verifying_digits = ''
-    verifying_digits += str(hashdigit(basenum, 13))
+    verifying_digits = str(hashdigit(basenum, 13))
     verifying_digits += str(hashdigit(basenum + verifying_digits, 14))
     return verifying_digits
 

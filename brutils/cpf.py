@@ -41,8 +41,7 @@ def checksum(basenum):  # type: (str) -> str
     Will compute the checksum digits for a given CPF base number.
     `basenum` needs to be a digit-string of adequate length.
     """
-    verifying_digits = ''
-    verifying_digits += str(hashdigit(basenum, 10))
+    verifying_digits = str(hashdigit(basenum, 10))
     verifying_digits += str(hashdigit(basenum + verifying_digits, 11))
     return verifying_digits
 
