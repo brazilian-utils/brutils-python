@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "brutils"
+version = "1.0.3"
+description = "Utils library for specific Brazilian businesses"
+authors = ["The Brazilian Utils Organization"]
+license = "MIT"
+readme = "README_EN.md"
+repository = "https://github.com/brazilian-utils/brutils"
+keywords = ["cpf", "cnpj", "document", "validation", "brazil", "brazilian"]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: ISC License (ISCL)",
+  "Programming Language :: Python :: 2.7",
+  "Programming Language :: Python :: 3",
+  "Topic :: Office/Business",
+  "Topic :: Software Development :: Internationalization",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Natural Language :: English",
+  "Natural Language :: Portuguese",
+  "Natural Language :: Portuguese (Brazilian)"
+]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

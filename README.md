@@ -6,8 +6,6 @@
 
 ### [Looking for the english version?](README_EN.md)
 
-_Compatível com Python 2.7 e 3.x_
-
 `brutils` é uma biblioteca para tratar de validações de documentos brasileiros,
 e que eventualmente pode evoluir para tratar de outras coisas dentro do escopo
 de validações relacionadas a burocracias brasileiras.
@@ -74,7 +72,5 @@ False
 ## Testes
 
 ```
-python2.7 -m unittest discover tests/
 python3 -m unittest discover tests/
 ```
-

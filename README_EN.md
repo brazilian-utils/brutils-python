@@ -6,13 +6,11 @@
 
 ### [Procurando pela versão em português?](README.md)
 
-_Compatible with Python 2.7 and 3.x_
-
 `brutils` is a library for validating brazilian document numbers, and might
 eventually evolve to deal with other validations related to brazilian bureaucracy.
 
 It's main functionality is the validation of CPF and CNPJ numbers, but suggestions
-for other (preferrably deterministic) things to validate are welcome.
+for other (preferably deterministic) things to validate are welcome.
 
 
 ## Installation
@@ -74,4 +72,3 @@ False
 python2.7 -m unittest discover tests/
 python3 -m unittest discover tests/
 ```
-
