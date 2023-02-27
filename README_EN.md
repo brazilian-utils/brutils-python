@@ -5,6 +5,8 @@
 </div>
 
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
+[![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypi.org/project/brutils/)
+[![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 
 ### [Procurando pela versão em português?](README.md)
 
