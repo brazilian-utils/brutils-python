@@ -4,6 +4,8 @@
 <p>Utils library for Brazilian-specific businesses.</p>
 </div>
 
+[![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
+
 ### [Procurando pela versão em português?](README.md)
 
 `brutils` is a library for validating brazilian document numbers, and might
