@@ -69,6 +69,5 @@ False
 ## Testing
 
 ```
-python2.7 -m unittest discover tests/
 python3 -m unittest discover tests/
 ```
