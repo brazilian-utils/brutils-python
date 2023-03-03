@@ -32,6 +32,9 @@ python = "^3.7"
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.1"
 
+[tool.poetry.group.dev.dependencies]
+black = "^23.1.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
