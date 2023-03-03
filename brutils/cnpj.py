@@ -5,6 +5,7 @@ from random import randint
 # FORMATTING
 ############
 
+
 def sieve(dirty):  # type: (str) -> str
     """
     Filters out CNPJ formatting symbols. Symbols that are not used
@@ -12,7 +13,7 @@ def sieve(dirty):  # type: (str) -> str
     if fails other tests, because their presence indicate that the
     input was somehow corrupted.
     """
-    return ''.join(filter(lambda char: char not in './-', dirty))
+    return "".join(filter(lambda char: char not in "./-", dirty))
 
 
 def display(cnpj):  # type: (str) -> str
@@ -20,12 +21,16 @@ def display(cnpj):  # type: (str) -> str
     Will format an adequately formatted numbers-only CNPJ string,
     adding in standard formatting visual aid symbols for display.
     """
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1: return None
-    return '{}.{}.{}/{}-{}'.format(cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:])
+    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
+        return None
+    return "{}.{}.{}/{}-{}".format(
+        cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:]
+    )
 
 
 # CALCULATORS
 #############
+
 
 def hashdigit(cnpj, position):  # type: (str, int) -> int
     """
@@ -33,8 +38,10 @@ def hashdigit(cnpj, position):  # type: (str, int) -> int
     input. The input needs to contain all elements previous to
     `position` else computation will yield the wrong result.
     """
-    weightgen = chain(range(position -8, 1, -1), range(9, 1, -1))
-    val = sum(int(digit) * weight for digit, weight in zip(cnpj, weightgen)) % 11
+    weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
+    val = (
+        sum(int(digit) * weight for digit, weight in zip(cnpj, weightgen)) % 11
+    )
     return 0 if val < 2 else 11 - val
 
 
@@ -51,14 +58,18 @@ def checksum(basenum):  # type: (str) -> str
 # OPERATIONS
 ############
 
+
 def validate(cnpj):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the
     given `cnpj` match it's base number. Input should be a digit
     string of proper length.
     """
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1: return False
-    return all(hashdigit(cnpj, i +13) == int(v) for i, v in enumerate(cnpj[12:]))
+    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
+        return False
+    return all(
+        hashdigit(cnpj, i + 13) == int(v) for i, v in enumerate(cnpj[12:])
+    )
 
 
 def generate(branch=1):  # type: (int) -> str
@@ -70,6 +81,6 @@ def generate(branch=1):  # type: (int) -> str
     branch += int(branch == 0)
     branch = str(branch).zfill(4)
     base = str(randint(0, 99999999)).zfill(8) + branch
-    while len(set(base)) == 1: base = str(randint(0, 99999999)).zfill(8) + branch
+    while len(set(base)) == 1:
+        base = str(randint(0, 99999999)).zfill(8) + branch
     return base + checksum(base)
-
