@@ -9,9 +9,14 @@ repository = "https://github.com/brazilian-utils/brutils"
 keywords = ["cpf", "cnpj", "document", "validation", "brazil", "brazilian"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
-  "License :: OSI Approved :: ISC License (ISCL)",
-  "Programming Language :: Python :: 2.7",
-  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
   "Topic :: Office/Business",
   "Topic :: Software Development :: Internationalization",
   "Topic :: Software Development :: Libraries :: Python Modules",
