@@ -8,34 +8,32 @@
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypi.org/project/brutils/)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 
-### [Looking for the english version?](README_EN.md)
+### [Procurando pela versão em português?](README_PT_BR.md)
 
-`brutils` é uma biblioteca para tratar de validações de documentos brasileiros,
-e que eventualmente pode evoluir para tratar de outras coisas dentro do escopo
-de validações relacionadas a burocracias brasileiras.
+`brutils` is a library for validating brazilian document numbers, and might
+eventually evolve to deal with other validations related to brazilian bureaucracy.
 
-Sua principal funcionalidade é a validação de CPFs e CNPJs, mas sugestões sobre
-outras coisas a se validar (preferencialmente de maneira determinística) são bem
-vindas.
+It's main functionality is the validation of CPF and CNPJ numbers, but suggestions
+for other (preferably deterministic) things to validate are welcome.
 
 
-## Instalação
+## Installation
 
 ```
 pip install brutils
 ```
 
 
-## Utilização
+## Utilization
 
-### Importando a Biblioteca:
+### Importing:
 ```
 >>> from brutils import cpf, cnpj
 ```
 
-### Como faço para validar um CPF ou CNPJ?
+### How do I validate a CPF or CNPJ?
 ```
-# somente numeros, em formato string
+# numbers only, formatted as strings
 
 >>> cpf.validate('00011122233')
 False
@@ -43,20 +41,19 @@ False
 False
 ```
 
-### E se a minha string estiver formatada com simbolos?
+### What if my string has formatting symbols in it?
 ```
 >>> cpf.sieve('000.111.222-33')
 '00011122233'
 >>> cnpj.sieve('00.111.222/0001-00')
 '00111222000100'
 
-# A função `sieve` limpa apenas os simbolos de formatação de CPF ou CNPJ, e de
-# whitespace nas pontas. Ela não remove outros caractéres propositalmente, pois
-# estes seriam indicativos de uma possível corrupção no dado ou de uma falta de
-# filtros de input.
+# The `sieve` function only filters out the symbols used for CPF or CNPJ validation.
+# It purposefully doesn't remove other symbols, as those may be indicators of data
+# corruption, or a possible lack of input filters.
 ```
 
-### E se eu quiser formatar uma string numérica?
+### What if I want to format a numbers only string?
 ```
 >>> cpf.display('00011122233')
 '000.111.222-33'
@@ -64,7 +61,7 @@ False
 '00.111.222/0001-00'
 ```
 
-### E se eu quiser gerar CPFs ou CNPJs validos aleatórios?
+### What if I want to generate random, but numerically valid CPF or CNPJ numbers?
 ```
 >>> cpf.generate()
 '17433964657'
@@ -73,7 +70,7 @@ False
 ```
 
 
-## Testes
+## Testing
 
 ```
 python3 -m unittest discover tests/
