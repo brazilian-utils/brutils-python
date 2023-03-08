@@ -12,6 +12,7 @@ def sieve(dirty):  # type: (str) -> str
     if fails other tests, because their presence indicate that the
     input was somehow corrupted.
     """
+
     return "".join(filter(lambda char: char not in ".-", dirty))
 
 
