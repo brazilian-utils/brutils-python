@@ -1,0 +1,8 @@
+repos:
+  - repo: local
+    hooks:
+      - id: make-format
+        name: make-format
+        entry: ./make-format.sh
+        language: script
+        files: \.x$

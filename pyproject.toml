@@ -34,6 +34,7 @@ coverage = "^7.2.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.1.0"
+pre-commit = "^2.21.0"
 
 [build-system]
 requires = ["poetry-core"]
