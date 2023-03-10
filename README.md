@@ -24,7 +24,7 @@ pip install brutils
 ```
 
 
-## Utilization
+## Usage
 
 ### Importing:
 ```
