@@ -1,6 +1,6 @@
 install:
-	@poetry run pre-commit install -f -t pre-commit --hook-type commit-msg
 	@poetry install
+	@poetry run pre-commit install -f -t pre-commit --hook-type commit-msg
 
 shell:
 	@poetry shell
