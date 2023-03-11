@@ -8,7 +8,7 @@ range = range if version_info.major >= 3 else xrange
 path.insert(
     1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
 )
-from brutils.cnpj import sieve, display, hashdigit, checksum, validate, generate
+from brutils.cnpj import sieve, display, hashdigit, checksum, validate, generate, is_valid_cnpj
 from unittest import TestCase, main
 
 
@@ -41,6 +41,11 @@ class CNPJ(TestCase):
         assert validate("34665388000161")
         assert not validate("52599927000100")
         assert not validate("00000000000")
+
+    def test_is_valid_cnpj(self):
+        assert is_valid_cnpj("34665388000161")
+        assert not is_valid_cnpj("52599927000100")
+        assert not is_valid_cnpj("00000000000")
 
     def test_generate(self):
         for i in range(1000):
