@@ -71,7 +71,8 @@ def validate(cnpj):  # type: (str) -> bool
         hashdigit(cnpj, i + 13) == int(v) for i, v in enumerate(cnpj[12:])
     )
 
-def is_valid_cnpj(cnpj): # type: (str) -> bool
+
+def is_valid_cnpj(cnpj):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the
     given `cnpj` match it's base number. Input should be a digit
@@ -80,8 +81,6 @@ def is_valid_cnpj(cnpj): # type: (str) -> bool
     Using the same method to ensure backwards compatibility.
     """
     return validate(cnpj)
-    
-
 
 
 def generate(branch=1):  # type: (int) -> str

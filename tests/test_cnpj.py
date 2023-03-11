@@ -8,7 +8,15 @@ range = range if version_info.major >= 3 else xrange
 path.insert(
     1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
 )
-from brutils.cnpj import sieve, display, hashdigit, checksum, validate, generate, is_valid_cnpj
+from brutils.cnpj import (
+    sieve,
+    display,
+    hashdigit,
+    checksum,
+    validate,
+    generate,
+    is_valid_cnpj,
+)
 from unittest import TestCase, main
 
 
