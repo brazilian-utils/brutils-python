@@ -8,7 +8,15 @@ range = range if version_info.major >= 3 else xrange
 path.insert(
     1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
 )
-from brutils.cpf import sieve, display, hashdigit, checksum, validate, generate
+from brutils.cpf import (
+    sieve,
+    display,
+    hashdigit,
+    checksum,
+    validate,
+    generate,
+    is_valid_cpf,
+)
 from unittest import TestCase, main
 
 
@@ -41,6 +49,11 @@ class CPF(TestCase):
         assert validate("52513127765")
         assert validate("52599927765")
         assert not validate("00000000000")
+
+    def test_is_valid_cpf(self):
+        assert is_valid_cpf("52513127765")
+        assert is_valid_cpf("52599927765")
+        assert not is_valid_cpf("00000000000")
 
     def test_generate(self):
         for i in range(1000):

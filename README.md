@@ -26,16 +26,13 @@ pip install brutils
 
 ## Usage
 
-### Importing:
-```
->>> from brutils import cpf, cnpj
-```
-
 ### How do I validate a CPF or CNPJ?
 ```
 # numbers only, formatted as strings
 
->>> cpf.validate('00011122233')
+>>> from brutils import cnpj
+>>> from brutils.cpf import is_valid_cpf
+>>> is_valid_cpf('00011122233')
 False
 >>> cnpj.validate('00111222000133')
 False
