@@ -71,6 +71,17 @@ def validate(cpf):  # type: (str) -> bool
     return all(hashdigit(cpf, i + 10) == int(v) for i, v in enumerate(cpf[9:]))
 
 
+def is_valid_cpf(cpf):  # type: (str) -> bool
+    """
+    Returns whether or not the verifying checksum digits of the
+    given `cpf` match it's base number. Input should be a digit
+    string of proper length.
+    Using this method name to match with the js library  api.
+    Using the same method to ensure backwards compatibility.
+    """
+    return validate(cpf)
+
+
 def generate():  # type: () -> str
     """Generates a random valid CPF digit string."""
     base = str(randint(1, 999999998)).zfill(9)
