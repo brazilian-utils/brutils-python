@@ -72,6 +72,17 @@ def validate(cnpj):  # type: (str) -> bool
     )
 
 
+def is_valid_cnpj(cnpj):  # type: (str) -> bool
+    """
+    Returns whether or not the verifying checksum digits of the
+    given `cnpj` match it's base number. Input should be a digit
+    string of proper length.
+    Using this method name to match with the js library  api.
+    Using the same method to ensure backwards compatibility.
+    """
+    return validate(cnpj)
+
+
 def generate(branch=1):  # type: (int) -> str
     """
     Generates a random valid CNPJ digit string. An optional branch
