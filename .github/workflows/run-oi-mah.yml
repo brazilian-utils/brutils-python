@@ -1,0 +1,10 @@
+name: Run Oi Mah 👋
+on:
+  pull_request
+
+jobs:
+  say_hi:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say Hello!
+        run: echo 'Oi Mah!'
