@@ -72,7 +72,7 @@ def validate(cnpj):  # type: (str) -> bool
     )
 
 
-def is_valid_cnpj(cnpj):  # type: (str) -> bool
+def is_valid(cnpj):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the
     given `cnpj` match it's base number. Input should be a digit

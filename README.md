@@ -30,10 +30,9 @@ pip install brutils
 ```
 # numbers only, formatted as strings
 
->>> from brutils.cpf import is_valid_cpf
+>>> from brutils import is_valid_cpf, is_valid_cnpj
 >>> is_valid_cpf('00011122233')
 False
->>> from brutils.cnpj import is_valid_cnpj
 >>> is_valid_cnpj('00111222000133')
 False
 ```
