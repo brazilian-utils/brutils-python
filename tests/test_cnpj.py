@@ -15,7 +15,7 @@ from brutils.cnpj import (
     checksum,
     validate,
     generate,
-    is_valid_cnpj,
+    is_valid,
 )
 from unittest import TestCase, main
 
@@ -50,10 +50,10 @@ class CNPJ(TestCase):
         assert not validate("52599927000100")
         assert not validate("00000000000")
 
-    def test_is_valid_cnpj(self):
-        assert is_valid_cnpj("34665388000161")
-        assert not is_valid_cnpj("52599927000100")
-        assert not is_valid_cnpj("00000000000")
+    def test_is_valid(self):
+        assert is_valid("34665388000161")
+        assert not is_valid("52599927000100")
+        assert not is_valid("00000000000")
 
     def test_generate(self):
         for i in range(1000):
