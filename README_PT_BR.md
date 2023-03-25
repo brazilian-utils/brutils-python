@@ -39,7 +39,6 @@ False
 False
 ```
 
-
 ### E se a minha string estiver formatada com simbolos?
 ```
 >>> cpf.sieve('000.111.222-33')
