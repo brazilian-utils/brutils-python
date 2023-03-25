@@ -15,7 +15,7 @@ from brutils.cpf import (
     checksum,
     validate,
     generate,
-    is_valid_cpf,
+    is_valid,
 )
 from unittest import TestCase, main
 
@@ -50,10 +50,10 @@ class CPF(TestCase):
         assert validate("52599927765")
         assert not validate("00000000000")
 
-    def test_is_valid_cpf(self):
-        assert is_valid_cpf("52513127765")
-        assert is_valid_cpf("52599927765")
-        assert not is_valid_cpf("00000000000")
+    def test_is_valid(self):
+        assert is_valid("52513127765")
+        assert is_valid("52599927765")
+        assert not is_valid("00000000000")
 
     def test_generate(self):
         for i in range(1000):
