@@ -71,7 +71,7 @@ def validate(cpf):  # type: (str) -> bool
     return all(hashdigit(cpf, i + 10) == int(v) for i, v in enumerate(cpf[9:]))
 
 
-def is_valid_cpf(cpf):  # type: (str) -> bool
+def is_valid(cpf):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the
     given `cpf` match it's base number. Input should be a digit
