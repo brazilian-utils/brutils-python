@@ -16,6 +16,7 @@ from brutils.cnpj import (
     validate,
     generate,
     is_valid,
+    format_cnpj,
 )
 from unittest import TestCase, main
 
@@ -34,6 +35,12 @@ class CNPJ(TestCase):
         assert display("00000000000000") is None
         assert display("0000000000000a") is None
         assert display("0000000000000") is None
+
+    def test_format_cnpj(self):
+        assert format_cnpj("00000000000109") == "00.000.000/0001-09"
+        assert format_cnpj("00000000000000") is None
+        assert format_cnpj("0000000000000a") is None
+        assert format_cnpj("0000000000000") is None
 
     def test_hashdigit(self):
         assert hashdigit("00000000000000", 13) == 0

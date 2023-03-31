@@ -28,6 +28,14 @@ def display(cnpj):  # type: (str) -> str
     )
 
 
+def format_cnpj(cnpj):  # type: (str) -> str
+    """
+    Will format an adequately formatted numbers-only CNPJ string,
+    adding in standard formatting visual aid symbols for display.
+    """
+    return display(cnpj)
+
+
 # CALCULATORS
 #############
 

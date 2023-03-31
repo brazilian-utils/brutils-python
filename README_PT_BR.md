@@ -56,7 +56,8 @@ False
 ```
 >>> cpf.display('00011122233')
 '000.111.222-33'
->>> cnpj.display('00111222000100')
+>>> from brutils import format_cnpj
+>>> format_cnpj('00111222000100')
 '00.111.222/0001-00'
 ```
 
