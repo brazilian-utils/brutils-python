@@ -16,7 +16,7 @@ from brutils.cnpj import (
     validate,
     generate,
     is_valid,
-    format_cnpj
+    format_cnpj,
 )
 from unittest import TestCase, main
 
