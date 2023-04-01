@@ -39,10 +39,10 @@ False
 
 ### What if my string has formatting symbols in it?
 ```
->>> from brutils import parse_cpf
+>>> from brutils import parse_cpf, parse_cnpj
 >>> parse_cpf('000.111.222-33')
 '00011122233'
->>> cnpj.sieve('00.111.222/0001-00')
+>>> parse_cnpj('00.111.222/0001-00')
 '00111222000100'
 
 # The `sieve` function only filters out the symbols used for CPF or CNPJ validation.
