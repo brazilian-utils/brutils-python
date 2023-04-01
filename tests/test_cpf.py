@@ -17,6 +17,7 @@ from brutils.cpf import (
     generate,
     is_valid,
     format_cpf,
+    parse,
 )
 from unittest import TestCase, main
 
@@ -29,6 +30,14 @@ class CPF(TestCase):
         assert sieve("abc1230916*!*&#") == "abc1230916*!*&#"
         assert sieve("ab.c1.--.2-309.-1-.6-.*.-!*&#") == "abc1230916*!*&#"
         assert sieve("...---...") == ""
+
+    def test_parse(self):
+        assert parse("00000000000") == "00000000000"
+        assert parse("123.456.789-10") == "12345678910"
+        assert parse("134..2435.-1892.-") == "13424351892"
+        assert parse("abc1230916*!*&#") == "abc1230916*!*&#"
+        assert parse("ab.c1.--.2-309.-1-.6-.*.-!*&#") == "abc1230916*!*&#"
+        assert parse("...---...") == ""
 
     def test_display(self):
         assert display("00000000011") == "000.000.000-11"
