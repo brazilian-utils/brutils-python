@@ -16,6 +16,7 @@ from brutils.cpf import (
     validate,
     generate,
     is_valid,
+    format_cpf,
 )
 from unittest import TestCase, main
 
@@ -34,6 +35,12 @@ class CPF(TestCase):
         assert display("00000000000") is None
         assert display("0000000000a") is None
         assert display("000000000000") is None
+
+    def test_format_cpf(self):
+        assert format_cpf("00000000011") == "000.000.000-11"
+        assert format_cpf("00000000000") is None
+        assert format_cpf("0000000000a") is None
+        assert format_cpf("000000000000") is None
 
     def test_hashdigit(self):
         assert hashdigit("000000000", 10) == 0
