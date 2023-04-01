@@ -16,6 +16,16 @@ def sieve(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in "./-", dirty))
 
 
+def parse(dirty):  # type: (str) -> str
+    """
+    Filters out CNPJ formatting symbols. Symbols that are not used
+    in the CNPJ formatting are left unfiltered on purpose so that
+    if fails other tests, because their presence indicate that the
+    input was somehow corrupted.
+    """
+    return sieve(dirty)
+
+
 def display(cnpj):  # type: (str) -> str
     """
     Will format an adequately formatted numbers-only CNPJ string,

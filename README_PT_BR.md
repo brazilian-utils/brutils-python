@@ -41,10 +41,10 @@ False
 
 ### E se a minha string estiver formatada com simbolos?
 ```
->>> from brutils import parse_cpf
+>>> from brutils import parse_cpf, parse_cnpj
 >>> parse_cpf('000.111.222-33')
 '00011122233'
->>> cnpj.sieve('00.111.222/0001-00')
+>>> parse_cnpj('00.111.222/0001-00')
 '00111222000100'
 
 # A função `sieve` limpa apenas os simbolos de formatação de CPF ou CNPJ, e de
