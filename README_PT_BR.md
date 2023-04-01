@@ -64,9 +64,10 @@ False
 
 ### E se eu quiser gerar CPFs ou CNPJs validos aleatórios?
 ```
->>> cpf.generate()
+>>> from brutils import generate_cpf
+>>> generate_cpf()
 '17433964657'
->>> cnpj.generate()
+>>> generate_cnpj()
 '34665388000161'
 ```
 
