@@ -51,9 +51,9 @@ False
 
 ### What if I want to format a numbers only string?
 ```
->>> cpf.display('00011122233')
+>>> from brutils import format_cpf, format_cnpj
+>>> format_cpf('00011122233')
 '000.111.222-33'
->>> from brutils import format_cnpj
 >>> format_cnpj('00111222000100')
 '00.111.222/0001-00'
 ```

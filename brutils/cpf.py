@@ -26,6 +26,14 @@ def display(cpf):  # type: (str) -> str
     return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:])
 
 
+def format_cpf(cpf):  # type: (str) -> str
+    """
+    Will format an adequately formatted numbers-only CPF string,
+    adding in standard formatting visual aid symbols for display.
+    """
+    return display(cpf)
+
+
 # CALCULATORS
 #############
 
