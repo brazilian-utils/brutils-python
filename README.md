@@ -69,7 +69,8 @@ It purposefully doesn't remove other symbols.
 Generate a valid random CPF.
 
 ```python
->>> cpf.generate()
+>>> from brutils import generate_cpf
+>>> generate_cpf()
 '17433964657'
 ```
 
@@ -110,6 +111,7 @@ It purposefully doesn't remove other symbols.
 Generate a valid random CNPJ.
 
 ```python
->>> cnpj.generate()
+>>> from brutils import generate_cnpj
+>>> generate_cnpj()
 '34665388000161'
 ```

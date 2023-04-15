@@ -68,7 +68,8 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 Gera um CPF válido aleatório.
 
 ```python
->>> cpf.generate()
+>>> from brutils import generate_cpf
+>>> generate_cpf()
 '17433964657'
 ```
 
@@ -104,9 +105,10 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 
 ## generate_cnpj
 
-Gera um CPF válido aleatório.
+Gera um CNPJ válido aleatório.
 
 ```python
->>> cnpj.generate()
+>>> from brutils import generate_cnpj
+>>> generate_cnpj()
 '34665388000161'
 ```
