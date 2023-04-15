@@ -2,22 +2,18 @@
 <h1>🇧🇷 Brazilian Utils</h1>
 
 <p>Utils library for Brazilian-specific businesses.</p>
-</div>
+
 
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypi.org/project/brutils/)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 
 ### [Looking for the english version?](README.md)
+</div>
 
-`brutils` é uma biblioteca para tratar de validações de documentos brasileiros,
-e que eventualmente pode evoluir para tratar de outras coisas dentro do escopo
-de validações relacionadas a burocracias brasileiras.
+# Introdução
 
-Sua principal funcionalidade é a validação de CPFs e CNPJs, mas sugestões sobre
-outras coisas a se validar (preferencialmente de maneira determinística) são bem
-vindas.
-
+Brazilian Utils é uma biblioteca com foco na resolução de problemas que enfrentamos diariamente no desenvolvimento de aplicações para o business Brasileiro.
 
 ## Instalação
 
@@ -25,55 +21,94 @@ vindas.
 pip install brutils
 ```
 
-
 ## Utilização
 
-### Como faço para validar um CPF ou CNPJ?
-```
-# somente numeros, em formato string
+Para usar um de nossos utilitários, basta importar a função necessária, como no exemplo abaixo:
 
->>> from brutils import is_valid_cpf, is_valid_cnpj
+```python
+>>> from brutils import is_valid_cpf
 >>> is_valid_cpf('00011122233')
 False
+```
+
+# Utilitários
+
+## is_valid_cpf
+
+Verifica se o CPF é valido. Apenas números, formatados como string.
+
+```python
+>>> from brutils import is_valid_cpf
+>>> is_valid_cpf('00011122233')
+False
+```
+
+## format_cpf
+
+Formata o CPF.
+
+```python
+>>> from brutils import format_cpf
+>>> format_cpf('00011122233')
+'000.111.222-33'
+```
+
+## parse_cpf
+
+Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
+
+
+```python
+>>> from brutils import parse_cpf
+>>> parse_cpf('000.111.222-33')
+'00011122233'
+```
+## generate_cpf
+
+Gera um CPF válido aleatório.
+
+```python
+>>> from brutils import generate_cpf
+>>> generate_cpf()
+'17433964657'
+```
+
+## is_valid_cnpj
+
+Verifica se o CNPJ é valido. Apenas números, formatados como string.
+
+```python
+>>> from brutils import is_valid_cnpj
 >>> is_valid_cnpj('00111222000133')
 False
 ```
 
-### E se a minha string estiver formatada com simbolos?
-```
->>> from brutils import parse_cpf, parse_cnpj
->>> parse_cpf('000.111.222-33')
-'00011122233'
->>> parse_cnpj('00.111.222/0001-00')
-'00111222000100'
+## format_cnpj
 
-# A função `sieve` limpa apenas os simbolos de formatação de CPF ou CNPJ, e de
-# whitespace nas pontas. Ela não remove outros caractéres propositalmente, pois
-# estes seriam indicativos de uma possível corrupção no dado ou de uma falta de
-# filtros de input.
-```
+Formata o CNPJ.
 
-### E se eu quiser formatar uma string numérica?
-```
->>> from brutils import format_cpf, format_cnpj
->>> format_cpf('00011122233')
-'000.111.222-33'
+```python
+>>> from brutils import format_cnpj
 >>> format_cnpj('00111222000100')
 '00.111.222/0001-00'
 ```
 
-### E se eu quiser gerar CPFs ou CNPJs validos aleatórios?
+## parse_cnpj
+
+Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
+
+```python
+>>> from brutils import parse_cnpj
+>>> parse_cnpj('00.111.222/0001-00')
+'00111222000100'
 ```
->>> from brutils import generate_cpf
->>> generate_cpf()
-'17433964657'
+
+## generate_cnpj
+
+Gera um CNPJ válido aleatório.
+
+```python
+>>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
-```
-
-
-## Testes
-
-```
-python3 -m unittest discover tests/
 ```
