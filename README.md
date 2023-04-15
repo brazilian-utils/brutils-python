@@ -7,6 +7,8 @@
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypi.org/project/brutils/)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 ### [Procurando pela versão em português?](README_PT_BR.md)
+### [Looking for 1.0.1 version documentation?](/documentation%20v1.0.1/ENGLISH_VERSION.md)
+
 
 </div>
 
