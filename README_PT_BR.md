@@ -9,6 +9,7 @@
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 
 ### [Looking for the english version?](README.md)
+### [Procurando a documentação da versão 1.0.1?](/documentation%20v1.0.1/PORTUGUESE_VERSION.md)
 </div>
 
 # Introdução
