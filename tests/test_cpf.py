@@ -67,9 +67,30 @@ class CPF(TestCase):
         assert not validate("00000000000")
 
     def test_is_valid(self):
-        assert is_valid("52513127765")
-        assert is_valid("52599927765")
-        assert not is_valid("00000000000")
+        # When cpf is not string, returns False
+        assert not is_valid(1)
+
+        # When cpf's len is different of 11, returns False
+        assert not is_valid("1")
+
+        # When cpf does not contain only digits, returns False
+        assert not is_valid("1112223334-")
+
+        # When rest_1 is lt 2 and the 10th digit is not 0, returns False
+        assert not is_valid("11111111215")
+
+        # When rest_1 is gte 2 and the 10th digit is not (11 - rest), returns False
+        assert not is_valid("11144477705")
+
+        # When rest_2 is lt 2 and the 11th digit is not 0, returns False
+        assert not is_valid("11111111204")
+
+        # When rest_2 is gte 2 and the 11th digit is not (11 - rest), returns False
+        assert not is_valid("11144477732")
+
+        # When cpf is valid
+        assert is_valid("11144477735")
+        assert is_valid("11111111200")
 
     def test_generate(self):
         for i in range(1000):
