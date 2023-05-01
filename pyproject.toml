@@ -30,7 +30,7 @@ python = "^3.7"
 
 
 [tool.poetry.group.test.dependencies]
-coverage = "^7.2.3"
+coverage = "^7.2.5"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
