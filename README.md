@@ -71,7 +71,6 @@ Formata o CPF. Retorna None se o CPF for inválido.
 
 Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
 
-
 ```python
 >>> from brutils import parse_cpf
 >>> parse_cpf('000.111.222-33')
