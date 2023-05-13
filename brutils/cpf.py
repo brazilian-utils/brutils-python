@@ -90,20 +90,48 @@ def validate(cpf):  # type: (str) -> bool
     return all(hashdigit(cpf, i + 10) == int(v) for i, v in enumerate(cpf[9:]))
 
 
-def is_valid(cpf):  # type: (str) -> bool
-    """
-    Returns whether or not the verifying checksum digits of the
-    given `cpf` match it's base number. Input should be a digit
-    string of proper length.
-    Using this method name to match with the js library  api.
-    Using the same method to ensure backwards compatibility.
-    """
-    return validate(cpf)
-
-
 def generate():  # type: () -> str
     """Generates a random valid CPF digit string."""
     base = str(randint(1, 999999998)).zfill(9)
     while len(set(base)) == 1:
         base = str(randint(1, 999999998)).zfill(9)
     return base + checksum(base)
+
+
+def is_valid(cpf):  # type: (str) -> bool
+    """
+    Returns whether or not a cpf is_valid.
+    Source: https://www.geradorcpf.com/algoritmo_do_cpf.htm
+    """
+    is_syntax_valid = isinstance(cpf, str) and len(cpf) == 11 and cpf.isdigit()
+
+    return is_syntax_valid and _is_semantic_valid(cpf)
+
+
+def _is_semantic_valid(cpf):
+    cpf = [int(digit) for digit in cpf]
+
+    constants_tenth_digit = [10, 9, 8, 7, 6, 5, 4, 3, 2]
+    is_tenth_digit_valid = _is_digit_valid(cpf, constants_tenth_digit, 9)
+
+    constants_eleventh_digit = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2]
+    is_eleventh_digit_valid = _is_digit_valid(cpf, constants_eleventh_digit, 10)
+
+    return is_tenth_digit_valid and is_eleventh_digit_valid
+
+
+def _is_digit_valid(cpf, constants, digit_index):
+    sum = _multiply_and_sum_lists(cpf, constants, digit_index)
+    rest = sum % 11
+    digit = cpf[digit_index]
+
+    return (rest <= 2 and digit == 0) or (rest > 2 and digit == (11 - rest))
+
+
+def _multiply_and_sum_lists(list_1, list_2, max_index):
+    sum = 0
+
+    for index in range(0, max_index):
+        sum += list_1[index] * list_2[index]
+
+    return sum

@@ -14,7 +14,7 @@ $ git clone git@github.com:brazilian-utils/brutils-python.git
 $ cd brutils-python
 ```
 
-Create a [virtualenv][virtualenv] for ScanAPI and activate it:
+Create a [virtualenv][virtualenv] for brutils and activate it:
 
 ```shell
 $ make shell
