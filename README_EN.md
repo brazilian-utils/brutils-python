@@ -34,7 +34,20 @@ False
 
 # Utilities
 
-## is_valid_cpf
+- [CPF](#cpf)
+  - [is_valid_cpf](#is_valid_cpf)
+  - [format_cpf](#format_cpf)
+  - [parse_cpf](#parse_cpf)
+  - [generate_cpf](#generate_cpf)
+- [CNPJ](#cnpj)
+  - [is_valid_cnpj](#is_valid_cnpj)
+  - [format_cnpj](#format_cnpj)
+  - [parse_cnpj](#parse_cnpj)
+  - [generate_cnpj](#generate_cnpj)
+
+## CPF
+
+### is_valid_cpf
 
 Check if CPF is valid.
 
@@ -44,7 +57,7 @@ Check if CPF is valid.
 False
 ```
 
-## format_cpf
+### format_cpf
 
 Format CPF. Returns None if CPF is invalid.
 
@@ -54,7 +67,7 @@ Format CPF. Returns None if CPF is invalid.
 '111.444.777-35'
 ```
 
-## parse_cpf
+### parse_cpf
 
 Remove formatting symbols from CPF and return only digits.
 It only filters out the symbols used for CPF validation.
@@ -65,7 +78,8 @@ It purposefully doesn't remove other symbols.
 >>> parse_cpf('000.111.222-33')
 '00011122233'
 ```
-## generate_cpf
+
+### generate_cpf
 
 Generate a valid random CPF.
 
@@ -75,7 +89,9 @@ Generate a valid random CPF.
 '17433964657'
 ```
 
-## is_valid_cnpj
+## CNPJ
+
+### is_valid_cnpj
 
 Check if CNPJ is valid. Numbers only, formatted as strings.
 
@@ -85,7 +101,7 @@ Check if CNPJ is valid. Numbers only, formatted as strings.
 False
 ```
 
-## format_cnpj
+### format_cnpj
 
 Format CNPJ.
 
@@ -95,7 +111,7 @@ Format CNPJ.
 '00.111.222/0001-00'
 ```
 
-## parse_cnpj
+### parse_cnpj
 
 Remove formatting symbols from CNPJ and return only digits.
 It only filters out the symbols used for CNPJ validation.
@@ -107,7 +123,7 @@ It purposefully doesn't remove other symbols.
 '00111222000100'
 ```
 
-## generate_cnpj
+### generate_cnpj
 
 Generate a valid random CNPJ.
 

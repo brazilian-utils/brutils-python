@@ -34,7 +34,20 @@ False
 
 # Utilitários
 
-## is_valid_cpf
+- [CPF](#cpf)
+  - [is_valid_cpf](#is_valid_cpf)
+  - [format_cpf](#format_cpf)
+  - [parse_cpf](#parse_cpf)
+  - [generate_cpf](#generate_cpf)
+- [CNPJ](#cnpj)
+  - [is_valid_cnpj](#is_valid_cnpj)
+  - [format_cnpj](#format_cnpj)
+  - [parse_cnpj](#parse_cnpj)
+  - [generate_cnpj](#generate_cnpj)
+
+## CPF
+
+### is_valid_cpf
 
 Verifica se o CPF é valido.
 
@@ -44,7 +57,7 @@ Verifica se o CPF é valido.
 False
 ```
 
-## format_cpf
+### format_cpf
 
 Formata o CPF. Retorna None se o CPF for inválido.
 
@@ -54,7 +67,7 @@ Formata o CPF. Retorna None se o CPF for inválido.
 '111.444.777-35'
 ```
 
-## parse_cpf
+### parse_cpf
 
 Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
 
@@ -64,7 +77,7 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 >>> parse_cpf('000.111.222-33')
 '00011122233'
 ```
-## generate_cpf
+### generate_cpf
 
 Gera um CPF válido aleatório.
 
@@ -74,7 +87,9 @@ Gera um CPF válido aleatório.
 '17433964657'
 ```
 
-## is_valid_cnpj
+## CNPJ
+
+### is_valid_cnpj
 
 Verifica se o CNPJ é valido. Apenas números, formatados como string.
 
@@ -84,7 +99,7 @@ Verifica se o CNPJ é valido. Apenas números, formatados como string.
 False
 ```
 
-## format_cnpj
+### format_cnpj
 
 Formata o CNPJ.
 
@@ -94,7 +109,7 @@ Formata o CNPJ.
 '00.111.222/0001-00'
 ```
 
-## parse_cnpj
+### parse_cnpj
 
 Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
 
@@ -104,7 +119,7 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 '00111222000100'
 ```
 
-## generate_cnpj
+### generate_cnpj
 
 Gera um CNPJ válido aleatório.
 
