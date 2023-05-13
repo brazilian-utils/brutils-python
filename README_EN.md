@@ -3,28 +3,28 @@
 
 <p>Utils library for Brazilian-specific businesses.</p>
 
-
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypi.org/project/brutils/)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
+### [Procurando pela versão em português?](README.md)
+### [Looking for 1.0.1 version documentation?](/documentation%20v1.0.1/ENGLISH_VERSION.md)
 
-### [Looking for the english version?](README.md)
-### [Procurando a documentação da versão 1.0.1?](/documentation%20v1.0.1/PORTUGUESE_VERSION.md)
 </div>
 
-# Introdução
+# Getting Started
 
-Brazilian Utils é uma biblioteca com foco na resolução de problemas que enfrentamos diariamente no desenvolvimento de aplicações para o business Brasileiro.
+Brazilian Utils is a library focused on solving problems that we face daily in
+the development of applications for the Brazilian business.
 
-## Instalação
+## Installation
 
 ```
 pip install brutils
 ```
 
-## Utilização
+## Usage
 
-Para usar um de nossos utilitários, basta importar a função necessária, como no exemplo abaixo:
+To use one of our utilities you just need to import the required function as in the example below:
 
 ```python
 >>> from brutils import is_valid_cpf
@@ -32,11 +32,11 @@ Para usar um de nossos utilitários, basta importar a função necessária, como
 False
 ```
 
-# Utilitários
+# Utilities
 
 ## is_valid_cpf
 
-Verifica se o CPF é valido. Apenas números, formatados como string.
+Check if CPF is valid.
 
 ```python
 >>> from brutils import is_valid_cpf
@@ -46,7 +46,7 @@ False
 
 ## format_cpf
 
-Formata o CPF.
+Format CPF.
 
 ```python
 >>> from brutils import format_cpf
@@ -56,8 +56,9 @@ Formata o CPF.
 
 ## parse_cpf
 
-Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
-
+Remove formatting symbols from CPF and return only digits.
+It only filters out the symbols used for CPF validation.
+It purposefully doesn't remove other symbols.
 
 ```python
 >>> from brutils import parse_cpf
@@ -66,7 +67,7 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 ```
 ## generate_cpf
 
-Gera um CPF válido aleatório.
+Generate a valid random CPF.
 
 ```python
 >>> from brutils import generate_cpf
@@ -76,7 +77,7 @@ Gera um CPF válido aleatório.
 
 ## is_valid_cnpj
 
-Verifica se o CNPJ é valido. Apenas números, formatados como string.
+Check if CNPJ is valid. Numbers only, formatted as strings.
 
 ```python
 >>> from brutils import is_valid_cnpj
@@ -86,7 +87,7 @@ False
 
 ## format_cnpj
 
-Formata o CNPJ.
+Format CNPJ.
 
 ```python
 >>> from brutils import format_cnpj
@@ -96,7 +97,9 @@ Formata o CNPJ.
 
 ## parse_cnpj
 
-Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
+Remove formatting symbols from CNPJ and return only digits.
+It only filters out the symbols used for CNPJ validation.
+It purposefully doesn't remove other symbols.
 
 ```python
 >>> from brutils import parse_cnpj
@@ -106,7 +109,7 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 
 ## generate_cnpj
 
-Gera um CNPJ válido aleatório.
+Generate a valid random CNPJ.
 
 ```python
 >>> from brutils import generate_cnpj
