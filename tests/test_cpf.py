@@ -2,6 +2,7 @@ from os import pardir
 from os.path import abspath, join, dirname
 from sys import path, version_info, dont_write_bytecode
 from inspect import getsourcefile
+from unittest.mock import patch
 
 dont_write_bytecode = True
 range = range if version_info.major >= 3 else xrange
@@ -46,10 +47,16 @@ class CPF(TestCase):
         assert display("000000000000") is None
 
     def test_format_cpf(self):
-        assert format_cpf("00000000011") == "000.000.000-11"
-        assert format_cpf("00000000000") is None
-        assert format_cpf("0000000000a") is None
-        assert format_cpf("000000000000") is None
+        with patch("brutils.cpf.is_valid", return_value=True) as mock_is_valid:
+            # When cpf is_valid, returns formatted cpf
+            assert format_cpf("11144477735") == "111.444.777-35"
+
+        # Checks if function is_valid_cpf is called
+        mock_is_valid.assert_called_once_with("11144477735")
+
+        with patch("brutils.cpf.is_valid", return_value=False) as mock_is_valid:
+            # When cpf isn't valid, returns None
+            assert format_cpf("11144477735") is None
 
     def test_hashdigit(self):
         assert hashdigit("000000000", 10) == 0

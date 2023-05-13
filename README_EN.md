@@ -46,12 +46,12 @@ False
 
 ## format_cpf
 
-Format CPF.
+Format CPF. Returns None if CPF is invalid.
 
 ```python
 >>> from brutils import format_cpf
->>> format_cpf('00011122233')
-'000.111.222-33'
+>>> format_cpf('11144477735')
+'111.444.777-35'
 ```
 
 ## parse_cpf
