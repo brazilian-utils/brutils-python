@@ -39,10 +39,14 @@ def display(cpf):  # type: (str) -> str
 
 def format_cpf(cpf):  # type: (str) -> str
     """
-    Will format an adequately formatted numbers-only CPF string,
-    adding in standard formatting visual aid symbols for display.
+    Format an adequately formatted numbers-only CPF string,
+    Returns a cpf formatted with standard visual aid symbols.
+    Returns None if cpf is invalid.
     """
-    return display(cpf)
+
+    if not is_valid(cpf):
+        return None
+    return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:])
 
 
 # CALCULATORS
