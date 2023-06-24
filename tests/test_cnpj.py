@@ -2,6 +2,7 @@ from os import pardir
 from os.path import abspath, join, dirname
 from sys import path, version_info, dont_write_bytecode
 from inspect import getsourcefile
+from unittest.mock import patch
 
 dont_write_bytecode = True
 range = range if version_info.major >= 3 else xrange
@@ -32,12 +33,10 @@ class CNPJ(TestCase):
         assert sieve("/...---.../") == ""
 
     def test_parse(self):
-        assert parse("00000000000") == "00000000000"
-        assert parse("12.345.678/0001-90") == "12345678000190"
-        assert parse("134..2435/.-1892.-") == "13424351892"
-        assert parse("abc1230916*!*&#") == "abc1230916*!*&#"
-        assert parse("ab.c1.--.2-3/09.-1-./6/-.*.-!*&#") == "abc1230916*!*&#"
-        assert parse("/...---.../") == ""
+        with patch("brutils.cnpj.sieve") as mock_sieve:
+            # When call parse, it calls sieve
+            parse("12.345.678/0001-90")
+            mock_sieve.assert_called()
 
     def test_display(self):
         assert display("00000000000109") == "00.000.000/0001-09"
