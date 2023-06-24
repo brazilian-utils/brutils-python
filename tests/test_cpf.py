@@ -12,13 +12,13 @@ path.insert(
 from brutils.cpf import (
     sieve,
     display,
-    hashdigit,
-    checksum,
     validate,
     generate,
     is_valid,
     format_cpf,
     parse,
+    _hashdigit,
+    _checksum,
 )
 from unittest import TestCase, main
 
@@ -33,12 +33,10 @@ class CPF(TestCase):
         assert sieve("...---...") == ""
 
     def test_parse(self):
-        assert parse("00000000000") == "00000000000"
-        assert parse("123.456.789-10") == "12345678910"
-        assert parse("134..2435.-1892.-") == "13424351892"
-        assert parse("abc1230916*!*&#") == "abc1230916*!*&#"
-        assert parse("ab.c1.--.2-309.-1-.6-.*.-!*&#") == "abc1230916*!*&#"
-        assert parse("...---...") == ""
+        with patch("brutils.cpf.sieve") as mock_sieve:
+            # When call parse, it calls sieve
+            parse("123.456.789-10")
+            mock_sieve.assert_called()
 
     def test_display(self):
         assert display("00000000011") == "000.000.000-11"
@@ -58,16 +56,6 @@ class CPF(TestCase):
             # When cpf isn't valid, returns None
             assert format_cpf("11144477735") is None
 
-    def test_hashdigit(self):
-        assert hashdigit("000000000", 10) == 0
-        assert hashdigit("0000000000", 11) == 0
-        assert hashdigit("52513127765", 10) == 6
-        assert hashdigit("52513127765", 11) == 5
-
-    def test_checksum(self):
-        assert checksum("000000000") == "00"
-        assert checksum("525131277") == "65"
-
     def test_validate(self):
         assert validate("52513127765")
         assert validate("52599927765")
@@ -82,6 +70,9 @@ class CPF(TestCase):
 
         # When cpf does not contain only digits, returns False
         assert not is_valid("1112223334-")
+
+        # When CPF has only the same digit, returns false
+        assert not is_valid("11111111111")
 
         # When rest_1 is lt 2 and the 10th digit is not 0, returns False
         assert not is_valid("11111111215")
@@ -100,9 +91,19 @@ class CPF(TestCase):
         assert is_valid("11111111200")
 
     def test_generate(self):
-        for i in range(1000):
+        for _ in range(10_000):
             assert validate(generate())
             assert display(generate()) is not None
+
+    def test__hashdigit(self):
+        assert _hashdigit("000000000", 10) == 0
+        assert _hashdigit("0000000000", 11) == 0
+        assert _hashdigit("52513127765", 10) == 6
+        assert _hashdigit("52513127765", 11) == 5
+
+    def test_checksum(self):
+        assert _checksum("000000000") == "00"
+        assert _checksum("525131277") == "65"
 
 
 if __name__ == "__main__":
