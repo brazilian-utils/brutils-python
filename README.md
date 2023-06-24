@@ -130,9 +130,9 @@ Gera um CNPJ válido aleatório.
 
 ## Contributing
 
-Collaboration is super welcome! We prepared the [contributing file][contributing] to help you in the first steps. Every little bit of help counts! Feel free to create new [GitHub issues][github-issues] and interact here.
+Sua colaboração é sempre bem-vinda! Preparamos o [ arquivo contributing][contributing] pra te ajudar nos primeiros passos. Toda ajuda conta! Sinta-se livre para criar novas [GitHub issues][github-issues] e interagir aqui.
 
-Let's build it together 🚀🚀
+Vamos construir juntos! 🚀🚀
 
 [github-issues]: https://github.com/brazilian-utils/brutils-python/issues
 [contributing]: CONTRIBUTING.md

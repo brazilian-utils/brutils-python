@@ -34,7 +34,7 @@ $ make install
 $ make run-python
 ```
 
-Now, you can use it [in the same way described in the README.md file](/README.md#usage)
+Now, you can use it [in the same way described in the README.md file](/README_EN.md#usage)
 
 ## Tests
 
