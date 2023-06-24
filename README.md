@@ -127,3 +127,12 @@ Gera um CNPJ válido aleatório.
 >>> generate_cnpj()
 '34665388000161'
 ```
+
+## Contributing
+
+Collaboration is super welcome! We prepared the [contributing file][contributing] to help you in the first steps. Every little bit of help counts! Feel free to create new [GitHub issues][github-issues] and interact here.
+
+Let's build it together 🚀🚀
+
+[github-issues]: https://github.com/brazilian-utils/brutils-python/issues
+[contributing]: CONTRIBUTING.md

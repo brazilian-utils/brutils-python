@@ -1,6 +1,6 @@
 # Contributing
 
-Obrigada por disponibilizar seu tempo Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every little bit of help counts!
+Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every little bit of help counts!
 
 ## Installation
 ### Requirements
