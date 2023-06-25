@@ -33,10 +33,10 @@ class CNPJ(TestCase):
         assert sieve("/...---.../") == ""
 
     def test_remove_symbols(self):
-        with patch("brutils.cnpj.remove_symbols") as mock_remove_symbols:
+        with patch("brutils.cnpj.sieve") as mock_sieve:
             # When call remove_symbols, it calls sieve
             remove_symbols("12.345.678/0001-90")
-            mock_remove_symbols.assert_called()
+            mock_sieve.assert_called()
 
     def test_display(self):
         assert display("00000000000109") == "00.000.000/0001-09"

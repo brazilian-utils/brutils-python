@@ -39,12 +39,12 @@ False
 
 ### E se a minha string estiver formatada com simbolos?
 ```
->>> cpf.sieve('000.111.222-33')
+>>> cpf.remove_symbols('000.111.222-33')
 '00011122233'
->>> cnpj.sieve('00.111.222/0001-00')
+>>> cnpj.remove_symbols('00.111.222/0001-00')
 '00111222000100'
 
-# A função `sieve` limpa apenas os simbolos de formatação de CPF ou CNPJ, e de
+# A função `remove_symbols` limpa apenas os simbolos de formatação de CPF ou CNPJ, e de
 # whitespace nas pontas. Ela não remove outros caractéres propositalmente, pois
 # estes seriam indicativos de uma possível corrupção no dado ou de uma falta de
 # filtros de input.

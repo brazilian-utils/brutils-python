@@ -33,10 +33,10 @@ class CPF(TestCase):
         assert sieve("...---...") == ""
 
     def test_remove_symbols(self):
-        with patch("brutils.cpf.remove_symbols") as mock_remove_symbols:
+        with patch("brutils.cpf.sieve") as mock_sieve:
             # When call remove_symbols, it calls sieve
             remove_symbols("123.456.789-10")
-            mock_remove_symbols.assert_called()
+            mock_sieve.assert_called()
 
     def test_display(self):
         assert display("00000000011") == "000.000.000-11"
