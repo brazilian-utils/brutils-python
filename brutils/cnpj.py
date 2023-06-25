@@ -16,7 +16,7 @@ def sieve(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in "./-", dirty))
 
 
-def parse(dirty):  # type: (str) -> str
+def remove_symbols(dirty):  # type: (str) -> str
     """Alias to the function `sieve`. Better naming."""
     return sieve(dirty)
 
