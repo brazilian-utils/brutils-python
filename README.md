@@ -130,7 +130,7 @@ Gera um CNPJ válido aleatório.
 
 ## Contributing
 
-Sua colaboração é sempre bem-vinda! Preparamos o [ arquivo contributing][contributing] pra te ajudar nos primeiros passos. Toda ajuda conta! Sinta-se livre para criar novas [GitHub issues][github-issues] e interagir aqui.
+Sua colaboração é sempre bem-vinda! Preparamos o [arquivo contributing][contributing] pra te ajudar nos primeiros passos. Toda ajuda conta! Sinta-se livre para criar novas [GitHub issues][github-issues] e interagir aqui.
 
 Vamos construir juntos! 🚀🚀
 
