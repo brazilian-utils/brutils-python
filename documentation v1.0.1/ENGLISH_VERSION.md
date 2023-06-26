@@ -37,12 +37,12 @@ False
 
 ### What if my string has formatting symbols in it?
 ```
->>> cpf.remove_symbols('000.111.222-33')
+>> cpf.sieve('000.111.222-33')
 '00011122233'
->>> cnpj.remove_symbols('00.111.222/0001-00')
+>>> cnpj.sieve('00.111.222/0001-00')
 '00111222000100'
 
-# The `remove_symbols` function only filters out the symbols used for CPF or CNPJ validation.
+# The `sieve` function only filters out the symbols used for CPF or CNPJ validation.
 # It purposefully doesn't remove other symbols, as those may be indicators of data
 # corruption, or a possible lack of input filters.
 ```
