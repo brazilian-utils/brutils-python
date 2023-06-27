@@ -1,42 +1,42 @@
 # Contributing
 
-Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every little bit of help counts!
+Obrigada por disponibilizar seu tempo para contribuir! 🙇‍♀️🙇‍♂️ Toda ajuda é bem-vinda!
 
-## Installation
-### Requirements
+## Instalação
+### Requisitos
 - [Python 3.7+][python]
 - [Poetry][poetry]
 
-Fork or clone the repository and enter into the project's folder:
+'Fork' ou clone o repositório e entre na pasta do projeto:
 
 ```shell
 $ git clone git@github.com:brazilian-utils/brutils-python.git
 $ cd brutils-python
 ```
 
-Create a [virtualenv][virtualenv] for brutils and activate it:
+Crie uma [virtualenv][virtualenv] para brutils e ative:
 
 ```shell
 $ make shell
 ```
 
-**Note: You need to run `make shell` every time you open a new terminal window/tab.**
+**Nota: Você vai precisar rodar `make shell` todas as vezes que abrir um novo terminal.**
 
-Install the dependencies:
+Instale as dependências:
 
 ```shell
 $ make install
 ```
 
-## Using locally
+## Usando localmente
 
 ```shell
 $ make run-python
 ```
 
-Now, you can use it [in the same way described in the README.md file](/README.md#usage)
+Agora, você pode usá-lo [da mesma forma descrita no arquivo README.md](/README.md#usage)
 
-## Tests
+## Testes
 
 ```shell
 $ make test
