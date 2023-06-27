@@ -37,7 +37,7 @@ False
 
 ### What if my string has formatting symbols in it?
 ```
->> cpf.sieve('000.111.222-33')
+>>> cpf.sieve('000.111.222-33')
 '00011122233'
 >>> cnpj.sieve('00.111.222/0001-00')
 '00111222000100'
