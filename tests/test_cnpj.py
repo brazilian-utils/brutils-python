@@ -18,7 +18,7 @@ from brutils.cnpj import (
     generate,
     is_valid,
     format_cnpj,
-    parse,
+    remove_symbols,
 )
 from unittest import TestCase, main
 
@@ -32,10 +32,10 @@ class CNPJ(TestCase):
         assert sieve("ab.c1.--.2-3/09.-1-./6/-.*.-!*&#") == "abc1230916*!*&#"
         assert sieve("/...---.../") == ""
 
-    def test_parse(self):
+    def test_remove_symbols(self):
         with patch("brutils.cnpj.sieve") as mock_sieve:
-            # When call parse, it calls sieve
-            parse("12.345.678/0001-90")
+            # When call remove_symbols, it calls sieve
+            remove_symbols("12.345.678/0001-90")
             mock_sieve.assert_called()
 
     def test_display(self):

@@ -16,7 +16,7 @@ from brutils.cpf import (
     generate,
     is_valid,
     format_cpf,
-    parse,
+    remove_symbols,
     _hashdigit,
     _checksum,
 )
@@ -32,10 +32,10 @@ class CPF(TestCase):
         assert sieve("ab.c1.--.2-309.-1-.6-.*.-!*&#") == "abc1230916*!*&#"
         assert sieve("...---...") == ""
 
-    def test_parse(self):
+    def test_remove_symbols(self):
         with patch("brutils.cpf.sieve") as mock_sieve:
-            # When call parse, it calls sieve
-            parse("123.456.789-10")
+            # When call remove_symbols, it calls sieve
+            remove_symbols("123.456.789-10")
             mock_sieve.assert_called()
 
     def test_display(self):
