@@ -45,10 +45,18 @@ class CNPJ(TestCase):
         assert display("0000000000000") is None
 
     def test_format_cnpj(self):
-        assert format_cnpj("00000000000109") == "00.000.000/0001-09"
-        assert format_cnpj("00000000000000") is None
-        assert format_cnpj("0000000000000a") is None
-        assert format_cnpj("0000000000000") is None
+        with patch("brutils.cnpj.is_valid", return_value=True) as mock_is_valid:
+            # When cnpj is_valid, returns formatted cnpj
+            assert format_cnpj("01838723000127") == "01.838.723/0001-27"
+
+        # Checks if function is_valid_cnpj is called
+        mock_is_valid.assert_called_once_with("01838723000127")
+
+        with patch(
+            "brutils.cnpj.is_valid", return_value=False
+        ) as mock_is_valid:
+            # When cnpj isn't valid, returns None
+            assert format_cnpj("01838723000127") is None
 
     def test_validate(self):
         assert validate("34665388000161")

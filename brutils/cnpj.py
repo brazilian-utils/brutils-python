@@ -38,7 +38,13 @@ def format_cnpj(cnpj):  # type: (str) -> str
     Will format an adequately formatted numbers-only CNPJ string,
     adding in standard formatting visual aid symbols for display.
     """
-    return display(cnpj)
+
+    if not is_valid(cnpj):
+        return None
+
+    return "{}.{}.{}/{}-{}".format(
+        cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]
+    )
 
 
 # CALCULATORS

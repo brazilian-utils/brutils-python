@@ -45,7 +45,7 @@ def format_cpf(cpf):  # type: (str) -> str
     if not is_valid(cpf):
         return None
 
-    return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:])
+    return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:11])
 
 
 # OPERATIONS
