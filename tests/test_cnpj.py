@@ -50,6 +50,45 @@ class CNPJ(TestCase):
         assert format_cnpj("0000000000000a") is None
         assert format_cnpj("0000000000000") is None
 
+    def test_validate(self):
+        assert validate("34665388000161")
+        assert not validate("52599927000100")
+        assert not validate("00000000000")
+
+    def test_is_valid(self):
+        # When CNPJ is not string, returns False
+        assert not is_valid(1)
+
+        # When CNPJ's len is different of 14, returns False
+        assert not is_valid("1")
+
+        # When CNPJ does not contain only digits, returns False
+        assert not is_valid("1112223334445-")
+
+        # When CNPJ has only the same digit, returns false
+        assert not is_valid("11111111111111")
+
+        # When rest_1 is lt 2 and the 13th digit is not 0, returns False
+        assert not is_valid("1111111111315")
+
+        # When rest_1 is gte 2 and the 13th digit is not (11 - rest), returns False
+        assert not is_valid("1111111111115")
+
+        # When rest_2 is lt 2 and the 14th digit is not 0, returns False
+        assert not is_valid("11111111121205")
+
+        # When rest_2 is gte 2 and the 14th digit is not (11 - rest), returns False
+        assert not is_valid("11111111113105")
+
+        # When CNPJ is valid
+        assert is_valid("34665388000161")
+        assert is_valid("01838723000127")
+
+    def test_generate(self):
+        for i in range(1000):
+            assert validate(generate())
+            assert display(generate()) is not None
+
     def test_hashdigit(self):
         assert hashdigit("00000000000000", 13) == 0
         assert hashdigit("00000000000000", 14) == 0
@@ -59,21 +98,6 @@ class CNPJ(TestCase):
     def test_checksum(self):
         assert checksum("00000000000000") == "00"
         assert checksum("52513127000299") == "99"
-
-    def test_validate(self):
-        assert validate("34665388000161")
-        assert not validate("52599927000100")
-        assert not validate("00000000000")
-
-    def test_is_valid(self):
-        assert is_valid("34665388000161")
-        assert not is_valid("52599927000100")
-        assert not is_valid("00000000000")
-
-    def test_generate(self):
-        for i in range(1000):
-            assert validate(generate())
-            assert display(generate()) is not None
 
 
 if __name__ == "__main__":
