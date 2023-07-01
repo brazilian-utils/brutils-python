@@ -12,13 +12,13 @@ path.insert(
 from brutils.cnpj import (
     sieve,
     display,
-    hashdigit,
-    checksum,
     validate,
     generate,
     is_valid,
     format_cnpj,
     remove_symbols,
+    _hashdigit,
+    _checksum,
 )
 from unittest import TestCase, main
 
@@ -93,19 +93,19 @@ class CNPJ(TestCase):
         assert is_valid("01838723000127")
 
     def test_generate(self):
-        for i in range(1000):
+        for _ in range(10_000):
             assert validate(generate())
             assert display(generate()) is not None
 
-    def test_hashdigit(self):
-        assert hashdigit("00000000000000", 13) == 0
-        assert hashdigit("00000000000000", 14) == 0
-        assert hashdigit("52513127000292", 13) == 9
-        assert hashdigit("52513127000292", 14) == 9
+    def test__hashdigit(self):
+        assert _hashdigit("00000000000000", 13) == 0
+        assert _hashdigit("00000000000000", 14) == 0
+        assert _hashdigit("52513127000292", 13) == 9
+        assert _hashdigit("52513127000292", 14) == 9
 
-    def test_checksum(self):
-        assert checksum("00000000000000") == "00"
-        assert checksum("52513127000299") == "99"
+    def test__checksum(self):
+        assert _checksum("00000000000000") == "00"
+        assert _checksum("52513127000299") == "99"
 
 
 if __name__ == "__main__":
