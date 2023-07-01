@@ -93,7 +93,7 @@ def is_valid(cnpj):  # type: (str) -> bool
     Using this method name to match with the js library  api.
     Using the same method to ensure backwards compatibility.
     """
-    return validate(cnpj)
+    return isinstance(cnpj, str) and validate(cnpj)
 
 
 def generate(branch=1):  # type: (int) -> str

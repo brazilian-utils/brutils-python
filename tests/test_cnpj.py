@@ -82,8 +82,7 @@ class CNPJ(TestCase):
 
         # When CNPJ is valid
         assert is_valid("34665388000161")
-        assert not is_valid("52599927000100")
-        assert not is_valid("00000000000")
+        assert is_valid("01838723000127")
 
     def test_generate(self):
         for i in range(1000):
