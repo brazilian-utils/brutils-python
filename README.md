@@ -44,6 +44,8 @@ False
   - [format_cnpj](#format_cnpj)
   - [remove_symbols_cnpj](#remove_symbols_cnpj)
   - [generate_cnpj](#generate_cnpj)
+- [CEP](#cep)
+  - [is_valid_cep](#is_valid_cep)  
 
 ## CPF
 
@@ -126,6 +128,18 @@ Gera um CNPJ válido aleatório.
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
+```
+
+## CEP
+
+### is_valid_cep
+
+Verifica se o CEP é válido.
+
+```python
+>>> from brutils import is_valid_cep
+>>> is_valid_cep('88390000')
+True
 ```
 
 ## Contributing
