@@ -12,13 +12,13 @@ path.insert(
 from brutils.cnpj import (
     sieve,
     display,
-    hashdigit,
-    checksum,
     validate,
     generate,
     is_valid,
     format_cnpj,
     remove_symbols,
+    _hashdigit,
+    _checksum,
 )
 from unittest import TestCase, main
 
@@ -45,10 +45,18 @@ class CNPJ(TestCase):
         assert display("0000000000000") is None
 
     def test_format_cnpj(self):
-        assert format_cnpj("00000000000109") == "00.000.000/0001-09"
-        assert format_cnpj("00000000000000") is None
-        assert format_cnpj("0000000000000a") is None
-        assert format_cnpj("0000000000000") is None
+        with patch("brutils.cnpj.is_valid", return_value=True) as mock_is_valid:
+            # When cnpj is_valid, returns formatted cnpj
+            assert format_cnpj("01838723000127") == "01.838.723/0001-27"
+
+        # Checks if function is_valid_cnpj is called
+        mock_is_valid.assert_called_once_with("01838723000127")
+
+        with patch(
+            "brutils.cnpj.is_valid", return_value=False
+        ) as mock_is_valid:
+            # When cnpj isn't valid, returns None
+            assert format_cnpj("01838723000127") is None
 
     def test_validate(self):
         assert validate("34665388000161")
@@ -85,19 +93,19 @@ class CNPJ(TestCase):
         assert is_valid("01838723000127")
 
     def test_generate(self):
-        for i in range(1000):
+        for _ in range(10_000):
             assert validate(generate())
             assert display(generate()) is not None
 
-    def test_hashdigit(self):
-        assert hashdigit("00000000000000", 13) == 0
-        assert hashdigit("00000000000000", 14) == 0
-        assert hashdigit("52513127000292", 13) == 9
-        assert hashdigit("52513127000292", 14) == 9
+    def test__hashdigit(self):
+        assert _hashdigit("00000000000000", 13) == 0
+        assert _hashdigit("00000000000000", 14) == 0
+        assert _hashdigit("52513127000292", 13) == 9
+        assert _hashdigit("52513127000292", 14) == 9
 
-    def test_checksum(self):
-        assert checksum("00000000000000") == "00"
-        assert checksum("52513127000299") == "99"
+    def test__checksum(self):
+        assert _checksum("00000000000000") == "00"
+        assert _checksum("52513127000299") == "99"
 
 
 if __name__ == "__main__":
