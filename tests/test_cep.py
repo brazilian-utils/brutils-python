@@ -11,6 +11,7 @@ path.insert(
 )
 from brutils.cep import (
     is_valid,
+    generate,
 )
 from unittest import TestCase, main
 
@@ -29,3 +30,8 @@ class CEP(TestCase):
         # When CEP is valid
         assert is_valid("99999999")
         assert is_valid("88390000")
+
+    def test_generate(self):
+        for _ in range(10_000):
+            assert is_valid(generate())
+        # assert format(generate()) is not None
