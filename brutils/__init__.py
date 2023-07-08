@@ -12,4 +12,5 @@ from brutils.cnpj import (
 )
 from brutils.cep import (
     is_valid as is_valid_cep,
+    generate as generate_cep,
 )
