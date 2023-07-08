@@ -44,12 +44,14 @@ False
   - [format_cnpj](#format_cnpj)
   - [remove_symbols_cnpj](#remove_symbols_cnpj)
   - [generate_cnpj](#generate_cnpj)
+- [CEP](#cep)
+  - [is_valid_cep](#is_valid_cep)  
 
 ## CPF
 
 ### is_valid_cpf
 
-Check if CPF is valid.
+Check if CPF is valid. Numbers only, formatted as strings. Does not check if CPF exists.
 
 ```python
 >>> from brutils import is_valid_cpf
@@ -93,7 +95,7 @@ Generate a valid random CPF.
 
 ### is_valid_cnpj
 
-Check if CNPJ is valid. Numbers only, formatted as strings.
+Check if CNPJ is valid. Numbers only, formatted as strings. Does not check if CNPJ exists.
 
 ```python
 >>> from brutils import is_valid_cnpj
@@ -131,6 +133,18 @@ Generate a valid random CNPJ.
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
+```
+
+## CEP
+
+### is_valid_cep
+
+Check if CEP is valid. Numbers only, formatted as strings. Does not check if CEP exists.
+
+```python
+>>> from brutils import is_valid_cep
+>>> is_valid_cep('88390000')
+True
 ```
 
 ## Contributing
