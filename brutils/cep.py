@@ -19,7 +19,4 @@ def is_valid(cep):  # type: (str) -> bool
 
     """
 
-    if not cep.isdigit() or len(cep) != 8 or len(set(cep)) == 1:
-        return False
-
-    return isinstance(cep, str)
+    return isinstance(cep, str) and len(cep) == 8 and cep.isdigit()

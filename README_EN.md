@@ -51,7 +51,7 @@ False
 
 ### is_valid_cpf
 
-Check if CPF is valid.
+Check if CPF is valid. Numbers only, formatted as strings. Does not check if CPF exists.
 
 ```python
 >>> from brutils import is_valid_cpf
@@ -95,7 +95,7 @@ Generate a valid random CPF.
 
 ### is_valid_cnpj
 
-Check if CNPJ is valid. Numbers only, formatted as strings.
+Check if CNPJ is valid. Numbers only, formatted as strings. Does not check if CNPJ exists.
 
 ```python
 >>> from brutils import is_valid_cnpj
@@ -139,7 +139,7 @@ Generate a valid random CNPJ.
 
 ### is_valid_cep
 
-Check if CEP is valid.
+Check if CEP is valid. Numbers only, formatted as strings. Does not check if CEP exists.
 
 ```python
 >>> from brutils import is_valid_cep
