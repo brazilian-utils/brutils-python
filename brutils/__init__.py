@@ -10,3 +10,6 @@ from brutils.cnpj import (
     remove_symbols as remove_symbols_cnpj,
     generate as generate_cnpj,
 )
+from brutils.cep import (
+    is_valid as is_valid_cep,
+)
