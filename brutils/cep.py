@@ -5,6 +5,18 @@ from random import randint
 ############
 
 
+def format_cep(cep):  # type: (str) -> str
+    """
+    Will format an adequately formatted numbers-only CEP string,
+    adding in standard formatting visual aid symbols for display.
+    """
+
+    if not is_valid(cep):
+        return None
+
+    return "{}-{}".format(cep[:5], cep[5:8])
+
+
 # OPERATIONS
 ############
 
