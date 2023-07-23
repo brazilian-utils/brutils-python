@@ -47,6 +47,7 @@ False
 - [CEP](#cep)
   - [is_valid_cep](#is_valid_cep)
   - [format_cep](#format_cep)
+  - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)  
 
 ## CPF
@@ -80,6 +81,7 @@ Remove os símbolos de formatação do CPF e retorna somente números. Filtra ap
 >>> remove_symbols_cpf('000.111.222-33')
 '00011122233'
 ```
+
 ### generate_cpf
 
 Gera um CPF válido aleatório.
@@ -152,6 +154,16 @@ Formata o CEP. Retorna None se o CEP for inválido.
 >>> from brutils import format_cep
 >>> format_cep('01310200')
 '01310-200'
+```
+
+### remove_symbols_cep
+
+Remove os símbolos de formatação do CEP e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CEP. Propositalmente não remove outros símbolos.
+
+```python
+>>> from brutils import remove_symbols_cep
+>>> remove_symbols_cep('01310-200')
+'01310200'
 ```
 
 ### generate_cep
