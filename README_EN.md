@@ -46,7 +46,8 @@ False
   - [generate_cnpj](#generate_cnpj)
 - [CEP](#cep)
   - [is_valid_cep](#is_valid_cep)
-  - [format_cep](#format_cep)   
+  - [format_cep](#format_cep)
+  - [remove_symbols_cep](#remove_symbols_cep)   
   - [generate_cep](#generate_cep)
 
 ## CPF
@@ -157,6 +158,18 @@ Format CEP. Returns None if CEP is invalid.
 >>> from brutils import format_cep
 >>> format_cpf('01310200')
 '01310-200'
+```
+
+### remove_symbols_cep
+
+Remove formatting symbols from CEP and return only digits.
+It only filters out the symbols used for CEP validation.
+It purposefully doesn't remove other symbols.
+
+```python
+>>> from brutils import remove_symbols_cep
+>>> remove_symbols_cep('01310-200')
+'01310200'
 ```
 
 ### generate_cep
