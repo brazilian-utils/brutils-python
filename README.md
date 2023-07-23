@@ -46,6 +46,7 @@ False
   - [generate_cnpj](#generate_cnpj)
 - [CEP](#cep)
   - [is_valid_cep](#is_valid_cep)
+  - [format_cep](#format_cep)
   - [generate_cep](#generate_cep)  
 
 ## CPF
@@ -139,8 +140,18 @@ Verifica se o CEP é valido. Apenas números, formatados como string. Não verif
 
 ```python
 >>> from brutils import is_valid_cep
->>> is_valid_cep('88390000')
+>>> is_valid_cep('01310200')
 True
+```
+
+### format_cep
+
+Formata o CEP. Retorna None se o CEP for inválido.
+
+```python
+>>> from brutils import format_cep
+>>> format_cep('01310200')
+'01310-200'
 ```
 
 ### generate_cep
