@@ -16,3 +16,4 @@ from brutils.cep import (
     generate as generate_cep,
     remove_symbols as remove_symbols_cep,
 )
+from brutils.boleto import validate
