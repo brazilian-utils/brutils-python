@@ -13,11 +13,22 @@ from brutils.cep import (
     is_valid,
     format_cep,
     generate,
+    remove_symbols,
 )
 from unittest import TestCase, main
 
 
 class CEP(TestCase):
+    def test_remove_symbols(self):
+        assert remove_symbols("00000000") == "00000000"
+        assert remove_symbols("01310-200") == "01310200"
+        assert remove_symbols("01..310.-200.-") == "01310200"
+        assert remove_symbols("abc01310200*!*&#") == "abc01310200*!*&#"
+        assert (
+            remove_symbols("ab.c1.--.3-102.-0-.0-.*.-!*&#") == "abc1310200*!*&#"
+        )
+        assert remove_symbols("...---...") == ""
+
     def test_format_cep(self):
         with patch("brutils.cep.is_valid", return_value=True) as mock_is_valid:
             # When cep is_valid, returns formatted cep

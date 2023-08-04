@@ -5,6 +5,16 @@ from random import randint
 ############
 
 
+def remove_symbols(dirty):  # type: (str) -> str
+    """
+    Filters out CEP formatting symbols. Symbols that are not used
+    in the CEP formatting are left unfiltered on purpose so that
+    if fails other tests, because their presence indicate that the
+    input was somehow corrupted.
+    """
+    return "".join(filter(lambda char: char not in ".-", dirty))
+
+
 def format_cep(cep):  # type: (str) -> str
     """
     Will format an adequately formatted numbers-only CEP string,
