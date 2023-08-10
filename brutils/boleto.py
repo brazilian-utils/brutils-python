@@ -1,4 +1,4 @@
-def validate(boleto):
+def is_valid(boleto):
     boleto_str = str(boleto)
 
     if not boleto_str.isdigit():

@@ -49,6 +49,8 @@ False
   - [format_cep](#format_cep)
   - [remove_symbols_cep](#remove_symbols_cep)   
   - [generate_cep](#generate_cep)
+- [Boleto](#boleto)
+  - [is_valid_boleto](#is_valid_boleto)
 
 ## CPF
 
@@ -180,6 +182,18 @@ Generate a valid random CEP.
 >>> from brutils import generate_cep
 >>> generate_cep()
 '77520503'
+```
+
+## Boleto
+
+### is_valid_boleto
+
+Check if boleto is valid. Numbers only, formatted as strings. Does not check if boleto exists.
+
+```python
+>>> from brutils import is_valid_boleto
+>>> is_valid_boleto('x')
+False
 ```
 
 ## Contributing

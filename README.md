@@ -48,7 +48,9 @@ False
   - [is_valid_cep](#is_valid_cep)
   - [format_cep](#format_cep)
   - [remove_symbols_cep](#remove_symbols_cep)
-  - [generate_cep](#generate_cep)  
+  - [generate_cep](#generate_cep)
+- [Boleto](#boleto)
+  - [is_valid_boleto](#is_valid_boleto)  
 
 ## CPF
 
@@ -176,6 +178,17 @@ Gera um CEP válido aleatório.
 '77520503'
 ```
 
+## Boleto
+
+### is_valid_boleto
+
+Verifica se o boleto é valido. Apenas números, formatados como string. Não verifica se o boleto existe.
+
+```python
+>>> from brutils import is_valid_boleto
+>>> is_valid_boleto('x')
+False
+```
 
 ## Contributing
 
