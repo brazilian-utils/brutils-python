@@ -23,7 +23,7 @@ from brutils.cnpj import (
 from unittest import TestCase, main
 
 
-class CNPJ(TestCase):
+class TestCNPJ(TestCase):
     def test_sieve(self):
         self.assertEqual(sieve("00000000000"), "00000000000")
         self.assertEqual(sieve("12.345.678/0001-90"), "12345678000190")
