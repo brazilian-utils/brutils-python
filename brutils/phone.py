@@ -6,7 +6,7 @@
 ############
 
 
-def is_valid_landline(phone_number):
+def is_valid_landline(phone_number):  # type: (str) -> bool
     return (
         isinstance(phone_number, str)
         and phone_number.isdigit()
@@ -22,7 +22,7 @@ def is_valid_landline(phone_number):
     )
 
 
-def is_valid_mobile(phone_number):
+def is_valid_mobile(phone_number):  # type: (str) -> bool
     return (
         isinstance(phone_number, str)
         and phone_number.isdigit()
@@ -33,5 +33,5 @@ def is_valid_mobile(phone_number):
     )
 
 
-def is_valid(phone_number):
+def is_valid(phone_number):  # type: (str) -> bool
     return is_valid_landline(phone_number) or is_valid_mobile(phone_number)

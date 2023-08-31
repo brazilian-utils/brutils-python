@@ -49,6 +49,11 @@ False
   - [format_cep](#format_cep)
   - [remove_symbols_cep](#remove_symbols_cep)   
   - [generate_cep](#generate_cep)
+- [Phone](#phone)
+  - [is_valid_landline_phone](#is_valid_landline_phone)
+  - [is_valid_mobile_phone](#is_valid_mobile_phone)
+  - [is_valid_phone](#is_valid_phone)
+
 
 ## CPF
 
@@ -180,6 +185,38 @@ Generate a valid random CEP.
 >>> from brutils import generate_cep
 >>> generate_cep()
 '77520503'
+```
+
+## Phone
+
+### is_valid_landline_phone
+
+Check if landline phone number is valid. Numbers only, formatted as strings. Does not check if phone number exists.
+
+```python
+>>> from brutils import is_valid_landline_phone
+>>> is_valid_landline_phone('1938814933')
+True
+```
+
+### is_valid_mobile_phone
+
+Check if mobile phone number is valid. Numbers only, formatted as strings. Does not check if phone number exists.
+
+```python
+>>> from brutils import is_valid_mobile_phone
+>>> is_valid_mobile_phone('01994029275')
+False
+```
+
+### is_valid_phone
+
+Check if phone number is valid, can be landline or mobile phone. Numbers only, formatted as strings. Does not check if phone number exists.
+
+```python
+>>> from brutils import is_valid_phone
+>>> is_valid_phone('11994029275')
+True
 ```
 
 ## Contributing
