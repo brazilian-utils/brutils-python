@@ -23,7 +23,7 @@ from brutils.cpf import (
 from unittest import TestCase, main
 
 
-class CPF(TestCase):
+class TestCPF(TestCase):
     def test_sieve(self):
         self.assertEqual(sieve("00000000000"), "00000000000")
         self.assertEqual(sieve("123.456.789-10"), "12345678910")

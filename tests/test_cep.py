@@ -18,7 +18,7 @@ from brutils.cep import (
 from unittest import TestCase, main
 
 
-class CEP(TestCase):
+class TestCEP(TestCase):
     def test_remove_symbols(self):
         self.assertEqual(remove_symbols("00000000"), "00000000")
         self.assertEqual(remove_symbols("01310-200"), "01310200")
