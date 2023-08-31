@@ -16,3 +16,8 @@ from brutils.cep import (
     generate as generate_cep,
     remove_symbols as remove_symbols_cep,
 )
+from brutils.phone import (
+    is_valid_landline as is_valid_landline_phone,
+    is_valid_mobile as is_valid_mobile_phone,
+    is_valid as is_valid_phone,
+)
