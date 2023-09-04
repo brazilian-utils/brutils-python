@@ -13,12 +13,7 @@ def is_valid_landline(phone_number):  # type: (str) -> bool
         and len(phone_number) == 10
         and phone_number[0] != "0"
         and phone_number[1] != "0"
-        and (
-            phone_number[2] == "2"
-            or phone_number[2] == "3"
-            or phone_number[2] == "4"
-            or phone_number[2] == "5"
-        )
+        and phone_number[2] in ["2", "3", "4", "5"]
     )
 
 
