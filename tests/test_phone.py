@@ -8,7 +8,7 @@ from unittest import TestCase, main
 class TestPhone(TestCase):
     def test_is_valid_landline(self):
         # When landline phone is not string, returns False
-        self.assertFalse(is_valid_landline(1938814933))
+        self.assertIs(is_valid_landline(1938814933), False)
 
         # When landline phone doesn't contain only digits, returns False
         self.assertFalse(is_valid_landline("(19)388149"))
