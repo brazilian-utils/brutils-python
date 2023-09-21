@@ -185,7 +185,7 @@ Gera um CEP válido aleatório.
 
 ### is_valid_phone
 
-Verifica se o número de telefone é valido, podendo ser telefone fixo ou celular. Apenas números, com DDD e sem o prefixo internacional, formatados como string. ***Exemplo: +55 48 9999 9999 ficaria '4899999999'.*** Esta função valida apenas números de telefone brasileiros e não verifica se o número realmente existe.
+Verifica se o número de telefone é valido, podendo ser telefone fixo ou celular. Apenas números, com DDD e sem o prefixo internacional, formatados como string. ***Exemplo: +55 48 9999 9999 deve ser chamado como is_valid_phone('4899999999').*** Esta função valida apenas números de telefone brasileiros e não verifica se o número realmente existe.
 
 
 
