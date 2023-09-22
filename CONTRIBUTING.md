@@ -2,9 +2,11 @@
 
 Obrigado por dedicar o seu tempo para contribuir! 🙇‍♀️🙇‍♂️ Toda ajuda é bem-vinda!
 
-# Primeiro Pull Request
+- [Primeira Contribuição](#primeira-contribuição)
+- [Lançar uma Nova Versão](#lançar-uma-nova-versão)
+# Primeira Contribuição
 
-Como enviar um pull request:
+Como fazer a sua primeira contribuição:
 
 - [1. Crie uma Conta no GitHub](#1-crie-uma-conta-no-github)
 - [2. Encontre uma Issue para Trabalhar](#2-encontre-uma-issue-para-trabalhar)
@@ -16,7 +18,7 @@ Como enviar um pull request:
 - [8. Faça as Suas Alterações](#8-faça-as-suas-alterações)
 - [9. Teste as Suas Alterações](#9-teste-as-suas-alterações)
 - [10. Faça o Commit e Envie as Suas Alterações](#10-faça-o-commit-e-envie-as-suas-alterações)
-- [11. Adicione Entradas no Changelog](#11-adicione-entradas-no-changelog)
+- [11. Adicione Entradas no CHANGELOG.md](#11-adicione-entradas-no-changelogmd)
 - [12. Crie um PR no GitHub](#12-crie-um-pr-no-github)
 - [13. Atualize o Seu Branch se Necessário](#13-atualize-o-seu-branch-se-necessário)
 
@@ -170,9 +172,9 @@ $ git push --set-upstream origin <issue_number>
 
 Crie a quantidade de alterações/commits que você precisa e os envie.
 
-### 11. Adicione Entradas no Changelog
+### 11. Adicione Entradas no CHANGELOG.md
 
-[Adicione uma entrada no CHANGELOG][keep-a-changelog].
+[Adicione uma entrada no CHANGELOG.md][keep-a-changelog].
 
 ### 12. Crie um PR no GitHub
 
@@ -182,7 +184,58 @@ Crie a quantidade de alterações/commits que você precisa e os envie.
 
 [Certifique-se de que seu branch esteja atualizado com o main][github-sync-pr]
 
+# Lançar uma Nova Versão
+
+Aqui você encontrará como lançar uma nova versão em produção do brutils:
+
+- [1. Criar um Release PR](#1-criar-um-release-pr)
+- [2. Deploy via GitHub](#2-deploy-via-github)
+
+### 1. Criar um Release PR
+
+#### Atualizar a Versão da Biblioteca
+
+Incremente o número da versão, seguindo o [Versionamento Semântico][semantic-versioning],
+no arquivo `pyproject.toml`:
+
+- https://github.com/brazilian-utils/brutils-python/blob/main/pyproject.toml#L3
+
+#### Atualizar o CHANGELOG.md
+
+Adicione um título para a nova versão com o novo número e a data atual, como
+[neste exemplo](https://github.com/brazilian-utils/brutils-python/blob/main/CHANGELOG.md?plain=1#L9).
+
+E adicione os links da versão, como [neste exemplo](https://github.com/brazilian-utils/brutils-python/blob/bc10b7242bd939cc445070f7e937e3ad187ff95a/CHANGELOG.md?plain=1#L33-L34)
+
+#### Crie o PR
+
+Crie um PR com o nome `Release v<versão>` contendo as duas alterações acima.
+
+[Exemplo de Release PR](https://github.com/brazilian-utils/brutils-python/pull/128)
+
+#### Faça o Merge do PR
+
+Assim que o PR for aceito e passar em todas as verificações, faça o merge.
+
+### 2. Deploy via GitHub
+
+O lançamento da nova versão em produção é feita automaticamente quando uma
+[nova release é criada][creating-releases] no GitHub.
+
+- Preencha o campo `tag version` com: `v<versão>` (por exemplo, `v2.0.0`).
+- Preencha o campo `release title` com o mesmo valor que a versão da tag (por exemplo, `v2.0.0`).
+- Preencha o campo `release description` com o conteúdo copiado do arquivo CHANGELOG.md da seção de
+versão correspondente.
+
+Exemplos reais estão disponíveis em: https://github.com/brazilian-utils/brutils-python/releases
+
+Quando o Deploy via GitHub for concluído, a nova versão também será lançada automaticamente no
+[PyPI][brutils-on-pypi]. Baixe a nova versão do brutils do PyPI e teste se tudo está
+funcionando conforme o esperado.
+
 [brutils-issues]: https://github.com/brazilian-utils/brutils-python/issues
+[brutils-on-pypi]: https://pypi.org/project/brutils/
+[creating-releases]: https://docs.github.com/pt/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release
 [docstring-definition]: https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring
 [github-cloning]: https://docs.github.com/pt/repositories/creating-and-managing-repositories/cloning-a-repository
 [github-creating-a-pr]: https://docs.github.com/pt/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
@@ -193,4 +246,5 @@ Crie a quantidade de alterações/commits que você precisa e os envie.
 [keep-a-changelog]: https://keepachangelog.com/pt-BR/1.0.0/
 [poetry]: https://python-poetry.org/docs/#installation
 [python]: https://www.python.org/downloads/
+[semantic-versioning]: https://semver.org/lang/pt-BR/
 [virtualenv]: https://virtualenv.pypa.io/en/latest/

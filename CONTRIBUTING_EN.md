@@ -2,9 +2,12 @@
 
 Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every little bit of help counts!
 
-# First Pull Request
+- [First Contribution](#first-contribution)
+- [Release a New Version](#release-a-new-version)
 
-How to submit a pull request:
+# First Contribution
+
+How to make your first contribution:
 
 - [1. Create a GitHub Account](#1-create-a-github-account)
 - [2. Find an Issue to Work With](#2-find-an-issue-to-work-with)
@@ -171,7 +174,7 @@ Create the number of changes/commits you need and push them.
 
 ### 11. Add changelog entries
 
-[Add a CHANGELOG entry][keep-a-changelog].
+[Add a changelog entry][keep-a-changelog] to CHANGELOG.md.
 
 ### 12. Create a GitHub PR
 
@@ -181,7 +184,56 @@ Create the number of changes/commits you need and push them.
 
 [Make sure your branch is updated with main][github-sync-pr].
 
+# Release a New Version
+
+Here you will find how to deploy a new production version of brutils:
+
+- [1. Create a Release PR](#1-create-a-release-pr)
+- [2. Deploy via GitHub](#2-deploy-via-github)
+
+### 1. Create a Release PR
+
+#### Bump the lib Version
+
+Increment the version number, following the [Semantic Versioning][semantic-versioning],
+in the `pyproject.toml` file: https://github.com/brazilian-utils/brutils-python/blob/main/pyproject.toml#L3
+
+#### Update the CHANGELOG.md
+
+Add a new version title with the new version number and the current date, like
+[this](https://github.com/brazilian-utils/brutils-python/blob/main/CHANGELOG.md?plain=1#L9).
+
+And add the version links, like [this](https://github.com/brazilian-utils/brutils-python/blob/bc10b7242bd939cc445070f7e937e3ad187ff95a/CHANGELOG.md?plain=1#L33-L34)
+
+#### Create the PR
+
+Create a PR named `Release v<version>` containing these two changes above.
+
+[Example of Release PR](https://github.com/brazilian-utils/brutils-python/pull/128)
+
+#### Merge the PR
+
+Once the PR has been accepted and passed on all checks, merge it.
+
+### 2. Deploy via GitHub
+
+Deploy production is automatically done when a [new release is created][creating-releases] on GitHub.
+
+- The `tag version` should be `v<version>` (e.g `v2.0.0`).
+- The `release title` should be the same as tag version (e.g `v2.0.0`).
+- The `release description` should be the content copied from the CHANGELOG.md file from the
+corresponding version section.
+
+Real examples are available at: https://github.com/brazilian-utils/brutils-python/releases
+
+When the Deploy on GitHub is done, the new version will be also automatically deployed on
+[PyPI][brutils-on-pypi]. Download the new brutils version from PyPI and test if everything is
+working as expected.
+
+
 [brutils-issues]: https://github.com/brazilian-utils/brutils-python/issues
+[brutils-on-pypi]: https://pypi.org/project/brutils/
+[creating-releases]: https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release
 [docstring-definition]: https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring
 [github-cloning]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
 [github-creating-a-pr]: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
@@ -192,4 +244,5 @@ Create the number of changes/commits you need and push them.
 [keep-a-changelog]: https://keepachangelog.com/en/1.1.0/
 [poetry]: https://python-poetry.org/docs/#installation
 [python]: https://www.python.org/downloads/
+[semantic-versioning]: https://semver.org/
 [virtualenv]: https://virtualenv.pypa.io/en/latest/
