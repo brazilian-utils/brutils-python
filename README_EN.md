@@ -4,7 +4,7 @@
 <p>Utils library for Brazilian-specific businesses.</p>
 
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
-[![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypi.org/project/brutils/)
+[![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 ### [Procurando pela versão em português?](README.md)
 ### [Looking for 1.0.1 version documentation?](/documentation%20v1.0.1/ENGLISH_VERSION.md)
