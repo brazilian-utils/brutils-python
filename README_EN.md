@@ -16,13 +16,22 @@
 Brazilian Utils is a library focused on solving problems that we face daily in
 the development of applications for the Brazilian business.
 
-## Installation
+- [Installation](#installation)
+- [Usage](#usage)
+- [Utilities](#utilities)
+- [Contributing with Source Code](#contributing-with-source-code)
+- [Feature Request and Bug Report](#feature-request-and-bug-report)
+- [Questions? Ideas?](#questions-ideas)
+- [Code Contribution](#code-contribution)
+
+
+# Installation
 
 ```
 pip install brutils
 ```
 
-## Usage
+# Usage
 
 To use one of our utilities you just need to import the required function as in the example below:
 
@@ -219,14 +228,14 @@ Check if landline phone number is valid. Numbers only, with area code (DDD) and 
 True
 ```
 
-## Feature Request and Bug Report
+# Feature Request and Bug Report
 
 If you want to suggest new features or report bugs, simply create
 a new [issue][github-issues], and we will respond to you there!
 
 (To learn more about GitHub issues, check out the [official GitHub documentation][github-issues-doc]).
 
-## Questions? Ideas?
+# Questions? Ideas?
 
 Questions on how to use the library? New ideas for the project?
 Want to share something with us? Feel free to start a thread in our
@@ -235,7 +244,7 @@ Want to share something with us? Feel free to start a thread in our
 (To learn more about GitHub discussions, refer to the
 [official GitHub documentation][github-discussions-doc]).
 
-## Contributing with Source Code
+# Code Contribution
 
 Your collaboration is always very welcome! We've prepared the [CONTRIBUTING.md][contributing] file
 to assist you in getting started. There, you'll find all the information you need to contribute to
