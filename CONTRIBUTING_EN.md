@@ -2,17 +2,73 @@
 
 Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every little bit of help counts!
 
-## Installation
-### Requirements
-- [Python 3.7+][python]
-- [Poetry][poetry]
+# First Pull Request
 
-Fork or clone the repository and enter into the project's folder:
+How to submit a pull request:
 
-```shell
-$ git clone git@github.com:brazilian-utils/brutils-python.git
+- [1. Create a GitHub Account](#1-create-a-github-account)
+- [2. Find an Issue to Work With](#2-find-an-issue-to-work-with)
+- [3. Install Git](#3-install-git)
+- [4. Fork the Project](#4-fork-the-project)
+- [5. Clone your Fork](#5-clone-your-fork)
+- [6. Create a New Branch](#6-create-a-new-branch)
+- [7. Run brutils locally](#7-run-brutils-locally)
+- [8. Make your changes](#8-make-your-changes)
+- [9. Test your changes](#9-test-your-changes)
+- [10. Commit and push your changes](#10-commit-and-push-your-changes)
+- [11. Add changelog entries](#11-add-changelog-entries)
+- [12. Create a GitHub PR](#12-create-a-github-pr)
+- [13. Update your branch if needed.](#13-update-your-branch-if-needed)
+
+### 1. Create a GitHub Account
+
+Make sure you have a [GitHub account][github-join] and you are logged in with it.
+
+### 2. Find an Issue to Work With
+
+Visit the [brutils issues page][brutils-issues] and find an issue you would like to work with
+and no one assigned to it yet.
+
+Send a comment in the issue asking to work with it. Something like: "hey, can I work on this?".
+
+Wait until someone assign you to the ticket. Once you are assigned to it, you can move to the next
+step.
+
+Please, feel free to ask any questions in the issue's page before or during the development
+process.
+
+### 3. Install Git
+
+Make sure you have [Git installed][install-git].
+
+### 4. Fork the Project
+
+[Fork the brutils repository][github-forking].
+
+### 5. Clone your Fork
+
+[Clone][github-cloning] your fork locally.
+
+### 6. Create a New Branch
+
+Go into the brutils folder:
+
+```bash
 $ cd brutils-python
 ```
+
+And create a new branch:
+
+```bash
+$ git checkout -b <issue_number>
+```
+
+### 7. Run brutils locally
+## Installation
+### Requirements
+
+- [Python 3.7+][python]
+- [Poetry][poetry]
 
 Create a [virtualenv][virtualenv] for brutils and activate it:
 
@@ -34,7 +90,7 @@ $ make install
 $ make run-python
 ```
 
-Now, you can use it [in the same way described in the README.md file](/README_EN.md#usage)
+Now, you can use it [in the same way described in the README.md file](/README_EN.md#usage).
 
 ## Tests
 
@@ -42,6 +98,98 @@ Now, you can use it [in the same way described in the README.md file](/README_EN
 $ make test
 ```
 
+### 8. Make your changes
+
+Now is the step where you can implement your changes in the code.
+
+It is important to notice that we document our code using [docstrings][docstring-definition].
+Modules, classes, functions, and methods should be documented. Your changes should also be well
+documented and should reflect updated docstrings if any of the params were changed for a
+class/attributes or even functions.
+
+We follow the given pattern below to keep consistency in the docstrings:
+
+```python
+class Example:
+    """Explain the purpose of the class
+
+    Attributes:
+        x[dict]: Short explanation here
+        y[type, optional]: Short explanation here
+
+    """
+
+    def __init__(self, x, y=None):
+        self.x = x
+        self.y = y
+
+    def foobar(self, w):
+        """Purpose if the function
+
+        Args:
+            w[str]: Short explanation here
+
+        Returns:
+            value[str]: Short explanation here
+
+        """
+        ...
+        return value
+
+```
+
+One last thing to keep in mind while self-documenting code with docstrings that you can ignore
+docstrings in property decorators and magic methods.
+
+### 9. Test your changes
+
+#### Write new tests
+
+Make sure you have created the necessary tests for every new change you made.
+
+#### Make sure all tests passed
+
+Run all the tests with `make test` and make sure that they all passed.
+
+**PRs will not be merged if there is any test missing or failing.**
+
+### 10. Commit and push your changes
+
+Commit the changes:
+
+```bash
+$ git commit -a -m "<commit_message>"
+```
+
+Push your commit to GitHub:
+
+```bash
+$ git push --set-upstream origin <issue_number>
+```
+
+Create the number of changes/commits you need and push them.
+
+### 11. Add changelog entries
+
+[Add a CHANGELOG entry][keep-a-changelog].
+
+### 12. Create a GitHub PR
+
+[Create a GitHub PR][github-creating-a-pr].
+
+### 13. Update your branch if needed.
+
+[Make sure your branch is updated with main][github-sync-pr].
+
+[brutils-issues]: https://github.com/brazilian-utils/brutils-python/issues
+[docstring-definition]: https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring
+[github-cloning]: https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository
+[github-creating-a-pr]: https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
+[github-forking]: https://docs.github.com/en/get-started/quickstart/contributing-to-projects
+[github-join]: https://github.com/join
+[github-sync-pr]: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch
+[install-git]: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+[keep-a-changelog]: https://keepachangelog.com/en/1.1.0/
 [poetry]: https://python-poetry.org/docs/#installation
 [python]: https://www.python.org/downloads/
 [virtualenv]: https://virtualenv.pypa.io/en/latest/
