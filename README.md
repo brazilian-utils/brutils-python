@@ -14,7 +14,8 @@
 
 # Introdução
 
-Brazilian Utils é uma biblioteca com foco na resolução de problemas que enfrentamos diariamente no desenvolvimento de aplicações para o business Brasileiro.
+Brazilian Utils é uma biblioteca com foco na resolução de problemas que enfrentamos diariamente no
+desenvolvimento de aplicações para o business Brasileiro.
 
 ## Instalação
 
@@ -48,12 +49,11 @@ False
   - [is_valid_cep](#is_valid_cep)
   - [format_cep](#format_cep)
   - [remove_symbols_cep](#remove_symbols_cep)
-  - [generate_cep](#generate_cep)  
+  - [generate_cep](#generate_cep)
 - [Phone](#phone)
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
-
 
 ## CPF
 
@@ -79,7 +79,8 @@ Formata o CPF. Retorna None se o CPF for inválido.
 
 ### remove_symbols_cpf
 
-Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
+Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos
+utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
 
 ```python
 >>> from brutils import remove_symbols_cpf
@@ -121,7 +122,8 @@ Formata o CNPJ.
 
 ### remove_symbols_cnpj
 
-Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
+Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos
+utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
 
 ```python
 >>> from brutils import remove_symbols_cnpj
@@ -163,7 +165,8 @@ Formata o CEP. Retorna None se o CEP for inválido.
 
 ### remove_symbols_cep
 
-Remove os símbolos de formatação do CEP e retorna somente números. Filtra apenas os símbolos utilizados para a validação do CEP. Propositalmente não remove outros símbolos.
+Remove os símbolos de formatação do CEP e retorna somente números. Filtra apenas os símbolos
+utilizados para a validação do CEP. Propositalmente não remove outros símbolos.
 
 ```python
 >>> from brutils import remove_symbols_cep
@@ -185,9 +188,10 @@ Gera um CEP válido aleatório.
 
 ### is_valid_phone
 
-Verifica se o número de telefone é valido, podendo ser telefone fixo ou celular. Apenas números, com DDD e sem o prefixo internacional, formatados como string. ***Exemplo: +55 48 9999 9999 deve ser chamado como is_valid_phone('4899999999').*** Esta função valida apenas números de telefone brasileiros e não verifica se o número realmente existe.
-
-
+Verifica se o número de telefone é valido, podendo ser telefone fixo ou celular. Apenas números,
+com DDD e sem o prefixo internacional, formatados como string.
+***Exemplo: +55 48 9999 9999 deve ser chamado como is_valid_phone('4899999999').*** Esta função
+valida apenas números de telefone brasileiros e não verifica se o número realmente existe.
 
 ```python
 >>> from brutils import is_valid_phone
@@ -197,7 +201,9 @@ True
 
 ### is_valid_mobile_phone
 
-Verifica se o número de celular é valido. Apenas números, com DDD e sem o prefixo internacional, formatados como string.***Exemplo: +55 48 9999 9999 ficaria '4899999999'.*** Esta função valida apenas números de celular brasileiros e não verifica se o número realmente existe.
+Verifica se o número de celular é valido. Apenas números, com DDD e sem o prefixo internacional,
+formatados como string.***Exemplo: +55 48 9999 9999 ficaria '4899999999'.*** Esta função valida
+apenas números de celular brasileiros e não verifica se o número realmente existe.
 
 ```python
 >>> from brutils import is_valid_mobile_phone
@@ -207,7 +213,10 @@ True
 
 ### is_valid_landline_phone
 
-Verifica se o número de telefone fixo é valido. Apenas números, com DDD e sem o prefixo internacional, formatados como string. ***Exemplo: +55 48 3333 3333 ficaria '4833333333'.*** Esta função valida apenas números de telefones fixos brasileiros e não verifica se o número realmente existe.
+Verifica se o número de telefone fixo é valido. Apenas números, com DDD e sem o prefixo
+internacional, formatados como string. ***Exemplo: +55 48 3333 3333 ficaria '4833333333'.***
+Esta função valida apenas números de telefones fixos brasileiros e não verifica se o número
+realmente existe.
 
 ```python
 >>> from brutils import is_valid_landline_phone
@@ -215,15 +224,33 @@ Verifica se o número de telefone fixo é valido. Apenas números, com DDD e sem
 True
 ```
 
+## Novos Utilitários e Reportar Bugs
 
+Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
+uma nova [issue][github-issues] e iremos lhe responder por lá!
 
+(Para saber mais sobre github issues, confira a [documentação oficial do GitHub][github-issues-doc]).
 
+## Dúvidas? Ideias?
 
-## Contributing
+Dúvidas de como utilizar a biblioteca? Novas ideias para o projeto?
+Quer compartilhar algo com a gente? Fique à vontade para criar um tópico no nosso
+[Discussions][github-discussions] que iremos interagir por lá!
 
-Sua colaboração é sempre bem-vinda! Preparamos o [arquivo contributing][contributing] pra te ajudar nos primeiros passos. Toda ajuda conta! Sinta-se livre para criar novas [GitHub issues][github-issues] e interagir aqui.
+(Para saber mais sobre github discussions, confira a
+[documentação oficial do GitHub][github-discussions-doc]).
+
+## Contribuindo com o Código do Projeto
+
+Sua colaboração é sempre muito bem-vinda! Preparamos o arquivo [CONTRIBUTING.md][contributing] para
+te ajudar nos primeiros passos. Lá você encontrará toda a informação necessária para contribuir com
+o projeto. Não hesite em nos perguntar utilizando o [GitHub Discussions][github-discussions] caso
+haja qualquer dificuldade ou dúvida. Toda ajuda conta!
 
 Vamos construir juntos! 🚀🚀
 
-[github-issues]: https://github.com/brazilian-utils/brutils-python/issues
 [contributing]: CONTRIBUTING.md
+[github-discussions-doc]: https://docs.github.com/pt/discussions
+[github-discussions]: https://github.com/brazilian-utils/brutils-python/discussions
+[github-issues-doc]: https://docs.github.com/pt/issues/tracking-your-work-with-issues/creating-an-issue
+[github-issues]: https://github.com/brazilian-utils/brutils-python/issues

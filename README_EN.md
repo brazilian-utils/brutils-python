@@ -47,7 +47,7 @@ False
 - [CEP](#cep)
   - [is_valid_cep](#is_valid_cep)
   - [format_cep](#format_cep)
-  - [remove_symbols_cep](#remove_symbols_cep)   
+  - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)
 - [Phone](#phone)
   - [is_valid_phone](#is_valid_phone)
@@ -219,11 +219,33 @@ Check if landline phone number is valid. Numbers only, with area code (DDD) and 
 True
 ```
 
-## Contributing
+## Feature Request and Bug Report
 
-Collaboration is super welcome! We prepared the [contributing file][contributing] to help you in the first steps. Every little bit of help counts! Feel free to create new [GitHub issues][github-issues] and interact here.
+If you want to suggest new features or report bugs, simply create
+a new [issue][github-issues], and we will respond to you there!
+
+(To learn more about GitHub issues, check out the [official GitHub documentation][github-issues-doc]).
+
+## Questions? Ideas?
+
+Questions on how to use the library? New ideas for the project?
+Want to share something with us? Feel free to start a thread in our
+[Discussions][github-discussions], and we'll interact with you there!
+
+(To learn more about GitHub discussions, refer to the
+[official GitHub documentation][github-discussions-doc]).
+
+## Contributing with Source Code
+
+Your collaboration is always very welcome! We've prepared the [CONTRIBUTING.md][contributing] file
+to assist you in getting started. There, you'll find all the information you need to contribute to
+the project. Please, don't hesitate to ask us using [GitHub Discussions][github-discussions] if
+you encounter any difficulties or have any questions. Every bit of help counts!
 
 Let's build it together 🚀🚀
 
-[github-issues]: https://github.com/brazilian-utils/brutils-python/issues
 [contributing]: CONTRIBUTING_EN.md
+[github-discussions-doc]: https://docs.github.com/en/discussions
+[github-discussions]: https://github.com/brazilian-utils/brutils-python/discussions
+[github-issues-doc]: https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue
+[github-issues]: https://github.com/brazilian-utils/brutils-python/issues
