@@ -16,6 +16,7 @@
 - [ ] Foi adicionada uma entrada no changelog / Meu PR não necessita de uma nova entrada no changelog.
 - [ ] A documentação em português foi atualizada ou criada, se necessário.
 - [ ] Se feita a documentação, a atualização do arquivo em inglês. <!---Permitido uso de Google Tradutor/ChatGPT. -->
+- [ ] Eu documentei as minhas mudanças no código, adicionando docstrings e comentários. [Instruções](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md#8-fa%C3%A7a-as-suas-altera%C3%A7%C3%B5es)
 - [ ] O código segue as diretrizes de estilo e padrões de codificação do projeto.
 - [ ] Todos os testes passam. [Instruções](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md#testes)
 - [ ] O Pull Request foi testado localmente. [Instruções](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md#7-execute-o-brutils-localmente)
