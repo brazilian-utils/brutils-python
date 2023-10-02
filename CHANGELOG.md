@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Utilitário `remove_symbols_phone` (#188)
 
-## [Unreleased]
+## [Released]
 ## [2.0.0] - 2023-07-23
 
 ### Added
