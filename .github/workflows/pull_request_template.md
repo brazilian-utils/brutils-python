@@ -1,31 +1,32 @@
 ## Descrição
-Descreva de forma sucinta e clara qual é o propósito deste Pull Request. Explique o que ele faz ou resolve.
+<!--- Descreva de forma sucinta e clara qual é o propósito deste Pull Request. Explique o que ele faz ou resolve.-->
 
 ## Mudanças Propostas
-Liste as principais alterações ou melhorias que estão sendo propostas neste Pull Request.
+<!--- Liste as principais alterações ou melhorias que estão sendo propostas neste Pull Request.
 
 - Exemplo 1: Descrição da primeira alteração.
 - Exemplo 2: Descrição da segunda alteração.
-- ...
+- ...-->
 
 
 ## Checklist de Revisão
-Marque as caixas que se aplicam. Você pode deixar caixas desmarcadas se elas não se aplicarem.
+<!--- Marque as caixas que se aplicam. Você pode deixar caixas desmarcadas se elas não se aplicarem.-->
 
 - [ ] Os testes foram adicionados ou atualizados para refletir as mudanças (se aplicável).
-- [ ] A documentação foi atualizada ou criada, se necessário.
+- [ ] Foi adicionada uma entrada no changelog / Meu PR não necessita de uma nova entrada no changelog.
+- [ ] A documentação em português foi atualizada ou criada, se necessário.
+- [ ] Se feita a documentação, a atualização do arquivo em inglês. <!---Permitido uso de Google Tradutor/ChatGPT. -->
 - [ ] O código segue as diretrizes de estilo e padrões de codificação do projeto.
-- [ ] Todos os testes passam.
-- [ ] O Pull Request foi testado localmente.
+- [ ] Todos os testes passam. [Instruções](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md#testes)
+- [ ] O Pull Request foi testado localmente. [Instruções](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md#7-execute-o-brutils-localmente)
 - [ ] Não há conflitos de mesclagem.
-- [ ] Foram realizadas revisões de código por pares.
+
 
 ## Comentários Adicionais (opcional)
-Adicione qualquer informação adicional ou contexto que você acha importante para os revisores entenderem suas mudanças.
+<!--- Adicione qualquer informação adicional ou contexto que você acha importante para os revisores entenderem suas mudanças.-->
 
 ## Issue Relacionada
-Todos os PRs devem ter uma issue relacionada. Dessa forma, podemos garantir que ninguém perca tempo trabalhando em algo que não precisa ser feito. 
+<!---Todos os PRs devem ter uma issue relacionada. Dessa forma, podemos garantir que ninguém perca tempo trabalhando em algo que não precisa ser feito. -->
 
-```
+
 Closes #<numero_da_issue>
-```
