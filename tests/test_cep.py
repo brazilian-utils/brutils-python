@@ -43,19 +43,19 @@ class TestCEP(TestCase):
 
     def test_is_valid(self):
         # When CEP is not string, returns False
-        self.assertFalse(is_valid(1))
+        self.assertIs(is_valid(1), False)
 
         # When CEP's len is different of 8, returns False
-        self.assertFalse(is_valid("1"))
+        self.assertIs(is_valid("1"), False)
 
         # When CEP does not contain only digits, returns False
-        self.assertFalse(is_valid("1234567-"))
+        self.assertIs(is_valid("1234567-"), False)
 
         # When CEP is valid
-        self.assertTrue(is_valid("99999999"))
-        self.assertTrue(is_valid("88390000"))
+        self.assertIs(is_valid("99999999"), True)
+        self.assertIs(is_valid("88390000"), True)
 
     def test_generate(self):
         for _ in range(10_000):
-            self.assertTrue(is_valid(generate()))
+            self.assertIs(is_valid(generate()), True)
         # assert format(generate()) is not None
