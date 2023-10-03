@@ -61,6 +61,7 @@ False
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
+  - [remove_symbols_phone](#remove_symbols_phone)
 
 ## CPF
 
@@ -229,6 +230,16 @@ realmente existe.
 >>> from brutils import is_valid_landline_phone
 >>> is_valid_landline_phone('1938814933')
 True
+```
+
+### remove_symbols_phone
+
+Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125696969'.***
+
+```python
+>>> from brutils import remove_symbols_phone
+>>> remove_symbols_phone('(21)2569-6969')
+'2125696969'
 ```
 
 # Novos Utilitários e Reportar Bugs
