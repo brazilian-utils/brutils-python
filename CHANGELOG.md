@@ -6,11 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-## [2.0.1] - 2023-10-02
+### Added
 
-- Utilitário `remove_symbols_phone` (#188)
-
-## [Released]
+- Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
 ## [2.0.0] - 2023-07-23
 
 ### Added
