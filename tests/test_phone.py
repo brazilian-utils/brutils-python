@@ -1,6 +1,11 @@
 from unittest.mock import patch
 
-from brutils.phone import is_valid_landline, is_valid_mobile, is_valid, remove_symbols_phone
+from brutils.phone import (
+    is_valid_landline,
+    is_valid_mobile,
+    is_valid,
+    remove_symbols_phone,
+)
 
 from unittest import TestCase, main
 
@@ -117,7 +122,9 @@ class TestPhone(TestCase):
         self.assertEqual(remove_symbols_phone("(21)2569-6969"), "2125696969")
 
         # When there are extra symbols, it only removes the specified symbols
-        self.assertEqual(remove_symbols_phone("(21) 99402-9275!"), "21 994029275!")
+        self.assertEqual(
+            remove_symbols_phone("(21) 99402-9275!"), "21 994029275!"
+        )
 
         # When the string contains non-numeric characters, it returns the string without the specified symbols
         self.assertEqual(remove_symbols_phone("(21)ABC-DEF"), "21ABCDEF")
