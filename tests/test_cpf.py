@@ -59,42 +59,42 @@ class TestCPF(TestCase):
             self.assertIsNone(format_cpf("11144477735"))
 
     def test_validate(self):
-        self.assertTrue(validate("52513127765"))
-        self.assertTrue(validate("52599927765"))
-        self.assertFalse(validate("00000000000"))
+        self.assertIs(validate("52513127765"), True)
+        self.assertIs(validate("52599927765"), True)
+        self.assertIs(validate("00000000000"), False)
 
     def test_is_valid(self):
         # When cpf is not string, returns False
-        self.assertFalse(is_valid(1))
+        self.assertIs(is_valid(1), False)
 
         # When cpf's len is different of 11, returns False
-        self.assertFalse(is_valid("1"))
+        self.assertIs(is_valid("1"), False)
 
         # When cpf does not contain only digits, returns False
-        self.assertFalse(is_valid("1112223334-"))
+        self.assertIs(is_valid("1112223334-"), False)
 
         # When CPF has only the same digit, returns false
-        self.assertFalse(is_valid("11111111111"))
+        self.assertIs(is_valid("11111111111"), False)
 
         # When rest_1 is lt 2 and the 10th digit is not 0, returns False
-        self.assertFalse(is_valid("11111111215"))
+        self.assertIs(is_valid("11111111215"), False)
 
         # When rest_1 is gte 2 and the 10th digit is not (11 - rest), returns False
-        self.assertFalse(is_valid("11144477705"))
+        self.assertIs(is_valid("11144477705"), False)
 
         # When rest_2 is lt 2 and the 11th digit is not 0, returns False
-        self.assertFalse(is_valid("11111111204"))
+        self.assertIs(is_valid("11111111204"), False)
 
         # When rest_2 is gte 2 and the 11th digit is not (11 - rest), returns False
-        self.assertFalse(is_valid("11144477732"))
+        self.assertIs(is_valid("11144477732"), False)
 
         # When cpf is valid
-        self.assertTrue(is_valid("11144477735"))
-        self.assertTrue(is_valid("11111111200"))
+        self.assertIs(is_valid("11144477735"), True)
+        self.assertIs(is_valid("11111111200"), True)
 
     def test_generate(self):
         for _ in range(10_000):
-            self.assertTrue(validate(generate()))
+            self.assertIs(validate(generate()), True)
             self.assertIsNotNone(display(generate()))
 
     def test__hashdigit(self):

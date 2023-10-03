@@ -17,7 +17,10 @@ def is_valid_landline(phone_number):  # type: (str) -> bool
 
     """
     pattern = re.compile(r"^[1-9][1-9][2-5]\d{7}$")
-    return isinstance(phone_number, str) and re.match(pattern, phone_number)
+    return (
+        isinstance(phone_number, str)
+        and re.match(pattern, phone_number) is not None
+    )
 
 
 def is_valid_mobile(phone_number):  # type: (str) -> bool
@@ -29,7 +32,10 @@ def is_valid_mobile(phone_number):  # type: (str) -> bool
 
     """
     pattern = re.compile(r"^[1-9][1-9][9]\d{8}$")
-    return isinstance(phone_number, str) and re.match(pattern, phone_number)
+    return (
+        isinstance(phone_number, str)
+        and re.match(pattern, phone_number) is not None
+    )
 
 
 def is_valid(phone_number):  # type: (str) -> bool
