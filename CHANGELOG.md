@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Utilitário `is_valid_phone` (#147)
-- Utilitário `is_valid_mobile_phone` (#146)
-- Utilitário `is_valid_landline_phone` (#143)
+- Utilitário `is_valid_phone` #147
+- Utilitário `is_valid_mobile_phone` #146
+- Utilitário `is_valid_landline_phone` #143
 
 ## [2.0.0] - 2023-07-23
 
