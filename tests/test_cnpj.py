@@ -63,42 +63,42 @@ class TestCNPJ(TestCase):
             self.assertIsNone(format_cnpj("01838723000127"))
 
     def test_validate(self):
-        self.assertTrue(validate("34665388000161"))
-        self.assertFalse(validate("52599927000100"))
-        self.assertFalse(validate("00000000000"))
+        self.assertIs(validate("34665388000161"), True)
+        self.assertIs(validate("52599927000100"), False)
+        self.assertIs(validate("00000000000"), False)
 
     def test_is_valid(self):
         # When CNPJ is not string, returns False
-        self.assertFalse(is_valid(1))
+        self.assertIs(is_valid(1), False)
 
         # When CNPJ's len is different of 14, returns False
-        self.assertFalse(is_valid("1"))
+        self.assertIs(is_valid("1"), False)
 
         # When CNPJ does not contain only digits, returns False
-        self.assertFalse(is_valid("1112223334445-"))
+        self.assertIs(is_valid("1112223334445-"), False)
 
         # When CNPJ has only the same digit, returns false
-        self.assertFalse(is_valid("11111111111111"))
+        self.assertIs(is_valid("11111111111111"), False)
 
         # When rest_1 is lt 2 and the 13th digit is not 0, returns False
-        self.assertFalse(is_valid("1111111111315"))
+        self.assertIs(is_valid("1111111111315"), False)
 
         # When rest_1 is gte 2 and the 13th digit is not (11 - rest), returns False
-        self.assertFalse(is_valid("1111111111115"))
+        self.assertIs(is_valid("1111111111115"), False)
 
         # When rest_2 is lt 2 and the 14th digit is not 0, returns False
-        self.assertFalse(is_valid("11111111121205"))
+        self.assertIs(is_valid("11111111121205"), False)
 
         # When rest_2 is gte 2 and the 14th digit is not (11 - rest), returns False
-        self.assertFalse(is_valid("11111111113105"))
+        self.assertIs(is_valid("11111111113105"), False)
 
         # When CNPJ is valid
-        self.assertTrue(is_valid("34665388000161"))
-        self.assertTrue(is_valid("01838723000127"))
+        self.assertIs(is_valid("34665388000161"), True)
+        self.assertIs(is_valid("01838723000127"), True)
 
     def test_generate(self):
         for _ in range(10_000):
-            self.assertTrue(validate(generate()))
+            self.assertIs(validate(generate()), True)
             self.assertIsNotNone(display(generate()))
 
     def test__hashdigit(self):
