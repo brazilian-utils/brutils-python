@@ -22,7 +22,7 @@ pip install brutils
 
 ### Importing:
 ```
->>> from brutils import cpf, cnpj, phone
+>>> from brutils import cpf, cnpj
 ```
 
 ### How do I validate a CPF or CNPJ?
@@ -61,12 +61,6 @@ False
 '17433964657'
 >>> cnpj.generate()
 '34665388000161'
-```
-
-### What if I want to remove symbols from number phone?
-```
->>> phone.remove_symbols_phone()
-'(21) 2569-6969'
 ```
 
 ## Testing
