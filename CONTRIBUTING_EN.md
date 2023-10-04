@@ -40,6 +40,8 @@ step.
 Please, feel free to ask any questions in the issue's page before or during the development
 process.
 
+When starting to contribute to the project, it is advisable to pick one issue at a time. This helps ensure that others also have the opportunity to collaborate and prevents resources from staying inactive for too long.
+
 ### 3. Install Git
 
 Make sure you have [Git installed][install-git].
