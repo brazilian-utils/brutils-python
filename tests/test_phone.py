@@ -130,13 +130,19 @@ class TestPhone(TestCase):
         self.assertEqual(remove_symbols_phone("(21)ABC-DEF"), "21ABCDEF")
 
         # When the phone number contains a plus symbol and spaces, they are removed
-        self.assertEqual(remove_symbols_phone("+55 21 99402-9275"), "5521994029275")
+        self.assertEqual(
+            remove_symbols_phone("+55 21 99402-9275"), "5521994029275"
+        )
 
         # When the phone number contains multiple spaces, all are removed
-        self.assertEqual(remove_symbols_phone("55 21  99402 9275"), "5521994029275")
+        self.assertEqual(
+            remove_symbols_phone("55 21  99402 9275"), "5521994029275"
+        )
 
         # When the phone number contains a mixture of all specified symbols, all are removed
-        self.assertEqual(remove_symbols_phone("+55 (21) 99402-9275"), "5521994029275")
+        self.assertEqual(
+            remove_symbols_phone("+55 (21) 99402-9275"), "5521994029275"
+        )
 
 
 if __name__ == "__main__":
