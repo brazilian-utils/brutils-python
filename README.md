@@ -71,6 +71,7 @@ False
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
+  - [generate_pis](#generate_pis)
 
 ## CPF
 
@@ -325,15 +326,19 @@ True
 Verifica se o número PIS/PASEP é valido. Apenas números, formatados como string. Não verifica se o PIS/PASEP existe.
 Mais detalhes sobre a validação estão disponíveis em https://www.macoratti.net/alg_pis.htm.
 
-```python
-from brutils import is_valid_pis
+### generate_pis
 
->>> is_valid_pis("12038619494")
-True
->>> is_valid_pis("11111111111")
-False
->>> is_valid_pis("123456")
-False
+Gera um PIS/PASEP válido aleatório.
+
+```python
+from brutils import generate_pis
+
+>>> generate_pis()
+'12038619494'
+>>> generate_pis()
+'57817700092'
+>>> generate_pis()
+'49850211630'
 ```
 
 # Novos Utilitários e Reportar Bugs

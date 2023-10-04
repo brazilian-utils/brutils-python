@@ -1,3 +1,6 @@
+from random import randint
+
+
 WEIGHTS = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
 
 
@@ -38,6 +41,21 @@ def is_valid(pis: str) -> bool:
         value[bool]: True if PIS is valid, False otherwise.
     """
     return isinstance(pis, str) and validate(pis)
+
+
+def generate() -> str:
+    """
+    Generates a random valid Brazilian PIS number.
+
+    Args:
+        None
+
+    Returns:
+        value[str]: PIS number as a string.
+    """
+    base = str(randint(0, 9999999999)).zfill(10)
+
+    return base + str(_checksum(base))
 
 
 def _checksum(base_pis: str) -> int:
