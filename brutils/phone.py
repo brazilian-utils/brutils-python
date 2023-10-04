@@ -49,6 +49,10 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
 
     """
     cleaned_phone = (
-        phone_number.replace("(", "").replace(")", "").replace("-", "")
+        phone_number.replace("(", "")
+                     .replace(")", "")
+                     .replace("-", "")
+                     .replace("+", "")
+                     .replace(" ", "")
     )
     return cleaned_phone
