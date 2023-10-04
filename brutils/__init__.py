@@ -24,3 +24,4 @@ from brutils.phone import (
 from brutils.legal_process import (
     remove_symbols as remove_symbols_processo_juridico,
 )
+from brutils.email import is_valid as is_valid_email

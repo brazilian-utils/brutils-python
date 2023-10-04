@@ -47,3 +47,18 @@ def is_valid(phone_number):  # type: (str) -> bool
 
     """
     return is_valid_landline(phone_number) or is_valid_mobile(phone_number)
+
+
+def remove_symbols_phone(phone_number):  # type: (str) -> str
+    """
+    Removes common symbols from a Brazilian phone number string.
+
+    """
+    cleaned_phone = (
+        phone_number.replace("(", "")
+        .replace(")", "")
+        .replace("-", "")
+        .replace("+", "")
+        .replace(" ", "")
+    )
+    return cleaned_phone

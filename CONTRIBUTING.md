@@ -40,6 +40,8 @@ etapa.
 Sinta-se à vontade para fazer qualquer pergunta na página da issue antes ou durante o processo de
 desenvolvimento.
 
+Ao começar a contribuir para o projeto, é recomendável que você pegue uma issue por vez. Isso ajuda a garantir que outras pessoas também tenham a oportunidade de colaborar e evita que recursos fiquem inativos por muito tempo.
+
 ### 3. Instale o Git
 
 Certifique-se de ter o [Git instalado][install-git].

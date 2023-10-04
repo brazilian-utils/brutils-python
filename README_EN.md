@@ -61,6 +61,9 @@ False
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
+  - [remove_symbols_phone](#remove_symbols_phone)
+- [Email](#email)
+  - [is_valid_email](#is_valid_email)
 
 
 ## CPF
@@ -225,6 +228,34 @@ Check if landline phone number is valid. Numbers only, with area code (DDD) and 
 >>> from brutils import is_valid_landline_phone
 >>> is_valid_landline_phone('1938814933')
 True
+```
+
+### remove_symbols_phone
+
+Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '552125696969'.***
+
+```python
+>>> from brutils import remove_symbols_phone
+>>> remove_symbols_phone('+55 (21) 2569-6969')
+'552125696969'
+```
+## Email
+
+### is_valid_email
+
+Check if a string corresponds to a valid email. The rules for validating an email address generally follow the specifications defined by RFC 5322 (updated by RFC 5322bis), which is the widely accepted standard for email address formats.
+
+```python
+from brutils import is_valid_email
+
+>>> is_valid_email("joao.ninguem@gmail.com")
+True
+>>> is_valid_email(".joao.ninguem@gmail.com")
+False
+>>> is_valid_email("joao.ninguem@gmail.")
+False
+>>> is_valid_email("joao ninguem@gmail.com")
+False
 ```
 
 # Feature Request and Bug Report
