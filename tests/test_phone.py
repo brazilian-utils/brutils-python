@@ -123,7 +123,7 @@ class TestPhone(TestCase):
 
         # When there are extra symbols, it only removes the specified symbols
         self.assertEqual(
-            remove_symbols_phone("(21) 99402-9275!"), "21 994029275!"
+            remove_symbols_phone("(21) 99402-9275!"), "21994029275!"
         )
 
         # When the string contains non-numeric characters, it returns the string without the specified symbols
