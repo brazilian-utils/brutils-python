@@ -61,6 +61,7 @@ False
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
+  - [remove_symbols_phone](#remove_symbols_phone)
 
 
 ## CPF
@@ -225,6 +226,16 @@ Check if landline phone number is valid. Numbers only, with area code (DDD) and 
 >>> from brutils import is_valid_landline_phone
 >>> is_valid_landline_phone('1938814933')
 True
+```
+
+### remove_symbols_phone
+
+Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '552125696969'.***
+
+```python
+>>> from brutils import remove_symbols_phone
+>>> remove_symbols_phone('+55 (21) 2569-6969')
+'552125696969'
 ```
 
 # Feature Request and Bug Report
