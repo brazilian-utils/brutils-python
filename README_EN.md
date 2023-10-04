@@ -66,7 +66,6 @@ False
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
-  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
 
 
 ## CPF
@@ -272,19 +271,6 @@ Mercosul standards, in other words, if it follows the pattern LLLNLNN.
 ```python
 >>> from brutils import is_valid_license_plate_mercosul
 >>> is_valid_license_plate_mercosul('ABC4E67')
-True
-```
-
-### is_valid_license_plate_old_format
-
-Checks if the provided string representing a license place is valid, according to the old
-standards prior to the Mercosul adopted recently, in other words, if it follows the
-pattern LLLNNNN.
-***Example: ABC4567.***
-
-```python
->>> from brutils import is_valid_license_plate_old_format
->>> is_valid_license_plate_old_format('ABC4567')
 True
 ```
 
