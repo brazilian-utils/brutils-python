@@ -60,6 +60,10 @@ False
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
+
 
 ## CPF
 
@@ -227,6 +231,32 @@ realmente existe.
 ```python
 >>> from brutils import is_valid_landline_phone
 >>> is_valid_landline_phone('1938814933')
+True
+```
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Verifica se uma string correspondente a um número da placa é válido, conforme as novas
+normas do Mercosul, isto é, seguindo o padrão LLLNLNN. 
+***Exemplo: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
+```
+
+### is_valid_license_plate_old_format
+
+Verifica se uma string correspondente a um número da placa é válido, conforme as normas
+anteriores à adesão da norma do Mercosul, isto é, seguindo o padrão LLLNNNN. 
+***Exemplo: ABC4567.***
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC4567')
 True
 ```
 
