@@ -7,10 +7,9 @@
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
+</div>
 
 ### [Looking for the english version?](README_EN.md)
-### [Procurando a documentação da versão 1.0.1?](/documentation%20v1.0.1/PORTUGUESE_VERSION.md)
-</div>
 
 # Introdução
 

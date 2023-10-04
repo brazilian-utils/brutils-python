@@ -7,7 +7,6 @@
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
 ### [Procurando pela versão em português?](README.md)
-### [Looking for 1.0.1 version documentation?](/documentation%20v1.0.1/ENGLISH_VERSION.md)
 
 </div>
 
@@ -231,7 +230,7 @@ True
 
 ### remove_symbols_phone
 
-Remove symbols from phone number. ***Exemplo: +55 (21) 2569-6969 ficaria '552125696969'.***
+Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '552125696969'.***
 
 ```python
 >>> from brutils import remove_symbols_phone
