@@ -22,4 +22,4 @@ from brutils.phone import (
     is_valid as is_valid_phone,
 )
 
-from brutils.email import is_valid_email as is_valid_email
+from brutils.email import is_valid as is_valid_email
