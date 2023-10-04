@@ -60,10 +60,12 @@ False
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
+  - [remove_symbols_phone](#remove_symbols_phone)
+- [Email](#email)
+  - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
-
 
 ## CPF
 
@@ -232,6 +234,35 @@ realmente existe.
 >>> from brutils import is_valid_landline_phone
 >>> is_valid_landline_phone('1938814933')
 True
+```
+
+### remove_symbols_phone
+
+Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125696969'.***
+
+```python
+>>> from brutils import remove_symbols_phone
+>>> remove_symbols_phone('(21)2569-6969')
+'2125696969'
+```
+
+## Email
+
+### is_valid_email
+
+Verificar se uma string corresponde a um e-mail válido. As regras para validar um endereço de e-mail geralmente seguem as especificações definidas pelo RFC 5322 (atualizado pelo RFC 5322bis), que é o padrão amplamente aceito para formatos de endereços de e-mail. 
+
+```python
+from brutils import is_valid_email
+
+>>> is_valid_email("joao.ninguem@gmail.com")
+True
+>>> is_valid_email(".joao.ninguem@gmail.com")
+False
+>>> is_valid_email("joao.ninguem@gmail.")
+False
+>>> is_valid_email("joao ninguem@gmail.com")
+False
 ```
 
 ## License_Plate
