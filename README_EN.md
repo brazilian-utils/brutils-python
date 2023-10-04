@@ -230,7 +230,7 @@ True
 
 ### remove_symbols_phone
 
-Remove symbols from phone number. ***Exemplo: +55 (21) 2569-6969 ficaria '552125696969'.***
+Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '552125696969'.***
 
 ```python
 >>> from brutils import remove_symbols_phone
