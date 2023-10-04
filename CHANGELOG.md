@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `is_valid_phone` [#147](https://github.com/brazilian-utils/brutils-python/pull/147)
 - Utilitário `is_valid_mobile_phone` [#146](https://github.com/brazilian-utils/brutils-python/pull/146)
 - Utilitário `is_valid_landline_phone` [#143](https://github.com/brazilian-utils/brutils-python/pull/143)
+- Utilitário `remove_symbols_processo_juridico` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
 
 ## [2.0.0] - 2023-07-23
 
