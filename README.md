@@ -43,28 +43,37 @@ False
 
 # Utilitários
 
-- [CPF](#cpf)
-  - [is_valid_cpf](#is_valid_cpf)
-  - [format_cpf](#format_cpf)
-  - [remove_symbols_cpf](#remove_symbols_cpf)
-  - [generate_cpf](#generate_cpf)
-- [CNPJ](#cnpj)
-  - [is_valid_cnpj](#is_valid_cnpj)
-  - [format_cnpj](#format_cnpj)
-  - [remove_symbols_cnpj](#remove_symbols_cnpj)
-  - [generate_cnpj](#generate_cnpj)
-- [CEP](#cep)
-  - [is_valid_cep](#is_valid_cep)
-  - [format_cep](#format_cep)
-  - [remove_symbols_cep](#remove_symbols_cep)
-  - [generate_cep](#generate_cep)
-- [Phone](#phone)
-  - [is_valid_phone](#is_valid_phone)
-  - [is_valid_mobile_phone](#is_valid_mobile_phone)
-  - [is_valid_landline_phone](#is_valid_landline_phone)
-  - [remove_symbols_phone](#remove_symbols_phone)
-- [Email](#email)
-  - [is_valid_email](#is_valid_email)
+- [Introdução](#introdução)
+- [Instalação](#instalação)
+- [Utilização](#utilização)
+- [Utilitários](#utilitários)
+  - [CPF](#cpf)
+    - [is\_valid\_cpf](#is_valid_cpf)
+    - [format\_cpf](#format_cpf)
+    - [remove\_symbols\_cpf](#remove_symbols_cpf)
+    - [generate\_cpf](#generate_cpf)
+  - [CNPJ](#cnpj)
+    - [is\_valid\_cnpj](#is_valid_cnpj)
+    - [format\_cnpj](#format_cnpj)
+    - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+    - [generate\_cnpj](#generate_cnpj)
+  - [CEP](#cep)
+    - [is\_valid\_cep](#is_valid_cep)
+    - [format\_cep](#format_cep)
+    - [remove\_symbols\_cep](#remove_symbols_cep)
+    - [generate\_cep](#generate_cep)
+  - [Phone](#phone)
+    - [is\_valid\_phone](#is_valid_phone)
+    - [is\_valid\_mobile\_phone](#is_valid_mobile_phone)
+    - [is\_valid\_landline\_phone](#is_valid_landline_phone)
+    - [remove\_symbols\_phone](#remove_symbols_phone)
+  - [Email](#email)
+    - [is\_valid\_email](#is_valid_email)
+  - [Processo Jurídico](#processo-jurídico)
+    - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
+- [Novos Utilitários e Reportar Bugs](#novos-utilitários-e-reportar-bugs)
+- [Dúvidas? Ideias?](#dúvidas-ideias)
+- [Contribuindo com o Código do Projeto](#contribuindo-com-o-código-do-projeto)
 
 ## CPF
 
@@ -262,6 +271,23 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+```
+
+## Processo Jurídico
+
+### remove_symbols_processo_juridico
+
+Remove os símbolos "." e "-" de formatação de um número de processo jurídico e rentorna apenas o número. Propositalmente não remove outros símbolos.
+
+```python
+from brutils import remove_symbols_processo_juridico
+
+>>> remove_symbols_processo_juridico("6439067-89.2023.4.04.5902")
+"64390678920234045902"
+>>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263")
+"49760238220127002263"
+>>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263*!*&#")
+"49760238220127002263*!*&#"
 ```
 
 # Novos Utilitários e Reportar Bugs
