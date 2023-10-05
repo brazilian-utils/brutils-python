@@ -277,7 +277,7 @@ False
 
 ### remove_symbols_processo_juridico
 
-Remove os símbolos "." e "-" de formatação de um número de processo jurídico e rentorna apenas o número. Propositalmente não remove outros símbolos.
+Remove os símbolos "." e "-" de formatação de um número de processo jurídico e retorna apenas o número. Propositalmente não remove outros símbolos.
 
 ```python
 from brutils import remove_symbols_processo_juridico
