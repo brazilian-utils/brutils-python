@@ -38,10 +38,5 @@ def convert_to_mercosul(license_plate):
         return None
 
     digits = [letter for letter in license_plate.upper()]
-    try:
-        digit = int(digits[4])
-    except ValueError:
-        return None
-
-    digits[4] = chr(ord("A") + digit)
+    digits[4] = chr(ord("A") + int(digits[4]))
     return "".join(digits)
