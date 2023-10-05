@@ -23,3 +23,7 @@ from brutils.phone import (
 )
 
 from brutils.email import is_valid as is_valid_email
+
+from brutils.license_plate import (
+    remove_symbols as remove_symbols_license_plate,
+)
