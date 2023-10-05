@@ -65,6 +65,9 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+- [Processo Jurídico](#processo-juridico)
+  - [format_processo_juridico](#format_processo_juridico)
+  - [remove_symbols_legal_process](#remove_symbols_legal_process)
 
 ## CPF
 
@@ -263,6 +266,16 @@ False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
 ```
+
+## Processo Jurídico
+
+### format_processo_juridico
+
+Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
+
+### remove_symbols_legal_process
+
+Remove qualquer caracteres especial necessários para a formatação do número do processo jurídico. Apenas filtra os símbolos utilizados no processo jurídico deixando outros caracteres especiais de propósito para validação do número do processo.
 
 # Novos Utilitários e Reportar Bugs
 

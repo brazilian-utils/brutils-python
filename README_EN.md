@@ -64,6 +64,9 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+- [Legal Process](#legal-process)
+  - [format_processo_juridico](#format_processo_juridico)
+  - [remove_symbols_legal_process](#remove_symbols_legal_process)
 
 
 ## CPF
@@ -257,6 +260,17 @@ False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
 ```
+
+## Legal Process
+
+### format_processo_juridico
+
+Formats to the legal process pattern a 20 length string containing only digits.
+
+### remove_symbols_legal_process
+
+Remove formatting symbols from a legal process number. It only filters out the symbols used in the legal process number validation leaving any other special character on purpose to validate the legal process number.
+
 
 # Feature Request and Bug Report
 
