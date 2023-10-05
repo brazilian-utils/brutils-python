@@ -65,10 +65,10 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [License_Plate](#license_plate)
-  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
 - [License Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
 
 ## CPF
 
@@ -314,6 +314,23 @@ normas do Mercosul, isto é, seguindo o padrão LLLNLNN.
 >>> from brutils import is_valid_license_plate_mercosul
 >>> is_valid_license_plate_mercosul('ABC4E67')
 True
+```
+
+### convert_license_plate_to_mercosul
+
+Converte uma string correspondente a um número da placa é válido no formato antigo,
+para o novo formato, conforme as novas normas do Mercosul (seguindo o padrão LLLNLNN).
+Caso a placa informada seja inválida será retornado o valor `None`.
+***Exemplo: ABC4567 -> ABC4F67.***
+
+```python
+>>> from brutils import convert_license_plate_to_mercosul
+>>> convert_license_plate_to_mercosul("ABC123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("abc123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("ABC1D23")
+None
 ```
 
 # Novos Utilitários e Reportar Bugs
