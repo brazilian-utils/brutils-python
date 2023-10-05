@@ -68,6 +68,8 @@ False
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
 - [License Plate](#license_plate)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+- [PIS](#pis)
+  - [is_valid_pis](#is_valid_pis)
 
 
 ## CPF
@@ -289,6 +291,24 @@ Mercosul standards, in other words, if it follows the pattern LLLNLNN.
 >>> from brutils import is_valid_license_plate_mercosul
 >>> is_valid_license_plate_mercosul('ABC4E67')
 True
+```
+
+## PIS
+
+### is_valid_pis
+
+Check if PIS/PASEP number is valid. Numbers only, formatted as strings. Does not check if PIS/PASEP exists.
+More details about the validation can be found here: https://www.macoratti.net/alg_pis.htm.
+
+```python
+from brutils import is_valid_pis
+
+>>> is_valid_pis("12038619494")
+True
+>>> is_valid_pis("11111111111")
+False
+>>> is_valid_pis("123456")
+False
 ```
 
 # Feature Request and Bug Report
