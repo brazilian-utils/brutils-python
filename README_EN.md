@@ -268,7 +268,7 @@ False
 Formats to the legal process pattern a 20 length string containing only digits.
 
 ```python
-from brutils import formatprocesso_juridico
+from brutils import format_processo_juridico
 
 format_processo_juridico('23141945820055070079')
 # returns '2314194-58.2005.5.07.0079'

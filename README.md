@@ -274,7 +274,7 @@ False
 Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
 
 ```python
-from brutils import formatprocesso_juridico
+from brutils import format_processo_juridico
 
 format_processo_juridico('23141945820055070079')
 # retorna '2314194-58.2005.5.07.0079'
