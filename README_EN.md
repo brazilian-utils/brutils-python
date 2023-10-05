@@ -42,28 +42,37 @@ False
 
 # Utilities
 
-- [CPF](#cpf)
-  - [is_valid_cpf](#is_valid_cpf)
-  - [format_cpf](#format_cpf)
-  - [remove_symbols_cpf](#remove_symbols_cpf)
-  - [generate_cpf](#generate_cpf)
-- [CNPJ](#cnpj)
-  - [is_valid_cnpj](#is_valid_cnpj)
-  - [format_cnpj](#format_cnpj)
-  - [remove_symbols_cnpj](#remove_symbols_cnpj)
-  - [generate_cnpj](#generate_cnpj)
-- [CEP](#cep)
-  - [is_valid_cep](#is_valid_cep)
-  - [format_cep](#format_cep)
-  - [remove_symbols_cep](#remove_symbols_cep)
-  - [generate_cep](#generate_cep)
-- [Phone](#phone)
-  - [is_valid_phone](#is_valid_phone)
-  - [is_valid_mobile_phone](#is_valid_mobile_phone)
-  - [is_valid_landline_phone](#is_valid_landline_phone)
-  - [remove_symbols_phone](#remove_symbols_phone)
-- [Email](#email)
-  - [is_valid_email](#is_valid_email)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Utilities](#utilities)
+  - [CPF](#cpf)
+    - [is\_valid\_cpf](#is_valid_cpf)
+    - [format\_cpf](#format_cpf)
+    - [remove\_symbols\_cpf](#remove_symbols_cpf)
+    - [generate\_cpf](#generate_cpf)
+  - [CNPJ](#cnpj)
+    - [is\_valid\_cnpj](#is_valid_cnpj)
+    - [format\_cnpj](#format_cnpj)
+    - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+    - [generate\_cnpj](#generate_cnpj)
+  - [CEP](#cep)
+    - [is\_valid\_cep](#is_valid_cep)
+    - [format\_cep](#format_cep)
+    - [remove\_symbols\_cep](#remove_symbols_cep)
+    - [generate\_cep](#generate_cep)
+  - [Phone](#phone)
+    - [is\_valid\_phone](#is_valid_phone)
+    - [is\_valid\_mobile\_phone](#is_valid_mobile_phone)
+    - [is\_valid\_landline\_phone](#is_valid_landline_phone)
+    - [remove\_symbols\_phone](#remove_symbols_phone)
+  - [Email](#email)
+    - [is\_valid\_email](#is_valid_email)
+  - [License Plate](#license-plate)
+    - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+- [Feature Request and Bug Report](#feature-request-and-bug-report)
+- [Questions? Ideas?](#questions-ideas)
+- [Code Contribution](#code-contribution)
 
 
 ## CPF
@@ -256,6 +265,25 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+```
+
+## License Plate
+
+### remove_symbols_license_plate
+
+Removes the dash ("-") formatting symbol from a license plate number and returns only the number. Purposefully doesn't remove other symbols.
+
+```python
+from brutils import remove_symbols_license_plate
+
+>>> remove_symbols_license_plate("ABC-123")
+"ABC123"
+>>> remove_symbols_license_plate("abc123")
+"abc123"
+>>> remove_symbols_license_plate("ABCD123")
+"ABCD123"
+>>> remove_symbols_license_plate("@abc#-#123@")
+"@abc##123@"
 ```
 
 # Feature Request and Bug Report
