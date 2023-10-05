@@ -62,6 +62,8 @@ False
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+- [License_Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
 
 
 ## CPF
@@ -236,6 +238,23 @@ Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '55
 >>> from brutils import remove_symbols_phone
 >>> remove_symbols_phone('+55 (21) 2569-6969')
 '552125696969'
+```
+
+## License_Plate
+
+### is_valid_license_plate_old_format
+
+Checks if it is a License Plate in the old format used in Brazil. Receives as a parameter a string that should contain only alphanumeric characters (letters and numbers) and returns a boolean value. ***Example: 'abc1234' results in True.***
+This function only validates plates in the old format and does not verify if it actually exists.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
+False
 ```
 
 # Feature Request and Bug Report

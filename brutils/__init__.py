@@ -21,3 +21,4 @@ from brutils.phone import (
     is_valid_mobile as is_valid_mobile_phone,
     is_valid as is_valid_phone,
 )
+from brutils.license_plate import is_valid_license_plate_old_format

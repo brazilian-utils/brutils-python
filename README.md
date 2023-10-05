@@ -61,6 +61,8 @@ False
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+- [License_Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
 
 ## CPF
 
@@ -239,6 +241,23 @@ Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125
 >>> from brutils import remove_symbols_phone
 >>> remove_symbols_phone('(21)2569-6969')
 '2125696969'
+```
+
+## License_Plate
+
+### is_valid_license_plate_old_format
+
+Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
+Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
+False
 ```
 
 # Novos Utilitários e Reportar Bugs
