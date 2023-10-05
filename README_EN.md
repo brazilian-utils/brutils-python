@@ -268,13 +268,12 @@ False
 Formats to the legal process pattern a 20 length string containing only digits.
 
 ```python
-from brutils import format_processo_juridico
-
-format_processo_juridico('23141945820055070079')
-# returns '2314194-58.2005.5.07.0079'
-
-format_processo_juridico('00000000000000000000')
-# returns '0000000-00.0000.0.00.0000'
+>>> from brutils import format_processo_juridico
+>>> format_processo_juridico('23141945820055070079')
+'2314194-58.2005.5.07.0079'
+>>> format_processo_juridico('00000000000000000000')
+'0000000-00.0000.0.00.0000'
+>>>
 ```
 
 ### remove_symbols_legal_process
@@ -282,13 +281,12 @@ format_processo_juridico('00000000000000000000')
 Remove formatting symbols from a legal process number. It only filters out the symbols used in the legal process number validation leaving any other special character on purpose to validate the legal process number.
 
 ```python
-from brutils import remove_symbols_legal_process
-
-remove_symbols_legal_process('23141945820055070079')
-# returns '23141945820055070079'
-
-remove_symbols_legal_process('0000000-00.0000.0.00.0000')
-# returns '00000000000000000000'
+>>> from brutils import remove_symbols_legal_process
+>>> remove_symbols_legal_process('2314194-58.2005.5.07.0079')
+'23141945820055070079'
+>>> remove_symbols_legal_process('0000000-00.0000.0.00.0000')
+'00000000000000000000'
+>>>
 ```
 
 
