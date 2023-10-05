@@ -68,6 +68,8 @@ False
 - [Processo Jurídico](#processo-juridico)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove_symbols_legal_process](#remove_symbols_legal_process)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 
 ## CPF
 
@@ -294,6 +296,20 @@ Remove qualquer caracteres especial necessários para a formatação do número 
 '00000000000000000000'
 >>>
 ````
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Verifica se uma string correspondente a um número da placa é válido, conforme as novas
+normas do Mercosul, isto é, seguindo o padrão LLLNLNN. 
+***Exemplo: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
+```
 
 # Novos Utilitários e Reportar Bugs
 

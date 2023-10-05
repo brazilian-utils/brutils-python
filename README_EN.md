@@ -67,6 +67,8 @@ False
 - [Legal Process](#legal-process)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove_symbols_legal_process](#remove_symbols_legal_process)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 
 
 ## CPF
@@ -289,6 +291,20 @@ Remove formatting symbols from a legal process number. It only filters out the s
 >>>
 ```
 
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Checks if the provided string representing a license place is valid, according to the new
+Mercosul standards, in other words, if it follows the pattern LLLNLNN.
+***Example: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
+```
 
 # Feature Request and Bug Report
 
