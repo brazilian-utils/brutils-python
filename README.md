@@ -67,6 +67,8 @@ False
   - [is_valid_email](#is_valid_email)
 - [License_Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 
 ## CPF
 
@@ -281,6 +283,37 @@ True
 True
 >>> is_valid_license_plate_old_format('GHI-4567')
 False
+```
+
+## License_Plate
+
+### is_valid_license_plate_old_format
+
+Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
+Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
+False
+```
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Verifica se uma string correspondente a um número da placa é válido, conforme as novas
+normas do Mercosul, isto é, seguindo o padrão LLLNLNN. 
+***Exemplo: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
 ```
 
 # Novos Utilitários e Reportar Bugs
