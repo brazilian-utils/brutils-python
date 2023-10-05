@@ -9,7 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+<<<<<<< HEAD
 - Utilitário `is_valid_email` [#213](https://github.com/brazilian-utils/brutils-python/pull/213)
+=======
+- Utilitário `iis_valid_license_plate_old_format` [#174](https://github.com/brazilian-utils/brutils-python/pull/174)
+>>>>>>> 2f8fd21306407179eb1793aac16816bf894f4220
 - Utilitário `is_valid_phone` [#147](https://github.com/brazilian-utils/brutils-python/pull/147)
 - Utilitário `is_valid_mobile_phone` [#146](https://github.com/brazilian-utils/brutils-python/pull/146)
 - Utilitário `is_valid_landline_phone` [#143](https://github.com/brazilian-utils/brutils-python/pull/143)
