@@ -62,13 +62,10 @@ False
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
-<<<<<<< HEAD
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-=======
 - [License_Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
->>>>>>> 174
 
 
 ## CPF
