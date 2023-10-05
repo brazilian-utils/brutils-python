@@ -70,7 +70,7 @@ False
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
-
+  - [generate_pis](#generate_pis)
 
 ## CPF
 
@@ -309,6 +309,21 @@ True
 False
 >>> is_valid_pis("123456")
 False
+```
+
+### generate_pis
+
+Generates a valid random PIS/PASEP number.
+
+```python
+from brutils import generate_pis
+
+>>> generate_pis()
+'12038619494'
+>>> generate_pis()
+'57817700092'
+>>> generate_pis()
+'49850211630'
 ```
 
 # Feature Request and Bug Report

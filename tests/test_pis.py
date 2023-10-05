@@ -9,7 +9,7 @@ range = range if version_info.major >= 3 else xrange
 path.insert(
     1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
 )
-from brutils.pis import validate, is_valid, _checksum
+from brutils.pis import validate, is_valid, generate, _checksum
 from unittest import TestCase, main
 
 
@@ -52,6 +52,10 @@ class TestPIS(TestCase):
         self.assertEqual(_checksum("1204917738"), 2)
         self.assertEqual(_checksum("1203861949"), 4)
         self.assertEqual(_checksum("1208321082"), 6)
+
+    def test_generate(self):
+        for _ in range(10_000):
+            self.assertIs(validate(generate()), True)
 
 
 if __name__ == "__main__":

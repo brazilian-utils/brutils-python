@@ -32,4 +32,5 @@ from brutils.license_plate import is_valid_license_plate_old_format
 
 from brutils.pis import (
     is_valid as is_valid_pis,
+    generate as generate_pis,
 )
