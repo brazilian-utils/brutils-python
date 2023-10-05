@@ -62,8 +62,13 @@ False
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+<<<<<<< HEAD
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+=======
+- [License_Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
+>>>>>>> 174
 
 
 ## CPF
@@ -255,6 +260,23 @@ False
 >>> is_valid_email("joao.ninguem@gmail.")
 False
 >>> is_valid_email("joao ninguem@gmail.com")
+False
+```
+
+## License_Plate
+
+### is_valid_license_plate_old_format
+
+Checks if it is a License Plate in the old format used in Brazil. Receives as a parameter a string that should contain only alphanumeric characters (letters and numbers) and returns a boolean value. ***Example: 'abc1234' results in True.***
+This function only validates plates in the old format and does not verify if it actually exists.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
 False
 ```
 
