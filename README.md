@@ -68,8 +68,12 @@ False
 - [Processo Jurídico](#processo-juridico)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove_symbols_legal_process](#remove_symbols_legal_process)
-- [License Plate](#license_plate)
+- [License_Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+- [PIS](#pis)
+  - [is_valid_pis](#is_valid_pis)
+  - [generate_pis](#generate_pis)
 
 ## CPF
 
@@ -299,6 +303,40 @@ Remove qualquer caracteres especial necessários para a formatação do número 
 
 ## License_Plate
 
+### is_valid_license_plate_old_format
+
+Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
+Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
+False
+```
+
+## License_Plate
+
+### is_valid_license_plate_old_format
+
+Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
+Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
+False
+```
+
+## License_Plate
+
 ### is_valid_license_plate_mercosul
 
 Verifica se uma string correspondente a um número da placa é válido, conforme as novas
@@ -309,6 +347,28 @@ normas do Mercosul, isto é, seguindo o padrão LLLNLNN.
 >>> from brutils import is_valid_license_plate_mercosul
 >>> is_valid_license_plate_mercosul('ABC4E67')
 True
+```
+
+## PIS
+
+### is_valid_pis
+
+Verifica se o número PIS/PASEP é valido. Apenas números, formatados como string. Não verifica se o PIS/PASEP existe.
+Mais detalhes sobre a validação estão disponíveis em https://www.macoratti.net/alg_pis.htm.
+
+### generate_pis
+
+Gera um PIS/PASEP válido aleatório.
+
+```python
+from brutils import generate_pis
+
+>>> generate_pis()
+'12038619494'
+>>> generate_pis()
+'57817700092'
+>>> generate_pis()
+'49850211630'
 ```
 
 # Novos Utilitários e Reportar Bugs
