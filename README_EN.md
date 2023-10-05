@@ -64,6 +64,8 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 
 
 ## CPF
@@ -256,6 +258,20 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+```
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Checks if the provided string representing a license place is valid, according to the new
+Mercosul standards, in other words, if it follows the pattern LLLNLNN.
+***Example: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
 ```
 
 # Feature Request and Bug Report

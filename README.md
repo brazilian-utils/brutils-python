@@ -65,6 +65,8 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
 
 ## CPF
 
@@ -262,6 +264,20 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+```
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Verifica se uma string correspondente a um número da placa é válido, conforme as novas
+normas do Mercosul, isto é, seguindo o padrão LLLNLNN. 
+***Exemplo: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
 ```
 
 # Novos Utilitários e Reportar Bugs
