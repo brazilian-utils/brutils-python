@@ -9,6 +9,8 @@ def is_valid_license_plate_old_format(plate: str) -> bool:
     return (
         isinstance(plate, str) and re.match(pattern, plate.strip()) is not None
     )
+
+
 import re
 
 
