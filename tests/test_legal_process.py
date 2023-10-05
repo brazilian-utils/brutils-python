@@ -30,7 +30,7 @@ class TestLegalProcess(unittest.TestCase):
 
     def test_remove_symbols(self):
         with patch("brutils.legal_process.sieve") as mock_sieve:
-            remove_symbols("123.456.789-10")
+            remove_symbols("2314194-58.2005.5.07.0079")
             mock_sieve.assert_called()
 
     def test_display(self):
