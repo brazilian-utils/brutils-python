@@ -42,10 +42,6 @@ False
 
 # Utilities
 
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Utilities](#utilities)
   - [CPF](#cpf)
     - [is\_valid\_cpf](#is_valid_cpf)
     - [format\_cpf](#format_cpf)
