@@ -64,7 +64,9 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [License Plate](#license_plate)
+- [Legal Process](#legal-process)
+  - [format_processo_juridico](#format_processo_juridico)
+- [License_Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
@@ -264,6 +266,21 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+```
+
+## Legal Process
+
+### format_processo_juridico
+
+Formats to the legal process pattern a 20 length string containing only digits.
+
+```python
+>>> from brutils import format_processo_juridico
+>>> format_processo_juridico('23141945820055070079')
+'2314194-58.2005.5.07.0079'
+>>> format_processo_juridico('00000000000000000000')
+'0000000-00.0000.0.00.0000'
+>>>
 ```
 
 ## License_Plate

@@ -65,6 +65,8 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+- [Processo Jurídico](#processo-juridico)
+  - [format_processo_juridico](#format_processo_juridico)
 - [License Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
@@ -272,6 +274,22 @@ False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
 ```
+
+## Processo Jurídico
+
+### format_processo_juridico
+
+Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
+
+```python
+>>> from brutils import format_processo_juridico
+>>> format_processo_juridico('23141945820055070079')
+'2314194-58.2005.5.07.0079'
+>>> format_processo_juridico('00000000000000000000')
+'0000000-00.0000.0.00.0000'
+>>>
+```
+
 
 ## License_Plate
 
