@@ -72,6 +72,8 @@ False
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
+- [Processo Jurídico](#processo-jurídico)
+  - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
 
 ## CPF
 
@@ -339,6 +341,23 @@ from brutils import generate_pis
 '57817700092'
 >>> generate_pis()
 '49850211630'
+```
+
+## Processo Jurídico
+
+### remove_symbols_processo_juridico
+
+Remove os símbolos "." e "-" de formatação de um número de processo jurídico e retorna apenas o número. Propositalmente não remove outros símbolos.
+
+```python
+from brutils import remove_symbols_processo_juridico
+
+>>> remove_symbols_processo_juridico("6439067-89.2023.4.04.5902")
+"64390678920234045902"
+>>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263")
+"49760238220127002263"
+>>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263*!*&#")
+"49760238220127002263*!*&#"
 ```
 
 # Novos Utilitários e Reportar Bugs
