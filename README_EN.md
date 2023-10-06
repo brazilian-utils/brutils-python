@@ -66,9 +66,6 @@ False
     - [is\_valid\_email](#is_valid_email)
   - [Legal Process](#legal-process)
     - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
-- [Feature Request and Bug Report](#feature-request-and-bug-report)
-- [Questions? Ideas?](#questions-ideas)
-- [Code Contribution](#code-contribution)
 
 
 ## CPF
