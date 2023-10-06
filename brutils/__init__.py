@@ -29,13 +29,10 @@ from brutils.license_plate import (
     is_valid_mercosul as is_valid_license_plate_mercosul,
     is_valid_license_plate_old_format,
     convert_to_mercosul as convert_license_plate_to_mercosul,
+    is_valid_license_plate_old_format,
 )
 
 from brutils.email import is_valid as is_valid_email
-from brutils.legal_process import (
-    format_processo_juridico,
-    is_valid_license_plate_old_format,
-)
 
 from brutils.pis import (
     is_valid as is_valid_pis,
@@ -43,5 +40,6 @@ from brutils.pis import (
 )
 
 from brutils.legal_process import (
+    format_processo_juridico,
     remove_symbols as remove_symbols_processo_juridico,
 )
