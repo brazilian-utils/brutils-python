@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
+- Utilitário `is_valid_pis` [#216](https://github.com/brazilian-utils/brutils-python/pull/216)
 - Utilitário `is_valid_email` [#213](https://github.com/brazilian-utils/brutils-python/pull/213)
 - Utilitário `iis_valid_license_plate_old_format` [#174](https://github.com/brazilian-utils/brutils-python/pull/174)
 - Utilitário `is_valid_license_plate_old_format` [#174](https://github.com/brazilian-utils/brutils-python/pull/174)

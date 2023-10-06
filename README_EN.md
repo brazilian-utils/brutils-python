@@ -68,7 +68,9 @@ False
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
-
+- [PIS](#pis)
+  - [is_valid_pis](#is_valid_pis)
+  - [generate_pis](#generate_pis)
 
 ## CPF
 
@@ -306,6 +308,39 @@ the provided license plate is invalid it will return the value `None`.
 "ABC1C34"
 >>> convert_license_plate_to_mercosul("ABC1D23")
 None
+```
+
+## PIS
+
+### is_valid_pis
+
+Check if PIS/PASEP number is valid. Numbers only, formatted as strings. Does not check if PIS/PASEP exists.
+More details about the validation can be found here: https://www.macoratti.net/alg_pis.htm.
+
+```python
+from brutils import is_valid_pis
+
+>>> is_valid_pis("12038619494")
+True
+>>> is_valid_pis("11111111111")
+False
+>>> is_valid_pis("123456")
+False
+```
+
+### generate_pis
+
+Generates a valid random PIS/PASEP number.
+
+```python
+from brutils import generate_pis
+
+>>> generate_pis()
+'12038619494'
+>>> generate_pis()
+'57817700092'
+>>> generate_pis()
+'49850211630'
 ```
 
 # Feature Request and Bug Report

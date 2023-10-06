@@ -69,6 +69,9 @@ False
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
+- [PIS](#pis)
+  - [is_valid_pis](#is_valid_pis)
+  - [generate_pis](#generate_pis)
 
 ## CPF
 
@@ -287,23 +290,6 @@ False
 
 ## License_Plate
 
-### is_valid_license_plate_old_format
-
-Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
-Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
-
-```python
->>> from brutils import is_valid_license_plate_old_format
->>> is_valid_license_plate_old_format('ABC1234')
-True
->>> is_valid_license_plate_old_format('def5678')
-True
->>> is_valid_license_plate_old_format('GHI-4567')
-False
-```
-
-## License_Plate
-
 ### is_valid_license_plate_mercosul
 
 Verifica se uma string correspondente a um número da placa é válido, conforme as novas
@@ -331,6 +317,28 @@ Caso a placa informada seja inválida será retornado o valor `None`.
 "ABC1C34"
 >>> convert_license_plate_to_mercosul("ABC1D23")
 None
+```
+
+## PIS
+
+### is_valid_pis
+
+Verifica se o número PIS/PASEP é valido. Apenas números, formatados como string. Não verifica se o PIS/PASEP existe.
+Mais detalhes sobre a validação estão disponíveis em https://www.macoratti.net/alg_pis.htm.
+
+### generate_pis
+
+Gera um PIS/PASEP válido aleatório.
+
+```python
+from brutils import generate_pis
+
+>>> generate_pis()
+'12038619494'
+>>> generate_pis()
+'57817700092'
+>>> generate_pis()
+'49850211630'
 ```
 
 # Novos Utilitários e Reportar Bugs
