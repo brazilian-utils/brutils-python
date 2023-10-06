@@ -9,7 +9,7 @@ range = range if version_info.major >= 3 else xrange
 path.insert(
     1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
 )
-from brutils.pis import validate, is_valid, generate, _checksum
+from brutils.pis import validate, is_valid, generate, _checksum, format_pis
 from unittest import TestCase, main
 
 
@@ -56,6 +56,16 @@ class TestPIS(TestCase):
     def test_generate(self):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
+            
+    def test_format_pis(self):
+        with patch("brutils.pis.is_valid", return_value=True) as mock_is_valid:
+            # When PIS is_valid, returns formatted PIS
+            self.assertEqual(format_pis("14372195539"), "143.72195.53-9")
+        # Checks if function is_valid_pis is called
+        mock_is_valid.assert_called_once_with("14372195539")
+        with patch("brutils.pis.is_valid", return_value=False) as mock_is_valid:
+            # When PIS isn't valid, returns None
+            self.assertIsNone(format_pis("14372195539")) 
 
 
 if __name__ == "__main__":
