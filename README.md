@@ -288,18 +288,6 @@ Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de p
 >>>
 ```
 
-### remove_symbols_legal_process
-
-Remove qualquer caracteres especial necessários para a formatação do número do processo jurídico. Apenas filtra os símbolos utilizados no processo jurídico deixando outros caracteres especiais de propósito para validação do número do processo.
-
-```python
->>> from brutils import remove_symbols_legal_process
->>> remove_symbols_legal_process('2314194-58.2005.5.07.0079')
-'23141945820055070079'
->>> remove_symbols_legal_process('0000000-00.0000.0.00.0000')
-'00000000000000000000'
->>>
-````
 
 ## License_Plate
 
