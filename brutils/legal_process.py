@@ -4,23 +4,6 @@ import re
 ############
 
 
-def sieve(dirty):  # type: (str) -> str
-    """
-    Filters out Legal Process ID number formatting symbols.
-
-    Symbols that are not used in the Legal Process ID number formatting are left
-    unfiltered on purpose so that if fails other tests,
-    because their presence indicate that the input was somehow corrupted.
-    """
-
-    return re.sub(r"[-.]", "", dirty)
-
-
-def remove_symbols(dirty):  # type: (str) -> str
-    """Alias to the function `sieve`. Better naming."""
-    return sieve(dirty)
-
-
 def display(legal_process_id):
     """
     Format an adequately formatted numbers-only Legal Process ID number string,

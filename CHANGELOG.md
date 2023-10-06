@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Utilitário `fromat_processo_juridico` [#210](https://github.com/brazilian-utils/brutils-python/pull/210)
-- Utilitário `remove_symbols_legal_process` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
 - Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
 - Utilitário `is_valid_pis` [#216](https://github.com/brazilian-utils/brutils-python/pull/216)
 - Utilitário `is_valid_email` [#213](https://github.com/brazilian-utils/brutils-python/pull/213)

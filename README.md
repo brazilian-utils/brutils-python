@@ -67,7 +67,6 @@ False
   - [is_valid_email](#is_valid_email)
 - [Processo Jurídico](#processo-juridico)
   - [format_processo_juridico](#format_processo_juridico)
-  - [remove_symbols_legal_process](#remove_symbols_legal_process)
 - [License Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)

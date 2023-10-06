@@ -28,10 +28,7 @@ from brutils.license_plate import (
 )
 
 from brutils.email import is_valid as is_valid_email
-from brutils.legal_process import (
-    format_processo_juridico,
-    remove_symbols as remove_symbols_legal_process,
-)
+from brutils.legal_process import format_processo_juridico
 from brutils.license_plate import is_valid_license_plate_old_format
 
 from brutils.pis import (

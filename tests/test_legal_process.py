@@ -1,38 +1,9 @@
 import unittest
-from unittest.mock import patch
 
-from brutils.legal_process import (
-    sieve,
-    display,
-    format_processo_juridico,
-    remove_symbols,
-)
+from brutils.legal_process import display, format_processo_juridico
 
 
 class TestLegalProcess(unittest.TestCase):
-    def test_sieve(self):
-        self.assertEqual(
-            sieve("23141945820055070079"), ("23141945820055070079")
-        )
-        self.assertEqual(
-            sieve("2314194-58.2005.5.07.0079"), ("23141945820055070079")
-        )
-        self.assertEqual(
-            sieve("2314194--58..2005..5..07..0079"), ("23141945820055070079")
-        )
-        self.assertEqual(
-            sieve("2314$$$-^|.2005.5.0%.***%"), ("2314$$$^|200550%***%")
-        )
-        self.assertEqual(
-            sieve("2314$$$*^|(2005)5&0%#***%"), ("2314$$$*^|(2005)5&0%#***%")
-        )
-        self.assertEqual(sieve("...---..."), "")
-
-    def test_remove_symbols(self):
-        with patch("brutils.legal_process.sieve") as mock_sieve:
-            remove_symbols("2314194-58.2005.5.07.0079")
-            mock_sieve.assert_called()
-
     def test_display(self):
         self.assertEqual(
             display("23141945820055070079"), "2314194-58.2005.5.07.0079"
