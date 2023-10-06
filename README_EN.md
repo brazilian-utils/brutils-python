@@ -70,6 +70,7 @@ False
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
+  - [format_license_plate](#format_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -326,6 +327,28 @@ the provided license plate is invalid it will return the value `None`.
 >>> convert_license_plate_to_mercosul("abc123")
 "ABC1C34"
 >>> convert_license_plate_to_mercosul("ABC1D23")
+None
+```
+
+### format_license_plate
+
+Given a String corresponding to valid license plate, whether following the old Brazilian
+pattern (LLLNNNN) or the new Mercosul pattern (LLLNLNN), return a new String corresponding
+to the formatted license plate with a dash (-) for the old format or in upper case for the
+Mercosul format.
+***Exemplo: ABC1234 -> ABC-1234.***
+            ABC1E34 -> ABC1E34.***
+
+```python
+>>> format_license_plate("ABC1234")
+"ABC-1234"
+>>> format_license_plate("abc1234")
+"ABC-1234"
+>>> format_license_plate("ABC1D23")
+"ABC1D23"
+>>> format_license_plate("abc1d23")
+"ABC1D23"
+>>> format_license_plate("ABCD123")
 None
 ```
 

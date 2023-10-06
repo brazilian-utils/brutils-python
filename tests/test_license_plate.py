@@ -2,6 +2,7 @@ from brutils.license_plate import (
     is_valid_license_plate_old_format,
     is_valid_mercosul,
     convert_to_mercosul,
+    format,
 )
 
 from unittest import TestCase, main
@@ -99,6 +100,13 @@ class TestLicensePlate(TestCase):
         # when then license is provided in lowercase, it's correctly converted
         # and then returned value is in uppercase
         self.assertEqual(convert_to_mercosul("abc1234"), "ABC1C34")
+
+    def test_format_license_plate(self):
+        self.assertEqual(format("ABC1234"), "ABC-1234")
+        self.assertEqual(format("abc1234"), "ABC-1234")
+        self.assertEqual(format("ABC1D23"), "ABC1D23")
+        self.assertEqual(format("abc1d23"), "ABC1D23")
+        self.assertIsNone(format("ABCD123"))
 
 
 if __name__ == "__main__":

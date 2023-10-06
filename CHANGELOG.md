@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
 - Utilitário `is_valid_license_plate_mercosul` [#215](https://github.com/brazilian-utils/brutils-python/pull/215)
 - Utilitário `convert_license_plate_to_mercosul` [#226](https://github.com/brazilian-utils/brutils-python/pull/226)
+- Utilitário `format_license_plate` [#230](https://github.com/brazilian-utils/brutils-python/pull/230)
 
 
 ## [2.0.0] - 2023-07-23
