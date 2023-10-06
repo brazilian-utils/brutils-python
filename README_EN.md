@@ -70,6 +70,7 @@ False
 - [License_Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -322,6 +323,23 @@ Mercosul standards, in other words, if it follows the pattern LLLNLNN.
 >>> from brutils import is_valid_license_plate_mercosul
 >>> is_valid_license_plate_mercosul('ABC4E67')
 True
+```
+
+### convert_license_plate_to_mercosul
+
+Converts the provided string representing a license plate in the old format to the new
+format, according to the new Mercosul standards (following the pattern LLLNLNN). In case
+the provided license plate is invalid it will return the value `None`.
+***Example: ABC4567 -> ABC4F67.***
+
+```python
+>>> from brutils import convert_license_plate_to_mercosul
+>>> convert_license_plate_to_mercosul("ABC123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("abc123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("ABC1D23")
+None
 ```
 
 ## PIS

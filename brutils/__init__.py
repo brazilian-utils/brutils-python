@@ -24,6 +24,7 @@ from brutils.phone import (
 
 from brutils.license_plate import (
     is_valid_mercosul as is_valid_license_plate_mercosul,
+    convert_to_mercosul as convert_license_plate_to_mercosul,
 )
 
 from brutils.email import is_valid as is_valid_email
