@@ -15,3 +15,15 @@ def format_processo_juridico(legal_process_id):  # type: (str) -> (str)
         include_chars = r"\1-\2.\3.\4.\5.\6"
         return re.sub(capture_fields, include_chars, legal_process_id)
     return None
+
+
+def remove_symbols(processo_juridico: str):  # type: (str) -> str
+    """Removes common symbols from a legal process number string.
+    The standard symbols removed are "." and "-"
+
+    Args:
+                    process_juridico[str]: A legal process number string
+    Returns:
+                    [str]: A legal process number string without symbols
+    """
+    return processo_juridico.replace(".", "").replace("-", "")
