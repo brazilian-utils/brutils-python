@@ -4,21 +4,6 @@ import re
 ############
 
 
-def display(legal_process_id):
-    """
-    Format an adequately formatted numbers-only Legal Process ID number string,
-    adding in standard formatting visual aid symbols for display.
-    """
-
-    if (
-        not legal_process_id.isdigit()
-        or len(legal_process_id) != 20
-        or len(set(legal_process_id)) == 1
-    ):
-        return None
-    return format_processo_juridico(legal_process_id)
-
-
 def format_processo_juridico(legal_process_id):  # type: (str) -> (str)
     """
     Format an adequately formatted numbers-only Legal Process ID number,
