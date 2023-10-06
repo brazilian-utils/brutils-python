@@ -67,9 +67,6 @@ False
     - [is\_valid\_email](#is_valid_email)
   - [Processo Jurídico](#processo-jurídico)
     - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
-- [Novos Utilitários e Reportar Bugs](#novos-utilitários-e-reportar-bugs)
-- [Dúvidas? Ideias?](#dúvidas-ideias)
-- [Contribuindo com o Código do Projeto](#contribuindo-com-o-código-do-projeto)
 
 ## CPF
 
