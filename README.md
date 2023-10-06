@@ -43,30 +43,37 @@ False
 
 # Utilitários
 
-  - [CPF](#cpf)
-    - [is\_valid\_cpf](#is_valid_cpf)
-    - [format\_cpf](#format_cpf)
-    - [remove\_symbols\_cpf](#remove_symbols_cpf)
-    - [generate\_cpf](#generate_cpf)
-  - [CNPJ](#cnpj)
-    - [is\_valid\_cnpj](#is_valid_cnpj)
-    - [format\_cnpj](#format_cnpj)
-    - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
-    - [generate\_cnpj](#generate_cnpj)
-  - [CEP](#cep)
-    - [is\_valid\_cep](#is_valid_cep)
-    - [format\_cep](#format_cep)
-    - [remove\_symbols\_cep](#remove_symbols_cep)
-    - [generate\_cep](#generate_cep)
-  - [Phone](#phone)
-    - [is\_valid\_phone](#is_valid_phone)
-    - [is\_valid\_mobile\_phone](#is_valid_mobile_phone)
-    - [is\_valid\_landline\_phone](#is_valid_landline_phone)
-    - [remove\_symbols\_phone](#remove_symbols_phone)
-  - [Email](#email)
-    - [is\_valid\_email](#is_valid_email)
-  - [Processo Jurídico](#processo-jurídico)
-    - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
+- [CPF](#cpf)
+  - [is_valid_cpf](#is_valid_cpf)
+  - [format_cpf](#format_cpf)
+  - [remove_symbols_cpf](#remove_symbols_cpf)
+  - [generate_cpf](#generate_cpf)
+- [CNPJ](#cnpj)
+  - [is_valid_cnpj](#is_valid_cnpj)
+  - [format_cnpj](#format_cnpj)
+  - [remove_symbols_cnpj](#remove_symbols_cnpj)
+  - [generate_cnpj](#generate_cnpj)
+- [CEP](#cep)
+  - [is_valid_cep](#is_valid_cep)
+  - [format_cep](#format_cep)
+  - [remove_symbols_cep](#remove_symbols_cep)
+  - [generate_cep](#generate_cep)
+- [Phone](#phone)
+  - [is_valid_phone](#is_valid_phone)
+  - [is_valid_mobile_phone](#is_valid_mobile_phone)
+  - [is_valid_landline_phone](#is_valid_landline_phone)
+  - [remove_symbols_phone](#remove_symbols_phone)
+- [Email](#email)
+  - [is_valid_email](#is_valid_email)
+- [License Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
+  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
+- [PIS](#pis)
+  - [is_valid_pis](#is_valid_pis)
+  - [generate_pis](#generate_pis)
+- [Processo Jurídico](#processo-jurídico)
+  - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
 
 ## CPF
 
@@ -264,6 +271,76 @@ False
 False
 >>> is_valid_email("joao ninguem@gmail.com")
 False
+```
+
+## License_Plate
+
+### is_valid_license_plate_old_format
+
+Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
+Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
+
+```python
+>>> from brutils import is_valid_license_plate_old_format
+>>> is_valid_license_plate_old_format('ABC1234')
+True
+>>> is_valid_license_plate_old_format('def5678')
+True
+>>> is_valid_license_plate_old_format('GHI-4567')
+False
+```
+
+## License_Plate
+
+### is_valid_license_plate_mercosul
+
+Verifica se uma string correspondente a um número da placa é válido, conforme as novas
+normas do Mercosul, isto é, seguindo o padrão LLLNLNN. 
+***Exemplo: ABC4E67.***
+
+```python
+>>> from brutils import is_valid_license_plate_mercosul
+>>> is_valid_license_plate_mercosul('ABC4E67')
+True
+```
+
+### convert_license_plate_to_mercosul
+
+Converte uma string correspondente a um número da placa é válido no formato antigo,
+para o novo formato, conforme as novas normas do Mercosul (seguindo o padrão LLLNLNN).
+Caso a placa informada seja inválida será retornado o valor `None`.
+***Exemplo: ABC4567 -> ABC4F67.***
+
+```python
+>>> from brutils import convert_license_plate_to_mercosul
+>>> convert_license_plate_to_mercosul("ABC123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("abc123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("ABC1D23")
+None
+```
+
+## PIS
+
+### is_valid_pis
+
+Verifica se o número PIS/PASEP é valido. Apenas números, formatados como string. Não verifica se o PIS/PASEP existe.
+Mais detalhes sobre a validação estão disponíveis em https://www.macoratti.net/alg_pis.htm.
+
+### generate_pis
+
+Gera um PIS/PASEP válido aleatório.
+
+```python
+from brutils import generate_pis
+
+>>> generate_pis()
+'12038619494'
+>>> generate_pis()
+'57817700092'
+>>> generate_pis()
+'49850211630'
 ```
 
 ## Processo Jurídico
