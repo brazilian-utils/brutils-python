@@ -6,8 +6,8 @@ import re
 
 def convert_to_mercosul(license_plate):
     """
-    Receives a old pattern license plate (LLLNNNN) and returns a Mercosul
-    converted license plate (LLLNLNN). pattern (LLLNLNN). Input should be
+    Receives an old pattern license plate (LLLNNNN) and returns a Mercosul
+    converted license plate (LLLNLNN). Input should be
     a digit string of proper length. In case of an invalid license plate
     it will return 'None'.
     Ex: ABC4567 - > ABC4F67
