@@ -65,10 +65,10 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [License_Plate](#license_plate)
-  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
 - [License Plate](#license_plate)
+  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
+  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -290,23 +290,6 @@ False
 
 ## License_Plate
 
-### is_valid_license_plate_old_format
-
-Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
-Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
-
-```python
->>> from brutils import is_valid_license_plate_old_format
->>> is_valid_license_plate_old_format('ABC1234')
-True
->>> is_valid_license_plate_old_format('def5678')
-True
->>> is_valid_license_plate_old_format('GHI-4567')
-False
-```
-
-## License_Plate
-
 ### is_valid_license_plate_mercosul
 
 Verifica se uma string correspondente a um número da placa é válido, conforme as novas
@@ -317,6 +300,23 @@ normas do Mercosul, isto é, seguindo o padrão LLLNLNN.
 >>> from brutils import is_valid_license_plate_mercosul
 >>> is_valid_license_plate_mercosul('ABC4E67')
 True
+```
+
+### convert_license_plate_to_mercosul
+
+Converte uma string correspondente a um número da placa é válido no formato antigo,
+para o novo formato, conforme as novas normas do Mercosul (seguindo o padrão LLLNLNN).
+Caso a placa informada seja inválida será retornado o valor `None`.
+***Exemplo: ABC4567 -> ABC4F67.***
+
+```python
+>>> from brutils import convert_license_plate_to_mercosul
+>>> convert_license_plate_to_mercosul("ABC123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("abc123")
+"ABC1C34"
+>>> convert_license_plate_to_mercosul("ABC1D23")
+None
 ```
 
 ## PIS
