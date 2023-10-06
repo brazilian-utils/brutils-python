@@ -281,20 +281,6 @@ Formats to the legal process pattern a 20 length string containing only digits.
 >>>
 ```
 
-### remove_symbols_legal_process
-
-Remove formatting symbols from a legal process number. It only filters out the symbols used in the legal process number validation leaving any other special character on purpose to validate the legal process number.
-
-```python
->>> from brutils import remove_symbols_legal_process
->>> remove_symbols_legal_process('2314194-58.2005.5.07.0079')
-'23141945820055070079'
->>> remove_symbols_legal_process('0000000-00.0000.0.00.0000')
-'00000000000000000000'
->>>
-```
-
-
 ## License_Plate
 
 ### is_valid_license_plate_old_format
