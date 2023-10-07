@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Utilitário `is_valid_titulo_eleitoral` [#219](https://github.com/brazilian-utils/brutils-python/pull/219)
 - Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
 - Utilitário `is_valid_pis` [#216](https://github.com/brazilian-utils/brutils-python/pull/216)
 - Utilitário `is_valid_email` [#213](https://github.com/brazilian-utils/brutils-python/pull/213)
