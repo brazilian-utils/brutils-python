@@ -151,5 +151,6 @@ class TestPhone(TestCase):
                 phone_generated = generate_mobile_phone()
                 self.assertTrue(is_valid_mobile(phone_generated))
 
+
 if __name__ == "__main__":
     main()
