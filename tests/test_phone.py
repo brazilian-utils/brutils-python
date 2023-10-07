@@ -5,6 +5,7 @@ from brutils.phone import (
     is_valid_mobile,
     is_valid,
     remove_symbols_phone,
+    generate_mobile_phone,
 )
 
 from unittest import TestCase, main
@@ -144,6 +145,11 @@ class TestPhone(TestCase):
             remove_symbols_phone("+55 (21) 99402-9275"), "5521994029275"
         )
 
+    def test_generate_mobile_phone(self):
+        for _ in range(25):
+            with self.subTest():
+                phone_generated = generate_mobile_phone()
+                self.assertTrue(is_valid_mobile(phone_generated))
 
 if __name__ == "__main__":
     main()
