@@ -1,5 +1,6 @@
 import re
 
+
 # FORMATTING
 ############
 def format_phone(phone):
@@ -18,17 +19,15 @@ def format_phone(phone):
     >>> format_phone("1635014415")
     '(16)3501-4415'
     >>> format_phone("333333")
-    >>> 
+    >>>
     """
     if not is_valid(phone):
         return None
-    
+
     ddd = phone[:2]
     phone_number = phone[2:]
 
-
-
-    return f'({ddd}){phone_number[:-4]}-{phone_number[-4:]}'
+    return f"({ddd}){phone_number[:-4]}-{phone_number[-4:]}"
 
 
 # OPERATIONS
