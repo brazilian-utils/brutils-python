@@ -21,6 +21,23 @@ def convert_to_mercosul(license_plate):
     return "".join(digits)
 
 
+def format(license_plate):
+    """
+    Receives a license plate in any pattern (LLLNNNN or LLLNLNN) and returns a
+    formatted version, with a dash (-) for the old pattern, in upper case for
+    them Mercosul pattern and 'None' for an invalid license plate.
+    Ex: ABC1234 - > ABC-1234
+        abc1e34 - > ABC1E34
+        ABC123  - > 'None'
+    """
+    license_plate = license_plate.upper()
+    if is_valid_license_plate_old_format(license_plate):
+        return license_plate[0:3] + "-" + license_plate[3:]
+    elif is_valid_mercosul(license_plate):
+        return license_plate.upper()
+    return None
+
+
 # OPERATIONS
 ############
 
