@@ -65,10 +65,13 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
+- [Processo Jurídico](#processo-juridico)
+  - [format_processo_juridico](#format_processo_juridico)
 - [License Plate](#license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
+  - [format_license_plate](#format_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -273,6 +276,22 @@ False
 False
 ```
 
+## Processo Jurídico
+
+### format_processo_juridico
+
+Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
+
+```python
+>>> from brutils import format_processo_juridico
+>>> format_processo_juridico('23141945820055070079')
+'2314194-58.2005.5.07.0079'
+>>> format_processo_juridico('00000000000000000000')
+'0000000-00.0000.0.00.0000'
+>>>
+```
+
+
 ## License_Plate
 
 ### is_valid_license_plate_old_format
@@ -318,6 +337,27 @@ Caso a placa informada seja inválida será retornado o valor `None`.
 >>> convert_license_plate_to_mercosul("abc123")
 "ABC1C34"
 >>> convert_license_plate_to_mercosul("ABC1D23")
+None
+```
+
+### format_license_plate
+
+Dada uma String correspondente a uma placa de carro válida, seja no formato da placa
+é o antigo (LLLNNNN) ou o novo Formato Mercosul (LLLNLNN), retornar uma String
+correspondendo a esta placa formatada com o traço para o formato antigo e sem mudança para
+o formato Mercosul.
+***Exemplo: ABC4567 -> ABC4F67.***
+
+```python
+>>> format_license_plate("ABC1234")
+"ABC-1234"
+>>> format_license_plate("abc1234")
+"ABC-1234"
+>>> format_license_plate("ABC1D23")
+"ABC1D23"
+>>> format_license_plate("abc1d23")
+"ABC1D23"
+>>> format_license_plate("ABCD123")
 None
 ```
 
