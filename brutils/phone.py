@@ -1,4 +1,5 @@
 import re
+from random import randint
 
 # FORMATTING
 ############
@@ -62,3 +63,16 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
         .replace(" ", "")
     )
     return cleaned_phone
+
+
+def generate_mobile_phone():
+    """
+    Generate a valid and random mobile phone number
+    """
+    ddd = [str(randint(1, 9)) for i in range(2)]
+    client_number = [str(randint(0, 9)) for i in range(8)]
+
+    phone_number = f'{"".join(ddd)}9{"".join(client_number)}'
+
+    return phone_number
+    ...
