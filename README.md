@@ -43,10 +43,6 @@ False
 
 # Utilitários
 
-- [Introdução](#introdução)
-- [Instalação](#instalação)
-- [Utilização](#utilização)
-- [Utilitários](#utilitários)
   - [CPF](#cpf)
     - [is\_valid\_cpf](#is_valid_cpf)
     - [format\_cpf](#format_cpf)
@@ -71,9 +67,6 @@ False
     - [is\_valid\_email](#is_valid_email)
   - [Placa de carro](#placa-de-carro)
     - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
-- [Novos Utilitários e Reportar Bugs](#novos-utilitários-e-reportar-bugs)
-- [Dúvidas? Ideias?](#dúvidas-ideias)
-- [Contribuindo com o Código do Projeto](#contribuindo-com-o-código-do-projeto)
 
 ## CPF
 

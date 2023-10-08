@@ -42,10 +42,6 @@ False
 
 # Utilities
 
-- [Getting Started](#getting-started)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Utilities](#utilities)
   - [CPF](#cpf)
     - [is\_valid\_cpf](#is_valid_cpf)
     - [format\_cpf](#format_cpf)
@@ -70,9 +66,6 @@ False
     - [is\_valid\_email](#is_valid_email)
   - [License Plate](#license-plate)
     - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
-- [Feature Request and Bug Report](#feature-request-and-bug-report)
-- [Questions? Ideas?](#questions-ideas)
-- [Code Contribution](#code-contribution)
 
 
 ## CPF
