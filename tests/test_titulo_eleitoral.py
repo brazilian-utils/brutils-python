@@ -1,8 +1,8 @@
 import unittest
 from brutils.titulo_eleitoral import is_valid_titulo_eleitoral
 
+
 class TestIsValidTituloEleitoral(unittest.TestCase):
-    
     def test_valid_titulo_eleitoral(self):
         # test a valid titulo eleitoral number
         valid_titulo = "217633460930"
@@ -32,5 +32,6 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
         valid_special = "1234567890191"
         self.assertTrue(is_valid_titulo_eleitoral(valid_special))
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()

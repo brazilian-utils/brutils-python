@@ -71,7 +71,9 @@ def verify_dv1(v1, tit_unid_fed, tit_dig_verifiers):
 def calculate_dv2(tit_unid_fed, dv1):
     """calculate dv2"""
     x9, x10, x11 = 7, 8, 9
-    v2 = [(int(tit_unid_fed[0]) * x9) + (int(tit_unid_fed[1]) * x10) + (dv1 * x11)]
+    v2 = [
+        (int(tit_unid_fed[0]) * x9) + (int(tit_unid_fed[1]) * x10) + (dv1 * x11)
+    ]
     dv2 = v2[0] % 11
     # edge case: if UF is "01" or "02" (for SP & MG) AND dv2 == 0; dv2 = 1
     if tit_unid_fed in ["01", "02"] and dv2 == 0:
