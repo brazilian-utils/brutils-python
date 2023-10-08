@@ -1,3 +1,5 @@
+# flake8: noqa: F401
+
 from brutils.cpf import (
     is_valid as is_valid_cpf,
     format_cpf,
