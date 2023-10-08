@@ -16,4 +16,4 @@ check:
 	@poetry run black -l 80 --check . --exclude=.venv
 
 test:
-	@poetry run python3 -m unittest discover tests/ -v
+	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
