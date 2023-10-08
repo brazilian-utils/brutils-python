@@ -26,7 +26,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8.1"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.7"
@@ -34,6 +34,7 @@ coverage = "^7.2.7"
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
 pre-commit = "^2.21.0"
+flake8 = "^6.1.0"
 
 [build-system]
 requires = ["poetry-core"]
