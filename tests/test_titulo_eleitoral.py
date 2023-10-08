@@ -1,5 +1,9 @@
 import unittest
-from brutils.titulo_eleitoral import is_valid_titulo_eleitoral
+from brutils.titulo_eleitoral import (
+    is_valid_titulo_eleitoral,
+    split_string,
+    verify_length,
+)
 
 
 class TestIsValidTituloEleitoral(unittest.TestCase):
@@ -31,6 +35,29 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
         # Test a valid edge case (SP & MG with 13 digits)
         valid_special = "1234567890191"
         self.assertTrue(is_valid_titulo_eleitoral(valid_special))
+
+
+class TestSplitString(unittest.TestCase):
+    def test_split_string(self):
+        input_string = "12345678AB12"
+        tit_sequence, tit_unid_fed, tit_dig_verifiers = split_string(
+            input_string
+        )
+        self.assertEqual(tit_sequence, "12345678")
+        self.assertEqual(tit_unid_fed, "AB")
+        self.assertEqual(tit_dig_verifiers, "12")
+
+
+class TestVerifyLength(unittest.TestCase):
+    def test_valid_length(self):
+        numero_titulo = "123456789012"
+        tit_unid_fed = "AB"
+        self.assertTrue(verify_length(numero_titulo, tit_unid_fed))
+
+    def test_invalid_length(self):
+        numero_titulo = "12345678AB123"  # Invalid length
+        tit_unid_fed = "AB"
+        self.assertFalse(verify_length(numero_titulo, tit_unid_fed))
 
 
 if __name__ == "__main__":
