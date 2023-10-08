@@ -33,7 +33,8 @@ class TestLicensePlate(TestCase):
         # When license plate is invalid with special characters, returns False
         self.assertFalse(is_valid_license_plate_old_format("ABC-1234"))
 
-        # When license plate is invalid with numbers and letters out of order, returns False
+        # When license plate is invalid with numbers and letters out of order,
+        # returns False
         self.assertFalse(is_valid_license_plate_old_format("A1CA23W"))
 
         # When license plate is invalid with new format, returns False
