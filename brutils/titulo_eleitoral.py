@@ -5,6 +5,14 @@ def split_string(input_string: str):
     sequencial, em vez de oito. Tal fato não compromete o cálculo dos DVs, pois este é feito com
     base nos oito primeiros números sequenciais.'
     http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+    Args:
+            input_string[str]: an example of titulo eleitoral brasileiro
+
+    Returns:
+        tit_sequence[list]: sequential number sliced from input_string
+        tit_unid_fed[list]: Unidade Federal sliced from input_string
+        tit_dig_verifiers[list]: DV sliced from input_string
     """
     tit_sequence = input_string[:8]
     tit_unid_fed = input_string[-4:-2]
@@ -17,6 +25,14 @@ def verify_length(numero_titulo, tit_unid_fed):
     """
     verify length of numero_titulo
     considers edge case with 13 digits for SP & MG
+    Args:
+        numero_titulo[str]: an example of titulo eleitoral brasileiro
+        tit_unid_fed[list]: Unidade Federal sliced from input_string
+
+    Returns:
+        lentgh_verified[bool]: boolean indicating whether length of numero_titulo
+        is verified, or not.
+
     """
     if len(numero_titulo) == 12:
         lentgh_verified = True
@@ -31,7 +47,12 @@ def verify_length(numero_titulo, tit_unid_fed):
 
 
 def calculate_dv1(tit_sequence):
-    """calculate dv1"""
+    """calculate dv1
+    Args:
+        tit_sequence[list]: sequential number sliced from input_string
+    Returns:
+        v1[list]: list containing the resulting operation to calculate v1
+    """
     x1, x2, x3, x4, x5, x6, x7, x8 = range(2, 10)
 
     v1 = [
@@ -49,7 +70,18 @@ def calculate_dv1(tit_sequence):
 
 
 def verify_dv1(v1, tit_unid_fed, tit_dig_verifiers):
-    """extracts and verify dv1"""
+    """extracts and verify dv1
+
+    Args:
+        v1[list]:
+        tit_unid_fed[list]: Unidade Federal sliced from input_string
+        tit_dig_verifiers[list]: DV sliced from input_string
+
+    Returns:
+        dv1[int]: result from v1 mod 11 operation
+        verified_dv1[bool]: boolean indicating whether dv1
+        is verified, or not.
+    """
     dv1 = v1[0] % 11
     # edge case: dv1 mod 11 == 0 and UF is SP or MG
     if dv1 == 0 and tit_unid_fed not in ["01", "02"]:
@@ -69,7 +101,16 @@ def verify_dv1(v1, tit_unid_fed, tit_dig_verifiers):
 
 
 def calculate_dv2(tit_unid_fed, dv1):
-    """calculate dv2"""
+    """calculate dv2
+
+    Args:
+        tit_unid_fed[list]: Unidade Federal sliced from input_string
+        dv1[int]: result from v1 mod 11 operation
+
+    Returns:
+        dv2[int]: result from v2 mod 11 operation
+
+    """
     x9, x10, x11 = 7, 8, 9
     v2 = [
         (int(tit_unid_fed[0]) * x9) + (int(tit_unid_fed[1]) * x10) + (dv1 * x11)
@@ -83,7 +124,15 @@ def calculate_dv2(tit_unid_fed, dv1):
 
 
 def verify_dv2(tit_dig_verifiers, dv2):
-    """verify dv2"""
+    """verify dv2
+
+    Args:
+        tit_dig_verifiers[list]: DV sliced from input_string
+        dv2[int]: result from v2 mod 11 operation
+    Returns:
+        verified_dv2[bool]: boolean indicating whether dv2 has
+        been verified, or not.
+    """
     if int(tit_dig_verifiers[1]) == dv2:
         verified_dv2 = True
     else:
@@ -93,7 +142,17 @@ def verify_dv2(tit_dig_verifiers, dv2):
 
 
 def verify_uf(tit_unid_fed, unidades_federativas):
-    """verify UF"""
+    """verify UF
+
+    Args:
+        tit_unid_fed[list]: Unidade Federal sliced from input_string
+        unidades_federativas[list]: list containing all possible UFs
+    Returns:
+        verified_uf[bool]: boolean indicating whether UF has been verified,
+        or not.
+
+
+    """
     if tit_unid_fed in unidades_federativas:
         verified_uf = True
     else:
@@ -108,6 +167,13 @@ def is_valid_titulo_eleitoral(numero_titulo: str):
     Input should be a string of proper length. Some specific positional characters need
     to adeher to certain conditions in order to be validated.
     References: https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor, http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+    Args:
+        numero_titulo[str]: string representing the titulo eleitoral to be verified
+
+    Returns:
+        bool[bool]: boolean indicating whether the given numero_titulo is a valid
+        string conforming with the titulo eleitoral build rules
     """
 
     # ensure 'numero_titulo' only contains numerical characters within its string
