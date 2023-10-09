@@ -65,6 +65,7 @@ False
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License_Plate](#license_plate)
+  - [is_valid_license_plate](#is_valid_license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
@@ -271,6 +272,22 @@ False
 ```
 
 ## License Plate
+
+### is_valid_license_plate
+
+Checks whether a Brazilian license plate is valid. It supports the old format as well as the Mercosul one.
+
+```python
+>>> from brutils import is_valid_license_plate
+>>> is_valid_license_plate('ABC1234')
+True
+>>> is_valid_license_plate('def5678')
+True
+>>> is_valid_license_plate('ABC4E67')
+True
+>>> is_valid_license_plate('GHI-4567')
+False
+```
 
 ### is_valid_license_plate_old_format
 
