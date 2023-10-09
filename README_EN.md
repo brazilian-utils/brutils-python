@@ -73,6 +73,7 @@ False
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
+  - [remove_symbols_pis](#remove_symbols_pis)
 - [Legal Process](#legal-process)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
@@ -385,6 +386,19 @@ from brutils import generate_pis
 '57817700092'
 >>> generate_pis()
 '49850211630'
+```
+
+### remove_symbols_pis
+
+Removes the formatting symbols ("-" and ".") from a PIS/PASEP number. It doesn't remove other symbols on purpose.
+
+```python
+from brutils import remove_symbols_pis
+
+>>> remove_symbols_pis('170.33259.50-4')
+'17033259504'
+>>> remove_symbols_pis('/._')
+'/_'
 ```
 
 ## Legal Process
