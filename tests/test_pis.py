@@ -1,15 +1,11 @@
-from os import pardir
-from os.path import abspath, join, dirname
-from sys import path, version_info, dont_write_bytecode
-from inspect import getsourcefile
-from unittest.mock import patch
-
-dont_write_bytecode = True
-range = range if version_info.major >= 3 else xrange
-path.insert(
-    1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
+from brutils.pis import (
+  validate, 
+  is_valid,
+  generate,
+  _checksum,
+  remove_symbols,
+  format_pis,
 )
-from brutils.pis import validate, is_valid, generate, _checksum, format_pis
 from unittest import TestCase, main
 
 
@@ -56,7 +52,14 @@ class TestPIS(TestCase):
     def test_generate(self):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
-            
+
+    def test_remove_symbols(self):
+        self.assertEqual(remove_symbols("00000000000"), "00000000000")
+        self.assertEqual(remove_symbols("170.33259.50-4"), "17033259504")
+        self.assertEqual(remove_symbols("134..2435/.-1892.-"), "1342435/1892")
+        self.assertEqual(remove_symbols("abc1230916*!*&#"), "abc1230916*!*&#")
+        self.assertEqual(remove_symbols("...---..."), "")
+
     def test_format_pis(self):
         with patch("brutils.pis.is_valid", return_value=True) as mock_is_valid:
             # When PIS is_valid, returns formatted PIS
@@ -66,7 +69,6 @@ class TestPIS(TestCase):
         with patch("brutils.pis.is_valid", return_value=False) as mock_is_valid:
             # When PIS isn't valid, returns None
             self.assertIsNone(format_pis("14372195539")) 
-
 
 if __name__ == "__main__":
     main()

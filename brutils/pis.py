@@ -6,7 +6,13 @@ WEIGHTS = [3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
 # FORMATTING
 ############
 
-# to do: remover este comentário e adicionar a implementação da formatação do PIS.
+# TODO: remover este comentário e implementar a formatação do PIS.
+
+
+def remove_symbols(pis: str) -> str:
+    """Filters out PIS formatting symbols."""
+    return pis.replace(".", "").replace("-", "")
+
 
 # OPERATIONS
 ############

@@ -64,3 +64,14 @@ def is_valid_mercosul(license_plate):  # type: (str) -> bool
     license_plate = license_plate.upper().strip()
     pattern = re.compile(r"^[A-Z]{3}\d[A-Z]\d{2}$")
     return re.match(pattern, license_plate) is not None
+
+
+def remove_symbols(license_plate_number: str):  # type: (str) -> str
+    """Removes the dash (-) symbol from a license plate string.
+
+    Args:
+                    license_plate_number[str]: A license plate string
+    Returns:
+                    [str]: A license plate string without symbols
+    """
+    return license_plate_number.replace("-", "")

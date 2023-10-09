@@ -12,7 +12,6 @@ classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
   "Programming Language :: Python :: 3.9",
   "Programming Language :: Python :: 3.10",
@@ -26,7 +25,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8.1"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.7"
@@ -34,6 +33,7 @@ coverage = "^7.2.7"
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
 pre-commit = "^2.21.0"
+flake8 = "^6.1.0"
 
 [build-system]
 requires = ["poetry-core"]
