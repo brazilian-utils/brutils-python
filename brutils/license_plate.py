@@ -98,8 +98,6 @@ def generate(format="LLLNLNN"):  # type: (str) -> str | None
     for char in format:
         if char == "L":
             generated += choice(ascii_uppercase)
-        elif char == "N":
-            generated += str(randint(0, 9))
         else:
-            raise Exception(f"Format character unkown: '{char}'")
+            generated += str(randint(0, 9))
     return generated
