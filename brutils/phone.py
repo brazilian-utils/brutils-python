@@ -3,7 +3,7 @@ import re
 
 # FORMATTING
 ############
-def format_phone(phone): # type: (str) -> str
+def format_phone(phone):  # type: (str) -> str
     """
     Function responsible for formatting a telephone number
 
