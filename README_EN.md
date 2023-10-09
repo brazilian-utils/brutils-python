@@ -58,6 +58,7 @@ False
   - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)
 - [Phone](#phone)
+  - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
@@ -210,6 +211,20 @@ Generate a valid random CEP.
 ```
 
 ## Phone
+
+### format_phone
+Formats a given phone number to a human-presentable format. If it is not a valid number, returns `None`
+***Example: 11994029275 will be formatted to (11)99402-9275***
+
+
+```python
+>>> format_phone("11994029275")
+'(11)99402-9275'
+>>> format_phone("1635014415")
+'(16)3501-4415'
+>>> format_phone("333333")
+>>>
+```
 
 ### is_valid_phone
 
