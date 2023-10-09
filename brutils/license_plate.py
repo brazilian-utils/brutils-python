@@ -42,6 +42,16 @@ def format(license_plate):
 ############
 
 
+def is_valid(license_plate: str) -> bool:
+    """
+    Checks wheter license plate is valid according to the old format and
+    the Mercosul one.
+    """
+    return is_valid_license_plate_old_format(
+        license_plate
+    ) or is_valid_mercosul(license_plate)
+
+
 def is_valid_license_plate_old_format(plate: str) -> bool:
     """
     Checks whether a string matches the old format of Brazilian license plate.
@@ -64,3 +74,14 @@ def is_valid_mercosul(license_plate):  # type: (str) -> bool
     license_plate = license_plate.upper().strip()
     pattern = re.compile(r"^[A-Z]{3}\d[A-Z]\d{2}$")
     return re.match(pattern, license_plate) is not None
+
+
+def remove_symbols(license_plate_number: str):  # type: (str) -> str
+    """Removes the dash (-) symbol from a license plate string.
+
+    Args:
+                    license_plate_number[str]: A license plate string
+    Returns:
+                    [str]: A license plate string without symbols
+    """
+    return license_plate_number.replace("-", "")

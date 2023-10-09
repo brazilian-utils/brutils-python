@@ -1,6 +1,8 @@
 from brutils.license_plate import (
+    remove_symbols,
     is_valid_license_plate_old_format,
     is_valid_mercosul,
+    is_valid,
     convert_to_mercosul,
     format,
 )
@@ -9,6 +11,32 @@ from unittest import TestCase, main
 
 
 class TestLicensePlate(TestCase):
+    def test_remove_symbols(self):
+        self.assertEqual(remove_symbols("ABC-123"), "ABC123")
+        self.assertEqual(remove_symbols("abc123"), "abc123")
+        self.assertEqual(remove_symbols("ABCD123"), "ABCD123")
+        self.assertEqual(remove_symbols("A-B-C-1-2-3"), "ABC123")
+        self.assertEqual(remove_symbols("@abc#-#123@"), "@abc##123@")
+        self.assertEqual(remove_symbols("@---#"), "@#")
+        self.assertEqual(remove_symbols("---"), "")
+
+    def test_is_valid(self):
+        # Invalid old license plate
+        self.assertFalse(is_valid(123456))
+        self.assertFalse(is_valid("123-456"))
+
+        # Invalid mercosul license plate
+        self.assertFalse(is_valid("ABCDEFG"))
+        self.assertFalse(is_valid("ABC-123"))
+
+        # Valid old license plate
+        self.assertTrue(is_valid("ABC1234"))
+        self.assertTrue(is_valid("abc1234"))
+
+        # Valid mercosul license plate
+        self.assertTrue(is_valid("ABC4E67"))
+        self.assertTrue(is_valid("XXX9X99"))
+
     def test_is_valid_license_old_format(self):
         # When license plate is valid, returns True
         self.assertTrue(is_valid_license_plate_old_format("ABC1234"))
@@ -23,7 +51,8 @@ class TestLicensePlate(TestCase):
         # When license plate is invalid with special characters, returns False
         self.assertFalse(is_valid_license_plate_old_format("ABC-1234"))
 
-        # When license plate is invalid with numbers and letters out of order, returns False
+        # When license plate is invalid with numbers and letters out of order,
+        # returns False
         self.assertFalse(is_valid_license_plate_old_format("A1CA23W"))
 
         # When license plate is invalid with new format, returns False
