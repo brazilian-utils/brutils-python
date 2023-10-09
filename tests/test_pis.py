@@ -1,5 +1,5 @@
 from brutils.pis import (
-    validate, 
+    validate,
     is_valid,
     generate,
     _checksum,
@@ -54,14 +54,12 @@ class TestPIS(TestCase):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
 
-
     def test_remove_symbols(self):
         self.assertEqual(remove_symbols("00000000000"), "00000000000")
         self.assertEqual(remove_symbols("170.33259.50-4"), "17033259504")
         self.assertEqual(remove_symbols("134..2435/.-1892.-"), "1342435/1892")
         self.assertEqual(remove_symbols("abc1230916*!*&#"), "abc1230916*!*&#")
         self.assertEqual(remove_symbols("...---..."), "")
-
 
     def test_format_pis(self):
         with patch("brutils.pis.is_valid", return_value=True) as mock_is_valid:
@@ -72,6 +70,7 @@ class TestPIS(TestCase):
         with patch("brutils.pis.is_valid", return_value=False) as mock_is_valid:
             # When PIS isn't valid, returns None
             self.assertIsNone(format_pis("14372195539"))
+
 
 if __name__ == "__main__":
     main()
