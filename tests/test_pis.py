@@ -1,12 +1,13 @@
 from brutils.pis import (
-  validate, 
-  is_valid,
-  generate,
-  _checksum,
-  remove_symbols,
-  format_pis,
+    validate, 
+    is_valid,
+    generate,
+    _checksum,
+    remove_symbols,
+    format_pis,
 )
 from unittest import TestCase, main
+from unittest.mock import patch
 
 
 class TestPIS(TestCase):
