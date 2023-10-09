@@ -1,14 +1,5 @@
-from os import pardir
-from os.path import abspath, join, dirname
-from sys import path, version_info, dont_write_bytecode
-from inspect import getsourcefile
 from unittest.mock import patch
-
-dont_write_bytecode = True
-range = range if version_info.major >= 3 else xrange
-path.insert(
-    1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
-)
+from unittest import TestCase, main
 from brutils.cnpj import (
     sieve,
     display,
@@ -20,7 +11,6 @@ from brutils.cnpj import (
     _hashdigit,
     _checksum,
 )
-from unittest import TestCase, main
 
 
 class TestCNPJ(TestCase):
@@ -83,13 +73,15 @@ class TestCNPJ(TestCase):
         # When rest_1 is lt 2 and the 13th digit is not 0, returns False
         self.assertIs(is_valid("1111111111315"), False)
 
-        # When rest_1 is gte 2 and the 13th digit is not (11 - rest), returns False
+        # When rest_1 is gte 2 and the 13th digit is not (11 - rest), returns
+        # False
         self.assertIs(is_valid("1111111111115"), False)
 
         # When rest_2 is lt 2 and the 14th digit is not 0, returns False
         self.assertIs(is_valid("11111111121205"), False)
 
-        # When rest_2 is gte 2 and the 14th digit is not (11 - rest), returns False
+        # When rest_2 is gte 2 and the 14th digit is not (11 - rest), returns
+        # False
         self.assertIs(is_valid("11111111113105"), False)
 
         # When CNPJ is valid

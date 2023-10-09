@@ -1,21 +1,11 @@
-from os import pardir
-from os.path import abspath, join, dirname
-from sys import path, version_info, dont_write_bytecode
-from inspect import getsourcefile
 from unittest.mock import patch
-
-dont_write_bytecode = True
-range = range if version_info.major >= 3 else xrange
-path.insert(
-    1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
-)
+from unittest import TestCase
 from brutils.cep import (
     is_valid,
     format_cep,
     generate,
     remove_symbols,
 )
-from unittest import TestCase, main
 
 
 class TestCEP(TestCase):
