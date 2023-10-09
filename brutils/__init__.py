@@ -37,7 +37,7 @@ from brutils.email import is_valid as is_valid_email
 from brutils.pis import (
     is_valid as is_valid_pis,
     generate as generate_pis,
-    format_pis
+    format_pis,
 )
 
 from brutils.legal_process import (

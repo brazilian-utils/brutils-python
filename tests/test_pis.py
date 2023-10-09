@@ -56,7 +56,7 @@ class TestPIS(TestCase):
     def test_generate(self):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
-            
+
     def test_format_pis(self):
         with patch("brutils.pis.is_valid", return_value=True) as mock_is_valid:
             # When PIS is_valid, returns formatted PIS
@@ -65,7 +65,7 @@ class TestPIS(TestCase):
         mock_is_valid.assert_called_once_with("14372195539")
         with patch("brutils.pis.is_valid", return_value=False) as mock_is_valid:
             # When PIS isn't valid, returns None
-            self.assertIsNone(format_pis("14372195539")) 
+            self.assertIsNone(format_pis("14372195539"))
 
 
 if __name__ == "__main__":
