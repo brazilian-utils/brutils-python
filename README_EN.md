@@ -71,6 +71,7 @@ False
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [generate_license_plate](#generate_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -370,6 +371,24 @@ from brutils import remove_symbols_license_plate
 "ABCD123"
 >>> remove_symbols_license_plate("@abc#-#123@")
 "@abc##123@"
+```
+
+### generate_license_plate
+
+Generate random valid license plates using a provided pattern (LLLNLNN or LLLNNNN), having
+as default the Mercosul pattern. When provided an invalid pattern `None` is returned.
+
+```python
+from brutils import generate_license_plate
+
+>>> generate_license_plate()
+"ABC1D23"
+>>> generate_license_plate(format="LLLNLNN")
+"ABC4D56"
+>>> generate_license_plate(format="LLLNNNN")
+"ABC123"
+>>> generate_license_plate(format="invalid")
+None
 ```
 
 ## PIS

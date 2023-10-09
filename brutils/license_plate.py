@@ -1,5 +1,8 @@
 import re
 
+from random import choice, randint
+from string import ascii_uppercase
+
 # FORMATTING
 ############
 
@@ -85,3 +88,18 @@ def remove_symbols(license_plate_number: str):  # type: (str) -> str
                     [str]: A license plate string without symbols
     """
     return license_plate_number.replace("-", "")
+
+
+def generate(format="LLLNLNN"):  # type: (str) -> str | None
+    generated = ""
+    format = format.upper()
+    if format not in ("LLLNLNN", "LLLNNNN"):
+        return None
+    for char in format:
+        if char == "L":
+            generated += choice(ascii_uppercase)
+        elif char == "N":
+            generated += str(randint(0, 9))
+        else:
+            raise Exception(f"Format character unkown: '{char}'")
+    return generated
