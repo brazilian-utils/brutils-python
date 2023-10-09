@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Utilitário `is_valid_license_plate` [#237](https://github.com/brazilian-utils/brutils-python/pull/237)
+- Utilitário `remove_symbols_pis` [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
 - Utilitário `format_processo_juridico` [#210](https://github.com/brazilian-utils/brutils-python/pull/210)
 - Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
 - Utilitário `is_valid_pis` [#216](https://github.com/brazilian-utils/brutils-python/pull/216)
@@ -20,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `is_valid_landline_phone` [#143](https://github.com/brazilian-utils/brutils-python/pull/143)
 - Utilitário `remove_symbols_processo_juridico` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
 - Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
+- Utilitário `remove_symbols_license_plate` [#182](https://github.com/brazilian-utils/brutils-python/pull/182)
 - Utilitário `is_valid_license_plate_mercosul` [#215](https://github.com/brazilian-utils/brutils-python/pull/215)
 - Utilitário `convert_license_plate_to_mercosul` [#226](https://github.com/brazilian-utils/brutils-python/pull/226)
 - Utilitário `format_license_plate` [#230](https://github.com/brazilian-utils/brutils-python/pull/230)

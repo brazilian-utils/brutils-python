@@ -64,18 +64,20 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [Legal Process](#legal-process)
-  - [format_processo_juridico](#format_processo_juridico)
 - [License_Plate](#license_plate)
+  - [is_valid_license_plate](#is_valid_license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
+  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
+  - [remove_symbols_pis](#remove_symbols_pis)
   - [format_pis](#format_pis)
 - [Legal Process](#legal-process)
+  - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
 
 ## CPF
@@ -270,22 +272,23 @@ False
 False
 ```
 
-## Legal Process
+## License Plate
 
-### format_processo_juridico
+### is_valid_license_plate
 
-Formats to the legal process pattern a 20 length string containing only digits.
+Checks whether a Brazilian license plate is valid. It supports the old format as well as the Mercosul one.
 
 ```python
->>> from brutils import format_processo_juridico
->>> format_processo_juridico('23141945820055070079')
-'2314194-58.2005.5.07.0079'
->>> format_processo_juridico('00000000000000000000')
-'0000000-00.0000.0.00.0000'
->>>
+>>> from brutils import is_valid_license_plate
+>>> is_valid_license_plate('ABC1234')
+True
+>>> is_valid_license_plate('def5678')
+True
+>>> is_valid_license_plate('ABC4E67')
+True
+>>> is_valid_license_plate('GHI-4567')
+False
 ```
-
-## License_Plate
 
 ### is_valid_license_plate_old_format
 
@@ -353,6 +356,23 @@ Mercosul format.
 None
 ```
 
+### remove_symbols_license_plate
+
+Removes the dash ("-") formatting symbol from a license plate number and returns only the number. Purposefully doesn't remove other symbols.
+
+```python
+from brutils import remove_symbols_license_plate
+
+>>> remove_symbols_license_plate("ABC-123")
+"ABC123"
+>>> remove_symbols_license_plate("abc123")
+"abc123"
+>>> remove_symbols_license_plate("ABCD123")
+"ABCD123"
+>>> remove_symbols_license_plate("@abc#-#123@")
+"@abc##123@"
+```
+
 ## PIS
 
 ### is_valid_pis
@@ -386,6 +406,19 @@ from brutils import generate_pis
 '49850211630'
 ```
 
+### remove_symbols_pis
+
+Removes the formatting symbols ("-" and ".") from a PIS/PASEP number. It doesn't remove other symbols on purpose.
+
+```python
+from brutils import remove_symbols_pis
+
+>>> remove_symbols_pis('170.33259.50-4')
+'17033259504'
+>>> remove_symbols_pis('/._')
+'/_'
+```
+
 ### format_pis
 
 Format the PIS number. Returns None if the PIS is invalid.
@@ -397,6 +430,19 @@ Format the PIS number. Returns None if the PIS is invalid.
 ```
 
 ## Legal Process
+
+### format_processo_juridico
+
+Formats to the legal process pattern a 20 length string containing only digits.
+
+```python
+>>> from brutils import format_processo_juridico
+>>> format_processo_juridico('23141945820055070079')
+'2314194-58.2005.5.07.0079'
+>>> format_processo_juridico('00000000000000000000')
+'0000000-00.0000.0.00.0000'
+>>>
+```
 
 ### remove_symbols_processo_juridico
 

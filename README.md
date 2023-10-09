@@ -65,18 +65,20 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [Processo Jurídico](#processo-juridico)
-  - [format_processo_juridico](#format_processo_juridico)
 - [License Plate](#license_plate)
+  - [is_valid_license_plate](#is_valid_license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
+  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
+  - [remove_symbols_pis](#remove_symbols_pis)
   - [format_pis](#format_pis)
 - [Processo Jurídico](#processo-jurídico)
+  - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
 
 ## CPF
@@ -277,23 +279,23 @@ False
 False
 ```
 
-## Processo Jurídico
+## Placa de Carro
 
-### format_processo_juridico
+### is_valid_license_plate
 
-Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
+Verifica se uma placa veicular é válida. Suporta padrão antigo e padrão Mercosul.
 
 ```python
->>> from brutils import format_processo_juridico
->>> format_processo_juridico('23141945820055070079')
-'2314194-58.2005.5.07.0079'
->>> format_processo_juridico('00000000000000000000')
-'0000000-00.0000.0.00.0000'
->>>
+>>> from brutils import is_valid_license_plate
+>>> is_valid_license_plate('ABC1234')
+True
+>>> is_valid_license_plate('def5678')
+True
+>>> is_valid_license_plate('ABC4E67')
+True
+>>> is_valid_license_plate('GHI-4567')
+False
 ```
-
-
-## License_Plate
 
 ### is_valid_license_plate_old_format
 
@@ -309,8 +311,6 @@ True
 >>> is_valid_license_plate_old_format('GHI-4567')
 False
 ```
-
-## License_Plate
 
 ### is_valid_license_plate_mercosul
 
@@ -362,6 +362,23 @@ o formato Mercosul.
 None
 ```
 
+### remove_symbols_license_plate
+
+Remove símbolos "-" de formatação de um número de placa e retorna apenas o número. Propositalmente não remove outros símbolos.
+
+```python
+from brutils import remove_symbols_license_plate
+
+>>> remove_symbols_license_plate("ABC-123")
+"ABC123"
+>>> remove_symbols_license_plate("abc123")
+"abc123"
+>>> remove_symbols_license_plate("ABCD123")
+"ABCD123"
+>>> remove_symbols_license_plate("@abc#-#123@")
+"@abc##123@"
+```
+
 ## PIS
 
 ### is_valid_pis
@@ -384,6 +401,19 @@ from brutils import generate_pis
 '49850211630'
 ```
 
+### remove_symbols_pis
+
+Remove símbolos "-" e "." de formatação de um número PIS/PASEP. Propositalmente não remove outros símbolos.
+
+```python
+from brutils import remove_symbols_pis
+
+>>> remove_symbols_pis('170.33259.50-4')
+'17033259504'
+>>> remove_symbols_pis('/._')
+'/_'
+```
+
 ### format_pis
 
 Formata o número PIS. Retorna None se o PIS for inválido.
@@ -395,6 +425,19 @@ Formata o número PIS. Retorna None se o PIS for inválido.
 ```
 
 ## Processo Jurídico
+
+### format_processo_juridico
+
+Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
+
+```python
+>>> from brutils import format_processo_juridico
+>>> format_processo_juridico('23141945820055070079')
+'2314194-58.2005.5.07.0079'
+>>> format_processo_juridico('00000000000000000000')
+'0000000-00.0000.0.00.0000'
+>>>
+```
 
 ### remove_symbols_processo_juridico
 
