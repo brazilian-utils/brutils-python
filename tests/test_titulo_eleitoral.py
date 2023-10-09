@@ -1,8 +1,8 @@
 import unittest
 from brutils.titulo_eleitoral import (
     is_valid_titulo_eleitoral,
-    split_string,
-    verify_length,
+    _split_string,
+    _verify_length,
 )
 
 
@@ -40,7 +40,7 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
 class TestSplitString(unittest.TestCase):
     def test_split_string(self):
         input_string = "12345678AB12"
-        tit_sequence, tit_unid_fed, tit_dig_verifiers = split_string(
+        tit_sequence, tit_unid_fed, tit_dig_verifiers = _split_string(
             input_string
         )
         self.assertEqual(tit_sequence, "12345678")
@@ -52,12 +52,12 @@ class TestVerifyLength(unittest.TestCase):
     def test_valid_length(self):
         numero_titulo = "123456789012"
         tit_unid_fed = "AB"
-        self.assertTrue(verify_length(numero_titulo, tit_unid_fed))
+        self.assertTrue(_verify_length(numero_titulo, tit_unid_fed))
 
     def test_invalid_length(self):
         numero_titulo = "12345678AB123"  # Invalid length
         tit_unid_fed = "AB"
-        self.assertFalse(verify_length(numero_titulo, tit_unid_fed))
+        self.assertFalse(_verify_length(numero_titulo, tit_unid_fed))
 
 
 if __name__ == "__main__":

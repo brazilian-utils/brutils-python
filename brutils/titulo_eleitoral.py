@@ -1,4 +1,52 @@
-def split_string(input_string: str):
+def is_valid_titulo_eleitoral(numero_titulo: str):
+    """
+    Return True when 'numero_titulo' is a valid titulo eleitoral brasileiro, False otherwise.
+    Input should be a string of proper length. Some specific positional characters need
+    to adeher to certain conditions in order to be validated.
+    References: https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor, http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+    Args:
+        numero_titulo[str]: string representing the titulo eleitoral to be verified
+
+    Returns:
+        bool[bool]: boolean indicating whether the given numero_titulo is a valid
+        string conforming with the titulo eleitoral build rules
+    """
+
+    # ensure 'numero_titulo' only contains numerical characters within its string
+    if not numero_titulo.isdigit():
+        return False
+
+    # split string into 'numero sequencial', 'unidade federativa' & 'digitos verificadores'
+    # edge case: 13 digit legth mitigates here. 9th sequential digit is not used for calculations.
+    tit_sequence, tit_unid_fed, tit_dig_verifiers = _split_string(numero_titulo)
+
+    # verify length
+    lentgh_verified = _verify_length(numero_titulo, tit_unid_fed)
+    if not lentgh_verified:
+        return False
+
+    # list valid UFs
+    unidades_federativas = ["{:02d}".format(i) for i in range(1, 29)]
+
+    # calculate dv1
+    v1 = _calculate_dv1(tit_sequence)
+    dv1, verified_dv1 = _verify_dv1(v1, tit_unid_fed, tit_dig_verifiers)
+
+    # calculate dv2
+    dv2 = _calculate_dv2(tit_unid_fed, dv1)
+
+    # verify dv2
+    verified_dv2 = _verify_dv2(tit_dig_verifiers, dv2)
+
+    # verify UF
+    verified_uf = _verify_uf(tit_unid_fed, unidades_federativas)
+
+    # return True if all conditions are met, else False
+    return all([verified_dv1, verified_dv2, lentgh_verified, verified_uf])
+
+
+def _split_string(input_string: str):
     """split string into 'numero sequencial', 'unidade federativa' & 'digitos verificadores'
     here I indexed tit_unid_fed and tit_dig_verifiers from the back due to the below reference:
     '- Alguns títulos eleitorais de São Paulo e Minas Gerais podem ter nove dígitos em seu número
@@ -21,7 +69,7 @@ def split_string(input_string: str):
     return tit_sequence, tit_unid_fed, tit_dig_verifiers
 
 
-def verify_length(numero_titulo, tit_unid_fed):
+def _verify_length(numero_titulo, tit_unid_fed):
     """
     verify length of numero_titulo
     considers edge case with 13 digits for SP & MG
@@ -46,7 +94,7 @@ def verify_length(numero_titulo, tit_unid_fed):
     return lentgh_verified
 
 
-def calculate_dv1(tit_sequence):
+def _calculate_dv1(tit_sequence):
     """calculate dv1
     Args:
         tit_sequence[list]: sequential number sliced from input_string
@@ -69,7 +117,7 @@ def calculate_dv1(tit_sequence):
     return v1
 
 
-def verify_dv1(v1, tit_unid_fed, tit_dig_verifiers):
+def _verify_dv1(v1, tit_unid_fed, tit_dig_verifiers):
     """extracts and verify dv1
 
     Args:
@@ -92,15 +140,10 @@ def verify_dv1(v1, tit_unid_fed, tit_dig_verifiers):
         dv1 = 0
 
     # verify dv1
-    if int(tit_dig_verifiers[0]) == dv1:
-        verified_dv1 = True
-    else:
-        verified_dv1 = False
-
-    return dv1, verified_dv1
+    return dv1, int(tit_dig_verifiers[0]) == dv1
 
 
-def calculate_dv2(tit_unid_fed, dv1):
+def _calculate_dv2(tit_unid_fed, dv1):
     """calculate dv2
 
     Args:
@@ -123,7 +166,7 @@ def calculate_dv2(tit_unid_fed, dv1):
     return dv2
 
 
-def verify_dv2(tit_dig_verifiers, dv2):
+def _verify_dv2(tit_dig_verifiers, dv2):
     """verify dv2
 
     Args:
@@ -133,15 +176,10 @@ def verify_dv2(tit_dig_verifiers, dv2):
         verified_dv2[bool]: boolean indicating whether dv2 has
         been verified, or not.
     """
-    if int(tit_dig_verifiers[1]) == dv2:
-        verified_dv2 = True
-    else:
-        verified_dv2 = False
-
-    return verified_dv2
+    return int(tit_dig_verifiers[1]) == dv2
 
 
-def verify_uf(tit_unid_fed, unidades_federativas):
+def _verify_uf(tit_unid_fed, unidades_federativas):
     """verify UF
 
     Args:
@@ -150,60 +188,5 @@ def verify_uf(tit_unid_fed, unidades_federativas):
     Returns:
         verified_uf[bool]: boolean indicating whether UF has been verified,
         or not.
-
-
     """
-    if tit_unid_fed in unidades_federativas:
-        verified_uf = True
-    else:
-        verified_uf = False
-
-    return verified_uf
-
-
-def is_valid_titulo_eleitoral(numero_titulo: str):
-    """
-    Return True when 'numero_titulo' is a valid titulo eleitoral brasileiro, False otherwise.
-    Input should be a string of proper length. Some specific positional characters need
-    to adeher to certain conditions in order to be validated.
-    References: https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor, http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
-
-    Args:
-        numero_titulo[str]: string representing the titulo eleitoral to be verified
-
-    Returns:
-        bool[bool]: boolean indicating whether the given numero_titulo is a valid
-        string conforming with the titulo eleitoral build rules
-    """
-
-    # ensure 'numero_titulo' only contains numerical characters within its string
-    if not numero_titulo.isdigit():
-        return False
-
-    # split string into 'numero sequencial', 'unidade federativa' & 'digitos verificadores'
-    # edge case: 13 digit legth mitigates here. 9th sequential digit is not used for calculations.
-    tit_sequence, tit_unid_fed, tit_dig_verifiers = split_string(numero_titulo)
-
-    # verify length
-    lentgh_verified = verify_length(numero_titulo, tit_unid_fed)
-    if not lentgh_verified:
-        return False
-
-    # list valid UFs
-    unidades_federativas = ["{:02d}".format(i) for i in range(1, 29)]
-
-    # calculate dv1
-    v1 = calculate_dv1(tit_sequence)
-    dv1, verified_dv1 = verify_dv1(v1, tit_unid_fed, tit_dig_verifiers)
-
-    # calculate dv2
-    dv2 = calculate_dv2(tit_unid_fed, dv1)
-
-    # verify dv2
-    verified_dv2 = verify_dv2(tit_dig_verifiers, dv2)
-
-    # verify UF
-    verified_uf = verify_uf(tit_unid_fed, unidades_federativas)
-
-    # return True if all conditions are met, else False
-    return all([verified_dv1, verified_dv2, lentgh_verified, verified_uf])
+    return tit_unid_fed in unidades_federativas
