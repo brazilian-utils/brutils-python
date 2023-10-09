@@ -42,6 +42,16 @@ def format(license_plate):
 ############
 
 
+def is_valid(license_plate: str) -> bool:
+    """
+    Checks wheter license plate is valid according to the old format and
+    the Mercosul one.
+    """
+    return is_valid_license_plate_old_format(
+        license_plate
+    ) or is_valid_mercosul(license_plate)
+
+
 def is_valid_license_plate_old_format(plate: str) -> bool:
     """
     Checks whether a string matches the old format of Brazilian license plate.

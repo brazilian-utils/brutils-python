@@ -66,6 +66,7 @@ False
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
+  - [is_valid_license_plate](#is_valid_license_plate)
   - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
   - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
@@ -278,6 +279,22 @@ False
 ```
 
 ## Placa de Carro
+
+### is_valid_license_plate
+
+Verifica se uma placa veicular é válida. Suporta padrão antigo e padrão Mercosul.
+
+```python
+>>> from brutils import is_valid_license_plate
+>>> is_valid_license_plate('ABC1234')
+True
+>>> is_valid_license_plate('def5678')
+True
+>>> is_valid_license_plate('ABC4E67')
+True
+>>> is_valid_license_plate('GHI-4567')
+False
+```
 
 ### is_valid_license_plate_old_format
 
