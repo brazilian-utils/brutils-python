@@ -1,5 +1,11 @@
 import re
 
+from random import randint
+from datetime import datetime
+
+from brutils.assets.legal_process_ids import legal_process_ids
+
+
 # FORMATTING
 ############
 
@@ -28,3 +34,29 @@ def remove_symbols(processo_juridico: str):  # type: (str) -> str
                     [str]: A legal process number string without symbols
     """
     return processo_juridico.replace(".", "").replace("-", "")
+
+
+def generate_processo_juridico(
+    ano=datetime.now().year, orgao=randint(1, 9)
+):  # type: (int, int) -> (str)
+    """
+    Generates a random valid number of a Legal Process ID number.
+    """
+    if ano < datetime.now().year or orgao not in range(1, 9):
+        return None
+
+    J = orgao
+    _ = legal_process_ids[f"orgao_{J}"]
+    TR = str(_["id_tribunal"][randint(0, (len(_["id_tribunal"]) - 1))]).zfill(2)
+    OOOO = str(_["id_foro"][randint(0, (len(_["id_foro"])) - 1)]).zfill(4)
+    NNNNNNN = randint(0, 9999999)
+    DD = _checksum(f"{NNNNNNN}{ano}{J}{TR}{OOOO}")
+    return f"{NNNNNNN}{DD}{ano}{J}{TR}{OOOO}"
+
+
+def _checksum(basenum):  # type: (int) -> str
+    """
+    Checksum to compute the verification digit for a Legal Process ID number.
+    `basenum` needs to be a digit without the verification id.
+    """
+    return str(97 - ((int(basenum) * 100) % 97)).zfill(2)
