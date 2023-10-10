@@ -22,8 +22,7 @@ def is_valid_titulo_eleitoral(numero_titulo: str):
     tit_sequence, tit_unid_fed, tit_dig_verifiers = _split_string(numero_titulo)
 
     # verify length
-    lentgh_verified = _verify_length(numero_titulo, tit_unid_fed)
-    if not lentgh_verified:
+    if not _verify_length(numero_titulo, tit_unid_fed):
         return False
 
     # list valid UFs
