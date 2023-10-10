@@ -72,6 +72,7 @@ False
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [get_license_plate_format](#get_license_plate_format)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -376,6 +377,25 @@ from brutils import remove_symbols_license_plate
 "ABCD123"
 >>> remove_symbols_license_plate("@abc#-#123@")
 "@abc##123@"
+```
+
+### get_license_plate_format
+
+Infere o formato de uma placa, `LLLNNNN` para o padrão antigo, `LLLNLNN` para o padrão Mercosul e `None` para placas inválidas.
+
+```python
+from brutils import get_license_plate_format
+
+>>> get_license_plate_format("ABC123")
+"LLLNNNN"
+>>> get_license_plate_format("abc123")
+"LLLNNNN"
+>>> get_license_plate_format("ABC1D23")
+"LLLNLNN"
+>>> get_license_plate_format("abc1d23")
+"LLLNLNN"
+>>> get_license_plate_format("ABCD123")
+None
 ```
 
 ## PIS
