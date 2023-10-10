@@ -3,6 +3,8 @@ from brutils.titulo_eleitoral import (
     is_valid_titulo_eleitoral,
     _split_string,
     _verify_length,
+    _verify_dv1,
+    _verify_dv2,
 )
 
 
@@ -33,7 +35,7 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
 
     def test_valid_special_case(self):
         # Test a valid edge case (SP & MG with 13 digits)
-        valid_special = "1234567890191"
+        valid_special = "3244567800167"
         self.assertTrue(is_valid_titulo_eleitoral(valid_special))
 
 
@@ -58,6 +60,26 @@ class TestVerifyLength(unittest.TestCase):
         numero_titulo = "12345678AB123"  # Invalid length
         tit_unid_fed = "AB"
         self.assertFalse(_verify_length(numero_titulo, tit_unid_fed))
+
+
+class TestVerifyDv1(unittest.TestCase):
+    def test_verify_dv1(self):
+        # test dv1 converts from 10 to 0 and UF is "01" (SP)
+        self.assertTrue(_verify_dv1(10, "01", "01"))
+        # test dv1 converts from 10 to 0 and UF is "02" (MG)
+        self.assertTrue(_verify_dv1(10, "02", "01"))
+
+    def test_dv1_ten_edge_case(self):
+        # test dv1 is 10, which should be treated as 0
+        result = _verify_dv1(10, "04", "05")
+        self.assertTrue(result)
+
+
+class TestVerifyDv2(unittest.TestCase):
+    def test_verify_dv2(self):
+        # edge case: if UF is "01" or "02" (for SP & MG) AND dv2 == 0
+        # declare dv2 as 1 instead
+        self.assertTrue(_verify_dv2("01", 9, "01"))
 
 
 if __name__ == "__main__":
