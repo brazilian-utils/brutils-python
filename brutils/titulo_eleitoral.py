@@ -18,7 +18,7 @@ def is_valid_titulo_eleitoral(numero_titulo: str):
         return False
 
     # split string into 'numero sequencial', 'unidade federativa' & 'digitos verificadores'
-    # edge case: 13 digit legth mitigates here. 9th sequential digit is not used for calculations.
+    # edge case: 13-digit length mitigates here. The 9th sequential digit is not used for calculations.
     tit_sequence, tit_unid_fed, tit_dig_verifiers = _split_string(numero_titulo)
 
     # verify length
