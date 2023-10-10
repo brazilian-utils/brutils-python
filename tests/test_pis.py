@@ -1,5 +1,13 @@
-from brutils.pis import validate, is_valid, generate, _checksum, remove_symbols
+from brutils.pis import (
+    validate,
+    is_valid,
+    generate,
+    _checksum,
+    remove_symbols,
+    format_pis,
+)
 from unittest import TestCase, main
+from unittest.mock import patch
 
 
 class TestPIS(TestCase):
@@ -52,6 +60,16 @@ class TestPIS(TestCase):
         self.assertEqual(remove_symbols("134..2435/.-1892.-"), "1342435/1892")
         self.assertEqual(remove_symbols("abc1230916*!*&#"), "abc1230916*!*&#")
         self.assertEqual(remove_symbols("...---..."), "")
+
+    def test_format_pis(self):
+        with patch("brutils.pis.is_valid", return_value=True) as mock_is_valid:
+            # When PIS is_valid, returns formatted PIS
+            self.assertEqual(format_pis("14372195539"), "143.72195.53-9")
+        # Checks if function is_valid_pis is called
+        mock_is_valid.assert_called_once_with("14372195539")
+        with patch("brutils.pis.is_valid", return_value=False) as mock_is_valid:
+            # When PIS isn't valid, returns None
+            self.assertIsNone(format_pis("14372195539"))
 
 
 if __name__ == "__main__":

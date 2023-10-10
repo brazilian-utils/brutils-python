@@ -83,3 +83,17 @@ def _checksum(base_pis: str) -> int:
     check_digit = 11 - (pis_sum % 11)
 
     return 0 if check_digit in [10, 11] else check_digit
+
+
+def format_pis(pis: str) -> str:
+    """
+    Format an adequately formatted numbers-only PIS string,
+    Returns a PIS formatted with standard visual aid symbols.
+    Returns :
+        value [str]: PIS formatted
+    """
+
+    if not is_valid(pis):
+        return None
+
+    return "{}.{}.{}-{}".format(pis[:3], pis[3:8], pis[8:10], pis[10:11])
