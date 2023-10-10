@@ -49,6 +49,12 @@ class TestLegalProcess(unittest.TestCase):
         )
         self.assertEqual(generate_processo_juridico(ano=3000)[9:13], "3000")
         self.assertEqual(generate_processo_juridico(orgao=4)[13:14], "4")
+        self.assertEqual(
+            generate_processo_juridico(ano=3000, orgao=4)[13:14], "4"
+        )
+        self.assertEqual(
+            generate_processo_juridico(ano=3000, orgao=4)[9:13], "3000"
+        )
 
 
 if __name__ == "__main__":
