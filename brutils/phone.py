@@ -101,4 +101,3 @@ def generate_mobile_phone():
     phone_number = f'{"".join(ddd)}9{"".join(client_number)}'
 
     return phone_number
-    ...
