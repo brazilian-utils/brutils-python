@@ -58,10 +58,12 @@ False
   - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)
 - [Phone](#phone)
+  - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+  - [generate_mobile_phone](#generate_mobile_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License_Plate](#license_plate)
@@ -71,11 +73,13 @@ False
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [get_license_plate_format](#get_license_plate_format)
   - [generate_license_plate](#generate_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
   - [remove_symbols_pis](#remove_symbols_pis)
+  - [format_pis](#format_pis)
 - [Legal Process](#legal-process)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
@@ -214,6 +218,20 @@ Generate a valid random CEP.
 
 ## Phone
 
+### format_phone
+Formats a given phone number to a human-presentable format. If it is not a valid number, returns `None`
+***Example: 11994029275 will be formatted to (11)99402-9275***
+
+
+```python
+>>> format_phone("11994029275")
+'(11)99402-9275'
+>>> format_phone("1635014415")
+'(16)3501-4415'
+>>> format_phone("333333")
+>>>
+```
+
 ### is_valid_phone
 
 Check if phone number is valid, can be landline or mobile phone. Numbers only, with area code (DDD) and without the international prefix, formatted as a string. ***For example: +55 48 9999 9999 would become '4899999999'*** This function validates only Brazilian phone numbers and does not verify if the number actually exists.
@@ -253,6 +271,21 @@ Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '55
 >>> remove_symbols_phone('+55 (21) 2569-6969')
 '552125696969'
 ```
+
+### generate_mobile_phone
+
+Generates a valid and random mobile phone number
+
+```python
+>>> from brutils import generate_mobile_phone
+>>> generate_mobile_phone()
+'63996408441'
+>>> generate_mobile_phone()
+'78964850019'
+>>> generate_mobile_phone() 
+'53924997638'
+```
+
 ## Email
 
 ### is_valid_email
@@ -373,6 +406,24 @@ from brutils import remove_symbols_license_plate
 "@abc##123@"
 ```
 
+### get_license_plate_format
+
+Infers the format of a license plate, returning `LLLNNNN` for the old pattern, `LLLNLNN` for the Mercosul one and `None` for invalid license plates.
+
+```python
+from brutils import get_license_plate_format
+
+>>> get_license_plate_format("ABC123")
+"LLLNNNN"
+>>> get_license_plate_format("abc123")
+"LLLNNNN"
+>>> get_license_plate_format("ABC1D23")
+"LLLNLNN"
+>>> get_license_plate_format("abc1d23")
+"LLLNLNN"
+>>> get_license_plate_format("ABCD123")
+None
+```
 ### generate_license_plate
 
 Generate random valid license plates using a provided pattern (LLLNLNN or LLLNNNN), having
@@ -388,8 +439,6 @@ from brutils import generate_license_plate
 >>> generate_license_plate(format="LLLNNNN")
 "ABC123"
 >>> generate_license_plate(format="invalid")
-None
-```
 
 ## PIS
 
@@ -435,6 +484,16 @@ from brutils import remove_symbols_pis
 '17033259504'
 >>> remove_symbols_pis('/._')
 '/_'
+```
+
+### format_pis
+
+Format the PIS number. Returns None if the PIS is invalid.
+
+```python
+>>> from brutils import format_pis
+>>> format_pis('12038619494')
+'120.38619.49-4'
 ```
 
 ## Legal Process

@@ -1,7 +1,34 @@
 import re
+from random import randint
+
 
 # FORMATTING
 ############
+def format_phone(phone):  # type: (str) -> str
+    """
+    Function responsible for formatting a telephone number
+
+    Args:
+        phone_number (str): The phone number to format.
+
+    Returns:
+        str: The formatted phone number, or None if the number is not valid.
+
+
+    >>> format_phone("11994029275")
+    '(11)99402-9275'
+    >>> format_phone("1635014415")
+    '(16)3501-4415'
+    >>> format_phone("333333")
+    >>>
+    """
+    if not is_valid(phone):
+        return None
+
+    ddd = phone[:2]
+    phone_number = phone[2:]
+
+    return f"({ddd}){phone_number[:-4]}-{phone_number[-4:]}"
 
 
 # OPERATIONS
@@ -62,3 +89,15 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
         .replace(" ", "")
     )
     return cleaned_phone
+
+
+def generate_mobile_phone():
+    """
+    Generate a valid and random mobile phone number
+    """
+    ddd = [str(randint(1, 9)) for i in range(2)]
+    client_number = [str(randint(0, 9)) for i in range(8)]
+
+    phone_number = f'{"".join(ddd)}9{"".join(client_number)}'
+
+    return phone_number

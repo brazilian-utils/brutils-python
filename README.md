@@ -59,10 +59,12 @@ False
   - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)
 - [Phone](#phone)
+  - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+  - [generate_mobile_phone](#generate_mobile_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
@@ -72,11 +74,13 @@ False
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [get_license_plate_format](#get_license_plate_format)
   - [generate_license_plate](#generate_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
   - [remove_symbols_pis](#remove_symbols_pis)
+  - [format_pis](#format_pis)
 - [Processo Jurídico](#processo-jurídico)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
@@ -212,6 +216,19 @@ Gera um CEP válido aleatório.
 
 ## Phone
 
+### format_phone
+Formata um numero de telefone recebido para um formato apresentavel humanamente. Caso não seja um numero válido, retorna `None`
+***Exemplo: 11994029275 será formatado para (11)99402-9275***
+
+```python
+>>> format_phone("11994029275")
+'(11)99402-9275'
+>>> format_phone("1635014415")
+'(16)3501-4415'
+>>> format_phone("333333")
+>>>
+```
+
 ### is_valid_phone
 
 Verifica se o número de telefone é valido, podendo ser telefone fixo ou celular. Apenas números,
@@ -258,6 +275,20 @@ Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125
 >>> from brutils import remove_symbols_phone
 >>> remove_symbols_phone('(21)2569-6969')
 '2125696969'
+```
+
+### generate_mobile_phone
+
+Gera um número de telefone móvel válido e aleatório
+
+```python
+>>> from brutils import generate_mobile_phone
+>>> generate_mobile_phone()
+'63996408441'
+>>> generate_mobile_phone()
+'78964850019'
+>>> generate_mobile_phone() 
+'53924997638'
 ```
 
 ## Email
@@ -379,6 +410,24 @@ from brutils import remove_symbols_license_plate
 "@abc##123@"
 ```
 
+### get_license_plate_format
+
+Infere o formato de uma placa, `LLLNNNN` para o padrão antigo, `LLLNLNN` para o padrão Mercosul e `None` para placas inválidas.
+
+```python
+from brutils import get_license_plate_format
+
+>>> get_license_plate_format("ABC123")
+"LLLNNNN"
+>>> get_license_plate_format("abc123")
+"LLLNNNN"
+>>> get_license_plate_format("ABC1D23")
+"LLLNLNN"
+>>> get_license_plate_format("abc1d23")
+"LLLNLNN"
+>>> get_license_plate_format("ABCD123")
+None
+```
 ### generate_license_plate
 
 Gera placas válidas de carro utilizando como parâmetro um dos formatos válidos (LLLNLNN ou
@@ -395,8 +444,6 @@ from brutils import generate_license_plate
 >>> generate_license_plate(format="LLLNNNN")
 "ABC123"
 >>> generate_license_plate(format="invalid")
-None
-```
 
 ## PIS
 
@@ -431,6 +478,16 @@ from brutils import remove_symbols_pis
 '17033259504'
 >>> remove_symbols_pis('/._')
 '/_'
+```
+
+### format_pis
+
+Formata o número PIS. Retorna None se o PIS for inválido.
+
+```python
+>>> from brutils import format_pis
+>>> format_pis('12038619494')
+'120.38619.49-4'
 ```
 
 ## Processo Jurídico
