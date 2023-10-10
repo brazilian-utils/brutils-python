@@ -42,7 +42,7 @@ def generate_processo_juridico(
     """
     Generates a random valid number of a Legal Process ID number.
     """
-    if ano < datetime.now().year or orgao not in range(1, 9):
+    if ano < datetime.now().year or orgao not in range(1, 10):
         return None
 
     J = orgao
