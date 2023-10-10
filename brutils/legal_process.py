@@ -45,13 +45,12 @@ def generate_processo_juridico(
     if ano < datetime.now().year or orgao not in range(1, 10):
         return None
 
-    J = orgao
-    _ = legal_process_ids[f"orgao_{J}"]
+    _ = legal_process_ids[f"orgao_{orgao}"]
     TR = str(_["id_tribunal"][randint(0, (len(_["id_tribunal"]) - 1))]).zfill(2)
     OOOO = str(_["id_foro"][randint(0, (len(_["id_foro"])) - 1)]).zfill(4)
-    NNNNNNN = randint(0, 9999999)
-    DD = _checksum(f"{NNNNNNN}{ano}{J}{TR}{OOOO}")
-    return f"{NNNNNNN}{DD}{ano}{J}{TR}{OOOO}"
+    NNNNNNN = str(randint(0, 9999999)).zfill(7)
+    DD = _checksum(f"{NNNNNNN}{ano}{orgao}{TR}{OOOO}")
+    return f"{NNNNNNN}{DD}{ano}{orgao}{TR}{OOOO}"
 
 
 def _checksum(basenum):  # type: (int) -> str
