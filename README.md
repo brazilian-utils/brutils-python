@@ -81,6 +81,7 @@ False
 - [Processo Jurídico](#processo-jurídico)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
+  - [generate_processo_juridico](#generate_processo_juridico)
 
 ## CPF
 
@@ -475,6 +476,23 @@ from brutils import remove_symbols_processo_juridico
 "49760238220127002263"
 >>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263*!*&#")
 "49760238220127002263*!*&#"
+```
+
+### generate_processo_juridico
+
+Gera um número de processo válido de acordo com o ano informado e o órgão. Por padrão o argumento de _ano_ recebe sempre o ano atual e o _orgao_ recebe um valor aleatório de 1 à 9.
+
+```python
+>>> from brutils import generate_processo_juridico
+>>> print(generate_processo_juridico())
+45676401020238170592
+>>> print(generate_processo_juridico(ano=2025))
+32110268020258121130
+>>> print(generate_processo_juridico(orgao=5))
+37573041520235090313
+>>> print(generate_processo_juridico(ano=2024, orgao=4))
+33158248820244017105
+>>>
 ```
 
 # Novos Utilitários e Reportar Bugs

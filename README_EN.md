@@ -80,6 +80,7 @@ False
 - [Legal Process](#legal-process)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
+  - [generate_processo_juridico](#generate_processo_juridico)
 
 ## CPF
 
@@ -482,6 +483,24 @@ from brutils import remove_symbols_processo_juridico
 "49760238220127002263"
 >>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263*!*&#")
 "49760238220127002263*!*&#"
+```
+
+### generate_processo_juridico
+
+Generates a valid legal process number according to the arguments of _ano_ which receives a year and _orgao_  which receives the legal entity id. The arguments have default values for _ano_ as the default year and _orgao_ a number between 1 and 9.
+
+
+```python
+>>> from brutils import generate_processo_juridico
+>>> print(generate_processo_juridico())
+45676401020238170592
+>>> print(generate_processo_juridico(ano=2025))
+32110268020258121130
+>>> print(generate_processo_juridico(orgao=5))
+37573041520235090313
+>>> print(generate_processo_juridico(ano=2024, orgao=4))
+33158248820244017105
+>>>
 ```
 
 # Feature Request and Bug Report
