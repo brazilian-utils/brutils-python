@@ -64,6 +64,7 @@ False
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+  - [generate_mobile_phone](#generate_mobile_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
@@ -273,6 +274,20 @@ Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125
 >>> from brutils import remove_symbols_phone
 >>> remove_symbols_phone('(21)2569-6969')
 '2125696969'
+```
+
+### generate_mobile_phone
+
+Gera um número de telefone móvel válido e aleatório
+
+```python
+>>> from brutils import generate_mobile_phone
+>>> generate_mobile_phone()
+'63996408441'
+>>> generate_mobile_phone()
+'78964850019'
+>>> generate_mobile_phone() 
+'53924997638'
 ```
 
 ## Email
