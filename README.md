@@ -64,6 +64,7 @@ False
   - [is_valid_mobile_phone](#is_valid_mobile_phone)
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+  - [generate_mobile_phone](#generate_mobile_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
@@ -73,6 +74,7 @@ False
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [get_license_plate_format](#get_license_plate_format)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -274,6 +276,20 @@ Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125
 '2125696969'
 ```
 
+### generate_mobile_phone
+
+Gera um número de telefone móvel válido e aleatório
+
+```python
+>>> from brutils import generate_mobile_phone
+>>> generate_mobile_phone()
+'63996408441'
+>>> generate_mobile_phone()
+'78964850019'
+>>> generate_mobile_phone() 
+'53924997638'
+```
+
 ## Email
 
 ### is_valid_email
@@ -391,6 +407,25 @@ from brutils import remove_symbols_license_plate
 "ABCD123"
 >>> remove_symbols_license_plate("@abc#-#123@")
 "@abc##123@"
+```
+
+### get_license_plate_format
+
+Infere o formato de uma placa, `LLLNNNN` para o padrão antigo, `LLLNLNN` para o padrão Mercosul e `None` para placas inválidas.
+
+```python
+from brutils import get_license_plate_format
+
+>>> get_license_plate_format("ABC123")
+"LLLNNNN"
+>>> get_license_plate_format("abc123")
+"LLLNNNN"
+>>> get_license_plate_format("ABC1D23")
+"LLLNLNN"
+>>> get_license_plate_format("abc1d23")
+"LLLNLNN"
+>>> get_license_plate_format("ABCD123")
+None
 ```
 
 ## PIS
