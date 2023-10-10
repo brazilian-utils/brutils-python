@@ -1,14 +1,6 @@
-from os import pardir
-from os.path import abspath, join, dirname
-from sys import path, version_info, dont_write_bytecode
-from inspect import getsourcefile
+from unittest import TestCase, main
 from unittest.mock import patch
 
-dont_write_bytecode = True
-range = range if version_info.major >= 3 else xrange
-path.insert(
-    1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
-)
 from brutils.cpf import (
     sieve,
     display,
@@ -20,7 +12,6 @@ from brutils.cpf import (
     _hashdigit,
     _checksum,
 )
-from unittest import TestCase, main
 
 
 class TestCPF(TestCase):
@@ -79,13 +70,15 @@ class TestCPF(TestCase):
         # When rest_1 is lt 2 and the 10th digit is not 0, returns False
         self.assertIs(is_valid("11111111215"), False)
 
-        # When rest_1 is gte 2 and the 10th digit is not (11 - rest), returns False
+        # When rest_1 is gte 2 and the 10th digit is not (11 - rest), returns
+        # False
         self.assertIs(is_valid("11144477705"), False)
 
         # When rest_2 is lt 2 and the 11th digit is not 0, returns False
         self.assertIs(is_valid("11111111204"), False)
 
-        # When rest_2 is gte 2 and the 11th digit is not (11 - rest), returns False
+        # When rest_2 is gte 2 and the 11th digit is not (11 - rest), returns
+        # False
         self.assertIs(is_valid("11144477732"), False)
 
         # When cpf is valid

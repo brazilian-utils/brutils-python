@@ -7,7 +7,8 @@ import re
 def format_processo_juridico(legal_process_id):  # type: (str) -> (str)
     """
     Format an adequately formatted numbers-only Legal Process ID number,
-    Returns a Legal Process ID number formatted with standard visual aid symbols.
+    Returns a Legal Process ID number formatted with standard visual aid
+    symbols.
     Returns None if Legal Process ID number is invalid.
     """
     if legal_process_id.isdigit() and len(legal_process_id) == 20:

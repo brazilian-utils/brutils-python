@@ -1,15 +1,4 @@
-from os import pardir
-from os.path import abspath, join, dirname
-from sys import path, version_info, dont_write_bytecode
-from inspect import getsourcefile
-from unittest.mock import patch
-
-dont_write_bytecode = True
-range = range if version_info.major >= 3 else xrange
-path.insert(
-    1, abspath(join(dirname(abspath(getsourcefile(lambda: 0))), pardir))
-)
-from brutils.pis import validate, is_valid, generate, _checksum
+from brutils.pis import validate, is_valid, generate, _checksum, remove_symbols
 from unittest import TestCase, main
 
 
@@ -56,6 +45,13 @@ class TestPIS(TestCase):
     def test_generate(self):
         for _ in range(10_000):
             self.assertIs(validate(generate()), True)
+
+    def test_remove_symbols(self):
+        self.assertEqual(remove_symbols("00000000000"), "00000000000")
+        self.assertEqual(remove_symbols("170.33259.50-4"), "17033259504")
+        self.assertEqual(remove_symbols("134..2435/.-1892.-"), "1342435/1892")
+        self.assertEqual(remove_symbols("abc1230916*!*&#"), "abc1230916*!*&#")
+        self.assertEqual(remove_symbols("...---..."), "")
 
 
 if __name__ == "__main__":

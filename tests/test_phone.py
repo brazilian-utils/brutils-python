@@ -5,6 +5,7 @@ from brutils.phone import (
     is_valid_mobile,
     is_valid,
     remove_symbols_phone,
+    format_phone,
     generate_mobile_phone,
 )
 
@@ -31,7 +32,8 @@ class TestPhone(TestCase):
         # When landline phone's second digit is 0, returns False
         self.assertIs(is_valid_landline("1038814933"), False)
 
-        # When landline phone's third digit is different of 2,3,4 or 5, returns False
+        # When landline phone's third digit is different of 2,3,4 or 5,
+        # returns False
         self.assertIs(is_valid_landline("1998814933"), False)
 
         # When landline phone is valid
@@ -76,7 +78,8 @@ class TestPhone(TestCase):
                 # When landline phone is_valid, returns True
                 self.assertIs(is_valid("1958814933"), True)
 
-                # Checks if function is_valid_landline is called with the correct argument
+                # Checks if function is_valid_landline is called with the
+                # correct argument
                 mock_is_valid_landline.assert_called_once_with("1958814933")
                 # Checks if function is_valid_mobile is not called
                 mock_is_valid_mobile.assert_not_called()
@@ -91,9 +94,11 @@ class TestPhone(TestCase):
                 # When mobile phone is_valid, returns True
                 self.assertIs(is_valid("11994029275"), True)
 
-                # Checks if function is_valid_landline is called with the correct argument
+                # Checks if function is_valid_landline is called with the
+                # correct argument
                 mock_is_valid_landline.assert_called_once_with("11994029275")
-                # Checks if function is_valid_mobile is called with the correct argument
+                # Checks if function is_valid_mobile is called with the
+                # correct argument
                 mock_is_valid_mobile.assert_called_once_with("11994029275")
 
         # Mock is_valid_landline to return False, is_valid_mobile return False
@@ -106,9 +111,11 @@ class TestPhone(TestCase):
                 # When landline phone isn't valid, returns False
                 self.assertIs(is_valid("11994029275"), False)
 
-                # Checks if function is_valid_landline is called with the correct argument
+                # Checks if function is_valid_landline is called with the
+                # correct argument
                 mock_is_valid_landline.assert_called_once_with("11994029275")
-                # Checks if function is_valid_mobile is called with the correct argument
+                # Checks if function is_valid_mobile is called with the
+                # correct argument
                 mock_is_valid_mobile.assert_called_once_with("11994029275")
 
     def test_remove_symbols_phone(self):
@@ -118,7 +125,8 @@ class TestPhone(TestCase):
         # When there are no symbols to remove, it returns the same string
         self.assertEqual(remove_symbols_phone("21994029275"), "21994029275")
 
-        # When there are symbols to remove, it returns the string without symbols
+        # When there are symbols to remove, it returns the string without
+        # symbols
         self.assertEqual(remove_symbols_phone("(21)99402-9275"), "21994029275")
         self.assertEqual(remove_symbols_phone("(21)2569-6969"), "2125696969")
 
@@ -127,10 +135,12 @@ class TestPhone(TestCase):
             remove_symbols_phone("(21) 99402-9275!"), "21994029275!"
         )
 
-        # When the string contains non-numeric characters, it returns the string without the specified symbols
+        # When the string contains non-numeric characters, it returns the
+        # string without the specified symbols
         self.assertEqual(remove_symbols_phone("(21)ABC-DEF"), "21ABCDEF")
 
-        # When the phone number contains a plus symbol and spaces, they are removed
+        # When the phone number contains a plus symbol and spaces, they are
+        # removed
         self.assertEqual(
             remove_symbols_phone("+55 21 99402-9275"), "5521994029275"
         )
@@ -140,10 +150,28 @@ class TestPhone(TestCase):
             remove_symbols_phone("55 21  99402 9275"), "5521994029275"
         )
 
-        # When the phone number contains a mixture of all specified symbols, all are removed
+        # When the phone number contains a mixture of all specified symbols,
+        # all are removed
         self.assertEqual(
             remove_symbols_phone("+55 (21) 99402-9275"), "5521994029275"
         )
+
+    def test_format_phone_number(self):
+        # When is a invalid number
+        self.assertEqual(format_phone("333333"), None)
+
+        # When is a mobile number
+        self.assertEqual(format_phone("21994029275"), "(21)99402-9275")
+        self.assertEqual(format_phone("21994029275"), "(21)99402-9275")
+        self.assertEqual(format_phone("21994029275"), "(21)99402-9275")
+        self.assertEqual(format_phone("11994029275"), "(11)99402-9275")
+
+        # When is a landline number
+        self.assertEqual(format_phone("1928814933"), "(19)2881-4933")
+        self.assertEqual(format_phone("1938814933"), "(19)3881-4933")
+        self.assertEqual(format_phone("1948814933"), "(19)4881-4933")
+        self.assertEqual(format_phone("1958814933"), "(19)5881-4933")
+        self.assertEqual(format_phone("3333333333"), "(33)3333-3333")
 
     def test_generate_mobile_phone(self):
         for _ in range(25):
