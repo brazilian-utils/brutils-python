@@ -52,13 +52,14 @@ def is_valid(license_plate: str) -> bool:
     ) or is_valid_mercosul(license_plate)
 
 
-def is_valid_license_plate_old_format(plate: str) -> bool:
+def is_valid_license_plate_old_format(license_plate: str) -> bool:
     """
     Checks whether a string matches the old format of Brazilian license plate.
     """
-    pattern = re.compile(r"^[aA-zZ]{3}[0-9]{4}$")
+    pattern = re.compile(r"^[A-Za-z]{3}[0-9]{4}$")
     return (
-        isinstance(plate, str) and re.match(pattern, plate.strip()) is not None
+        isinstance(license_plate, str)
+        and re.match(pattern, license_plate.strip()) is not None
     )
 
 
