@@ -1,6 +1,11 @@
 import unittest
 
-from brutils.legal_process import format_processo_juridico, remove_symbols
+from datetime import datetime
+from brutils.legal_process import (
+    format_processo_juridico,
+    remove_symbols,
+    generate_processo_juridico,
+)
 
 
 class TestLegalProcess(unittest.TestCase):
@@ -37,6 +42,13 @@ class TestLegalProcess(unittest.TestCase):
         )
         self.assertEqual(remove_symbols("@...---...#"), "@#")
         self.assertEqual(remove_symbols("...---..."), "")
+
+    def test_generate_processo_juridico(self):
+        self.assertEqual(
+            generate_processo_juridico()[9:13], str(datetime.now().year)
+        )
+        self.assertEqual(generate_processo_juridico(ano=3000)[9:13], "3000")
+        self.assertEqual(generate_processo_juridico(orgao=4)[13:14], "4")
 
 
 if __name__ == "__main__":
