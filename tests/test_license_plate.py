@@ -37,7 +37,7 @@ class TestLicensePlate(TestCase):
         self.assertTrue(is_valid("ABC4E67"))
         self.assertTrue(is_valid("XXX9X99"))
 
-    def test_is_valid_license_old_format(self):
+    def test_is_valid_license_plate_old_format(self):
         # When license plate is valid, returns True
         self.assertTrue(is_valid_license_plate_old_format("ABC1234"))
         self.assertTrue(is_valid_license_plate_old_format("abc1234"))
