@@ -78,6 +78,7 @@ False
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
   - [remove_symbols_pis](#remove_symbols_pis)
+  - [format_pis](#format_pis)
 - [Legal Process](#legal-process)
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
@@ -467,6 +468,16 @@ from brutils import remove_symbols_pis
 '17033259504'
 >>> remove_symbols_pis('/._')
 '/_'
+```
+
+### format_pis
+
+Format the PIS number. Returns None if the PIS is invalid.
+
+```python
+>>> from brutils import format_pis
+>>> format_pis('12038619494')
+'120.38619.49-4'
 ```
 
 ## Legal Process
