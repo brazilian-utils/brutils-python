@@ -1,10 +1,11 @@
 import re
+from typing import Optional
 
 # FORMATTING
 ############
 
 
-def convert_to_mercosul(license_plate):
+def convert_to_mercosul(license_plate: str) -> Optional[str]:
     """
     Receives an old pattern license plate (LLLNNNN) and returns a Mercosul
     converted license plate (LLLNLNN). Input should be
@@ -21,7 +22,7 @@ def convert_to_mercosul(license_plate):
     return "".join(digits)
 
 
-def format(license_plate):
+def format(license_plate: str) -> Optional[str]:
     """
     Receives a license plate in any pattern (LLLNNNN or LLLNLNN) and returns a
     formatted version, with a dash (-) for the old pattern, in upper case for
@@ -63,7 +64,7 @@ def is_valid_license_plate_old_format(license_plate: str) -> bool:
     )
 
 
-def is_valid_mercosul(license_plate):  # type: (str) -> bool
+def is_valid_mercosul(license_plate: str) -> bool:
     """
     Returns whether or not the provided license_plate is valid according to the
     Mercosul pattern (LLLNLNN). Input should be a digit string of proper
@@ -77,7 +78,7 @@ def is_valid_mercosul(license_plate):  # type: (str) -> bool
     return re.match(pattern, license_plate) is not None
 
 
-def remove_symbols(license_plate_number: str):  # type: (str) -> str
+def remove_symbols(license_plate_number: str) -> str:
     """Removes the dash (-) symbol from a license plate string.
 
     Args:
@@ -86,3 +87,26 @@ def remove_symbols(license_plate_number: str):  # type: (str) -> str
                     [str]: A license plate string without symbols
     """
     return license_plate_number.replace("-", "")
+
+
+def get_format(license_plate: str) -> Optional[str]:
+    """
+    Returns the format of a license plate string without symbols. Returns
+    'LLLNNNN' for the old pattern and 'LLLNLNN' for the Mercosul one.
+
+    Args:
+        license_plate[str]: A license plate string without symbols
+
+    Returns:
+        value[str]: The format of the license plate
+
+        value[None]: For invalid license plates
+    """
+
+    if is_valid_license_plate_old_format(license_plate):
+        return "LLLNNNN"
+
+    if is_valid_mercosul(license_plate):
+        return "LLLNLNN"
+
+    return None

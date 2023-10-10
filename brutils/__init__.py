@@ -35,6 +35,7 @@ from brutils.license_plate import (
     convert_to_mercosul as convert_license_plate_to_mercosul,
     format as format_license_plate,
     remove_symbols as remove_symbols_license_plate,
+    get_format as get_license_plate_format,
 )
 
 from brutils.email import is_valid as is_valid_email
