@@ -25,6 +25,7 @@ from brutils.phone import (
     is_valid_landline as is_valid_landline_phone,
     is_valid_mobile as is_valid_mobile_phone,
     is_valid as is_valid_phone,
+    format_phone,
 )
 
 from brutils.license_plate import (
