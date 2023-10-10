@@ -86,3 +86,26 @@ def remove_symbols(license_plate_number: str) -> str:
                     [str]: A license plate string without symbols
     """
     return license_plate_number.replace("-", "")
+
+
+def get_format(license_plate: str) -> Optional[str]:
+    """
+    Returns the format of a license plate string without symbols. Returns
+    'LLLNNNN' for the old pattern and 'LLLNLNN' for the Mercosul one.
+
+    Args:
+        license_plate[str]: A license plate string without symbols
+
+    Returns:
+        value[str]: The format of the license plate
+
+        value[None]: For invalid license plates
+    """
+
+    if is_valid_license_plate_old_format(license_plate):
+        return "LLLNNNN"
+
+    if is_valid_mercosul(license_plate):
+        return "LLLNLNN"
+
+    return None
