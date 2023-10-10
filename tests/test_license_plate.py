@@ -5,6 +5,7 @@ from brutils.license_plate import (
     is_valid,
     convert_to_mercosul,
     format,
+    get_format,
 )
 
 from unittest import TestCase, main
@@ -37,7 +38,7 @@ class TestLicensePlate(TestCase):
         self.assertTrue(is_valid("ABC4E67"))
         self.assertTrue(is_valid("XXX9X99"))
 
-    def test_is_valid_license_old_format(self):
+    def test_is_valid_license_plate_old_format(self):
         # When license plate is valid, returns True
         self.assertTrue(is_valid_license_plate_old_format("ABC1234"))
         self.assertTrue(is_valid_license_plate_old_format("abc1234"))
@@ -136,6 +137,21 @@ class TestLicensePlate(TestCase):
         self.assertEqual(format("ABC1D23"), "ABC1D23")
         self.assertEqual(format("abc1d23"), "ABC1D23")
         self.assertIsNone(format("ABCD123"))
+
+    def test_get_format(self):
+        # Old format
+        self.assertEqual(get_format("ABC1234"), "LLLNNNN")
+        self.assertEqual(get_format("abc1234"), "LLLNNNN")
+
+        # Mercosul
+        self.assertEqual(get_format("ABC4E67"), "LLLNLNN")
+        self.assertEqual(get_format("XXX9X99"), "LLLNLNN")
+
+        # Invalid
+        self.assertIsNone(get_format(None))
+        self.assertIsNone(get_format(""))
+        self.assertIsNone(get_format("ABC-1D23"))
+        self.assertIsNone(get_format("invalid plate"))
 
 
 if __name__ == "__main__":
