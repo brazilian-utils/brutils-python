@@ -43,7 +43,7 @@ def generate_processo_juridico(
     Generates a random valid number of a Legal Process ID number.
     """
     if ano < datetime.now().year or orgao not in range(1, 10):
-        return None
+        return ""
 
     _ = legal_process_ids[f"orgao_{orgao}"]
     TR = str(_["id_tribunal"][randint(0, (len(_["id_tribunal"]) - 1))]).zfill(2)

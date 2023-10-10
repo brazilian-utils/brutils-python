@@ -5,7 +5,7 @@ from brutils.legal_process import (
     format_processo_juridico,
     remove_symbols,
     generate_processo_juridico,
-    _checksum as checksum,
+    _checksum,
 )
 
 
@@ -21,6 +21,7 @@ class TestLegalProcess(unittest.TestCase):
         )
         self.assertIsNone(format_processo_juridico("2314194582005507"))
         self.assertIsNone(format_processo_juridico("0000000000000000000000000"))
+        self.assertIsNone(format_processo_juridico("0000000000000000000asdasd"))
 
     def test_remove_symbols(self):
         self.assertEqual(
@@ -51,15 +52,14 @@ class TestLegalProcess(unittest.TestCase):
         self.assertEqual(generate_processo_juridico(ano=3000)[9:13], "3000")
         self.assertEqual(generate_processo_juridico(orgao=4)[13:14], "4")
         self.assertEqual(
-            generate_processo_juridico(ano=3000, orgao=4)[13:14], "4"
-        )
-        self.assertEqual(
             generate_processo_juridico(ano=3000, orgao=4)[9:13], "3000"
         )
+        self.assertEqual(generate_processo_juridico(ano=1000, orgao=4), "")
+        self.assertFalse(generate_processo_juridico(orgao=0))
 
     def test_check_sum(self):
-        self.assertEqual(checksum(546611720238150014), "77")
-        self.assertEqual(checksum(403818720238230498), "50")
+        self.assertEqual(_checksum(546611720238150014), "77")
+        self.assertEqual(_checksum(403818720238230498), "50")
 
 
 if __name__ == "__main__":
