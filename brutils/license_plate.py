@@ -111,7 +111,7 @@ def get_format(license_plate: str) -> Optional[str]:
 
     return None
   
-  def generate(format="LLLNLNN"):  # type: (str) -> str | None
+def generate(format="LLLNLNN"):  # type: (str) -> str | None
     generated = ""
     format = format.upper()
     if format not in ("LLLNLNN", "LLLNNNN"):
@@ -122,3 +122,4 @@ def get_format(license_plate: str) -> Optional[str]:
         else:
             generated += str(randint(0, 9))
     return generated
+
