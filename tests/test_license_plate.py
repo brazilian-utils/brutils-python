@@ -8,7 +8,7 @@ from brutils.license_plate import (
     get_format,
     generate,
 )
-
+from unittest.mock import patch
 from unittest import TestCase, main
 
 
