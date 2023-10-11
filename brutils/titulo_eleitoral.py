@@ -89,15 +89,10 @@ def _verify_length(numero_titulo, uf):
     """
     # edge case: for SP & MG with 9 digit long 'numero sequencial'
     if len(numero_titulo) == 12:
-        lentgh_verified = True
+        return True
 
     # edge case: for SP & MG with 9 digit long 'numero sequencial'
-    elif len(numero_titulo) == 13 and uf in ["01", "02"]:
-        lentgh_verified = True
-    else:
-        lentgh_verified = False
-
-    return lentgh_verified
+    return len(numero_titulo) == 13 and uf in ["01", "02"]
 
 
 def _calculate_dv1(sequencer):
