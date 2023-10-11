@@ -24,17 +24,16 @@ def is_valid_titulo_eleitoral(numero_titulo: str):
     # 'digitos verificadores'
     # edge case: 13-digit length mitigates here. The 9th sequential
     # digit is not used for calculations.
-    sequencer, uf, dig_verifiers = _split_string(numero_titulo)
+    sequential_number, uf, dig_verifiers = _get_titulo_eleitoral_parts(
+        numero_titulo
+    )
 
     # verify length
     if not _verify_length(numero_titulo, uf):
         return False
 
-    # list valid UFs
-    unidades_federativas = ["{:02d}".format(i) for i in range(1, 29)]
-
     # calculate dv1
-    dv1 = _calculate_dv1(sequencer)
+    dv1 = _calculate_dv1(sequential_number)
 
     verified_dv1 = _verify_dv1(dv1, uf, dig_verifiers)
 
@@ -42,13 +41,13 @@ def is_valid_titulo_eleitoral(numero_titulo: str):
     verified_dv2 = _verify_dv2(uf, dv1, dig_verifiers)
 
     # verify UF
-    verified_uf = _verify_uf(uf, unidades_federativas)
+    verified_uf = _verify_uf(uf)
 
     # return True if all conditions are met, else False
     return all([verified_dv1, verified_dv2, verified_uf])
 
 
-def _split_string(input_string: str):
+def _get_titulo_eleitoral_parts(input_string: str):
     """split string into 'numero sequencial', 'unidade federativa' &
     'digitos verificadores'
     here I indexed uf and dig_verifiers from the back due to the
@@ -60,18 +59,18 @@ def _split_string(input_string: str):
     http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
 
     Args:
-            input_string[str]: an example of titulo eleitoral brasileiro
+        input_string[str]: an example of titulo eleitoral brasileiro
 
     Returns:
-        sequencer[list]: sequential number sliced from input_string
+        sequential_number[list]: sequential number sliced from input_string
         uf[list]: Unidade Federal sliced from input_string
         dig_verifiers[list]: DV sliced from input_string
     """
-    sequencer = input_string[:8]
+    sequential_number = input_string[:8]
     uf = input_string[-4:-2]
     dig_verifiers = input_string[-2:]
 
-    return sequencer, uf, dig_verifiers
+    return sequential_number, uf, dig_verifiers
 
 
 def _verify_length(numero_titulo, uf):
@@ -83,40 +82,35 @@ def _verify_length(numero_titulo, uf):
         uf[list]: Unidade Federal sliced from input_string
 
     Returns:
-        lentgh_verified[bool]: boolean indicating whether length of
+        length_verified[bool]: boolean indicating whether the length of
         numero_titulo is verified, or not.
 
     """
     if len(numero_titulo) == 12:
-        lentgh_verified = True
+        return True
 
     # edge case: for SP & MG with 9 digit long 'numero sequencial'
-    elif len(numero_titulo) == 13 and uf in ["01", "02"]:
-        lentgh_verified = True
-    else:
-        lentgh_verified = False
-
-    return lentgh_verified
+    return len(numero_titulo) == 13 and uf in ["01", "02"]
 
 
-def _calculate_dv1(sequencer):
+def _calculate_dv1(sequential_number):
     """calculate dv1
     Args:
-        sequencer[list]: sequential number sliced from input_string
+        sequential_number[list]: sequential number sliced from input_string
     Returns:
         v1[list]: list containing the resulting operation to calculate v1
     """
     x1, x2, x3, x4, x5, x6, x7, x8 = range(2, 10)
 
     v1 = (
-        (int(sequencer[0]) * x1)
-        + (int(sequencer[1]) * x2)
-        + (int(sequencer[2]) * x3)
-        + (int(sequencer[3]) * x4)
-        + (int(sequencer[4]) * x5)
-        + (int(sequencer[5]) * x6)
-        + (int(sequencer[6]) * x7)
-        + (int(sequencer[7]) * x8)
+        (int(sequential_number[0]) * x1)
+        + (int(sequential_number[1]) * x2)
+        + (int(sequential_number[2]) * x3)
+        + (int(sequential_number[3]) * x4)
+        + (int(sequential_number[4]) * x5)
+        + (int(sequential_number[5]) * x6)
+        + (int(sequential_number[6]) * x7)
+        + (int(sequential_number[7]) * x8)
     )
 
     dv1 = v1 % 11
@@ -171,7 +165,7 @@ def _verify_dv2(uf, dv1, dig_verifiers):
     return int(dig_verifiers[1]) == dv2
 
 
-def _verify_uf(uf, unidades_federativas):
+def _verify_uf(uf):
     """verify UF
 
     Args:
@@ -181,4 +175,5 @@ def _verify_uf(uf, unidades_federativas):
         verified_uf[bool]: boolean indicating whether UF has been verified,
         or not.
     """
-    return uf in unidades_federativas
+
+    return uf in ["{:02d}".format(i) for i in range(1, 29)]
