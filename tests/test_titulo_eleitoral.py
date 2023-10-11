@@ -1,7 +1,7 @@
 import unittest
 from brutils.titulo_eleitoral import (
     is_valid_titulo_eleitoral,
-    _split_string,
+    _get_titulo_eleitoral_parts,
     _verify_length,
     _verify_dv1,
     _verify_dv2,
@@ -40,11 +40,13 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
 
 
 class TestSplitString(unittest.TestCase):
-    def test_split_string(self):
+    def test_get_titulo_eleitoral_parts(self):
         input_string = "12345678AB12"
-        tit_sequence, tit_unid_fed, tit_dig_verifiers = _split_string(
-            input_string
-        )
+        (
+            tit_sequence,
+            tit_unid_fed,
+            tit_dig_verifiers,
+        ) = _get_titulo_eleitoral_parts(input_string)
         self.assertEqual(tit_sequence, "12345678")
         self.assertEqual(tit_unid_fed, "AB")
         self.assertEqual(tit_dig_verifiers, "12")
