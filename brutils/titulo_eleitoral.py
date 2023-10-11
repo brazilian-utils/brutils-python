@@ -87,7 +87,6 @@ def _verify_length(numero_titulo, uf):
         numero_titulo is verified, or not.
 
     """
-    # edge case: for SP & MG with 9 digit long 'numero sequencial'
     if len(numero_titulo) == 12:
         lentgh_verified = True
 
