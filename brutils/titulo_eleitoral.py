@@ -83,7 +83,7 @@ def _verify_length(numero_titulo, uf):
         uf[list]: Unidade Federal sliced from input_string
 
     Returns:
-        lentgh_verified[bool]: boolean indicating whether length of
+        length_verified[bool]: boolean indicating whether the length of
         numero_titulo is verified, or not.
 
     """
