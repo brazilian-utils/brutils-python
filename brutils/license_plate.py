@@ -110,7 +110,8 @@ def get_format(license_plate: str) -> Optional[str]:
         return "LLLNLNN"
 
     return None
-  
+from random import choice, randint
+from string import ascii_uppercase
 def generate(format="LLLNLNN"):  # type: (str) -> str | None
     generated = ""
     format = format.upper()
