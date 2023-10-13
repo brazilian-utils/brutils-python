@@ -75,6 +75,7 @@ False
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
   - [get_license_plate_format](#get_license_plate_format)
+  - [generate_license_plate](#generate_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [generate_pis](#generate_pis)
@@ -427,6 +428,22 @@ from brutils import get_license_plate_format
 >>> get_license_plate_format("ABCD123")
 None
 ```
+### generate_license_plate
+
+Gera placas válidas de carro utilizando como parâmetro um dos formatos válidos (LLLNLNN ou
+LLLNNNN), tendo como formato padrão o padrão Mercosul. Caso seja fornecido um formato
+inválido, é retornado o valor `None`.
+
+```python
+from brutils import generate_license_plate
+
+>>> generate_license_plate()
+"ABC1D23"
+>>> generate_license_plate(format="LLLNLNN")
+"ABC4D56"
+>>> generate_license_plate(format="LLLNNNN")
+"ABC123"
+>>> generate_license_plate(format="invalid")
 
 ## PIS
 

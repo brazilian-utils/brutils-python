@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `format_phone` [#231](https://github.com/brazilian-utils/brutils-python/pull/231)
 - Utilitário `generate_mobile_phone` [#232](https://github.com/brazilian-utils/brutils-python/pull/232)
 - Utilitário `format_pis` [#224](https://github.com/brazilian-utils/brutils-python/pull/224)
+- Utilitário `generate_license_plate` [#241](https://github.com/brazilian-utils/brutils-python/pull/241)
 
 ### Removed
 
