@@ -1,5 +1,7 @@
 import re
 from typing import Optional
+from random import choice, randint
+from string import ascii_uppercase
 
 # FORMATTING
 ############
@@ -110,9 +112,13 @@ def get_format(license_plate: str) -> Optional[str]:
         return "LLLNLNN"
 
     return None
-from random import choice, randint
-from string import ascii_uppercase
+
+
 def generate(format="LLLNLNN"):  # type: (str) -> str | None
+    """
+    Generate a valid license plate in the given format. In case no format is
+    provided, it will return a license plate in the Mercosul format.
+    """
     generated = ""
     format = format.upper()
     if format not in ("LLLNLNN", "LLLNNNN"):
@@ -123,4 +129,3 @@ def generate(format="LLLNLNN"):  # type: (str) -> str | None
         else:
             generated += str(randint(0, 9))
     return generated
-

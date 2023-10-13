@@ -153,7 +153,7 @@ class TestLicensePlate(TestCase):
         self.assertIsNone(get_format(""))
         self.assertIsNone(get_format("ABC-1D23"))
         self.assertIsNone(get_format("invalid plate"))
-        
+
     def test_generate_license_plate(self):
         with patch("brutils.license_plate.choice", return_value="X"):
             with patch("brutils.license_plate.randint", return_value=9):
@@ -173,6 +173,7 @@ class TestLicensePlate(TestCase):
 
         # When invalid format is provided, returns None
         self.assertIsNone(generate("LNLNLNL"))
+
 
 if __name__ == "__main__":
     main()
