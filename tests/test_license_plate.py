@@ -6,8 +6,9 @@ from brutils.license_plate import (
     convert_to_mercosul,
     format,
     get_format,
+    generate,
 )
-
+from unittest.mock import patch
 from unittest import TestCase, main
 
 
@@ -152,6 +153,26 @@ class TestLicensePlate(TestCase):
         self.assertIsNone(get_format(""))
         self.assertIsNone(get_format("ABC-1D23"))
         self.assertIsNone(get_format("invalid plate"))
+
+    def test_generate_license_plate(self):
+        with patch("brutils.license_plate.choice", return_value="X"):
+            with patch("brutils.license_plate.randint", return_value=9):
+                self.assertEqual(generate(format="LLLNNNN"), "XXX9999")
+                self.assertEqual(generate(format="LLLNLNN"), "XXX9X99")
+
+        for _ in range(10_000):
+            self.assertTrue(is_valid_mercosul(generate(format="LLLNLNN")))
+
+        for _ in range(10_000):
+            self.assertTrue(
+                is_valid_license_plate_old_format(generate(format="LLLNNNN"))
+            )
+
+        # When no format is provided, returns a valid Mercosul license plate
+        self.assertTrue(is_valid_mercosul(generate()))
+
+        # When invalid format is provided, returns None
+        self.assertIsNone(generate("LNLNLNL"))
 
 
 if __name__ == "__main__":
