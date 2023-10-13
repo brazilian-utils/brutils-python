@@ -1,9 +1,8 @@
 import re
+import json
 
 from random import randint
 from datetime import datetime
-
-from brutils.assets.legal_process_ids import legal_process_ids
 
 
 # FORMATTING
@@ -44,13 +43,17 @@ def generate_processo_juridico(
     """
     if ano < datetime.now().year or orgao not in range(1, 10):
         return ""
-
-    _ = legal_process_ids[f"orgao_{orgao}"]
-    TR = str(_["id_tribunal"][randint(0, (len(_["id_tribunal"]) - 1))]).zfill(2)
-    OOOO = str(_["id_foro"][randint(0, (len(_["id_foro"])) - 1)]).zfill(4)
-    NNNNNNN = str(randint(0, 9999999)).zfill(7)
-    DD = _checksum(f"{NNNNNNN}{ano}{orgao}{TR}{OOOO}")
-    return f"{NNNNNNN}{DD}{ano}{orgao}{TR}{OOOO}"
+    # Getting possible legal process ids from 'legal_process_ids.json' asset
+    with open("brutils/assets/legal_process_ids.json") as file:
+        legal_process_ids = json.load(file)
+        _ = legal_process_ids[f"orgao_{orgao}"]
+        TR = str(
+            _["id_tribunal"][randint(0, (len(_["id_tribunal"]) - 1))]
+        ).zfill(2)
+        OOOO = str(_["id_foro"][randint(0, (len(_["id_foro"])) - 1)]).zfill(4)
+        NNNNNNN = str(randint(0, 9999999)).zfill(7)
+        DD = _checksum(f"{NNNNNNN}{ano}{orgao}{TR}{OOOO}")
+        return f"{NNNNNNN}{DD}{ano}{orgao}{TR}{OOOO}"
 
 
 def _checksum(basenum):  # type: (int) -> str
