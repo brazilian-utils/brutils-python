@@ -53,3 +53,5 @@ from brutils.legal_process import (
     generate_processo_juridico,
     remove_symbols as remove_symbols_processo_juridico,
 )
+
+from brutils.voter_registration import format as format_titulo_eleitoral

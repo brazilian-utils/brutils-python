@@ -84,6 +84,8 @@ False
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
+- [Voter Registration Number](#voter-registration-number)
+  - [format_titulo_eleitoral](#format_titulo_eleitoral)
 
 ## CPF
 
@@ -543,6 +545,20 @@ Generates a valid legal process number according to the arguments of _ano_ which
 37573041520235090313
 >>> print(generate_processo_juridico(ano=2024, orgao=4))
 33158248820244017105
+>>>
+```
+
+## Voter Registration Number
+
+### format_titulo_eleitoral
+
+Formats voter registration number (if valid)
+```python
+>>> from brutils import format_titulo_eleitoral
+>>> format_titulo_eleitoral('370834200183')
+'3708 3420 01 83'
+>>> format_titulo_eleitoral('107381280116')
+'1073 8128 01 16'
 >>>
 ```
 
