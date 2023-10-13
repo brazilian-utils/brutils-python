@@ -44,7 +44,7 @@ def generate_processo_juridico(
     if ano < datetime.now().year or orgao not in range(1, 10):
         return ""
     # Getting possible legal process ids from 'legal_process_ids.json' asset
-    with open("brutils/assets/legal_process_ids.json") as file:
+    with open("brutils/data/legal_process_ids.json") as file:
         legal_process_ids = json.load(file)
         _ = legal_process_ids[f"orgao_{orgao}"]
         TR = str(
