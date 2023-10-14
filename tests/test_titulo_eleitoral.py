@@ -73,15 +73,23 @@ class TestVerifyDv1(unittest.TestCase):
 
     def test_dv1_ten_edge_case(self):
         # test dv1 is 10, which should be treated as 0
-        result = _verify_dv1(10, "04", "05")
-        self.assertTrue(result)
+        self.assertTrue(_verify_dv1(10, "04", "05"))
+
+    def test_dv1_zero_edge_case(self):
+        # test dv1 is 0, declare as 1 instead with SP or MG as UF
+        self.assertTrue(_verify_dv1(0, "01", "16"))
+        self.assertTrue(_verify_dv1(0, "02", "15"))
 
 
 class TestVerifyDv2(unittest.TestCase):
     def test_verify_dv2(self):
+        self.assertTrue(_verify_dv2("03", 6, "01"))
+
+    def test_dv2_zero_edge_case(self):
         # edge case: if UF is "01" or "02" (for SP & MG) AND dv2 == 0
         # declare dv2 as 1 instead
         self.assertTrue(_verify_dv2("01", 9, "01"))
+        self.assertTrue(_verify_dv2("01", 4, "41"))
 
 
 if __name__ == "__main__":

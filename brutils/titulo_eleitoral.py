@@ -148,6 +148,7 @@ def _verify_dv2(uf, dv1, dig_verifiers):
     Args:
         uf[list]: Unidade Federal sliced from input_string
         dv1[int]: result from v1 mod 11 operation
+        dig_verifiers[str]: Digits verifiers from titulo eleitoral
 
     Returns:
         dv2[int]: result from v2 mod 11 operation
@@ -170,7 +171,6 @@ def _verify_uf(uf):
 
     Args:
         uf[list]: Unidade Federal sliced from input_string
-        unidades_federativas[list]: list containing all possible UFs
     Returns:
         verified_uf[bool]: boolean indicating whether UF has been verified,
         or not.
