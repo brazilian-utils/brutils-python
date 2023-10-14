@@ -62,3 +62,28 @@ def _checksum(basenum):  # type: (int) -> str
     `basenum` needs to be a digit without the verification id.
     """
     return str(97 - ((int(basenum) * 100) % 97)).zfill(2)
+
+
+def is_valid_processo_juridico(legal_process_id):  # type: (str) -> bool
+    """
+    Returns whether or not the verifying checksum digits of the given Legal
+    Process ID number match it's varification digit.
+    """
+    clean_legal_process_id = remove_symbols(legal_process_id)
+    DD = clean_legal_process_id[7:9]
+    J = clean_legal_process_id[13:14]
+    TR = clean_legal_process_id[14:16]
+    OOOO = clean_legal_process_id[16:]
+    with open("brutils/data/legal_process_ids.json") as file:
+        legal_process_ids = json.load(file)
+        process = legal_process_ids.get(f"orgao_{J}")
+        if not process:
+            return False
+        valid_process = int(TR) in process.get("id_tribunal") and int(
+            OOOO
+        ) in process.get("id_foro")
+
+    return (
+        _checksum(int(clean_legal_process_id[0:7] + clean_legal_process_id[9:]))
+        == DD
+    ) and valid_process
