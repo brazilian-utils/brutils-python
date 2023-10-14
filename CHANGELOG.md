@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Utilitário `is_valid_titulo_eleitoral` [#235](https://github.com/brazilian-utils/brutils-python/pull/235)
 - Suporte ao Python 3.12 [#245](https://github.com/brazilian-utils/brutils-python/pull/245)
+- Utilitário `generate_processo_juridico` [#208](https://github.com/brazilian-utils/brutils-python/pull/208)
 - Utilitário `get_license_plate_format` [#243](https://github.com/brazilian-utils/brutils-python/pull/243)
 - Utilitário `is_valid_license_plate` [#237](https://github.com/brazilian-utils/brutils-python/pull/237)
 - Utilitário `remove_symbols_pis` [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `format_phone` [#231](https://github.com/brazilian-utils/brutils-python/pull/231)
 - Utilitário `generate_mobile_phone` [#232](https://github.com/brazilian-utils/brutils-python/pull/232)
 - Utilitário `format_pis` [#224](https://github.com/brazilian-utils/brutils-python/pull/224)
+- Utilitário `generate_license_plate` [#241](https://github.com/brazilian-utils/brutils-python/pull/241)
 
 ### Removed
 

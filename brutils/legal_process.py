@@ -1,4 +1,9 @@
 import re
+import json
+
+from random import randint
+from datetime import datetime
+
 
 # FORMATTING
 ############
@@ -28,3 +33,32 @@ def remove_symbols(processo_juridico: str):  # type: (str) -> str
                     [str]: A legal process number string without symbols
     """
     return processo_juridico.replace(".", "").replace("-", "")
+
+
+def generate_processo_juridico(
+    ano=datetime.now().year, orgao=randint(1, 9)
+):  # type: (int, int) -> (str)
+    """
+    Generates a random valid number of a Legal Process ID number.
+    """
+    if ano < datetime.now().year or orgao not in range(1, 10):
+        return ""
+    # Getting possible legal process ids from 'legal_process_ids.json' asset
+    with open("brutils/data/legal_process_ids.json") as file:
+        legal_process_ids = json.load(file)
+        _ = legal_process_ids[f"orgao_{orgao}"]
+        TR = str(
+            _["id_tribunal"][randint(0, (len(_["id_tribunal"]) - 1))]
+        ).zfill(2)
+        OOOO = str(_["id_foro"][randint(0, (len(_["id_foro"])) - 1)]).zfill(4)
+        NNNNNNN = str(randint(0, 9999999)).zfill(7)
+        DD = _checksum(f"{NNNNNNN}{ano}{orgao}{TR}{OOOO}")
+        return f"{NNNNNNN}{DD}{ano}{orgao}{TR}{OOOO}"
+
+
+def _checksum(basenum):  # type: (int) -> str
+    """
+    Checksum to compute the verification digit for a Legal Process ID number.
+    `basenum` needs to be a digit without the verification id.
+    """
+    return str(97 - ((int(basenum) * 100) % 97)).zfill(2)
