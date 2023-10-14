@@ -7,6 +7,7 @@ from brutils.phone import (
     remove_symbols_phone,
     format_phone,
     generate_mobile_phone,
+    generate_landline_phone,
 )
 
 from unittest import TestCase, main
@@ -178,6 +179,15 @@ class TestPhone(TestCase):
             with self.subTest():
                 phone_generated = generate_mobile_phone()
                 self.assertTrue(is_valid_mobile(phone_generated))
+
+    def test_generate_landline_phone(self):
+        for _ in range(25):
+            with self.subTest():
+                number = generate_landline_phone()
+                self.assertTrue(is_valid_landline(number))
+                self.assertEqual(len(generate_landline_phone()), 10)
+                self.assertTrue(generate_landline_phone().isdigit())
+                self.assertTrue(isinstance(generate_landline_phone(), str))
 
 
 if __name__ == "__main__":
