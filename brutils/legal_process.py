@@ -67,7 +67,8 @@ def _checksum(basenum):  # type: (int) -> str
 def is_valid_processo_juridico(legal_process_id):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the given Legal
-    Process ID number match it's varification digit.
+    Process ID number match it's varification digit and if the numbers match
+    a valid ID from a legal process.
     """
     clean_legal_process_id = remove_symbols(legal_process_id)
     DD = clean_legal_process_id[7:9]
