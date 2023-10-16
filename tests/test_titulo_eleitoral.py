@@ -93,8 +93,9 @@ class TestVerifyDv2(unittest.TestCase):
         self.assertTrue(_verify_dv2("01", 4, "41"))
 
 
-class TestTituloEleitoral(unittest.TestCase):
+class TestGenerateTituloEleitoral(unittest.TestCase):
     def test_generate(self):
+        # Is valid
         self.assertIsNotNone(
             is_valid_titulo_eleitoral(generate_titulo_eleitoral())
         )
@@ -104,6 +105,24 @@ class TestTituloEleitoral(unittest.TestCase):
         self.assertIsNotNone(
             is_valid_titulo_eleitoral(generate_titulo_eleitoral(state="AC"))
         )
+
+        # Validate if the UFs digits are correct
+
+        self.assertEqual(generate_titulo_eleitoral(state="SP")[8:10], "01")
+
+        self.assertEqual(generate_titulo_eleitoral(state="MG")[8:10], "02")
+
+        self.assertEqual(generate_titulo_eleitoral()[8:10], "28")
+
+        # Validate digits
+
+        self.assertIsNot(generate_titulo_eleitoral(state="MG")[11], "0")
+
+        self.assertIsNot(generate_titulo_eleitoral(state="SP")[11], "0")
+
+        self.assertIsNot(generate_titulo_eleitoral(state="AC")[10], "10")
+
+        self.assertIsNot(generate_titulo_eleitoral()[10], "10")
 
 
 if __name__ == "__main__":
