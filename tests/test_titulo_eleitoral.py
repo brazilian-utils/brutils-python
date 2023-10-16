@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-from brutils.titulo_eleitoral import generate_titulo_eleitoral
-from unittest import TestCase, main
-from unittest.mock import patch
-
-
-class TestTituloEleitoral(TestCase):
-    def test_generate(self):
-        self.assertIsNotNone((generate_titulo_eleitoral()))
-        self.assertIsNotNone((generate_titulo_eleitoral(state="SP")))
-        self.assertIsNotNone((generate_titulo_eleitoral(state="AC")))
-
-
-if __name__ == "__main__":
-    main()
-=======
 import unittest
 from brutils.titulo_eleitoral import (
     is_valid_titulo_eleitoral,
@@ -21,6 +5,7 @@ from brutils.titulo_eleitoral import (
     _verify_length,
     _verify_dv1,
     _verify_dv2,
+    generate_titulo_eleitoral,
 )
 
 
@@ -108,6 +93,18 @@ class TestVerifyDv2(unittest.TestCase):
         self.assertTrue(_verify_dv2("01", 4, "41"))
 
 
+class TestTituloEleitoral(unittest.TestCase):
+    def test_generate(self):
+        self.assertIsNotNone(
+            is_valid_titulo_eleitoral(generate_titulo_eleitoral())
+        )
+        self.assertIsNotNone(
+            is_valid_titulo_eleitoral(generate_titulo_eleitoral(state="SP"))
+        )
+        self.assertIsNotNone(
+            is_valid_titulo_eleitoral(generate_titulo_eleitoral(state="AC"))
+        )
+
+
 if __name__ == "__main__":
     unittest.main()
->>>>>>> 11a34a8522a6a9be0d1ce33881d3a57c4d185e41

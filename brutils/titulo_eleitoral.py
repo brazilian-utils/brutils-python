@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from random import randint
 
 
@@ -99,7 +98,8 @@ def generate_titulo_eleitoral(state="") -> str:
             d2
             titulo = f"{base}{28}{d1}{d2}"
             return titulo
-=======
+
+
 def is_valid_titulo_eleitoral(numero_titulo: str):
     """
     Return True when 'numero_titulo' is a valid titulo eleitoral
@@ -279,4 +279,3 @@ def _verify_uf(uf):
     """
 
     return uf in ["{:02d}".format(i) for i in range(1, 29)]
->>>>>>> 11a34a8522a6a9be0d1ce33881d3a57c4d185e41

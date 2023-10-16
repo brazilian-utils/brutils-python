@@ -85,14 +85,10 @@ False
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
-<<<<<<< HEAD
+  - [is_valid_processo_juridico](#is_valid_processo_juridico)
 - [Título ELeitoral](#título-eleitoral)
   - [generate_titulo_eleitoral](#generate_titulo_eleitoral)
 
-
-=======
-  - [is_valid_processo_juridico](#is_valid_processo_juridico)
->>>>>>> 11a34a8522a6a9be0d1ce33881d3a57c4d185e41
 
 ## CPF
 
@@ -546,22 +542,6 @@ Gera um número de processo válido de acordo com o ano informado e o órgão. P
 >>>
 ```
 
-<<<<<<< HEAD
-## Título eleitoral
-
-### generate_titulo_eleitoral
-
-Gera um número de título eleitoral válido aleatório dado uma unidade federativa. Por padrão o título é emitido fora do Brasil, caso a unidade federativa não seja inforamda.
-
-```python
->>> from brutils import generate_titulo_eleitoral
->>> generate_titulo_eleitoral(state='MG')
-'744770710280'
-```
-
-
-
-=======
 ## is_valid_processo_juridico
 
 Verifica se o número de um processo informado por string é válido ou não.
@@ -579,7 +559,20 @@ False
 >>>
 ```
 
->>>>>>> 11a34a8522a6a9be0d1ce33881d3a57c4d185e41
+
+## Título eleitoral
+
+### generate_titulo_eleitoral
+
+Gera um número de título eleitoral válido aleatório dado uma unidade federativa. Por padrão o título é emitido fora do Brasil, caso a unidade federativa não seja inforamda.
+
+```python
+>>> from brutils import generate_titulo_eleitoral
+>>> generate_titulo_eleitoral(state='MG')
+'744770710280'
+```
+
+
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
