@@ -116,13 +116,13 @@ class TestGenerateTituloEleitoral(unittest.TestCase):
 
         # Validate digits
 
-        self.assertIsNot(generate_titulo_eleitoral(state="MG")[11], "0")
+        self.assertNotEqual(generate_titulo_eleitoral(state="MG")[11], "0")
 
-        self.assertIsNot(generate_titulo_eleitoral(state="SP")[11], "0")
+        self.assertNotEqual(generate_titulo_eleitoral(state="SP")[11], "0")
 
-        self.assertIsNot(generate_titulo_eleitoral(state="AC")[10], "10")
+        self.assertNotEqual(generate_titulo_eleitoral(state="AC")[10], "10")
 
-        self.assertIsNot(generate_titulo_eleitoral()[10], "10")
+        self.assertNotEqual(generate_titulo_eleitoral()[10], "10")
 
 
 if __name__ == "__main__":
