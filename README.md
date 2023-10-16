@@ -86,6 +86,7 @@ False
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
+  - [is_valid_processo_juridico](#is_valid_processo_juridico)
 
 ## CPF
 
@@ -553,6 +554,23 @@ Gera um número de processo válido de acordo com o ano informado e o órgão. P
 37573041520235090313
 >>> print(generate_processo_juridico(ano=2024, orgao=4))
 33158248820244017105
+>>>
+```
+
+## is_valid_processo_juridico
+
+Verifica se o número de um processo informado por string é válido ou não.
+
+```python
+>>> from brutils import is_valid_processo_juridico
+>>> is_valid_processo_juridico('10188748220234018200')
+True
+>>> is_valid_processo_juridico('45532346920234025107')
+True
+>>> is_valid_processo_juridico('00000000000000000000')
+False
+>>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
+False
 >>>
 ```
 

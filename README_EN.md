@@ -85,6 +85,7 @@ False
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
+  - [is_valid_processo_juridico](#is_valid_processo_juridico)
 
 ## CPF
 
@@ -561,6 +562,23 @@ Generates a valid legal process number according to the arguments of _ano_ which
 37573041520235090313
 >>> print(generate_processo_juridico(ano=2024, orgao=4))
 33158248820244017105
+>>>
+```
+
+## is_valid_processo_juridico
+
+Checks if a string containing a legal process number is valid or not.
+
+```python
+>>> from brutils import is_valid_processo_juridico
+>>> is_valid_processo_juridico('10188748220234018200')
+True
+>>> is_valid_processo_juridico('45532346920234025107')
+True
+>>> is_valid_processo_juridico('00000000000000000000')
+False
+>>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
+False
 >>>
 ```
 
