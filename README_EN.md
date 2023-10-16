@@ -84,8 +84,12 @@ False
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
+<<<<<<< HEAD
 - [Título ELeitoral](#título-eleitoral)
   - [generate_titulo_eleitoral](#generate_titulo_eleitoral)
+=======
+  - [is_valid_processo_juridico](#is_valid_processo_juridico)
+>>>>>>> 11a34a8522a6a9be0d1ce33881d3a57c4d185e41
 
 ## CPF
 
@@ -548,6 +552,7 @@ Generates a valid legal process number according to the arguments of _ano_ which
 >>>
 ```
 
+<<<<<<< HEAD
 ## Voter registration
 
 ### generate_titulo_eleitoral
@@ -561,6 +566,25 @@ Generate a valid random voter registration number given a federative unit. The a
 ```
 
 
+=======
+## is_valid_processo_juridico
+
+Checks if a string containing a legal process number is valid or not.
+
+```python
+>>> from brutils import is_valid_processo_juridico
+>>> is_valid_processo_juridico('10188748220234018200')
+True
+>>> is_valid_processo_juridico('45532346920234025107')
+True
+>>> is_valid_processo_juridico('00000000000000000000')
+False
+>>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
+False
+>>>
+```
+
+>>>>>>> 11a34a8522a6a9be0d1ce33881d3a57c4d185e41
 # Feature Request and Bug Report
 
 If you want to suggest new features or report bugs, simply create
