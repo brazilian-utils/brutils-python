@@ -84,6 +84,8 @@ False
   - [format_processo_juridico](#format_processo_juridico)
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
+- [Título ELeitoral](#título-eleitoral)
+  - [generate_titulo_eleitoral](#generate_titulo_eleitoral)
 
 ## CPF
 
@@ -545,6 +547,19 @@ Generates a valid legal process number according to the arguments of _ano_ which
 33158248820244017105
 >>>
 ```
+
+## Voter registration
+
+### generate_titulo_eleitoral
+
+Generate a valid random voter registration number given a federative unit. The argument has default value (foreigner) if the federative unit is not informed.
+
+```python
+>>> from brutils import generate_titulo_eleitoral
+>>> generate_titulo_eleitoral(state='MG')
+'744770710280'
+```
+
 
 # Feature Request and Bug Report
 
