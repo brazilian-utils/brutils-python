@@ -51,5 +51,6 @@ from brutils.pis import (
 from brutils.legal_process import (
     format_processo_juridico,
     generate_processo_juridico,
+    is_valid_processo_juridico,
     remove_symbols as remove_symbols_processo_juridico,
 )

@@ -6,6 +6,7 @@ from brutils.legal_process import (
     remove_symbols,
     generate_processo_juridico,
     _checksum,
+    is_valid_processo_juridico,
 )
 
 
@@ -60,6 +61,19 @@ class TestLegalProcess(unittest.TestCase):
     def test_check_sum(self):
         self.assertEqual(_checksum(546611720238150014), "77")
         self.assertEqual(_checksum(403818720238230498), "50")
+
+    def test_is_valid_processo_juridico(self):
+        self.assertTrue(is_valid_processo_juridico("10188748220234018200"))
+        self.assertTrue(is_valid_processo_juridico("45532346920234025107"))
+        self.assertFalse(is_valid_processo_juridico("10188748220239918200"))
+        self.assertFalse(is_valid_processo_juridico("00000000000000000000"))
+        self.assertFalse(is_valid_processo_juridico("455323469202340251"))
+        self.assertFalse(
+            is_valid_processo_juridico("455323469202340257123123123")
+        )
+        self.assertFalse(
+            is_valid_processo_juridico("455323423QQWEQWSsasd&*(()")
+        )
 
 
 if __name__ == "__main__":
