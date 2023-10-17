@@ -53,3 +53,19 @@ class TestVoterRegistrationFormat(unittest.TestCase):
     def test_empty_string(self):
         # Empty string should return None too
         self.assertEqual(format_titulo_eleitoral(""), None)
+
+    def test_invalid_fu(self):
+        # Document with invalid UF should fail
+        self.assertEqual(format_titulo_eleitoral("370834209983"), None)
+
+    def test_mods_equal_zero(self):
+        # Ensure that digit calculation works when sum equals 10
+        valid_numbers = ["175526800205", "417667660230"]
+        for n in valid_numbers:
+            try:
+                formatted = format_titulo_eleitoral(n)
+                self.assertIsInstance(formatted, str)
+                self.assertRegex(formatted, r"^(\d{4} \d{4} \d{2} \d{2})$")
+            except:  # noqa: E722
+                print(f"AssertionError for number: {n}")
+                raise AssertionError
