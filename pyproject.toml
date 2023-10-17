@@ -33,7 +33,7 @@ coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
-pre-commit = "^2.21.0"
+pre-commit = ">=2.21,<4.0"
 flake8 = "^6.1.0"
 
 [build-system]

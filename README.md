@@ -65,6 +65,7 @@ False
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
   - [generate_mobile_phone](#generate_mobile_phone)
+  - [generate_landline_phone](#generate_landline_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
@@ -87,6 +88,7 @@ False
   - [generate_processo_juridico](#generate_processo_juridico)
 - [Título Eleitoral](#título-eleitoral)
   - [format_titulo_eleitoral](#format_titulo_eleitoral)
+  - [is_valid_processo_juridico](#is_valid_processo_juridico)
 
 ## CPF
 
@@ -292,6 +294,23 @@ Gera um número de telefone móvel válido e aleatório
 '78964850019'
 >>> generate_mobile_phone() 
 '53924997638'
+```
+
+### generate_landline_phone
+
+Gera um número de telefone fixo válido
+
+```python
+>>> from brutils import generate_landline_phone
+>>> generate_landline_phone()
+5929797740
+>>> generate_landline_phone()
+9345561355
+>>> generate_landline_phone()
+1145081947
+>>> generate_landline_phone()
+3138577807
+>>>
 ```
 
 ## Email
@@ -551,7 +570,21 @@ Formata título eleitoral (se válido)
 '3708 3420 01 83'
 >>> format_titulo_eleitoral('107381280116')
 '1073 8128 01 16'
->>>
+```
+
+## is_valid_processo_juridico
+
+Verifica se o número de um processo informado por string é válido ou não.
+```python
+>>> from brutils import is_valid_processo_juridico
+>>> is_valid_processo_juridico('10188748220234018200')
+True
+>>> is_valid_processo_juridico('45532346920234025107')
+True
+>>> is_valid_processo_juridico('00000000000000000000')
+False
+>>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
+False
 ```
 
 # Novos Utilitários e Reportar Bugs

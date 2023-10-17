@@ -27,6 +27,7 @@ from brutils.phone import (
     is_valid as is_valid_phone,
     format_phone,
     generate_mobile_phone,
+    generate_landline_phone,
 )
 
 from brutils.license_plate import (
@@ -51,6 +52,7 @@ from brutils.pis import (
 from brutils.legal_process import (
     format_processo_juridico,
     generate_processo_juridico,
+    is_valid_processo_juridico,
     remove_symbols as remove_symbols_processo_juridico,
 )
 

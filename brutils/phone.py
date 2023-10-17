@@ -91,13 +91,28 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
     return cleaned_phone
 
 
+def _generate_ddd_number():  # type() -> str
+    """
+    Generate a valid DDD number.
+    """
+    return f'{"".join([str(randint(1, 9)) for i in range(2)])}'
+
+
 def generate_mobile_phone():
     """
     Generate a valid and random mobile phone number
     """
-    ddd = [str(randint(1, 9)) for i in range(2)]
+    ddd = _generate_ddd_number()
     client_number = [str(randint(0, 9)) for i in range(8)]
 
-    phone_number = f'{"".join(ddd)}9{"".join(client_number)}'
+    phone_number = f'{ddd}9{"".join(client_number)}'
 
     return phone_number
+
+
+def generate_landline_phone():  # type () -> str
+    """
+    Generate a valid and random landline phone number.
+    """
+    ddd = _generate_ddd_number()
+    return f"{ddd}{randint(2,5)}{str(randint(0,9999999)).zfill(7)}"
