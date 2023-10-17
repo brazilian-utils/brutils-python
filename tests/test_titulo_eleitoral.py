@@ -124,6 +124,10 @@ class TestGenerateTituloEleitoral(unittest.TestCase):
 
         self.assertNotEqual(generate_titulo_eleitoral()[10], "10")
 
+        self.assertNotEqual(generate_titulo_eleitoral(state="AC")[11], "10")
+
+        self.assertNotEqual(generate_titulo_eleitoral()[11], "10")
+
 
 if __name__ == "__main__":
     unittest.main()
