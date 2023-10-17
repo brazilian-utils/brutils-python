@@ -65,6 +65,7 @@ False
   - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
   - [generate_mobile_phone](#generate_mobile_phone)
+  - [generate_landline_phone](#generate_landline_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
@@ -291,6 +292,23 @@ Gera um número de telefone móvel válido e aleatório
 '78964850019'
 >>> generate_mobile_phone() 
 '53924997638'
+```
+
+### generate_landline_phone
+
+Gera um número de telefone fixo válido
+
+```python
+>>> from brutils import generate_landline_phone
+>>> generate_landline_phone()
+5929797740
+>>> generate_landline_phone()
+9345561355
+>>> generate_landline_phone()
+1145081947
+>>> generate_landline_phone()
+3138577807
+>>>
 ```
 
 ## Email
