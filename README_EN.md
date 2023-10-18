@@ -60,8 +60,6 @@ False
 - [Phone](#phone)
   - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
-  - [is_valid_mobile_phone](#is_valid_mobile_phone)
-  - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
   - [generate_mobile_phone](#generate_mobile_phone)
   - [generate_landline_phone](#generate_landline_phone)
@@ -239,31 +237,40 @@ Formats a given phone number to a human-presentable format. If it is not a valid
 
 ### is_valid_phone
 
-Check if phone number is valid, can be landline or mobile phone. Numbers only, with area code (DDD) and without the international prefix, formatted as a string. ***For example: +55 48 9999 9999 would become '4899999999'*** This function validates only Brazilian phone numbers and does not verify if the number actually exists.
+Return whether a Brazilian phone number is valid.
+It does not verify if the number actually exists.
+
+```
+is_valid_phone(phone_number, type)
+```
+
+Args
+  - phone_number:
+    * the phone number to be validated
+    * mandatory
+    * digits only, no symbols
+    * without the country code
+    * should include the area code (DDD) with two digits
+    * example: '+55 48 9999 9999' should be used as '4899999999'
+
+  - type:
+    * 'mobile' to validate only mobile numbers
+    * 'landline' to validate only landline phone numbers
+    * if not specified, it validates for either.
+    * optional
+
+Return
+  - bool: True if the phone number is valid. False otherwise.
+
+Example
 
 ```python
 >>> from brutils import is_valid_phone
 >>> is_valid_phone('11994029275')
 True
-```
-
-### is_valid_mobile_phone
-
-Check if mobile phone number is valid. Numbers only, with area code (DDD) and without the international prefix, formatted as a string. ***For example: +55 48 9999 9999 would become '4899999999'*** This function validates only Brazilian phone numbers and does not verify if the number actually exists.
-
-```python
->>> from brutils import is_valid_mobile_phone
->>> is_valid_mobile_phone('11994029275')
+>>> is_valid_mobile_phone('11994029275', 'mobile')
 True
-```
-
-### is_valid_landline_phone
-
-Check if landline phone number is valid. Numbers only, with area code (DDD) and without the international prefix, formatted as a string. ***For example: +55 48 3333 3333 would become '4833333333'.*** This function validates only Brazilian phone numbers and does not verify if the number actually exists.
-
-```python
->>> from brutils import is_valid_landline_phone
->>> is_valid_landline_phone('1938814933')
+>>> is_valid_landline_phone('1938814933', 'landline')
 True
 ```
 
@@ -287,7 +294,7 @@ Generates a valid and random mobile phone number
 '63996408441'
 >>> generate_mobile_phone()
 '78964850019'
->>> generate_mobile_phone() 
+>>> generate_mobile_phone()
 '53924997638'
 ```
 

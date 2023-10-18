@@ -16,7 +16,7 @@ def convert_to_mercosul(license_plate: str) -> Optional[str]:
     Ex: ABC4567 - > ABC4F67
         ABC4*67 - > 'None'
     """
-    if not is_valid_license_plate_old_format(license_plate):
+    if not is_valid_old_format(license_plate):
         return None
 
     digits = [letter for letter in license_plate.upper()]
@@ -34,7 +34,7 @@ def format(license_plate: str) -> Optional[str]:
         ABC123  - > 'None'
     """
     license_plate = license_plate.upper()
-    if is_valid_license_plate_old_format(license_plate):
+    if is_valid_old_format(license_plate):
         return license_plate[0:3] + "-" + license_plate[3:]
     elif is_valid_mercosul(license_plate):
         return license_plate.upper()
@@ -50,12 +50,12 @@ def is_valid(license_plate: str) -> bool:
     Checks wheter license plate is valid according to the old format and
     the Mercosul one.
     """
-    return is_valid_license_plate_old_format(
+    return is_valid_old_format(license_plate) or is_valid_mercosul(
         license_plate
-    ) or is_valid_mercosul(license_plate)
+    )
 
 
-def is_valid_license_plate_old_format(license_plate: str) -> bool:
+def is_valid_old_format(license_plate: str) -> bool:
     """
     Checks whether a string matches the old format of Brazilian license plate.
     """
@@ -105,7 +105,7 @@ def get_format(license_plate: str) -> Optional[str]:
         value[None]: For invalid license plates
     """
 
-    if is_valid_license_plate_old_format(license_plate):
+    if is_valid_old_format(license_plate):
         return "LLLNNNN"
 
     if is_valid_mercosul(license_plate):
