@@ -87,6 +87,8 @@ False
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
   - [is_valid_processo_juridico](#is_valid_processo_juridico)
+- [Título Eleitoral](#titulo-eleitoral)
+  - [is_valid_titulo_eleitoral](#is_valid_titulo_eleitoral)
 
 ## CPF
 
@@ -572,6 +574,18 @@ False
 >>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
 False
 >>>
+```
+
+## Titulo Eleitoral
+
+### is_valid_titulo_eleitoral
+
+Verifica se o número do Título Eleitoral brasileiro é valido. Apenas números, formatados como string. Não verifica se o Título realmente existe.
+
+```python
+>>> from brutils import is_valid_titulo_eleitoral
+>>> is_valid_titulo_eleitoral('123456789011')
+False
 ```
 
 # Novos Utilitários e Reportar Bugs

@@ -86,6 +86,8 @@ False
   - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
   - [generate_processo_juridico](#generate_processo_juridico)
   - [is_valid_processo_juridico](#is_valid_processo_juridico)
+- [Título Eleitoral](#titulo-eleitoral)
+  - [is_valid_titulo_eleitoral](#is_valid_titulo_eleitoral)
 
 ## CPF
 
@@ -580,6 +582,18 @@ False
 >>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
 False
 >>>
+```
+
+## Titulo Eleitoral
+
+### is_valid_titulo_eleitoral
+
+Checks whether the Brazilian Voter ID number is valid. Accepts only numbers, formatted as a string. It does not verify whether the ID actually exists.
+
+```python
+>>> from brutils import is_valid_titulo_eleitoral
+>>> is_valid_titulo_eleitoral('123456789011')
+False
 ```
 
 # Feature Request and Bug Report
