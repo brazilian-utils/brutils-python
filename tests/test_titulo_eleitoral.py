@@ -20,7 +20,7 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
         # test an invalid titulo eleitoral number (dv1 & UF fail)
         invalid_titulo = "123456789011"
         self.assertFalse(is_valid_titulo_eleitoral(invalid_titulo))
-    
+
     def test_invalid_length(self):
         # Test an invalid length for titulo eleitoral
         invalid_length_short = "12345678901"
@@ -117,38 +117,61 @@ class TestGenerateTituloEleitoral(unittest.TestCase):
 
         # Validate digits
 
-        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
-            generate_titulo_eleitoral(state="MG"))[0]), "0")
-        
-        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
-            generate_titulo_eleitoral(state="SP"))[0]), "0")
-        
-        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
-            generate_titulo_eleitoral(state="AC"))[0]), "10")   
-        
-        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
-            generate_titulo_eleitoral())[0]), "10")
-        
-        actual = generate_titulo_eleitoral(state='sp')
+        self.assertNotEqual(
+            _calculate_dv1(
+                _get_titulo_eleitoral_parts(
+                    generate_titulo_eleitoral(state="MG")
+                )[0]
+            ),
+            "0",
+        )
+
+        self.assertNotEqual(
+            _calculate_dv1(
+                _get_titulo_eleitoral_parts(
+                    generate_titulo_eleitoral(state="SP")
+                )[0]
+            ),
+            "0",
+        )
+
+        self.assertNotEqual(
+            _calculate_dv1(
+                _get_titulo_eleitoral_parts(
+                    generate_titulo_eleitoral(state="AC")
+                )[0]
+            ),
+            "10",
+        )
+
+        self.assertNotEqual(
+            _calculate_dv1(
+                _get_titulo_eleitoral_parts(generate_titulo_eleitoral())[0]
+            ),
+            "10",
+        )
+
+        actual = generate_titulo_eleitoral(state="sp")
         dv1 = _calculate_dv1(_get_titulo_eleitoral_parts(actual)[0])
         dig = _get_titulo_eleitoral_parts(actual)[2]
-          
+
         self.assertTrue(_verify_dv1(dv1, "01", dig)[0])
         self.assertTrue(_verify_dv2("01", _verify_dv1(dv1, "01", dig)[1], dig))
-        
-        actual = generate_titulo_eleitoral(state='mg')
+
+        actual = generate_titulo_eleitoral(state="mg")
         dv1 = _calculate_dv1(_get_titulo_eleitoral_parts(actual)[0])
         dig = _get_titulo_eleitoral_parts(actual)[2]
-          
+
         self.assertTrue(_verify_dv1(dv1, "02", dig)[0])
         self.assertTrue(_verify_dv2("02", _verify_dv1(dv1, "02", dig)[1], dig))
 
         actual = generate_titulo_eleitoral()
         dv1 = _calculate_dv1(_get_titulo_eleitoral_parts(actual)[0])
         dig = _get_titulo_eleitoral_parts(actual)[2]
-          
+
         self.assertTrue(_verify_dv1(dv1, "28", dig)[0])
         self.assertTrue(_verify_dv2("28", _verify_dv1(dv1, "28", dig)[1], dig))
-                
+
+
 if __name__ == "__main__":
     unittest.main()
