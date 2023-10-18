@@ -51,53 +51,56 @@ def generate_titulo_eleitoral(state="") -> str:
         base_sum_d1 = sum(
             digit * weight for digit, weight in zip(base_digits, WEIGHTS)
         )
-        d1 = base_sum_d1 % 11
-        if d1 == 0 and state in ["SP", "MG"]:
-            d1 = 1
-        if d1 == 10:
-            d1 = 0
-        else:
-            d1
+        d1 = base_sum_d1 % 11 
+
 
         ufs = list(map(int, UFs[state] + str(d1)))
         base_sum_d2 = sum(uf * weight for uf, weight in zip(ufs, WEIGHTS[5:]))
         d2 = base_sum_d2 % 11
-        if d2 == 0 and state in ["SP", "MG"]:
-            d2 = 1
-            titulo = f"{base}{UFs[state]}{d1}{d2}"
-            return titulo
-        if d2 == 10:
-            d2 = 0
-            return f"{base}{UFs[state]}{d1}{d2}"
+        
+        if _verify_dv1(d1, UFs[state], list(str(d1) + str(d2)))[0] == True:
+            d1
         else:
+            d1 = _verify_dv1(d1, UFs[state], list(str(d1) + str(d2)))[1]
+            d1
+      
+        if _verify_dv2(UFs[state], d1, list(str(d1) + str(d2)))[0] == True:
             d2
-            titulo = f"{base}{UFs[state]}{d1}{d2}"
-            return titulo
-    else:
+        else: 
+            d2 = _verify_dv2(UFs[state], d1, list(str(d1) + str(d2)))[1]
+            d2
+            
+        return f"{base}{UFs[state]}{d1}{d2}"
+    
+    elif state == "":
         base = str(randint(0, 99999999)).zfill(8)
         base_digits = list(map(int, base))
         base_sum_d1 = sum(
             digit * weight for digit, weight in zip(base_digits, WEIGHTS)
         )
         d1 = base_sum_d1 % 11
-        if d1 == 10:
-            d1 = 0
-        else:
-            d1
+        
         foreigners = list(map(int, (str(28) + str(d1))))
         base_sum_d2 = sum(
             foreigner * weight
             for foreigner, weight in zip(foreigners, WEIGHTS[5:])
         )
         d2 = base_sum_d2 % 11
-        if d2 == 10:
-            d2 = 0
-            titulo = f"{base}{28}{d1}{d2}"
-            return titulo
+        
+        if _verify_dv1(d1, "28", list(str(d1) + str(d2)))[0] == True:
+            d1
         else:
+            d1 = _verify_dv1(d1, "28", list(str(d1) + str(d2)))[1]
+            d1
+      
+        if _verify_dv2("28", d1, list(str(d1) + str(d2)))[0] == True:
             d2
-            titulo = f"{base}{28}{d1}{d2}"
-            return titulo
+        else: 
+            d2 = _verify_dv2("28", d1, list(str(d1) + str(d2)))[1]
+            d2
+            
+        return f"{base}{28}{d1}{d2}"
+     
 
 
 def is_valid_titulo_eleitoral(numero_titulo: str):
@@ -241,7 +244,7 @@ def _verify_dv1(dv1, uf, dig_verifiers):
         dv1 = 0
 
     # verify dv1
-    return int(dig_verifiers[0]) == dv1
+    return int(dig_verifiers[0]) == dv1, dv1
 
 
 def _verify_dv2(uf, dv1, dig_verifiers):
@@ -265,7 +268,11 @@ def _verify_dv2(uf, dv1, dig_verifiers):
     if uf in ["01", "02"] and dv2 == 0:
         dv2 = 1
 
-    return int(dig_verifiers[1]) == dv2
+    # edge case: dv2 == 10, declare as zero instead  
+    if dv2 == 10:
+        dv2 = 0
+
+    return int(dig_verifiers[1]) == dv2, dv2
 
 
 def _verify_uf(uf):

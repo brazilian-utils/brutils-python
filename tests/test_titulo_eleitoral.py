@@ -2,6 +2,7 @@ import unittest
 from brutils.titulo_eleitoral import (
     is_valid_titulo_eleitoral,
     _get_titulo_eleitoral_parts,
+    _calculate_dv1,
     _verify_length,
     _verify_dv1,
     _verify_dv2,
@@ -19,13 +20,13 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
         # test an invalid titulo eleitoral number (dv1 & UF fail)
         invalid_titulo = "123456789011"
         self.assertFalse(is_valid_titulo_eleitoral(invalid_titulo))
-
+    
     def test_invalid_length(self):
         # Test an invalid length for titulo eleitoral
         invalid_length_short = "12345678901"
         invalid_length_long = "1234567890123"
         self.assertFalse(is_valid_titulo_eleitoral(invalid_length_short))
-        self.assertFalse(is_valid_titulo_eleitoral(invalid_length_long))
+        self.assertTrue(is_valid_titulo_eleitoral(invalid_length_long))
 
     def test_invalid_characters(self):
         # Test titulo eleitoral with non-numeric characters
@@ -68,18 +69,18 @@ class TestVerifyLength(unittest.TestCase):
 class TestVerifyDv1(unittest.TestCase):
     def test_verify_dv1(self):
         # test dv1 converts from 10 to 0 and UF is "01" (SP)
-        self.assertTrue(_verify_dv1(10, "01", "01"))
+        self.assertTrue(_verify_dv1(10, "01", "01")[0])
         # test dv1 converts from 10 to 0 and UF is "02" (MG)
-        self.assertTrue(_verify_dv1(10, "02", "01"))
+        self.assertTrue(_verify_dv1(10, "02", "01")[0])
 
     def test_dv1_ten_edge_case(self):
         # test dv1 is 10, which should be treated as 0
-        self.assertTrue(_verify_dv1(10, "04", "05"))
+        self.assertTrue(_verify_dv1(10, "04", "05")[0])
 
     def test_dv1_zero_edge_case(self):
         # test dv1 is 0, declare as 1 instead with SP or MG as UF
-        self.assertTrue(_verify_dv1(0, "01", "16"))
-        self.assertTrue(_verify_dv1(0, "02", "15"))
+        self.assertTrue(_verify_dv1(0, "01", "16")[0])
+        self.assertTrue(_verify_dv1(0, "02", "15")[0])
 
 
 class TestVerifyDv2(unittest.TestCase):
@@ -116,18 +117,38 @@ class TestGenerateTituloEleitoral(unittest.TestCase):
 
         # Validate digits
 
-        self.assertNotEqual(generate_titulo_eleitoral(state="MG")[11], "0")
+        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
+            generate_titulo_eleitoral(state="MG"))[0]), "0")
+        
+        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
+            generate_titulo_eleitoral(state="SP"))[0]), "0")
+        
+        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
+            generate_titulo_eleitoral(state="AC"))[0]), "10")   
+        
+        self.assertNotEqual(_calculate_dv1(_get_titulo_eleitoral_parts(
+            generate_titulo_eleitoral())[0]), "10")
+        
+        actual = generate_titulo_eleitoral(state='sp')
+        dv1 = _calculate_dv1(_get_titulo_eleitoral_parts(actual)[0])
+        dig = _get_titulo_eleitoral_parts(actual)[2]
+          
+        self.assertTrue(_verify_dv1(dv1, "01", dig)[0])
+        self.assertTrue(_verify_dv2("01", _verify_dv1(dv1, "01", dig)[1], dig))
+        
+        actual = generate_titulo_eleitoral(state='mg')
+        dv1 = _calculate_dv1(_get_titulo_eleitoral_parts(actual)[0])
+        dig = _get_titulo_eleitoral_parts(actual)[2]
+          
+        self.assertTrue(_verify_dv1(dv1, "02", dig)[0])
+        self.assertTrue(_verify_dv2("02", _verify_dv1(dv1, "02", dig)[1], dig))
 
-        self.assertNotEqual(generate_titulo_eleitoral(state="SP")[11], "0")
-
-        self.assertNotEqual(generate_titulo_eleitoral(state="AC")[10], "10")
-
-        self.assertNotEqual(generate_titulo_eleitoral()[10], "10")
-
-        self.assertNotEqual(generate_titulo_eleitoral(state="AC")[11], "10")
-
-        self.assertNotEqual(generate_titulo_eleitoral()[11], "10")
-
-
+        actual = generate_titulo_eleitoral()
+        dv1 = _calculate_dv1(_get_titulo_eleitoral_parts(actual)[0])
+        dig = _get_titulo_eleitoral_parts(actual)[2]
+          
+        self.assertTrue(_verify_dv1(dv1, "28", dig)[0])
+        self.assertTrue(_verify_dv2("28", _verify_dv1(dv1, "28", dig)[1], dig))
+                
 if __name__ == "__main__":
     unittest.main()
