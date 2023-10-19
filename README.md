@@ -92,28 +92,64 @@ False
 
 ### is_valid_cpf
 
-Verifica se o CPF é valido. Apenas números, formatados como string. Não verifica se o CPF existe.
+Retorna se os dígitos de verificação do CPF fornecido
+correspondem ao seu número base.
+
+Esta função não verifica a existência do CPF; ela apenas
+valida o formato da string.
+
+Argumentos:
+    cpf (str): O CPF a ser validado, uma string de 11 dígitos
+
+Retorna:
+    bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
+          Falso caso contrário.
 
 ```python
 >>> from brutils import is_valid_cpf
+>>> is_valid_cpf("82178537464")
+True
 >>> is_valid_cpf('00011122233')
 False
 ```
 
 ### format_cpf
 
-Formata o CPF. Retorna None se o CPF for inválido.
+Formate um CPF (Cadastro de Pessoa Física brasileiro) para exibição visual.
+
+Esta função recebe uma string de CPF contendo apenas números como entrada e
+adiciona símbolos de formatação padrão para exibição.
+
+Argumentos:
+    cpf (str): Uma string de CPF contendo apenas números.
+
+Retorna:
+    str: O CPF formatado com símbolos visuais se for válido,
+         None se não for válido.
+
+Exemplo:
 
 ```python
 >>> from brutils import format_cpf
->>> format_cpf('11144477735')
-'111.444.777-35'
+>>> format_cpf('82178537464')
+'821.785.374-64'
+>>> format_cpf("55550207753")
+'555.502.077-53'
 ```
 
 ### remove_symbols_cpf
 
-Remove os símbolos de formatação do CPF e retorna somente números. Filtra apenas os símbolos
-utilizados para a validação do CPF. Propositalmente não remove outros símbolos.
+Remove símbolos específicos de uma string de CPF (Cadastro de Pessoa Física
+brasileiro).
+
+Esta função recebe como entrada uma string de CPF e remove todas as
+ocorrências dos caracteres '.', '-' dela.
+
+Argumentos:
+    cpf (str): A string de CPF contendo os símbolos a serem removidos.
+
+Retorna:
+    str: Uma nova string com os símbolos especificados removidos.
 
 ```python
 >>> from brutils import remove_symbols_cpf
@@ -123,12 +159,19 @@ utilizados para a validação do CPF. Propositalmente não remove outros símbol
 
 ### generate_cpf
 
-Gera um CPF válido aleatório.
+Gerar uma string de dígitos de CPF válida aleatória.
+
+Retorna:
+    str: Um CPF válido gerado aleatoriamente.
+
+Exemplo:
 
 ```python
 >>> from brutils import generate_cpf
 >>> generate_cpf()
 '17433964657'
+>>> generate_cpf()
+"10895948109"
 ```
 
 ## CNPJ
@@ -208,14 +251,14 @@ Exemplo:
 
 ### generate_cnpj
 
-Gera uma sequência de dígitos CNPJ válida aleatória. Um número de filial
+Gera uma string de dígitos CNPJ válida aleatória. Um número de filial
 opcional pode ser fornecido; o padrão é 1.
 
 Argumentos:
     branch (int): Um número de filial opcional a ser incluído no CNPJ.
 
 Retorna:
-    str: Uma sequência CNPJ válida gerada aleatoriamente.
+    str: Um CNPJ válido gerado aleatoriamente.
 
 Exemplo:
 

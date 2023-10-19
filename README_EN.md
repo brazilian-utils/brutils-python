@@ -91,29 +91,67 @@ False
 
 ### is_valid_cpf
 
-Check if CPF is valid. Numbers only, formatted as strings. Does not check if CPF exists.
+Returns whether or not the verifying checksum digits of the given CPF
+(Brazilian Individual Taxpayer Number) match its base number.
+
+This function does not verify the existence of the CPF; it only
+validates the format of the string.
+
+Args:
+    cpf (str): The CPF to be validated, a 11-digit string
+
+Returns:
+    bool: True if the checksum digits match the base number,
+          False otherwise.
 
 ```python
 >>> from brutils import is_valid_cpf
+>>> is_valid_cpf("82178537464")
+True
 >>> is_valid_cpf('00011122233')
 False
 ```
 
 ### format_cpf
 
-Format CPF. Returns None if CPF is invalid.
+Format a CPF (Brazilian Individual Taxpayer Number) for display with visual
+aid symbols.
+
+This function takes a numbers-only CPF string as input and adds standard
+formatting visual aid symbols for display.
+
+Args:
+    cpf (str): A numbers-only CPF string.
+
+Returns:
+    str: A formatted CPF string with standard visual aid symbols or
+         None if the input is invalid.
+
+Example:
 
 ```python
 >>> from brutils import format_cpf
->>> format_cpf('11144477735')
-'111.444.777-35'
+>>> format_cpf('82178537464')
+'821.785.374-64'
+>>> format_cpf("55550207753")
+'555.502.077-53'
 ```
 
 ### remove_symbols_cpf
 
-Remove formatting symbols from CPF and return only digits.
-It only filters out the symbols used for CPF validation.
-It purposefully doesn't remove other symbols.
+Removes specific symbols from a CPF (Brazilian Individual Taxpayer Number)
+string.
+
+This function takes a CPF string as input and removes all occurrences of
+the '.', '-' characters from it.
+
+Args:
+    cpf (str): The CPF string containing symbols to be removed.
+
+Returns:
+    str: A new string with the specified symbols removed.
+
+Example:
 
 ```python
 >>> from brutils import remove_symbols_cpf
@@ -123,20 +161,28 @@ It purposefully doesn't remove other symbols.
 
 ### generate_cpf
 
-Generate a valid random CPF.
+Generate a random valid CPF (Brazilian Individual Taxpayer Number) digit string.
+
+Returns:
+    str: A random valid CPF string.
+
+Example:
 
 ```python
 >>> from brutils import generate_cpf
 >>> generate_cpf()
 '17433964657'
+>>> generate_cpf()
+"10895948109"
 ```
 
 ## CNPJ
 
 ### is_valid_cnpj
 
-Returns whether or not the verifying checksum digits of the given `cnpj`
-match its base number. Input should be a digit string of proper length.
+Returns whether or not the verifying checksum digits of the given CNPJ
+(Brazilian Company Registration Number) match its base number.
+Input should be a digit string of proper length.
 
 This function does not verify the existence of the CNPJ; it only
 validates the format of the string.
@@ -207,8 +253,8 @@ Example:
 
 ### generate_cnpj
 
-Generates a random valid CNPJ digit string. An optional branch number
-parameter can be given; it defaults to 1.
+Generates a random valid CNPJ (Brazilian Company Registration Number) digit
+string. An optional branch number parameter can be given; it defaults to 1.
 
 Args:
     branch (int): An optional branch number to be included in the CNPJ.

@@ -64,8 +64,7 @@ def display(cnpj):  # type: (str) -> str
     visual display.
 
     This function takes a CNPJ string as input, validates its format, and
-    formats it with standard visual aid symbols
-    for display purposes.
+    formats it with standard visual aid symbols for display purposes.
 
     Args:
         cnpj (str): The CNPJ string to be formatted for display.
@@ -163,13 +162,13 @@ def validate(cnpj):  # type: (str) -> bool
 def is_valid(cnpj):  # type: (str) -> bool
     """
     Returns whether or not the verifying checksum digits of the given `cnpj`
-    match its base number. Input should be a digit string of proper length.
+    match its base number.
 
     This function does not verify the existence of the CNPJ; it only
     validates the format of the string.
 
     Args:
-        cnpj (str): The CNPJ to be validated.
+        cnpj (str): The CNPJ to be validated, a 14-digit string
 
     Returns:
         bool: True if the checksum digits match the base number,
