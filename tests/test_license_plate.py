@@ -1,6 +1,6 @@
 from brutils.license_plate import (
     remove_symbols,
-    is_valid_license_plate_old_format,
+    is_valid_old_format,
     is_valid_mercosul,
     is_valid,
     convert_to_mercosul,
@@ -39,27 +39,27 @@ class TestLicensePlate(TestCase):
         self.assertTrue(is_valid("ABC4E67"))
         self.assertTrue(is_valid("XXX9X99"))
 
-    def test_is_valid_license_plate_old_format(self):
+    def test_is_valid_old_format(self):
         # When license plate is valid, returns True
-        self.assertTrue(is_valid_license_plate_old_format("ABC1234"))
-        self.assertTrue(is_valid_license_plate_old_format("abc1234"))
+        self.assertTrue(is_valid_old_format("ABC1234"))
+        self.assertTrue(is_valid_old_format("abc1234"))
 
         # When license plate is valid with whitespaces, returns True
-        self.assertTrue(is_valid_license_plate_old_format(" ABC1234    "))
+        self.assertTrue(is_valid_old_format(" ABC1234    "))
 
         # When license plate is not string, returns False
-        self.assertFalse(is_valid_license_plate_old_format(123456))
+        self.assertFalse(is_valid_old_format(123456))
 
         # When license plate is invalid with special characters, returns False
-        self.assertFalse(is_valid_license_plate_old_format("ABC-1234"))
+        self.assertFalse(is_valid_old_format("ABC-1234"))
 
         # When license plate is invalid with numbers and letters out of order,
         # returns False
-        self.assertFalse(is_valid_license_plate_old_format("A1CA23W"))
+        self.assertFalse(is_valid_old_format("A1CA23W"))
 
         # When license plate is invalid with new format, returns False
-        self.assertFalse(is_valid_license_plate_old_format("ABC1D23"))
-        self.assertFalse(is_valid_license_plate_old_format("abcd123"))
+        self.assertFalse(is_valid_old_format("ABC1D23"))
+        self.assertFalse(is_valid_old_format("abcd123"))
 
     def test_is_valid_license_plate_mercosul(self):
         # When license plate is not string, returns False
@@ -164,9 +164,7 @@ class TestLicensePlate(TestCase):
             self.assertTrue(is_valid_mercosul(generate(format="LLLNLNN")))
 
         for _ in range(10_000):
-            self.assertTrue(
-                is_valid_license_plate_old_format(generate(format="LLLNNNN"))
-            )
+            self.assertTrue(is_valid_old_format(generate(format="LLLNNNN")))
 
         # When no format is provided, returns a valid Mercosul license plate
         self.assertTrue(is_valid_mercosul(generate()))

@@ -61,8 +61,6 @@ False
 - [Phone](#phone)
   - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
-  - [is_valid_mobile_phone](#is_valid_mobile_phone)
-  - [is_valid_landline_phone](#is_valid_landline_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
   - [generate_mobile_phone](#generate_mobile_phone)
   - [generate_landline_phone](#generate_landline_phone)
@@ -236,39 +234,40 @@ Formata um numero de telefone recebido para um formato apresentavel humanamente.
 
 ### is_valid_phone
 
-Verifica se o número de telefone é valido, podendo ser telefone fixo ou celular. Apenas números,
-com DDD e sem o prefixo internacional, formatados como string.
-***Exemplo: +55 48 9999 9999 deve ser chamado como is_valid_phone('4899999999').*** Esta função
-valida apenas números de telefone brasileiros e não verifica se o número realmente existe.
+Retornar se um número de telefone brasileiro é valido.
+Não verifica se o número realmente existe.
+
+```
+is_valid_phone(phone_number, type)
+```
+
+Argumentos
+  - phone_number (str):
+    * o número de telefone a ser validado
+    * obrigatório
+    * apenas dígitos, sem símbolos
+    * sem o código do país
+    * deve incluir o número de DDD com dois dígitos
+    * exemplo: '+55 48 9999 9999' deve ser utilizado como '4899999999'
+
+  - type (str):
+    * 'mobile' para validar apenas números de celular
+    * 'landline' para validar apenas números de telefone fixo
+    * caso não especificado, valida para um para o outro.
+    * opcional
+
+Retorno
+  - bool: True se o número é válido, False caso contrário.
+
+Example
 
 ```python
 >>> from brutils import is_valid_phone
 >>> is_valid_phone('11994029275')
 True
-```
-
-### is_valid_mobile_phone
-
-Verifica se o número de celular é valido. Apenas números, com DDD e sem o prefixo internacional,
-formatados como string.***Exemplo: +55 48 9999 9999 ficaria '4899999999'.*** Esta função valida
-apenas números de celular brasileiros e não verifica se o número realmente existe.
-
-```python
->>> from brutils import is_valid_mobile_phone
->>> is_valid_mobile_phone('11994029275')
+>>> is_valid_mobile_phone('11994029275', 'mobile')
 True
-```
-
-### is_valid_landline_phone
-
-Verifica se o número de telefone fixo é valido. Apenas números, com DDD e sem o prefixo
-internacional, formatados como string. ***Exemplo: +55 48 3333 3333 ficaria '4833333333'.***
-Esta função valida apenas números de telefones fixos brasileiros e não verifica se o número
-realmente existe.
-
-```python
->>> from brutils import is_valid_landline_phone
->>> is_valid_landline_phone('1938814933')
+>>> is_valid_landline_phone('1938814933', 'landline')
 True
 ```
 
@@ -292,7 +291,7 @@ Gera um número de telefone móvel válido e aleatório
 '63996408441'
 >>> generate_mobile_phone()
 '78964850019'
->>> generate_mobile_phone() 
+>>> generate_mobile_phone()
 '53924997638'
 ```
 
@@ -317,7 +316,7 @@ Gera um número de telefone fixo válido
 
 ### is_valid_email
 
-Verificar se uma string corresponde a um e-mail válido. As regras para validar um endereço de e-mail geralmente seguem as especificações definidas pelo RFC 5322 (atualizado pelo RFC 5322bis), que é o padrão amplamente aceito para formatos de endereços de e-mail. 
+Verificar se uma string corresponde a um e-mail válido. As regras para validar um endereço de e-mail geralmente seguem as especificações definidas pelo RFC 5322 (atualizado pelo RFC 5322bis), que é o padrão amplamente aceito para formatos de endereços de e-mail.
 
 ```python
 from brutils import is_valid_email
@@ -368,7 +367,7 @@ False
 ### is_valid_license_plate_mercosul
 
 Verifica se uma string correspondente a um número da placa é válido, conforme as novas
-normas do Mercosul, isto é, seguindo o padrão LLLNLNN. 
+normas do Mercosul, isto é, seguindo o padrão LLLNLNN.
 ***Exemplo: ABC4E67.***
 
 ```python
