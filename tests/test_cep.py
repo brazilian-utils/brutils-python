@@ -1,9 +1,10 @@
+from unittest import TestCase, main
 from unittest.mock import patch
-from unittest import TestCase
+
 from brutils.cep import (
-    is_valid,
     format_cep,
     generate,
+    is_valid,
     remove_symbols,
 )
 
@@ -49,3 +50,7 @@ class TestCEP(TestCase):
         for _ in range(10_000):
             self.assertIs(is_valid(generate()), True)
         # assert format(generate()) is not None
+
+
+if __name__ == "__main__":
+    main()

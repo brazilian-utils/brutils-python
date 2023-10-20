@@ -1,14 +1,15 @@
-import unittest
+from unittest import TestCase, main
+
 from brutils.titulo_eleitoral import (
-    is_valid_titulo_eleitoral,
     _get_titulo_eleitoral_parts,
-    _verify_length,
     _verify_dv1,
     _verify_dv2,
+    _verify_length,
+    is_valid_titulo_eleitoral,
 )
 
 
-class TestIsValidTituloEleitoral(unittest.TestCase):
+class TestIsValidTituloEleitoral(TestCase):
     def test_valid_titulo_eleitoral(self):
         # test a valid titulo eleitoral number
         valid_titulo = "217633460930"
@@ -38,8 +39,6 @@ class TestIsValidTituloEleitoral(unittest.TestCase):
         valid_special = "3244567800167"
         self.assertTrue(is_valid_titulo_eleitoral(valid_special))
 
-
-class TestSplitString(unittest.TestCase):
     def test_get_titulo_eleitoral_parts(self):
         input_string = "12345678AB12"
         (
@@ -51,20 +50,16 @@ class TestSplitString(unittest.TestCase):
         self.assertEqual(tit_unid_fed, "AB")
         self.assertEqual(tit_dig_verifiers, "12")
 
-
-class TestVerifyLength(unittest.TestCase):
-    def test_valid_length(self):
+    def test_valid_length_verify(self):
         numero_titulo = "123456789012"
         tit_unid_fed = "AB"
         self.assertTrue(_verify_length(numero_titulo, tit_unid_fed))
 
-    def test_invalid_length(self):
+    def test_invalid_length_verify(self):
         numero_titulo = "12345678AB123"  # Invalid length
         tit_unid_fed = "AB"
         self.assertFalse(_verify_length(numero_titulo, tit_unid_fed))
 
-
-class TestVerifyDv1(unittest.TestCase):
     def test_verify_dv1(self):
         # test dv1 converts from 10 to 0 and UF is "01" (SP)
         self.assertTrue(_verify_dv1(10, "01", "01"))
@@ -80,8 +75,6 @@ class TestVerifyDv1(unittest.TestCase):
         self.assertTrue(_verify_dv1(0, "01", "16"))
         self.assertTrue(_verify_dv1(0, "02", "15"))
 
-
-class TestVerifyDv2(unittest.TestCase):
     def test_verify_dv2(self):
         self.assertTrue(_verify_dv2("03", 6, "01"))
 
@@ -93,4 +86,4 @@ class TestVerifyDv2(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

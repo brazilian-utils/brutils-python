@@ -1,15 +1,16 @@
+from unittest import TestCase, main
+from unittest.mock import patch
+
 from brutils.license_plate import (
-    remove_symbols,
-    is_valid_old_format,
-    is_valid_mercosul,
-    is_valid,
     convert_to_mercosul,
     format,
-    get_format,
     generate,
+    get_format,
+    is_valid_mercosul,
+    is_valid_old_format,
+    is_valid,
+    remove_symbols,
 )
-from unittest.mock import patch
-from unittest import TestCase, main
 
 
 class TestLicensePlate(TestCase):
