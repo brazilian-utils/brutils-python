@@ -7,18 +7,46 @@ from random import randint
 
 def remove_symbols(dirty):  # type: (str) -> str
     """
-    Filters out CEP formatting symbols. Symbols that are not used
-    in the CEP formatting are left unfiltered on purpose so that
-    if fails other tests, because their presence indicate that the
-    input was somehow corrupted.
+    Removes specific symbols from a given CEP (Postal Code).
+
+    This function takes a CEP (Postal Code) as input and removes all occurrences
+    of the '.' and '-' characters from it.
+
+    Args:
+        cep (str): The input CEP (Postal Code) containing symbols to be removed.
+
+    Returns:
+        str: A new string with the specified symbols removed.
+
+    Example:
+        >>> remove_symbols("123-45.678.9")
+        "123456789"
+        >>> remove_symbols("abc.xyz")
+        "abcxyz"
     """
+
     return "".join(filter(lambda char: char not in ".-", dirty))
 
 
 def format_cep(cep):  # type: (str) -> str
     """
-    Will format an adequately formatted numbers-only CEP string,
-    adding in standard formatting visual aid symbols for display.
+    Formats a Brazilian CEP (Postal Code) into a standard format.
+
+    This function takes a CEP (Postal Code) as input and, if it is a valid
+    8-digit CEP, formats it into the standard "12345-678" format.
+
+    Args:
+        cep (str): The input CEP (Postal Code) to be formatted.
+
+    Returns:
+        str: The formatted CEP in the "12345-678" format if it's valid,
+             None if it's not valid.
+
+    Example:
+        >>> format_cep("12345678")
+        "12345-678"
+        >>> format_cep("12345")
+        None
     """
 
     if not is_valid(cep):
@@ -33,12 +61,29 @@ def format_cep(cep):  # type: (str) -> str
 
 def is_valid(cep):  # type: (str) -> bool
     """
-    Returns when CEP is valid, input should be a digit
-    string of proper length. Doesn't validate if it's real,
-    'cause only the "Correios" Base does.
+    Checks if a CEP (Postal Code) is valid.
 
-    Source: https://en.wikipedia.org/wiki/Código_de_Endereçamento_Postal
+    To be considered valid, the input must be a string containing exactly 8
+    digits.
+    This function does not verify if the CEP is a real postal code; it only
+    validates the format of the string.
 
+    Args:
+        cep (str): The string containing the CEP to be checked.
+
+    Returns:
+        bool: True if the CEP is valid (8 digits), False otherwise.
+
+    Example:
+        >>> is_valid("12345678")
+        True
+        >>> is_valid("12345")
+        False
+        >>> is_valid("abcdefgh")
+        False
+
+    Source:
+        https://en.wikipedia.org/wiki/Código_de_Endereçamento_Postal
     """
 
     return isinstance(cep, str) and len(cep) == 8 and cep.isdigit()
@@ -46,9 +91,16 @@ def is_valid(cep):  # type: (str) -> bool
 
 def generate():  # type: () -> str
     """
-    Generates a random valid CEP digit string. An optional branch
-    number parameter can be given, it defaults to 1.
+    Generates a random 8-digit CEP (Postal Code) number as a string.
+
+    Returns:
+        str: A randomly generated 8-digit number.
+
+    Example:
+        >>> generate()
+        "12345678"
     """
+
     generated_number = ""
 
     for _ in range(0, 8):

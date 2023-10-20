@@ -91,29 +91,64 @@ False
 
 ### is_valid_cpf
 
-Check if CPF is valid. Numbers only, formatted as strings. Does not check if CPF exists.
+Returns whether or not the verifying checksum digits of the given CPF
+(Brazilian Individual Taxpayer Number) match its base number.
+This function does not verify the existence of the CPF; it only
+validates the format of the string.
+
+Args:
+  * cpf (str): The CPF to be validated, a 11-digit string
+
+Returns:
+  * bool: True if the checksum digits match the base number,
+          False otherwise.
+
+Example:
 
 ```python
 >>> from brutils import is_valid_cpf
+>>> is_valid_cpf("82178537464")
+True
 >>> is_valid_cpf('00011122233')
 False
 ```
 
 ### format_cpf
 
-Format CPF. Returns None if CPF is invalid.
+Format a CPF (Brazilian Individual Taxpayer Number) for display with visual
+aid symbols. This function takes a numbers-only CPF string as input and adds
+standard formatting visual aid symbols for display.
+
+Args:
+  * cpf (str): A numbers-only CPF string.
+
+Returns:
+  * str: A formatted CPF string with standard visual aid symbols or
+         None if the input is invalid.
+
+Example:
 
 ```python
 >>> from brutils import format_cpf
->>> format_cpf('11144477735')
-'111.444.777-35'
+>>> format_cpf('82178537464')
+'821.785.374-64'
+>>> format_cpf("55550207753")
+'555.502.077-53'
 ```
 
 ### remove_symbols_cpf
 
-Remove formatting symbols from CPF and return only digits.
-It only filters out the symbols used for CPF validation.
-It purposefully doesn't remove other symbols.
+Removes specific symbols from a CPF (Brazilian Individual Taxpayer Number)
+string. This function takes a CPF string as input and removes all occurrences of
+the '.', '-' characters from it.
+
+Args:
+  * cpf (str): The CPF string containing symbols to be removed.
+
+Returns:
+  * str: A new string with the specified symbols removed.
+
+Example:
 
 ```python
 >>> from brutils import remove_symbols_cpf
@@ -123,41 +158,86 @@ It purposefully doesn't remove other symbols.
 
 ### generate_cpf
 
-Generate a valid random CPF.
+Generate a random valid CPF (Brazilian Individual Taxpayer Number) digit string.
+
+Returns:
+  * str: A random valid CPF string.
+
+Example:
 
 ```python
 >>> from brutils import generate_cpf
 >>> generate_cpf()
 '17433964657'
+>>> generate_cpf()
+"10895948109"
 ```
 
 ## CNPJ
 
 ### is_valid_cnpj
 
-Check if CNPJ is valid. Numbers only, formatted as strings. Does not check if CNPJ exists.
+Returns whether or not the verifying checksum digits of the given CNPJ
+(Brazilian Company Registration Number) match its base number.
+Input should be a digit string of proper length.
+This function does not verify the existence of the CNPJ; it only
+validates the format of the string.
+
+Args:
+  * cnpj (str): The CNPJ to be validated.
+
+Returns:
+  * bool: True if the checksum digits match the base number,
+          False otherwise.
+
+Example:
 
 ```python
 >>> from brutils import is_valid_cnpj
+>>> is_valid_cnpj('03560714000142')
+True
 >>> is_valid_cnpj('00111222000133')
 False
 ```
 
 ### format_cnpj
 
-Format CNPJ.
+Formats a CNPJ (Brazilian Company Registration Number) string for visual
+display.
+This function takes a CNPJ string as input, validates its format, and
+formats it with standard visual aid symbols for display purposes.
+
+Args:
+  * cnpj (str): The CNPJ string to be formatted for display.
+
+Returns:
+  * str: The formatted CNPJ with visual aid symbols if it's valid,
+         None if it's not valid.
+
+Example:
 
 ```python
 >>> from brutils import format_cnpj
->>> format_cnpj('00111222000100')
-'00.111.222/0001-00'
+>>> format_cnpj("03560714000142")
+'03.560.714/0001-42'
+>>> format_cnpj("98765432100100")
+None
 ```
 
 ### remove_symbols_cnpj
 
-Remove formatting symbols from CNPJ and return only digits.
-It only filters out the symbols used for CNPJ validation.
-It purposefully doesn't remove other symbols.
+Removes specific symbols from a CNPJ (Brazilian Company Registration Number)
+string.
+This function takes a CNPJ string as input and removes all occurrences of
+the '.', '/' and '-' characters from it.
+
+Args:
+  * cnpj (str): The CNPJ string containing symbols to be removed.
+
+Returns:
+  * str: A new string with the specified symbols removed.
+
+Example:
 
 ```python
 >>> from brutils import remove_symbols_cnpj
@@ -167,19 +247,41 @@ It purposefully doesn't remove other symbols.
 
 ### generate_cnpj
 
-Generate a valid random CNPJ.
+Generates a random valid CNPJ (Brazilian Company Registration Number) digit
+string. An optional branch number parameter can be given; it defaults to 1.
+
+Args:
+  * branch (int): An optional branch number to be included in the CNPJ.
+
+Returns:
+  * str: A randomly generated valid CNPJ string.
+
+Example:
 
 ```python
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
+>>> generate(1234)
+"01745284123455"
 ```
 
 ## CEP
 
 ### is_valid_cep
 
-Check if CEP is valid. Numbers only, formatted as strings. Does not check if CEP exists.
+Checks if a Brazilian CEP (Postal Code) is valid.
+To be considered valid, the input must be a string containing exactly 8 digits.
+This function does not verify if the CEP is a real postal code; it only
+validates the format of the string.
+
+Args:
+  * cep (str): The string containing the CEP to be checked.
+
+Returns:
+  * bool: True if the CEP is valid (8 digits), False otherwise.
+
+Example:
 
 ```python
 >>> from brutils import is_valid_cep
@@ -189,29 +291,59 @@ True
 
 ### format_cep
 
-Format CEP. Returns None if CEP is invalid.
+This function takes a CEP (Postal Code) as input and, if it is a valid
+8-digit CEP, formats it into the standard "12345-678" format.
+
+Args:
+  * cep (str): The input CEP (Postal Code) to be formatted.
+
+Returns:
+  * str: The formatted CEP in the "12345-678" format if it's valid,
+         None if it's not valid.
+
+Example:
 
 ```python
 >>> from brutils import format_cep
->>> format_cpf('01310200')
+>>> format_cep('01310200')
 '01310-200'
+>>> format_cep("12345678")
+"12345-678"
+>>> format_cep("12345")
+None
 ```
 
 ### remove_symbols_cep
 
-Remove formatting symbols from CEP and return only digits.
-It only filters out the symbols used for CEP validation.
-It purposefully doesn't remove other symbols.
+This function takes a CEP (Postal Code) as input and removes all occurrences of
+the '.' and '-' characters from it.
+
+Args:
+  * cep (str): The input CEP (Postal Code) containing symbols to be removed.
+
+Returns:
+  * str: A new string with the specified symbols removed.
+
+Example:
 
 ```python
 >>> from brutils import remove_symbols_cep
 >>> remove_symbols_cep('01310-200')
 '01310200'
+>>> remove_symbols_cep("123-45.678.9")
+"123456789"
+>>> remove_symbols_cep("abc.xyz")
+"abcxyz"
 ```
 
 ### generate_cep
 
-Generate a valid random CEP.
+Generates a random 8-digit CEP (Postal Code) number as a string.
+
+Returns:
+  * str: A randomly generated 8-digit number.
+
+Example:
 
 ```python
 >>> from brutils import generate_cep
@@ -319,7 +451,15 @@ Generates a valid landline phone number
 
 ### is_valid_email
 
-Check if a string corresponds to a valid email. The rules for validating an email address generally follow the specifications defined by RFC 5322 (updated by RFC 5322bis), which is the widely accepted standard for email address formats.
+Check if a string corresponds to a valid email address.
+
+Args:
+  * email (str): The input string to be checked.
+
+Returns:
+  * bool: True if email is a valid email address, False otherwise.
+
+Example:
 
 ```python
 from brutils import is_valid_email
