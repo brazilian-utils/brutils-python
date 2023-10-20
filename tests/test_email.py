@@ -1,8 +1,8 @@
-import unittest
 from brutils import is_valid_email
+from unittest import TestCase, main
 
 
-class TestEmailValidation(unittest.TestCase):
+class TestEmailValidation(TestCase):
     def test_valid_email(self):
         # Valid email addresses
         valid_emails = [
@@ -50,4 +50,4 @@ class TestEmailValidation(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

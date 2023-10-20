@@ -1,16 +1,16 @@
-import unittest
-
 from datetime import datetime
+from unittest import TestCase, main
+
 from brutils.legal_process import (
-    format_processo_juridico,
-    remove_symbols,
-    generate_processo_juridico,
     _checksum,
+    format_processo_juridico,
+    generate_processo_juridico,
     is_valid_processo_juridico,
+    remove_symbols,
 )
 
 
-class TestLegalProcess(unittest.TestCase):
+class TestLegalProcess(TestCase):
     def test_format_processo_juridico(self):
         self.assertEqual(
             format_processo_juridico("23141945820055070079"),
@@ -77,4 +77,4 @@ class TestLegalProcess(unittest.TestCase):
 
 
 if __name__ == "__main__":
-    unittest.main()
+    main()

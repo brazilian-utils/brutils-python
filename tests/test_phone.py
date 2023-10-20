@@ -1,3 +1,4 @@
+from unittest import TestCase, main
 from unittest.mock import patch
 
 from brutils.phone import (
@@ -9,8 +10,6 @@ from brutils.phone import (
     is_valid,
     remove_symbols_phone,
 )
-
-from unittest import TestCase, main
 
 
 class TestPhone(TestCase):

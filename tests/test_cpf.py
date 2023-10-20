@@ -2,15 +2,15 @@ from unittest import TestCase, main
 from unittest.mock import patch
 
 from brutils.cpf import (
-    sieve,
+    _checksum,
+    _hashdigit,
     display,
-    validate,
+    format_cpf,
     generate,
     is_valid,
-    format_cpf,
     remove_symbols,
-    _hashdigit,
-    _checksum,
+    sieve,
+    validate,
 )
 
 
