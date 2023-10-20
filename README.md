@@ -93,17 +93,17 @@ False
 ### is_valid_cpf
 
 Retorna se os dígitos de verificação do CPF fornecido
-correspondem ao seu número base.
-
-Esta função não verifica a existência do CPF; ela apenas
-valida o formato da string.
+correspondem ao seu número base. Esta função não verifica a existência do CPF;
+ela apenas valida o formato da string.
 
 Argumentos:
-    cpf (str): O CPF a ser validado, uma string de 11 dígitos
+  * cpf (str): O CPF a ser validado, uma string de 11 dígitos
 
 Retorna:
-    bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
+  * bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
           Falso caso contrário.
+
+Exemplo:
 
 ```python
 >>> from brutils import is_valid_cpf
@@ -116,15 +116,14 @@ False
 ### format_cpf
 
 Formate um CPF (Cadastro de Pessoa Física brasileiro) para exibição visual.
-
 Esta função recebe uma string de CPF contendo apenas números como entrada e
 adiciona símbolos de formatação padrão para exibição.
 
 Argumentos:
-    cpf (str): Uma string de CPF contendo apenas números.
+  * cpf (str): Uma string de CPF contendo apenas números.
 
 Retorna:
-    str: O CPF formatado com símbolos visuais se for válido,
+  * str: O CPF formatado com símbolos visuais se for válido,
          None se não for válido.
 
 Exemplo:
@@ -140,16 +139,16 @@ Exemplo:
 ### remove_symbols_cpf
 
 Remove símbolos específicos de uma string de CPF (Cadastro de Pessoa Física
-brasileiro).
-
-Esta função recebe como entrada uma string de CPF e remove todas as
+brasileiro). Esta função recebe como entrada uma string de CPF e remove todas as
 ocorrências dos caracteres '.', '-' dela.
 
 Argumentos:
-    cpf (str): A string de CPF contendo os símbolos a serem removidos.
+  * cpf (str): A string de CPF contendo os símbolos a serem removidos.
 
 Retorna:
-    str: Uma nova string com os símbolos especificados removidos.
+  * str: Uma nova string com os símbolos especificados removidos.
+
+Exemplo:
 
 ```python
 >>> from brutils import remove_symbols_cpf
@@ -162,7 +161,7 @@ Retorna:
 Gerar uma string de dígitos de CPF válida aleatória.
 
 Retorna:
-    str: Um CPF válido gerado aleatoriamente.
+  * str: Um CPF válido gerado aleatoriamente.
 
 Exemplo:
 
@@ -179,18 +178,16 @@ Exemplo:
 ### is_valid_cnpj
 
 Verifica se os dígitos de verificação do CNPJ (Cadastro Nacional da Pessoa
-Jurídica) fornecido correspondem ao seu número base.
-A entrada deve ser uma string de dígitos com o comprimento apropriado.
-
-Esta função não verifica a existência do CNPJ; ela só valida o formato da
-string.
+Jurídica) fornecido correspondem ao seu número base. A entrada deve ser uma
+string de dígitos com o comprimento apropriado. Esta função não verifica a
+existência do CNPJ; ela só valida o formato da string.
 
 Argumentos:
-    cnpj (str): O CNPJ a ser validado.
+  * cnpj (str): O CNPJ a ser validado.
 
 Retorna:
-    bool: True se os dígitos de verificação corresponderem ao número base,
-          False caso contrário.
+  * bool: True se os dígitos de verificação corresponderem ao número base,
+        False caso contrário.
 
 Exemplo:
 
@@ -206,15 +203,14 @@ False
 
 Formata uma string de CNPJ (Cadastro Nacional da Pessoa Jurídica) para exibição
 visual.
-
 Esta função recebe uma string de CNPJ como entrada, valida seu formato e a
 formata com símbolos visuais padrão para fins de exibição.
 
 Argumentos:
-    cnpj (str): A string de CNPJ a ser formatada para exibição.
+  * cnpj (str): A string de CNPJ a ser formatada para exibição.
 
 Retorna:
-    str: O CNPJ formatado com símbolos visuais se for válido,
+  * str: O CNPJ formatado com símbolos visuais se for válido,
          None se não for válido.
 
 Exemplo:
@@ -231,15 +227,14 @@ None
 
 Remove símbolos específicos de uma string de CNPJ (Cadastro Nacional da Pessoa
 Jurídica).
-
 Esta função recebe uma string de CNPJ como entrada e remove todas as
 ocorrências dos caracteres '.', '/' e '-' dela.
 
 Argumentos:
-    cnpj (str): A string de CNPJ que contém os símbolos a serem removidos.
+  * cnpj (str): A string de CNPJ que contém os símbolos a serem removidos.
 
 Retorna:
-    str: Uma nova string com os símbolos especificados removidos.
+  * str: Uma nova string com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -255,10 +250,10 @@ Gera uma string de dígitos CNPJ válida aleatória. Um número de filial
 opcional pode ser fornecido; o padrão é 1.
 
 Argumentos:
-    branch (int): Um número de filial opcional a ser incluído no CNPJ.
+  * branch (int): Um número de filial opcional a ser incluído no CNPJ.
 
 Retorna:
-    str: Um CNPJ válido gerado aleatoriamente.
+  * str: Um CNPJ válido gerado aleatoriamente.
 
 Exemplo:
 
@@ -275,16 +270,15 @@ Exemplo:
 ### is_valid_cep
 
 Verifica se um CEP (Código de Endereçamento Postal) brasileiro é válido.
-
 Para que um CEP seja considerado válido, a entrada deve ser uma string contendo
 exatamente 8 dígitos. Esta função não verifica se o CEP é um CEP real, pois
 valida apenas o formato da string.
 
 Args:
-    cep (str): A string contendo o CEP a ser verificado.
+  * cep (str): A string contendo o CEP a ser verificado.
 
 Retorno:
-    bool: True se o CEP for válido (8 dígitos), False caso contrário.
+  * bool: True se o CEP for válido (8 dígitos), False caso contrário.
 
 Exemplo:
 
@@ -301,17 +295,16 @@ False
 ### format_cep
 
 Formata um CEP (Código de Endereçamento Postal) brasileiro em um formato padrão.
-
-Esta função recebe um CEP (Código de Endereçamento Postal) como entrada e, se
-for um CEP válido com 8 dígitos, o formata no formato padrão "12345-678".
+Esta função recebe um CEP como entrada e, se for um CEP válido com 8 dígitos,
+o formata no padrão "12345-678".
 
 Argumentos:
-    cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
-               formatado.
+  * cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
+              formatado.
 
 Retorna:
-    str: O CEP formatado no formato "12345-678" se for válido, None se não for
-         válido.
+  * str: O CEP formatado no formato "12345-678" se for válido, None se não for
+        válido.
 
 Example:
 
@@ -328,17 +321,15 @@ None
 ### remove_symbols_cep
 
 Remove símbolos específicos de um CEP (Código de Endereçamento Postal)
-fornecido.
-
-Esta função recebe um CEP (Código de Endereçamento Postal) como entrada e remove
-todas as ocorrências dos caracteres '.' e '-' dele.
+fornecido. Esta função recebe um CEP como entrada e remove todas as ocorrências
+dos caracteres '.' e '-' dele.
 
 Argumentos:
-    cep (str): O CEP (Código de Endereçamento Postal) de entrada que contém os
-    símbolos a serem removidos.
+  * cep (str): O CEP (Código de Endereçamento Postal) de entrada que contém os
+               símbolos a serem removidos.
 
 Retorna:
-    str: Uma nova string com os símbolos especificados removidos.
+  * str: Uma nova string com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -358,7 +349,7 @@ Gera um número de CEP (Código de Endereçamento Postal) aleatório de 8 dígit
 como uma string.
 
 Retorna:
-    str: Um número de 8 dígitos gerado aleatoriamente.
+  * str: Um número de 8 dígitos gerado aleatoriamente.
 
 Exemplo:
 
@@ -467,15 +458,14 @@ Gera um número de telefone fixo válido
 
 ### is_valid_email
 
-
 Verificar se uma string corresponde a um endereço de e-mail válido.
 
 Argumentos:
-  email (str): A string de entrada a ser verificada.
+  * email (str): A string de entrada a ser verificada.
 
 Retorna:
-  bool: Verdadeiro se o email for um endereço de e-mail válido, Falso
-  caso contrário.
+  * bool: Verdadeiro se o email for um endereço de e-mail válido, Falso
+          caso contrário.
 
 Exemplo:
 

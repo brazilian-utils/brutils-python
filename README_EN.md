@@ -93,16 +93,17 @@ False
 
 Returns whether or not the verifying checksum digits of the given CPF
 (Brazilian Individual Taxpayer Number) match its base number.
-
 This function does not verify the existence of the CPF; it only
 validates the format of the string.
 
 Args:
-    cpf (str): The CPF to be validated, a 11-digit string
+  * cpf (str): The CPF to be validated, a 11-digit string
 
 Returns:
-    bool: True if the checksum digits match the base number,
+  * bool: True if the checksum digits match the base number,
           False otherwise.
+
+Example:
 
 ```python
 >>> from brutils import is_valid_cpf
@@ -115,16 +116,14 @@ False
 ### format_cpf
 
 Format a CPF (Brazilian Individual Taxpayer Number) for display with visual
-aid symbols.
-
-This function takes a numbers-only CPF string as input and adds standard
-formatting visual aid symbols for display.
+aid symbols. This function takes a numbers-only CPF string as input and adds
+standard formatting visual aid symbols for display.
 
 Args:
-    cpf (str): A numbers-only CPF string.
+  * cpf (str): A numbers-only CPF string.
 
 Returns:
-    str: A formatted CPF string with standard visual aid symbols or
+  * str: A formatted CPF string with standard visual aid symbols or
          None if the input is invalid.
 
 Example:
@@ -140,16 +139,14 @@ Example:
 ### remove_symbols_cpf
 
 Removes specific symbols from a CPF (Brazilian Individual Taxpayer Number)
-string.
-
-This function takes a CPF string as input and removes all occurrences of
+string. This function takes a CPF string as input and removes all occurrences of
 the '.', '-' characters from it.
 
 Args:
-    cpf (str): The CPF string containing symbols to be removed.
+  * cpf (str): The CPF string containing symbols to be removed.
 
 Returns:
-    str: A new string with the specified symbols removed.
+  * str: A new string with the specified symbols removed.
 
 Example:
 
@@ -164,7 +161,7 @@ Example:
 Generate a random valid CPF (Brazilian Individual Taxpayer Number) digit string.
 
 Returns:
-    str: A random valid CPF string.
+  * str: A random valid CPF string.
 
 Example:
 
@@ -183,15 +180,14 @@ Example:
 Returns whether or not the verifying checksum digits of the given CNPJ
 (Brazilian Company Registration Number) match its base number.
 Input should be a digit string of proper length.
-
 This function does not verify the existence of the CNPJ; it only
 validates the format of the string.
 
 Args:
-    cnpj (str): The CNPJ to be validated.
+  * cnpj (str): The CNPJ to be validated.
 
 Returns:
-    bool: True if the checksum digits match the base number,
+  * bool: True if the checksum digits match the base number,
           False otherwise.
 
 Example:
@@ -208,15 +204,14 @@ False
 
 Formats a CNPJ (Brazilian Company Registration Number) string for visual
 display.
-
 This function takes a CNPJ string as input, validates its format, and
 formats it with standard visual aid symbols for display purposes.
 
 Args:
-    cnpj (str): The CNPJ string to be formatted for display.
+  * cnpj (str): The CNPJ string to be formatted for display.
 
 Returns:
-    str: The formatted CNPJ with visual aid symbols if it's valid,
+  * str: The formatted CNPJ with visual aid symbols if it's valid,
          None if it's not valid.
 
 Example:
@@ -233,15 +228,14 @@ None
 
 Removes specific symbols from a CNPJ (Brazilian Company Registration Number)
 string.
-
 This function takes a CNPJ string as input and removes all occurrences of
 the '.', '/' and '-' characters from it.
 
 Args:
-    cnpj (str): The CNPJ string containing symbols to be removed.
+  * cnpj (str): The CNPJ string containing symbols to be removed.
 
 Returns:
-    str: A new string with the specified symbols removed.
+  * str: A new string with the specified symbols removed.
 
 Example:
 
@@ -257,10 +251,10 @@ Generates a random valid CNPJ (Brazilian Company Registration Number) digit
 string. An optional branch number parameter can be given; it defaults to 1.
 
 Args:
-    branch (int): An optional branch number to be included in the CNPJ.
+  * branch (int): An optional branch number to be included in the CNPJ.
 
 Returns:
-    str: A randomly generated valid CNPJ string.
+  * str: A randomly generated valid CNPJ string.
 
 Example:
 
@@ -277,16 +271,15 @@ Example:
 ### is_valid_cep
 
 Checks if a Brazilian CEP (Postal Code) is valid.
-
 To be considered valid, the input must be a string containing exactly 8 digits.
-This function does not verify if the CEP is a real postal code; it only validates
-the format of the string.
+This function does not verify if the CEP is a real postal code; it only
+validates the format of the string.
 
 Args:
-    cep (str): The string containing the CEP to be checked.
+  * cep (str): The string containing the CEP to be checked.
 
 Returns:
-    bool: True if the CEP is valid (8 digits), False otherwise.
+  * bool: True if the CEP is valid (8 digits), False otherwise.
 
 Example:
 
@@ -302,10 +295,10 @@ This function takes a CEP (Postal Code) as input and, if it is a valid
 8-digit CEP, formats it into the standard "12345-678" format.
 
 Args:
-    cep (str): The input CEP (Postal Code) to be formatted.
+  * cep (str): The input CEP (Postal Code) to be formatted.
 
 Returns:
-    str: The formatted CEP in the "12345-678" format if it's valid,
+  * str: The formatted CEP in the "12345-678" format if it's valid,
          None if it's not valid.
 
 Example:
@@ -326,10 +319,10 @@ This function takes a CEP (Postal Code) as input and removes all occurrences of
 the '.' and '-' characters from it.
 
 Args:
-    cep (str): The input CEP (Postal Code) containing symbols to be removed.
+  * cep (str): The input CEP (Postal Code) containing symbols to be removed.
 
 Returns:
-    str: A new string with the specified symbols removed.
+  * str: A new string with the specified symbols removed.
 
 Example:
 
@@ -348,7 +341,7 @@ Example:
 Generates a random 8-digit CEP (Postal Code) number as a string.
 
 Returns:
-    str: A randomly generated 8-digit number.
+  * str: A randomly generated 8-digit number.
 
 Example:
 
@@ -461,10 +454,10 @@ Generates a valid landline phone number
 Check if a string corresponds to a valid email address.
 
 Args:
-    email (str): The input string to be checked.
+  * email (str): The input string to be checked.
 
 Returns:
-    bool: True if email is a valid email address, False otherwise.
+  * bool: True if email is a valid email address, False otherwise.
 
 Example:
 
