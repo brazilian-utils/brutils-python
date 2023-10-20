@@ -81,10 +81,10 @@ False
   - [remove_symbols_pis](#remove_symbols_pis)
   - [format_pis](#format_pis)
 - [Processo Jurídico](#processo-jurídico)
-  - [format_processo_juridico](#format_processo_juridico)
-  - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
-  - [generate_processo_juridico](#generate_processo_juridico)
-  - [is_valid_processo_juridico](#is_valid_processo_juridico)
+  - [format_legal_process](#format_legal_process)
+  - [remove\_symbols\_processo\_juridico](#remove_symbols_legal_process)
+  - [generate_legal_process](#generate_legal_process)
+  - [is_valid_legal_process](#is_valid_legal_process)
 - [Título Eleitoral](#titulo-eleitoral)
   - [is_valid_titulo_eleitoral](#is_valid_titulo_eleitoral)
 
@@ -664,64 +664,109 @@ Formata o número PIS. Retorna None se o PIS for inválido.
 
 ## Processo Jurídico
 
-### format_processo_juridico
+### format_legal_process
 
-Formata qualquer string de dígitos com tamanho de 20 caracteres no padrão de processo jurídico.
+Formata um ID de processo jurídico em um formato padrão.
+
+Args:
+  * legal_process_id (str): Uma string de 20 dígitos que representa o ID do
+                            processo jurídico.
+
+Returna:
+  * str: O ID do processo jurídico formatado ou None se a entrada for inválida.
+
+Exemplo:
 
 ```python
->>> from brutils import format_processo_juridico
->>> format_processo_juridico('23141945820055070079')
+>>> from brutils import format_legal_process
+>>> format_legal_process('23141945820055070079')
 '2314194-58.2005.5.07.0079'
->>> format_processo_juridico('00000000000000000000')
+>>> format_legal_process('00000000000000000000')
 '0000000-00.0000.0.00.0000'
 >>>
 ```
 
-### remove_symbols_processo_juridico
+### remove_symbols_legal_process
 
-Remove os símbolos "." e "-" de formatação de um número de processo jurídico e retorna apenas o número. Propositalmente não remove outros símbolos.
+Remove símbolos específicos de um processo jurídico fornecido.
+
+Esta função recebe um processo jurídico como entrada e remove todas as
+ocorrências dos caracteres '.' e '-' dele.
+
+Args:
+  * legal_process (str): Um processo jurídico contendo símbolos a serem
+                         removidos.
+
+Returna:
+  * str: A string do processo jurídico com os símbolos especificados removidos.
+
+Exemplo:
 
 ```python
-from brutils import remove_symbols_processo_juridico
+from brutils import remove_symbols_legal_process
 
->>> remove_symbols_processo_juridico("6439067-89.2023.4.04.5902")
+>>> remove_symbols_legal_process("6439067-89.2023.4.04.5902")
 "64390678920234045902"
->>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263")
+>>> remove_symbols_legal_process("4976023-82.2012.7.00.2263")
 "49760238220127002263"
->>> remove_symbols_processo_juridico("4976023-82.2012.7.00.2263*!*&#")
+>>> remove_symbols_legal_process("4976023-82.2012.7.00.2263*!*&#")
 "49760238220127002263*!*&#"
 ```
 
-### generate_processo_juridico
+### generate_legal_process
 
-Gera um número de processo válido de acordo com o ano informado e o órgão. Por padrão o argumento de _ano_ recebe sempre o ano atual e o _orgao_ recebe um valor aleatório de 1 à 9.
+Gere um número aleatório de ID de processo jurídico.
+
+Args:
+  * year (int): O ano para o ID do processo jurídico (o padrão é o ano atual).
+                Não pode ser um ano do passado.
+  * orgao (int): O órgão (1-9) para o ID do processo jurídico
+                 (o padrão é aleatório).
+
+Returna:
+  * str: Um ID de processo jurídico gerado aleatoriamente.
+         None caso algum dos argumento seja inválido.
+
+Exemplo:
 
 ```python
->>> from brutils import generate_processo_juridico
->>> print(generate_processo_juridico())
-45676401020238170592
->>> print(generate_processo_juridico(ano=2025))
-32110268020258121130
->>> print(generate_processo_juridico(orgao=5))
-37573041520235090313
->>> print(generate_processo_juridico(ano=2024, orgao=4))
-33158248820244017105
->>>
+>>> from brutils import generate_legal_process
+>>> generate_legal_process()
+"45676401020238170592"
+>>> generate_legal_process(ano=2025)
+"32110268020258121130"
+>>> generate_legal_process(orgao=5)
+"37573041520235090313"
+>>> generate_legal_process(ano=2024, orgao=4)
+"33158248820244017105"
 ```
 
-## is_valid_processo_juridico
+## is_valid_legal_process
 
-Verifica se o número de um processo informado por string é válido ou não.
+Verifique se um ID de processo jurídico é válido.
+
+Esta função não verifica se o ID de processo jurídico é um ID de processo
+jurídico real; ela apenas valida o formato da string.
+
+Args:
+  * legal_process_id (str): Uma string contendo apenas dígitos que representa
+                            o ID do processo jurídico.
+
+Returna:
+  * bool: Verdadeiro se o ID do processo jurídico for válido, Falso caso
+          contrário.
+
+Examplo:
 
 ```python
->>> from brutils import is_valid_processo_juridico
->>> is_valid_processo_juridico('10188748220234018200')
+>>> from brutils import is_valid_legal_process
+>>> is_valid_legal_process('10188748220234018200')
 True
->>> is_valid_processo_juridico('45532346920234025107')
+>>> is_valid_legal_process('45532346920234025107')
 True
->>> is_valid_processo_juridico('00000000000000000000')
+>>> is_valid_legal_process('00000000000000000000')
 False
->>> is_valid_processo_juridico('455323423QQWEQWSsasd&*(()')
+>>> is_valid_legal_process('455323423QQWEQWSsasd&*(()')
 False
 >>>
 ```
