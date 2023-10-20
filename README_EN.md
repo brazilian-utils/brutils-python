@@ -458,7 +458,15 @@ Generates a valid landline phone number
 
 ### is_valid_email
 
-Check if a string corresponds to a valid email. The rules for validating an email address generally follow the specifications defined by RFC 5322 (updated by RFC 5322bis), which is the widely accepted standard for email address formats.
+Check if a string corresponds to a valid email address.
+
+Args:
+    email (str): The input string to be checked.
+
+Returns:
+    bool: True if email is a valid email address, False otherwise.
+
+Example:
 
 ```python
 from brutils import is_valid_email

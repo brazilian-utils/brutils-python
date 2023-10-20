@@ -467,7 +467,17 @@ Gera um número de telefone fixo válido
 
 ### is_valid_email
 
-Verificar se uma string corresponde a um e-mail válido. As regras para validar um endereço de e-mail geralmente seguem as especificações definidas pelo RFC 5322 (atualizado pelo RFC 5322bis), que é o padrão amplamente aceito para formatos de endereços de e-mail.
+
+Verificar se uma string corresponde a um endereço de e-mail válido.
+
+Argumentos:
+  email (str): A string de entrada a ser verificada.
+
+Retorna:
+  bool: Verdadeiro se o email for um endereço de e-mail válido, Falso
+  caso contrário.
+
+Exemplo:
 
 ```python
 from brutils import is_valid_email
