@@ -486,7 +486,17 @@ False
 
 ### is_valid_license_plate
 
-Verifica se uma placa veicular é válida. Suporta padrão antigo e padrão Mercosul.
+Verifica se uma placa de carro é válida.
+Esta função não verifica se a placa de carro é uma placa de carro real;
+ela apenas valida o formato da string.
+
+Args:
+  * license_plate (str): Uma string representando uma placa de carro.
+
+Retorna:
+  * bool: Verdadeiro se a placa de carro for válida, Falso caso contrário.
+
+Exemplo:
 
 ```python
 >>> from brutils import is_valid_license_plate
@@ -502,8 +512,19 @@ False
 
 ### is_valid_license_plate_old_format
 
-Verifica se é uma Placa de Veículo no antigo padrão utilizado no Brasil. Recebe como parâmetro uma string devendo conter somente caracteres alfanuméricos(letras e números) e retorna um valor booleano. ***Exemplo: 'abc1234' resulta em True.***
-Esta função valida somente placas no antigo padrão e não verifica se a mesma realmente existe.
+Verifica se uma string corresponde ao formato antigo da placa de carro brasileira
+(LLLNNNN).
+Esta função não verifica se a placa de carro é uma placa de carro real;
+ela apenas valida o formato da string.
+
+Args:
+  * license_plate (str): Uma string representando uma placa de carro.
+
+Retorna:
+  * bool: Verdadeiro se a string corresponder a uma placa de carro no formato
+          antigo, Falso caso contrário.
+
+Exemplo:
 
 ```python
 >>> from brutils import is_valid_license_plate_old_format
@@ -517,9 +538,18 @@ False
 
 ### is_valid_license_plate_mercosul
 
-Verifica se uma string correspondente a um número da placa é válido, conforme as novas
-normas do Mercosul, isto é, seguindo o padrão LLLNLNN.
-***Exemplo: ABC4E67.***
+Verifica se uma string corresponde ao formato de placa Mercosul (LLLNNNN).
+Esta função não verifica se a placa de carro é uma placa de carro real;
+ela apenas valida o formato da string.
+
+Args:
+  * license_plate (str): Uma string representando uma placa de carro.
+
+Retorna:
+  * bool: Verdadeiro se a string corresponder a uma placa de carro no formato Mercosul,
+          Falso caso contrário.
+
+Exemplo:
 
 ```python
 >>> from brutils import is_valid_license_plate_mercosul
@@ -529,10 +559,18 @@ True
 
 ### convert_license_plate_to_mercosul
 
-Converte uma string correspondente a um número da placa é válido no formato antigo,
-para o novo formato, conforme as novas normas do Mercosul (seguindo o padrão LLLNLNN).
-Caso a placa informada seja inválida será retornado o valor `None`.
-***Exemplo: ABC4567 -> ABC4F67.***
+Converte uma placa de carro no formato antigo (LLLNNNN) para o formato Mercosul
+(LLLNLNN).
+
+Args:
+  * license_plate (str): Uma string com o tamanho adequado que representa a
+                         placa no formato antigo.
+
+Retorna:
+  * str: A placa Mercosul convertida (LLLNLNN) ou
+         'None' se a entrada for inválida.
+
+Exemplo:
 
 ```python
 >>> from brutils import convert_license_plate_to_mercosul
@@ -546,20 +584,28 @@ None
 
 ### format_license_plate
 
-Dada uma String correspondente a uma placa de carro válida, seja no formato da placa
-é o antigo (LLLNNNN) ou o novo Formato Mercosul (LLLNLNN), retornar uma String
-correspondendo a esta placa formatada com o traço para o formato antigo e sem mudança para
-o formato Mercosul.
-***Exemplo: ABC4567 -> ABC4F67.***
+Formata uma placa de carro no padrão correto.
+Esta função recebe uma placa de carro em qualquer formato (LLLNNNN ou LLLNLNN)
+e retorna uma versão formatada.
+
+Args:
+  * license_plate (str): Uma string representando uma placa de carro.
+
+Retorna:
+  * str: A string da placa de carro formatada ou
+         'None' se a entrada for inválida.
+
+Exemplo:
+
 
 ```python
->>> format_license_plate("ABC1234")
+>>> format_license_plate("ABC1234") # formato antigo (contém traço)
 "ABC-1234"
->>> format_license_plate("abc1234")
+>>> format_license_plate("abc1234") # formato antigo (contém traço)
 "ABC-1234"
->>> format_license_plate("ABC1D23")
+>>> format_license_plate("ABC1D23") # formato mercosul
 "ABC1D23"
->>> format_license_plate("abc1d23")
+>>> format_license_plate("abc1d23") # formato mercosul
 "ABC1D23"
 >>> format_license_plate("ABCD123")
 None
@@ -567,7 +613,16 @@ None
 
 ### remove_symbols_license_plate
 
-Remove símbolos "-" de formatação de um número de placa e retorna apenas o número. Propositalmente não remove outros símbolos.
+Remove o símbolo de hífen (-) de uma string de placa de carro.
+
+Args:
+  * license_plate_number (str): Uma string de placa de carro contendo símbolos a
+                              serem removidos.
+
+Retorna:
+  * str: A string da placa de carro com os símbolos especificados removidos.
+
+Exemplo:
 
 ```python
 from brutils import remove_symbols_license_plate
@@ -584,7 +639,17 @@ from brutils import remove_symbols_license_plate
 
 ### get_license_plate_format
 
-Infere o formato de uma placa, `LLLNNNN` para o padrão antigo, `LLLNLNN` para o padrão Mercosul e `None` para placas inválidas.
+Retorna o formato de uma placa de carro. 'LLLNNNN' para o formato antigo e
+'LLLNLNN' para o formato Mercosul.
+
+Args:
+  * license_plate (str): Uma string de placa de carro sem símbolos.
+
+Retorna:
+  * str: O formato da placa de carro (LLLNNNN, LLLNLNN) ou
+         'None' se o formato for inválido.
+
+Exemplo:
 
 ```python
 from brutils import get_license_plate_format
@@ -602,9 +667,18 @@ None
 ```
 ### generate_license_plate
 
-Gera placas válidas de carro utilizando como parâmetro um dos formatos válidos (LLLNLNN ou
-LLLNNNN), tendo como formato padrão o padrão Mercosul. Caso seja fornecido um formato
-inválido, é retornado o valor `None`.
+Gere uma placa de carro válida no formato especificado. Caso nenhum formato seja
+fornecido, ele retornará uma placa de carro no formato Mercosul.
+
+Args:
+  * format (str): O formato desejado para a placa de carro. 'LLLNNNN' para o
+  formato antigo ou 'LLLNLNN' para o formato Mercosul. O padrão é 'LLLNLNN'.
+
+Retorna:
+  * str: Um número de placa de carro gerado aleatoriamente ou
+         'None' se o formato for inválido.
+
+Exemplo:
 
 ```python
 from brutils import generate_license_plate
@@ -616,6 +690,8 @@ from brutils import generate_license_plate
 >>> generate_license_plate(format="LLLNNNN")
 "ABC123"
 >>> generate_license_plate(format="invalid")
+None
+````
 
 ## PIS
 
