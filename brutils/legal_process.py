@@ -1,9 +1,7 @@
-import re
 import json
-
-from random import randint
+import re
 from datetime import datetime
-
+from random import randint
 
 # FORMATTING
 ############
@@ -109,9 +107,7 @@ def is_valid(legal_process_id):  # type: (str) -> bool
     ) and valid_process
 
 
-def generate(
-    year=datetime.now().year, orgao=randint(1, 9)
-):  # type: (int, int) -> (str)
+def generate(year=datetime.now().year, orgao=randint(1, 9)):  # type: (int, int) -> (str)
     """
     Generate a random legal process ID number.
 
