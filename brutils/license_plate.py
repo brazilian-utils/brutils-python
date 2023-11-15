@@ -77,13 +77,13 @@ def is_valid(license_plate, type=None):  # type: (str, str) -> bool
     Args:
         license_plate (str): The licence plate number to validate.
                              Only digits.
-        type (str): "old format" or "mercosul".
+        type (str): "old_format" or "mercosul".
                     If not specified, checks for one or another.
     Returns:
         bool: True if the plate number is valid. False otherwise.
     """
 
-    if type == "old format":
+    if type == "old_format":
         return _is_valid_old_format(license_plate)
     if type == "mercosul":
         return _is_valid_mercosul(license_plate)
