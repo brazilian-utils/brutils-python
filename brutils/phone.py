@@ -141,3 +141,33 @@ def _is_valid_mobile(phone_number):  # type: (str) -> bool
         isinstance(phone_number, str)
         and re.match(pattern, phone_number) is not None
     )
+
+
+def remove_international_code_phone(phone_number):  # type: (str) -> str
+    """
+    Function responsible for remove a international code phone
+
+    Args:
+        phone_number (str): The phone number with international code phone.
+
+    Returns:
+        str: The phone number without international code
+            or the same phone number.
+
+    >>> remove_international_code_phone("5511994029275")
+    '11994029275'
+    >>> remove_international_code_phone("1635014415")
+    '1635014415'
+    >>> remove_international_code_phone("+5511994029275")
+    '+11994029275'
+    """
+
+    pattern = r"\+?55"
+
+    if (
+        re.search(pattern, phone_number)
+        and len(phone_number.replace(" ", "")) > 11
+    ):
+        return phone_number.replace("55", "", 1)
+    else:
+        return phone_number

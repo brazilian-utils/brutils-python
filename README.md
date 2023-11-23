@@ -64,6 +64,7 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
   - [generate_mobile_phone](#generate_mobile_phone)
   - [generate_landline_phone](#generate_landline_phone)
+  - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License Plate](#license_plate)
@@ -449,8 +450,22 @@ Gera um número de telefone fixo válido
 9345561355
 >>> generate_landline_phone()
 1145081947
->>> generate_landline_phone()
-3138577807
+```
+
+### remove_international_code_phone
+
+Remove o código internacional (+55) de uma string que contém um número de telefone brasileiro.
+
+```python
+>>> from brutils import remove_international_code_phone
+>>> remove_international_code_phone("5521994029275")
+"21994029275"
+>>> remove_international_code_phone("+5521994029275")
+"+21994029275"
+>>> remove_international_code_phone("5555994029275")
+"55994029275"
+>>> remove_international_code_phone("21994029275")
+"21994029275"
 >>>
 ```
 

@@ -9,6 +9,7 @@ from brutils.phone import (
     generate_mobile_phone,
     is_valid,
     remove_symbols_phone,
+    remove_international_code_phone,
 )
 
 
@@ -259,6 +260,34 @@ class TestPhone(TestCase):
                 self.assertEqual(len(generate_landline_phone()), 10)
                 self.assertTrue(generate_landline_phone().isdigit())
                 self.assertTrue(isinstance(generate_landline_phone(), str))
+
+    def test_remove_international_code_phone(self):
+        # When the phone number does not have the international code,
+        # return the same phone number
+        self.assertEqual(
+            remove_international_code_phone("21994029275"), "21994029275"
+        )
+        self.assertEqual(
+            remove_international_code_phone("55994024478"), "55994024478"
+        )
+        self.assertEqual(
+            remove_international_code_phone("994024478"), "994024478"
+        )
+
+        # When the phone number has the international code,
+        # return phone number without international code
+        self.assertEqual(
+            remove_international_code_phone("5521994029275"), "21994029275"
+        )
+        self.assertEqual(
+            remove_international_code_phone("+5521994029275"), "+21994029275"
+        )
+        self.assertEqual(
+            remove_international_code_phone("+5555994029275"), "+55994029275"
+        )
+        self.assertEqual(
+            remove_international_code_phone("5511994029275"), "11994029275"
+        )
 
 
 if __name__ == "__main__":

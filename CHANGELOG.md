@@ -55,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `is_valid_cnpj` [36](https://github.com/brazilian-utils/brutils-python/pull/36)
 - Utilitário `format_cnpj` [52](https://github.com/brazilian-utils/brutils-python/pull/52)
 - Utilitário `remove_symbols_cnpj` [58](https://github.com/brazilian-utils/brutils-python/pull/58)
+- Utilitário `remove_international_code_phone` [192](https://github.com/brazilian-utils/brutils-python/pull/192)
 
 ### Deprecated
 

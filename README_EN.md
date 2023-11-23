@@ -63,6 +63,7 @@ False
   - [remove_symbols_phone](#remove_symbols_phone)
   - [generate_mobile_phone](#generate_mobile_phone)
   - [generate_landline_phone](#generate_landline_phone)
+  - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License_Plate](#license_plate)
@@ -444,6 +445,23 @@ Generates a valid landline phone number
 1145081947
 >>> generate_landline_phone()
 3138577807
+>>>
+```
+
+### remove_international_code_phone
+
+Remove the international code (+55) from a string that contains a Brazilian phone number.
+
+```python
+>>> from brutils import remove_international_code_phone
+>>> remove_international_code_phone("5521994029275")
+"21994029275"
+>>> remove_international_code_phone("+5521994029275")
+"+21994029275"
+>>> remove_international_code_phone("5555994029275")
+"55994029275"
+>>> remove_international_code_phone("21994029275")
+"21994029275"
 >>>
 ```
 
