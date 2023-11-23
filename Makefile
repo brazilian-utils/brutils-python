@@ -9,7 +9,8 @@ run-python:
 	@poetry run python
 
 format:
-	@poetry run black -l 80 . --exclude=.venv	
+	@poetry run black -l 80 . --exclude=.venv
+	@poetry run flake8
 
 check:
 	@poetry run black -l 80 --check . --exclude=.venv
