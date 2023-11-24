@@ -33,8 +33,6 @@ from brutils.license_plate import (
     format as format_license_plate,
     get_format as get_license_plate_format,
     is_valid as is_valid_license_plate,
-    is_valid_old_format as is_valid_license_plate_old_format,
-    is_valid_mercosul as is_valid_license_plate_mercosul,
     remove_symbols as remove_symbols_license_plate,
 )
 

@@ -26,8 +26,7 @@ def convert_to_mercosul(license_plate: str) -> Optional[str]:
         >>> convert_to_mercosul("ABC4*67")
         None
     """
-
-    if not is_valid_old_format(license_plate):
+    if not _is_valid_old_format(license_plate):
         return None
 
     digits = [letter for letter in license_plate.upper()]
@@ -58,11 +57,9 @@ def format(license_plate: str) -> Optional[str]:
     """
 
     license_plate = license_plate.upper()
-
-    if is_valid_old_format(license_plate):
+    if _is_valid_old_format(license_plate):
         return license_plate[0:3] + "-" + license_plate[3:]
-
-    if is_valid_mercosul(license_plate):
+    elif _is_valid_mercosul(license_plate):
         return license_plate.upper()
 
     return None
@@ -72,87 +69,28 @@ def format(license_plate: str) -> Optional[str]:
 ############
 
 
-def is_valid(license_plate: str) -> bool:
+def is_valid(license_plate, type=None):  # type: (str, str) -> bool
     """
-    Check if a license plate is valid.
-    This function does not verify if the license plate is a real license plate;
-    it only validates the format of the string.
+    Returns if a Brazilian license plate number is valid.
+    It does not verify if the plate actually exists.
 
     Args:
-        license_plate (str): A license plate string.
-
+        license_plate (str): The licence plate number to validate.
+                             Only digits.
+        type (str): "old_format" or "mercosul".
+                    If not specified, checks for one or another.
     Returns:
-        bool: True if the license plate is valid, False otherwise.
-
-    Example:
-        >>> is_valid('def5678')
-        True
-        >>> is_valid('abc1e67')
-        True
-        >>> is_valid('abe67')
-        False
+        bool: True if the plate number is valid. False otherwise.
     """
 
-    return is_valid_old_format(license_plate) or is_valid_mercosul(
+    if type == "old_format":
+        return _is_valid_old_format(license_plate)
+    if type == "mercosul":
+        return _is_valid_mercosul(license_plate)
+
+    return _is_valid_old_format(license_plate) or _is_valid_mercosul(
         license_plate
     )
-
-
-def is_valid_old_format(license_plate: str) -> bool:
-    """
-    Checks whether a string matches the old format of Brazilian license plate
-    (LLLNNNN).
-    This function does not verify if the license plate is a real license plate;
-    it only validates the format of the string.
-
-    Args:
-        license_plate (str): A license plate string.
-
-    Returns:
-        bool: True if the string corresponds to a license plate in the old
-              pattern format, False otherwise.
-
-    Example:
-        >>> is_valid_old_format('def5678')
-        True
-        >>> is_valid_old_format('GHI-4567')
-        False
-    """
-
-    pattern = re.compile(r"^[A-Za-z]{3}[0-9]{4}$")
-    return (
-        isinstance(license_plate, str)
-        and re.match(pattern, license_plate.strip()) is not None
-    )
-
-
-def is_valid_mercosul(license_plate: str) -> bool:
-    """
-    Checks whether a string matches the Mercosul license plate format (LLLNNNN).
-    This function does not verify if the license plate is a real license plate;
-    it only validates the format of the string.
-
-    Args:
-        license_plate (str): A license plate string.
-
-    Returns:
-        bool: True if the string corresponds to a license plate in the Mercosul
-              pattern format, False otherwise.
-
-    Example:
-        >>> is_valid_mercosul('abc4e67')
-        True
-        >>> is_valid_mercosul('abc167')
-        False
-    """
-
-    if not isinstance(license_plate, str):
-        return False
-
-    license_plate = license_plate.upper().strip()
-    pattern = re.compile(r"^[A-Z]{3}\d[A-Z]\d{2}$")
-
-    return re.match(pattern, license_plate) is not None
 
 
 def remove_symbols(license_plate_number: str) -> str:
@@ -199,10 +137,10 @@ def get_format(license_plate: str) -> Optional[str]:
         None
     """
 
-    if is_valid_old_format(license_plate):
+    if _is_valid_old_format(license_plate):
         return "LLLNNNN"
 
-    if is_valid_mercosul(license_plate):
+    if _is_valid_mercosul(license_plate):
         return "LLLNLNN"
 
     return None
@@ -247,3 +185,28 @@ def generate(format="LLLNLNN"):  # type: (str) -> str | None
             generated += str(randint(0, 9))
 
     return generated
+
+
+def _is_valid_old_format(license_plate: str) -> bool:
+    """
+    Checks whether a string matches the old format of Brazilian license plate.
+    """
+    pattern = re.compile(r"^[A-Za-z]{3}[0-9]{4}$")
+    return (
+        isinstance(license_plate, str)
+        and re.match(pattern, license_plate.strip()) is not None
+    )
+
+
+def _is_valid_mercosul(license_plate: str) -> bool:
+    """
+    Returns whether or not the provided license_plate is valid according to the
+    Mercosul pattern (LLLNLNN). Input should be a digit string of proper
+    length. Ex: ABC4E67
+    """
+    if not isinstance(license_plate, str):
+        return False
+
+    license_plate = license_plate.upper().strip()
+    pattern = re.compile(r"^[A-Z]{3}\d[A-Z]\d{2}$")
+    return re.match(pattern, license_plate) is not None
