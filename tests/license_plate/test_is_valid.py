@@ -1,10 +1,11 @@
+from unittest import TestCase, main
+from unittest.mock import patch
+
 from brutils.license_plate import (
     _is_valid_mercosul,
     _is_valid_old_format,
     is_valid,
 )
-from unittest.mock import patch
-from unittest import TestCase, main
 
 
 class TestLicensePlate(TestCase):

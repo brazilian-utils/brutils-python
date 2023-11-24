@@ -1,10 +1,10 @@
 # flake8: noqa: F401
 
 from brutils.cpf import (
-    is_valid as is_valid_cpf,
     format_cpf,
-    remove_symbols as remove_symbols_cpf,
     generate as generate_cpf,
+    is_valid as is_valid_cpf,
+    remove_symbols as remove_symbols_cpf,
 )
 
 from brutils.cnpj import (

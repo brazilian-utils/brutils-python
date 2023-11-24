@@ -1,8 +1,8 @@
-import re
 import json
+import re
 
-from random import randint
 from datetime import datetime
+from random import randint
 
 
 # FORMATTING

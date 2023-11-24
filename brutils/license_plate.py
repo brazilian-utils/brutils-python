@@ -1,7 +1,7 @@
 import re
-from typing import Optional
 from random import choice, randint
 from string import ascii_uppercase
+from typing import Optional
 
 # FORMATTING
 ############
