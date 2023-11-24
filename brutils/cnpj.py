@@ -1,7 +1,6 @@
 from itertools import chain
 from random import randint
 
-
 # FORMATTING
 ############
 

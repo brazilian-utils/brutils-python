@@ -1,6 +1,5 @@
 from random import randint
 
-
 # FORMATTING
 ############
 

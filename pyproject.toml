@@ -32,9 +32,12 @@ python = "^3.8.1"
 coverage = "^7.2.7"
 
 [tool.poetry.group.dev.dependencies]
-black = "^23.3.0"
 pre-commit = ">=2.21,<4.0"
-flake8 = "^6.1.0"
+ruff = "^0.1.4"
+
+[tool.ruff]
+line-length = 80
+extend-select = ["I"]
 
 [build-system]
 requires = ["poetry-core"]

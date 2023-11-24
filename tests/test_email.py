@@ -1,5 +1,6 @@
-from brutils import is_valid_email
 from unittest import TestCase, main
+
+from brutils import is_valid_email
 
 
 class TestEmailValidation(TestCase):
