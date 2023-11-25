@@ -10,7 +10,7 @@ run-python:
 
 format:
 	@poetry run ruff format .
-	@poetry run ruff .
+	@poetry run ruff . --fix
 
 check:
 	@poetry run ruff format . --check
