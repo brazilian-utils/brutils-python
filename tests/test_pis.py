@@ -4,10 +4,10 @@ from unittest.mock import patch
 from brutils.pis import (
     _checksum,
     format_pis,
+    validate,
     generate,
     is_valid,
     remove_symbols,
-    validate,
 )
 
 
