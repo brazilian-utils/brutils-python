@@ -1,0 +1,6 @@
+printf "Running pre-push hook checks\n\n"
+
+make check
+
+bash -c "if [[ $? == 1 ]];then printf '\nFound errors in your changes. Please run the following command:\n  make format\n\nRemember to commit any changes made on the process\n'; fi"
+echo
