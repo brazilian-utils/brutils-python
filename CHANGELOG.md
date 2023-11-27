@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Adicionado pre-push hook [#288](https://github.com/brazilian-utils/brutils-python/pull/288)
 - Utilitário `generate_landline_phone` [#190](https://github.com/brazilian-utils/brutils-python/pull/190)
 - Utilitário `is_valid_titulo_eleitoral` [#235](https://github.com/brazilian-utils/brutils-python/pull/235)
 - Suporte ao Python 3.12 [#245](https://github.com/brazilian-utils/brutils-python/pull/245)
