@@ -8,8 +8,8 @@ from brutils.phone import (
     generate_landline_phone,
     generate_mobile_phone,
     is_valid,
-    remove_symbols_phone,
     remove_international_code_phone,
+    remove_symbols_phone,
 )
 
 

@@ -1,0 +1,6 @@
+printf "Running pre-push hook checks\n\n"
+
+make check
+
+bash -c "if [[ $? != 0 ]];then printf '\nPlease run the following command before push:\n\n    make format\n\n\
+Remember to commit any changes made on the process.\n'; exit 1; fi"
