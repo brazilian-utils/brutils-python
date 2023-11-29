@@ -1,5 +1,5 @@
 import re
-from random import randint
+from random import choice, randint
 
 
 # FORMATTING
@@ -74,31 +74,64 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
     return cleaned_phone
 
 
-def _generate_ddd_number():  # type() -> str
+def generate(type=""):
     """
-    Generate a valid DDD number.
-    """
-    return f'{"".join([str(randint(1, 9)) for i in range(2)])}'
+    Generate a valid and random phone number.
+
+    Args:
+        type (str): "landline" or "mobile".
+                    If not specified, checks for one or another.
+
+    Returns:
+        str: A randomly generated valid phone number.
+        
+    Example:
+        >>> generate()
+        "2234451215"
+        >>> generate("mobile")
+        "1899115895"
+        >>> generate()"landline")
+        "5535317900"
+    """ 
+
+    if type == "mobile":
+        return _generate_mobile_phone() 
+    
+    if type == "landline":
+        return _generate_landline_phone()
+    
+    generate_functions = [_generate_landline_phone, _generate_mobile_phone]
+    return choice(generate_functions)()
 
 
-def generate_mobile_phone():
+def remove_international_code_phone(phone_number):  # type: (str) -> str
     """
-    Generate a valid and random mobile phone number
+    Function responsible for remove a international code phone
+
+    Args:
+        phone_number (str): The phone number with international code phone.
+
+    Returns:
+        str: The phone number without international code
+            or the same phone number.
+
+    >>> remove_international_code_phone("5511994029275")
+    '11994029275'
+    >>> remove_international_code_phone("1635014415")
+    '1635014415'
+    >>> remove_international_code_phone("+5511994029275")
+    '+11994029275'
     """
-    ddd = _generate_ddd_number()
-    client_number = [str(randint(0, 9)) for i in range(8)]
 
-    phone_number = f'{ddd}9{"".join(client_number)}'
+    pattern = r"\+?55"
 
-    return phone_number
-
-
-def generate_landline_phone():  # type () -> str
-    """
-    Generate a valid and random landline phone number.
-    """
-    ddd = _generate_ddd_number()
-    return f"{ddd}{randint(2,5)}{str(randint(0,9999999)).zfill(7)}"
+    if (
+        re.search(pattern, phone_number)
+        and len(phone_number.replace(" ", "")) > 11
+    ):
+        return phone_number.replace("55", "", 1)
+    else:
+        return phone_number
 
 
 def _is_valid_landline(phone_number):  # type: (str) -> bool
@@ -143,31 +176,28 @@ def _is_valid_mobile(phone_number):  # type: (str) -> bool
     )
 
 
-def remove_international_code_phone(phone_number):  # type: (str) -> str
+def _generate_ddd_number():  # type() -> str
     """
-    Function responsible for remove a international code phone
-
-    Args:
-        phone_number (str): The phone number with international code phone.
-
-    Returns:
-        str: The phone number without international code
-            or the same phone number.
-
-    >>> remove_international_code_phone("5511994029275")
-    '11994029275'
-    >>> remove_international_code_phone("1635014415")
-    '1635014415'
-    >>> remove_international_code_phone("+5511994029275")
-    '+11994029275'
+    Generate a valid DDD number.
     """
+    return f'{"".join([str(randint(1, 9)) for i in range(2)])}'
 
-    pattern = r"\+?55"
 
-    if (
-        re.search(pattern, phone_number)
-        and len(phone_number.replace(" ", "")) > 11
-    ):
-        return phone_number.replace("55", "", 1)
-    else:
-        return phone_number
+def _generate_mobile_phone():
+    """
+    Generate a valid and random mobile phone number
+    """
+    ddd = _generate_ddd_number()
+    client_number = [str(randint(0, 9)) for i in range(8)]
+
+    phone_number = f'{ddd}9{"".join(client_number)}'
+
+    return phone_number
+
+
+def _generate_landline_phone():  # type () -> str
+    """
+    Generate a valid and random landline phone number.
+    """
+    ddd = _generate_ddd_number()
+    return f"{ddd}{randint(2,5)}{str(randint(0,9999999)).zfill(7)}"

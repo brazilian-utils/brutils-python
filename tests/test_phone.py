@@ -5,8 +5,7 @@ from brutils.phone import (
     _is_valid_landline,
     _is_valid_mobile,
     format_phone,
-    generate_landline_phone,
-    generate_mobile_phone,
+    generate,
     is_valid,
     remove_international_code_phone,
     remove_symbols_phone,
@@ -246,20 +245,15 @@ class TestPhone(TestCase):
         self.assertEqual(format_phone("1958814933"), "(19)5881-4933")
         self.assertEqual(format_phone("3333333333"), "(33)3333-3333")
 
-    def test_generate_mobile_phone(self):
+    def test_generate(self):
         for _ in range(25):
             with self.subTest():
-                phone_generated = generate_mobile_phone()
-                self.assertTrue(_is_valid_mobile(phone_generated))
-
-    def test_generate_landline_phone(self):
-        for _ in range(25):
-            with self.subTest():
-                number = generate_landline_phone()
-                self.assertTrue(_is_valid_landline(number))
-                self.assertEqual(len(generate_landline_phone()), 10)
-                self.assertTrue(generate_landline_phone().isdigit())
-                self.assertTrue(isinstance(generate_landline_phone(), str))
+                no_type_phone_generated = generate()
+                self.assertIs(is_valid(no_type_phone_generated), True)
+                mobile_phone_generated = generate("mobile")
+                self.assertIs(_is_valid_mobile(mobile_phone_generated), True)
+                landline_phone_generated = generate("landline")
+                self.assertIs(_is_valid_landline(landline_phone_generated), True)
 
     def test_remove_international_code_phone(self):
         # When the phone number does not have the international code,
