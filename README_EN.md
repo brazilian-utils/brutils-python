@@ -66,10 +66,8 @@ False
   - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [License_Plate](#license_plate)
+- [License_Plate](#license-plate)
   - [is_valid_license_plate](#is_valid_license_plate)
-  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
-  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
@@ -502,6 +500,8 @@ it only validates the format of the string.
 
 Args:
   * license_plate (str): A license plate string.
+  * type (str): "old_format" or "mercosul".
+                If not specified, checks for one or another.
 
 Returns:
   * bool: True if the license plate is valid, False otherwise.
@@ -512,9 +512,11 @@ Example:
 >>> from brutils import is_valid_license_plate
 >>> is_valid_license_plate('ABC1234')
 True
->>> is_valid_license_plate('def5678')
+>>> is_valid_license_plate('def5678', type="old_format")
 True
 >>> is_valid_license_plate('ABC4E67')
+True
+>>> is_valid_license_plate('ABC4E67', type="mercosul")
 True
 >>> is_valid_license_plate('GHI-4567')
 False

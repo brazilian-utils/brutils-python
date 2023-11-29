@@ -67,10 +67,8 @@ False
   - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
-- [License Plate](#license_plate)
+- [Placa de Carro](#placa-de-carro)
   - [is_valid_license_plate](#is_valid_license_plate)
-  - [is_valid_license_plate_old_format](#is_valid_license_plate_old_format)
-  - [is_valid_license_plate_mercosul](#is_valid_license_plate_mercosul)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
   - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
@@ -275,7 +273,7 @@ Para que um CEP seja considerado válido, a entrada deve ser uma string contendo
 exatamente 8 dígitos. Esta função não verifica se o CEP é um CEP real, pois
 valida apenas o formato da string.
 
-Args:
+Argumentos:
   * cep (str): A string contendo o CEP a ser verificado.
 
 Retorno:
@@ -505,11 +503,13 @@ Verifica se uma placa de carro é válida.
 Esta função não verifica se a placa de carro é uma placa de carro real;
 ela apenas valida o formato da string.
 
-Args:
+Argumentos:
   * license_plate (str): Uma string representando uma placa de carro.
+  * type (str): "old_format" ou "mercosul".
+                Se não especificado, verifica um ou outro.
 
 Retorna:
-  * bool: Verdadeiro se a placa de carro for válida, Falso caso contrário.
+  * bool: True se a placa de carro for válida, False caso contrário.
 
 Exemplo:
 
@@ -517,59 +517,14 @@ Exemplo:
 >>> from brutils import is_valid_license_plate
 >>> is_valid_license_plate('ABC1234')
 True
->>> is_valid_license_plate('def5678')
+>>> is_valid_license_plate('def5678', type="old_format")
 True
 >>> is_valid_license_plate('ABC4E67')
 True
+>>> is_valid_license_plate('ABC4E67', type="mercosul")
+True
 >>> is_valid_license_plate('GHI-4567')
 False
-```
-
-### is_valid_license_plate_old_format
-
-Verifica se uma string corresponde ao formato antigo da placa de carro brasileira
-(LLLNNNN).
-Esta função não verifica se a placa de carro é uma placa de carro real;
-ela apenas valida o formato da string.
-
-Args:
-  * license_plate (str): Uma string representando uma placa de carro.
-
-Retorna:
-  * bool: Verdadeiro se a string corresponder a uma placa de carro no formato
-          antigo, Falso caso contrário.
-
-Exemplo:
-
-```python
->>> from brutils import is_valid_license_plate_old_format
->>> is_valid_license_plate_old_format('ABC1234')
-True
->>> is_valid_license_plate_old_format('def5678')
-True
->>> is_valid_license_plate_old_format('GHI-4567')
-False
-```
-
-### is_valid_license_plate_mercosul
-
-Verifica se uma string corresponde ao formato de placa Mercosul (LLLNNNN).
-Esta função não verifica se a placa de carro é uma placa de carro real;
-ela apenas valida o formato da string.
-
-Args:
-  * license_plate (str): Uma string representando uma placa de carro.
-
-Retorna:
-  * bool: Verdadeiro se a string corresponder a uma placa de carro no formato Mercosul,
-          Falso caso contrário.
-
-Exemplo:
-
-```python
->>> from brutils import is_valid_license_plate_mercosul
->>> is_valid_license_plate_mercosul('ABC4E67')
-True
 ```
 
 ### convert_license_plate_to_mercosul
@@ -577,7 +532,7 @@ True
 Converte uma placa de carro no formato antigo (LLLNNNN) para o formato Mercosul
 (LLLNLNN).
 
-Args:
+Argumentos:
   * license_plate (str): Uma string com o tamanho adequado que representa a
                          placa no formato antigo.
 
@@ -603,7 +558,7 @@ Formata uma placa de carro no padrão correto.
 Esta função recebe uma placa de carro em qualquer formato (LLLNNNN ou LLLNLNN)
 e retorna uma versão formatada.
 
-Args:
+Argumentos:
   * license_plate (str): Uma string representando uma placa de carro.
 
 Retorna:
@@ -631,7 +586,7 @@ None
 
 Remove o símbolo de hífen (-) de uma string de placa de carro.
 
-Args:
+Argumentos:
   * license_plate_number (str): Uma string de placa de carro contendo símbolos a
                               serem removidos.
 
@@ -658,7 +613,7 @@ from brutils import remove_symbols_license_plate
 Retorna o formato de uma placa de carro. 'LLLNNNN' para o formato antigo e
 'LLLNLNN' para o formato Mercosul.
 
-Args:
+Argumentos:
   * license_plate (str): Uma string de placa de carro sem símbolos.
 
 Retorna:
@@ -686,7 +641,7 @@ None
 Gere uma placa de carro válida no formato especificado. Caso nenhum formato seja
 fornecido, ele retornará uma placa de carro no formato Mercosul.
 
-Args:
+Argumentos:
   * format (str): O formato desejado para a placa de carro. 'LLLNNNN' para o
   formato antigo ou 'LLLNLNN' para o formato Mercosul. O padrão é 'LLLNLNN'.
 
@@ -760,7 +715,7 @@ Formata o número PIS. Retorna None se o PIS for inválido.
 
 Formata um ID de processo jurídico em um formato padrão.
 
-Args:
+Argumentos:
   * legal_process_id (str): Uma string de 20 dígitos que representa o ID do
                             processo jurídico.
 
@@ -785,7 +740,7 @@ Remove símbolos específicos de um processo jurídico fornecido.
 Esta função recebe um processo jurídico como entrada e remove todas as
 ocorrências dos caracteres '.' e '-' dele.
 
-Args:
+Argumentos:
   * legal_process (str): Um processo jurídico contendo símbolos a serem
                          removidos.
 
@@ -809,7 +764,7 @@ from brutils import remove_symbols_legal_process
 
 Gere um número aleatório de ID de processo jurídico.
 
-Args:
+Argumentos:
   * year (int): O ano para o ID do processo jurídico (o padrão é o ano atual).
                 Não pode ser um ano do passado.
   * orgao (int): O órgão (1-9) para o ID do processo jurídico
@@ -840,7 +795,7 @@ Verifique se um ID de processo jurídico é válido.
 Esta função não verifica se o ID de processo jurídico é um ID de processo
 jurídico real; ela apenas valida o formato da string.
 
-Args:
+Argumentos:
   * legal_process_id (str): Uma string contendo apenas dígitos que representa
                             o ID do processo jurídico.
 
