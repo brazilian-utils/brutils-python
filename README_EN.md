@@ -610,6 +610,7 @@ Returns:
 Example:
 
 ```python
+>>> from brutils import format_license_plate
 >>> format_license_plate("ABC1234") # old format (contains a dash)
 "ABC-1234"
 >>> format_license_plate("abc1234") # old format (contains a dash)

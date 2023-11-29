@@ -50,7 +50,7 @@ from brutils.legal_process import (
     remove_symbols as remove_symbols_legal_process,
 )
 from brutils.license_plate import (
-    format as format_license_plate,
+    format_license_plate,
 )
 from brutils.license_plate import (
     get_format as get_license_plate_format,
