@@ -5,7 +5,7 @@ from brutils.license_plate import (
     _is_valid_mercosul,
     _is_valid_old_format,
     convert_to_mercosul,
-    format,
+    format_license_plate,
     generate,
     get_format,
     remove_symbols,
@@ -64,11 +64,11 @@ class TestLicensePlate(TestCase):
         self.assertEqual(convert_to_mercosul("abc1234"), "ABC1C34")
 
     def test_format_license_plate(self):
-        self.assertEqual(format("ABC1234"), "ABC-1234")
-        self.assertEqual(format("abc1234"), "ABC-1234")
-        self.assertEqual(format("ABC1D23"), "ABC1D23")
-        self.assertEqual(format("abc1d23"), "ABC1D23")
-        self.assertIsNone(format("ABCD123"))
+        self.assertEqual(format_license_plate("ABC1234"), "ABC-1234")
+        self.assertEqual(format_license_plate("abc1234"), "ABC-1234")
+        self.assertEqual(format_license_plate("ABC1D23"), "ABC1D23")
+        self.assertEqual(format_license_plate("abc1d23"), "ABC1D23")
+        self.assertIsNone(format_license_plate("ABCD123"))
 
     def test_get_format(self):
         # Old format

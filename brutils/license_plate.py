@@ -34,7 +34,7 @@ def convert_to_mercosul(license_plate: str) -> Optional[str]:
     return "".join(digits)
 
 
-def format(license_plate: str) -> Optional[str]:
+def format_license_plate(license_plate: str) -> Optional[str]:
     """
     Formats a license plate into the correct pattern.
     This function receives a license plate in any pattern (LLLNNNN or LLLNLNN)

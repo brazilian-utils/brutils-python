@@ -614,6 +614,7 @@ Exemplo:
 
 
 ```python
+>>> from brutils import format_license_plate
 >>> format_license_plate("ABC1234") # formato antigo (contém traço)
 "ABC-1234"
 >>> format_license_plate("abc1234") # formato antigo (contém traço)
