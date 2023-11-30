@@ -74,7 +74,7 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
     return cleaned_phone
 
 
-def generate(type=""):
+def generate(type=None): # type: (str) -> str
     """
     Generate a valid and random phone number.
 
