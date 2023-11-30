@@ -41,6 +41,14 @@ class TestIsValid(TestCase):
         valid_special = "3244567800167"
         self.assertIs(is_valid(valid_special), True)
 
+    def test_invalid_vd1(self):
+        voter_id = "427503840223"
+        self.assertIs(is_valid(voter_id), False)
+
+    def test_invalid_vd2(self):
+        voter_id = "427503840214"
+        self.assertIs(is_valid(voter_id), False)
+
     def test_get_voter_id_parts(self):
         voter_id = "12345678AB12"
 
@@ -64,20 +72,20 @@ class TestIsValid(TestCase):
         self.assertIs(_calculate_vd1("07881476", "03"), 6)
 
         # test edge case: when federative union is SP and rest is 0, declare vd1 as 1
-        self.assertIs(_calculate_vd1("73146414", "01"), 1)
+        self.assertIs(_calculate_vd1("73146499", "01"), 1)
         # test edge case: when federative union is MG and rest is 0, declare vd1 as 1
-        self.assertIs(_calculate_vd1("42750384", "02"), 1)
+        self.assertIs(_calculate_vd1("42750359", "02"), 1)
         # test edge case: rest is 10, declare vd1 as 0
         self.assertIs(_calculate_vd1("73146415", "03"), 0)
 
     def test_calculate_vd2(self):
-        self.assertIs(_calculate_vd2("03", 6), 1)
+        self.assertIs(_calculate_vd2("03", 7), 10)
         # edge case: if UF is "01" (for SP) and rest == 0
         # declare dv2 as 1 instead
-        self.assertIs(_calculate_vd2("01", 9), 1)
+        self.assertIs(_calculate_vd2("01", 4), 1)
         # edge case: if UF is "02" (for MG) and rest == 0
         # declare dv2 as 1 instead
-        self.assertIs(_calculate_vd2("02", 2), 1)
+        self.assertIs(_calculate_vd2("02", 8), 1)
 
 
 if __name__ == "__main__":
