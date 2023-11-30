@@ -62,8 +62,7 @@ False
   - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
-  - [generate_mobile_phone](#generate_mobile_phone)
-  - [generate_landline_phone](#generate_landline_phone)
+  - [generate_phone](#generate_phone)
   - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
@@ -422,32 +421,29 @@ Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125
 '2125696969'
 ```
 
-### generate_mobile_phone
 
-Gera um número de telefone móvel válido e aleatório
+### generate_phone
 
-```python
->>> from brutils import generate_mobile_phone
->>> generate_mobile_phone()
-'63996408441'
->>> generate_mobile_phone()
-'78964850019'
->>> generate_mobile_phone()
-'53924997638'
-```
+Gera um número de telefone aleatório válido.
 
-### generate_landline_phone
+Argumentos:
+  * type (str): Pode ser "landline" ou "mobile". 
+                Se não for especificado, a função gera um número 
+                aleatório de qualquer tipo.
 
-Gera um número de telefone fixo válido
+Retorna:
+  * str: Um número de telefone válido gerado aleatoriamente.
+
+Exemplo:
 
 ```python
->>> from brutils import generate_landline_phone
->>> generate_landline_phone()
-5929797740
->>> generate_landline_phone()
-9345561355
->>> generate_landline_phone()
-1145081947
+>>> from brutils import generate_phone
+>>> generate_phone()
+"5929797740"
+>>> generate_phone("mobile")
+"1899115895"
+>>> generate_phone("landline")
+"5535317900"
 ```
 
 ### remove_international_code_phone

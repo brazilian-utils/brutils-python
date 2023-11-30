@@ -61,8 +61,7 @@ False
   - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
-  - [generate_mobile_phone](#generate_mobile_phone)
-  - [generate_landline_phone](#generate_landline_phone)
+  - [generate_phone](#generate_phone)
   - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
@@ -415,35 +414,29 @@ Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '55
 '552125696969'
 ```
 
-### generate_mobile_phone
 
-Generates a valid and random mobile phone number
+### generate_phone
 
-```python
->>> from brutils import generate_mobile_phone
->>> generate_mobile_phone()
-'63996408441'
->>> generate_mobile_phone()
-'78964850019'
->>> generate_mobile_phone()
-'53924997638'
-```
+Generates a valid random phone number.
 
-### generate_landline_phone
+Args:
+  * type (str): It can be "landline" or "mobile". 
+                If not specified, the function generates 
+                a random number of any type.
 
-Generates a valid landline phone number
+Returns:
+  * str: A randomly generated valid phone number.
+
+Example:
 
 ```python
->>> from brutils import generate_landline_phone
->>> generate_landline_phone()
-5929797740
->>> generate_landline_phone()
-9345561355
->>> generate_landline_phone()
-1145081947
->>> generate_landline_phone()
-3138577807
->>>
+>>> from brutils import generate_phone
+>>> generate_phone()
+"5929797740"
+>>> generate_phone("mobile")
+"1899115895"
+>>> generate_phone("landline")
+"5535317900"
 ```
 
 ### remove_international_code_phone

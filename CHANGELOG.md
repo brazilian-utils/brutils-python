@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Utilitário `generate_landline_phone` [#190](https://github.com/brazilian-utils/brutils-python/pull/190)
+- Utilitário `generate_phone` [#295] (https://github.com/brazilian-utils/brutils-python/pull/295)
 - Utilitário `is_valid_titulo_eleitoral` [#235](https://github.com/brazilian-utils/brutils-python/pull/235)
 - Suporte ao Python 3.12 [#245](https://github.com/brazilian-utils/brutils-python/pull/245)
 - Utilitário `is_valid_processo_juridico` [#207](https://github.com/brazilian-utils/brutils-python/pull/207)
@@ -30,7 +30,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `convert_license_plate_to_mercosul` [#226](https://github.com/brazilian-utils/brutils-python/pull/226)
 - Utilitário `format_license_plate` [#230](https://github.com/brazilian-utils/brutils-python/pull/230)
 - Utilitário `format_phone` [#231](https://github.com/brazilian-utils/brutils-python/pull/231)
-- Utilitário `generate_mobile_phone` [#232](https://github.com/brazilian-utils/brutils-python/pull/232)
 - Utilitário `format_pis` [#224](https://github.com/brazilian-utils/brutils-python/pull/224)
 - Utilitário `generate_license_plate` [#241](https://github.com/brazilian-utils/brutils-python/pull/241)
 
