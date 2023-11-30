@@ -84,7 +84,7 @@ False
   - [generate_legal_process](#generate_legal_process)
   - [is_valid_legal_process](#is_valid_legal_process)
 - [Título Eleitoral](#titulo-eleitoral)
-  - [is_valid_titulo_eleitoral](#is_valid_titulo_eleitoral)
+  - [is_valid_voter_id](#is_valid_voter_id)
 
 ## CPF
 
@@ -427,8 +427,8 @@ Remove símbolos do número de telefone. ***Exemplo: (21)2569-6969 ficaria '2125
 Gera um número de telefone aleatório válido.
 
 Argumentos:
-  * type (str): Pode ser "landline" ou "mobile". 
-                Se não for especificado, a função gera um número 
+  * type (str): Pode ser "landline" ou "mobile".
+                Se não for especificado, a função gera um número
                 aleatório de qualquer tipo.
 
 Retorna:
@@ -796,7 +796,7 @@ Argumentos:
                             o ID do processo jurídico.
 
 Returna:
-  * bool: Verdadeiro se o ID do processo jurídico for válido, Falso caso
+  * bool: True se o ID do processo jurídico for válido, False caso
           contrário.
 
 Examplo:
@@ -816,14 +816,29 @@ False
 
 ## Titulo Eleitoral
 
-### is_valid_titulo_eleitoral
+### is_valid_voter_id
 
-Verifica se o número do Título Eleitoral brasileiro é valido. Apenas números, formatados como string. Não verifica se o Título realmente existe.
+Verifique se um número de título de eleitor brasileiro é válido. Não verifica se
+o título de eleitor realmente existe.
+
+Referências:
+  - https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor
+  - http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+Argumentos:
+  * voter_id (str): string representando o número do título de eleitor a ser verificado.
+
+Retorna:
+  * bool: True se o número do título de eleitor for válido. False, caso contrário.
+
+Exemplo:
 
 ```python
->>> from brutils import is_valid_titulo_eleitoral
->>> is_valid_titulo_eleitoral('123456789011')
+>>> from brutils import is_valid_voter_id
+>>> is_valid_voter_id('123456789011')
 False
+>>> is_valid_voter_id('427503840213')
+True
 ```
 
 # Novos Utilitários e Reportar Bugs

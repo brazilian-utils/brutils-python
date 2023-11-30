@@ -75,7 +75,7 @@ def is_valid(license_plate, type=None):  # type: (str, str) -> bool
     It does not verify if the plate actually exists.
 
     Args:
-        license_plate (str): The licence plate number to validate.
+        license_plate (str): The license plate number to be validated.
         type (str): "old_format" or "mercosul".
                     If not specified, checks for one or another.
     Returns:

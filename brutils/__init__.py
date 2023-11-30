@@ -82,3 +82,6 @@ from brutils.pis import (
 from brutils.pis import (
     remove_symbols as remove_symbols_pis,
 )
+from brutils.voter_id import (
+    is_valid as is_valid_voter_id,
+)
