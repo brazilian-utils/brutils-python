@@ -82,8 +82,8 @@ False
   - [remove\_symbols\_processo\_juridico](#remove_symbols_legal_process)
   - [generate_legal_process](#generate_legal_process_processo_juridico)
   - [is_valid_legal_process](#is_valid_legal_process_processo_juridico)
-- [Título Eleitoral](#titulo-eleitoral)
-  - [is_valid_titulo_eleitoral](#is_valid_titulo_eleitoral)
+- [Voter ID](#voter-id)
+  - [is_valid_voter_id](#is_valid_voter_id)
 
 ## CPF
 
@@ -420,8 +420,8 @@ Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '55
 Generates a valid random phone number.
 
 Args:
-  * type (str): It can be "landline" or "mobile". 
-                If not specified, the function generates 
+  * type (str): It can be "landline" or "mobile".
+                If not specified, the function generates
                 a random number of any type.
 
 Returns:
@@ -866,16 +866,31 @@ False
 >>>
 ```
 
-## Titulo Eleitoral
+## Voter ID
 
-### is_valid_titulo_eleitoral
+### is_valid_voter_id
 
-Checks whether the Brazilian Voter ID number is valid. Accepts only numbers, formatted as a string. It does not verify whether the ID actually exists.
+Check if a Brazilian voter id number is valid.
+It does not verify if the voter id actually exists.
+
+References:
+- https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor,
+- http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+Args:
+  * voter_id(str): string representing the voter id to be verified.
+
+Returns:
+  * bool: True if the voter id is valid. False otherwise.
+
+Example:
 
 ```python
->>> from brutils import is_valid_titulo_eleitoral
->>> is_valid_titulo_eleitoral('123456789011')
+>>> from brutils import is_valid_voter_id
+>>> is_valid_voter_id('123456789011')
 False
+>>> is_valid_voter_id('427503840213')
+True
 ```
 
 # Feature Request and Bug Report
