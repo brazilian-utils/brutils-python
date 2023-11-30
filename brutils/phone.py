@@ -74,7 +74,7 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
     return cleaned_phone
 
 
-def generate(type=None): # type: (str) -> str
+def generate(type=None):  # type: (str) -> str
     """
     Generate a valid and random phone number.
 
@@ -84,7 +84,7 @@ def generate(type=None): # type: (str) -> str
 
     Returns:
         str: A randomly generated valid phone number.
-        
+
     Example:
         >>> generate()
         "2234451215"
@@ -92,14 +92,14 @@ def generate(type=None): # type: (str) -> str
         "1899115895"
         >>> generate()"landline")
         "5535317900"
-    """ 
+    """
 
     if type == "mobile":
-        return _generate_mobile_phone() 
-    
+        return _generate_mobile_phone()
+
     if type == "landline":
         return _generate_landline_phone()
-    
+
     generate_functions = [_generate_landline_phone, _generate_mobile_phone]
     return choice(generate_functions)()
 
@@ -201,4 +201,3 @@ def _generate_landline_phone():  # type () -> str
     """
     ddd = _generate_ddd_number()
     return f"{ddd}{randint(2,5)}{str(randint(0,9999999)).zfill(7)}"
- 

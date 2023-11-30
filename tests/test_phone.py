@@ -253,7 +253,9 @@ class TestPhone(TestCase):
                 mobile_phone_generated = generate("mobile")
                 self.assertIs(_is_valid_mobile(mobile_phone_generated), True)
                 landline_phone_generated = generate("landline")
-                self.assertIs(_is_valid_landline(landline_phone_generated), True)
+                self.assertIs(
+                    _is_valid_landline(landline_phone_generated), True
+                )
 
     def test_remove_international_code_phone(self):
         # When the phone number does not have the international code,
