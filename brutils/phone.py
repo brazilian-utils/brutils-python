@@ -201,3 +201,4 @@ def _generate_landline_phone():  # type () -> str
     """
     ddd = _generate_ddd_number()
     return f"{ddd}{randint(2,5)}{str(randint(0,9999999)).zfill(7)}"
+ 
