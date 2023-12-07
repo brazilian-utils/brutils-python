@@ -20,17 +20,6 @@ class TestCEP(TestCase):
         )
         self.assertEqual(remove_symbols("...---..."), "")
 
-    def test_format_cep(self):
-        with patch("brutils.cep.is_valid", return_value=True) as mock_is_valid:
-            # When cep is_valid, returns formatted cep
-            self.assertEqual(format_cep("01310200"), "01310-200")
-
-        # Checks if function is_valid_cnpj is called
-        mock_is_valid.assert_called_once_with("01310200")
-
-        with patch("brutils.cep.is_valid", return_value=False) as mock_is_valid:
-            # When cep isn't valid, returns None
-            self.assertIsNone(format_cep("013102009"))
 
     def test_is_valid(self):
         # When CEP is not string, returns False
@@ -50,6 +39,24 @@ class TestCEP(TestCase):
         for _ in range(10_000):
             self.assertIs(is_valid(generate()), True)
         # assert format(generate()) is not None
+
+@patch("brutils.cep.is_valid")
+class TestIsValidToFormat (TestCase):
+    def test_when_cep_is_valid_returns_true_to_format(self, mock_is_valid):
+
+        mock_is_valid.return_value = True
+        
+        self.assertEqual(format_cep("01310200"), "01310-200")
+
+        # Checks if function is_valid_cnpj is called
+        mock_is_valid.assert_called_once_with("01310200")
+
+    def test_when_cep_is_not_valid_returns_none(self, mock_is_valid):
+        
+        mock_is_valid.return_value = False
+
+        # When cep isn't valid, returns None
+        self.assertIsNone(format_cep("013102009"))
 
 
 if __name__ == "__main__":
