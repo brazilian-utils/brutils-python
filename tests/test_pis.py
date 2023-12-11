@@ -64,18 +64,16 @@ class TestPIS(TestCase):
 
     @patch("brutils.pis.is_valid")
     def test_format_valid_pis(self, mock_is_valid):
-
         mock_is_valid.return_value = True
 
         # When PIS is_valid, returns formatted PIS
         self.assertEqual(format_pis("14372195539"), "143.72195.53-9")
-        
+
         # Checks if function is_valid_pis is called
         mock_is_valid.assert_called_once_with("14372195539")
-    
+
     @patch("brutils.pis.is_valid")
     def test_format_invalid_pis(self, mock_is_valid):
-
         mock_is_valid.return_value = False
 
         # When PIS isn't valid, returns None

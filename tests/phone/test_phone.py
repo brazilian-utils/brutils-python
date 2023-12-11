@@ -1,5 +1,4 @@
 from unittest import TestCase, main
-from unittest.mock import patch
 
 from brutils.phone import (
     _is_valid_landline,

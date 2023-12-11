@@ -7,73 +7,62 @@ from brutils.phone import (
     is_valid,
 )
 
+
 @patch("brutils.phone._is_valid_landline")
 @patch("brutils.phone._is_valid_mobile")
 class TestIsValidWithTypeMobile(TestCase):
-    # def test_when_mobile_is_valid_returns_true(
-    #     self, mock__is_valid_landline, mock__is_valid_mobile
-    # ):
-    #     mock__is_valid_mobile.return_value = True
+    def test_when_mobile_is_valid_returns_true(
+        self, mock__is_valid_mobile, mock__is_valid_landline
+    ):
+        mock__is_valid_mobile.return_value = True
 
-    #     self.assertIs(is_valid("11994029275", "mobile"), True)
-    #     mock__is_valid_mobile.assert_called_once_with("11994029275")
-    #     mock__is_valid_landline.assert_not_called()
+        self.assertIs(is_valid("11994029275", "mobile"), True)
+        mock__is_valid_mobile.assert_called_once_with("11994029275")
+        mock__is_valid_landline.assert_not_called()
 
-    # def test_when_mobile_is_not_valid_returns_false(
-    #     self, mock__is_valid_landline, mock__is_valid_mobile
-    # ):
-        
-    #     mock__is_valid_mobile.return_value = False
-        
+    def test_when_mobile_is_not_valid_returns_false(
+        self, mock__is_valid_mobile, mock__is_valid_landline
+    ):
+        mock__is_valid_mobile.return_value = False
 
-    #     self.assertIs(is_valid("119940", "mobile"), False)
-    #     mock__is_valid_mobile.assert_called_once_with("119940")
-    #     mock__is_valid_landline.assert_not_called()
-    pass
+        self.assertIs(is_valid("119940", "mobile"), False)
+        mock__is_valid_mobile.assert_called_once_with("119940")
+        mock__is_valid_landline.assert_not_called()
+
 
 @patch("brutils.phone._is_valid_mobile")
 @patch("brutils.phone._is_valid_landline")
 class TestIsValidWithTypeLandline(TestCase):
-    # def test_when_landline_is_valid_returns_true(
-    #     self, mock__is_valid_mobile, mock__is_valid_landline
-    # ):
-    #     mock__is_valid_landline.return_value = True
+    def test_when_landline_is_valid_returns_true(
+        self, mock__is_valid_landline, mock__is_valid_mobile
+    ):
+        mock__is_valid_landline.return_value = True
 
-    #     self.assertIs(is_valid("11994029275", "landline"), True)
-    #     mock__is_valid_landline.assert_called_once_with("11994029275")
-    #     mock__is_valid_mobile.assert_not_called()
+        self.assertIs(is_valid("11994029275", "landline"), True)
+        mock__is_valid_landline.assert_called_once_with("11994029275")
+        mock__is_valid_mobile.assert_not_called()
 
-    # def test_when_landline_is_not_valid_returns_false(
-    #     self, mock__is_valid_mobile, mock__is_valid_landline
-    # ):
-    #     mock__is_valid_landline.return_value = False
+    def test_when_landline_is_not_valid_returns_false(
+        self, mock__is_valid_landline, mock__is_valid_mobile
+    ):
+        mock__is_valid_landline.return_value = False
 
-    #     self.assertIs(is_valid("11994029275", "landline"), False)
-    #     mock__is_valid_landline.assert_called_once_with("11994029275")
-    #     mock__is_valid_mobile.assert_not_called() 
-    pass
+        self.assertIs(is_valid("11994029275", "landline"), False)
+        mock__is_valid_landline.assert_called_once_with("11994029275")
+        mock__is_valid_mobile.assert_not_called()
+
+
 @patch("brutils.phone._is_valid_landline")
 @patch("brutils.phone._is_valid_mobile")
 class TestIsValidWithTypeNone(TestCase):
-    # def test_when_landline_valid_mobile_invalid(
-    #     self, mock__is_valid_mobile, mock__is_valid_landline
-    # ):
-    #     mock__is_valid_landline.return_value = True
-    #     mock__is_valid_mobile.return_value = False
+    def test_when_landline_is_valid(
+        self, mock__is_valid_mobile, mock__is_valid_landline
+    ):
+        mock__is_valid_landline.return_value = True
 
-    #     self.assertIs(is_valid("1958814933"), True)
-    #     mock__is_valid_landline.assert_called_once_with("1958814933")
-    #     mock__is_valid_mobile.assert_called_once_with("1958814933")
-
-    # def test_when_landline_and_mobile_are_valids(
-    #     self, mock__is_valid_mobile, mock__is_valid_landline
-    # ):
-    #     mock__is_valid_landline.return_value = True
-    #     mock__is_valid_mobile.return_value = True
-
-    #     self.assertIs(is_valid("1958814933"), True)
-    #     mock__is_valid_landline.assert_not_called()
-    #     mock__is_valid_mobile.assert_called_once_with("1958814933")
+        self.assertIs(is_valid("1958814933"), True)
+        mock__is_valid_landline.assert_called_once_with("1958814933")
+        mock__is_valid_mobile.assert_not_called()
 
     def test_when_landline_invalid_mobile_valid(
         self, mock__is_valid_mobile, mock__is_valid_landline
@@ -86,14 +75,14 @@ class TestIsValidWithTypeNone(TestCase):
         mock__is_valid_mobile.assert_called_once_with("11994029275")
 
     def test_when_landline_and_mobile_are_invalid(
-        self, mock__is_valid_landline, mock__is_valid_mobile
+        self, mock__is_valid_mobile, mock__is_valid_landline
     ):
         mock__is_valid_landline.return_value = False
         mock__is_valid_mobile.return_value = False
 
         self.assertIs(is_valid("11994029275"), False)
         mock__is_valid_landline.assert_called_once_with("11994029275")
-        mock__is_valid_mobile.assert_called_once_with("11994029275") 
+        mock__is_valid_mobile.assert_called_once_with("11994029275")
 
 
 class TestIsValidLandline(TestCase):
@@ -127,6 +116,7 @@ class TestIsValidLandline(TestCase):
         self.assertIs(_is_valid_landline("1958814933"), True)
         self.assertIs(_is_valid_landline("3333333333"), True)
 
+
 class TestIsValidMobile(TestCase):
     def test__is_valid_mobile(self):
         # When mobile is not string, returns False
@@ -156,5 +146,4 @@ class TestIsValidMobile(TestCase):
 
 
 if __name__ == "__main__":
-    main()       
-                                      
+    main()
