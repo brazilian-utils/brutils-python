@@ -134,28 +134,7 @@ def remove_international_code_phone(phone_number):  # type: (str) -> str
         return phone_number
 
 
-def _is_valid_landline(phone_number):  # type: (str) -> bool
-    """
-    Returns if a Brazilian landline number is valid.
-    It does not verify if the number actually exists.
-
-    Args:
-        phone_number (str): The landline number to validate.
-                            Only digits, without country code.
-                            It should include two digits DDD.
-
-    Returns:
-        bool: True if the phone number is valid. False otherwise.
-    """
-
-    pattern = re.compile(r"^[1-9][1-9][2-5]\d{7}$")
-    return (
-        isinstance(phone_number, str)
-        and re.match(pattern, phone_number) is not None
-    )
-
-
-def _is_valid_mobile(phone_number):  # type: (str) -> bool
+def _is_valid_mobile(phone_number: str):  # type: (str) -> bool
     """
     Returns if a Brazilian mobile number is valid.
     It does not verify if the number actually exists.
@@ -170,6 +149,27 @@ def _is_valid_mobile(phone_number):  # type: (str) -> bool
     """
 
     pattern = re.compile(r"^[1-9][1-9][9]\d{8}$")
+    return (
+        isinstance(phone_number, str)
+        and re.match(pattern, phone_number) is not None
+    )
+
+
+def _is_valid_landline(phone_number: str):  # type: (str) -> bool
+    """
+    Returns if a Brazilian landline number is valid.
+    It does not verify if the number actually exists.
+
+    Args:
+        phone_number (str): The landline number to validate.
+                            Only digits, without country code.
+                            It should include two digits DDD.
+
+    Returns:
+        bool: True if the phone number is valid. False otherwise.
+    """
+
+    pattern = re.compile(r"^[1-9][1-9][2-5]\d{7}$")
     return (
         isinstance(phone_number, str)
         and re.match(pattern, phone_number) is not None

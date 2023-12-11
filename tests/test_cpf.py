@@ -25,29 +25,11 @@ class TestCPF(TestCase):
         )
         self.assertEqual(sieve("...---..."), "")
 
-    def test_remove_symbols(self):
-        with patch("brutils.cpf.sieve") as mock_sieve:
-            # When call remove_symbols, it calls sieve
-            remove_symbols("123.456.789-10")
-            mock_sieve.assert_called()
-
     def test_display(self):
         self.assertEqual(display("00000000011"), "000.000.000-11")
         self.assertIsNone(display("00000000000"))
         self.assertIsNone(display("0000000000a"))
         self.assertIsNone(display("000000000000"))
-
-    def test_format_cpf(self):
-        with patch("brutils.cpf.is_valid", return_value=True) as mock_is_valid:
-            # When cpf is_valid, returns formatted cpf
-            self.assertEqual(format_cpf("11144477735"), "111.444.777-35")
-
-        # Checks if function is_valid_cpf is called
-        mock_is_valid.assert_called_once_with("11144477735")
-
-        with patch("brutils.cpf.is_valid", return_value=False) as mock_is_valid:
-            # When cpf isn't valid, returns None
-            self.assertIsNone(format_cpf("11144477735"))
 
     def test_validate(self):
         self.assertIs(validate("52513127765"), True)
@@ -99,6 +81,32 @@ class TestCPF(TestCase):
     def test_checksum(self):
         self.assertEqual(_checksum("000000000"), "00")
         self.assertEqual(_checksum("525131277"), "65")
+
+
+@patch("brutils.cpf.sieve")
+class TestRemoveSymbols(TestCase):
+    def test_remove_symbols(self, mock_sieve):
+        # When call remove_symbols, it calls sieve
+        remove_symbols("123.456.789-10")
+        mock_sieve.assert_called()
+
+
+@patch("brutils.cpf.is_valid")
+class TestIsValidToFormat(TestCase):
+    def test_when_cpf_is_valid_returns_true_to_format(self, mock_is_valid):
+        mock_is_valid.return_value = True
+
+        # When cpf is_valid, returns formatted cpf
+        self.assertEqual(format_cpf("11144477735"), "111.444.777-35")
+
+        # Checks if function is_valid_cpf is called
+        mock_is_valid.assert_called_once_with("11144477735")
+
+    def test_when_cpf_is_not_valid_returns_none(self, mock_is_valid):
+        mock_is_valid.return_value = False
+
+        # When cpf isn't valid, returns None
+        self.assertIsNone(format_cpf("11144477735"))
 
 
 if __name__ == "__main__":
