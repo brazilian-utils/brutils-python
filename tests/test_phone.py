@@ -7,7 +7,7 @@ from brutils.phone import (
     format_phone,
     generate,
     is_valid,
-    remove_international_code_phone,
+    remove_international_dialing_code,
     remove_symbols_phone,
 )
 
@@ -257,32 +257,32 @@ class TestPhone(TestCase):
                     _is_valid_landline(landline_phone_generated), True
                 )
 
-    def test_remove_international_code_phone(self):
+    def test_remove_international_dialing_code(self):
         # When the phone number does not have the international code,
         # return the same phone number
         self.assertEqual(
-            remove_international_code_phone("21994029275"), "21994029275"
+            remove_international_dialing_code("21994029275"), "21994029275"
         )
         self.assertEqual(
-            remove_international_code_phone("55994024478"), "55994024478"
+            remove_international_dialing_code("55994024478"), "55994024478"
         )
         self.assertEqual(
-            remove_international_code_phone("994024478"), "994024478"
+            remove_international_dialing_code("994024478"), "994024478"
         )
 
         # When the phone number has the international code,
         # return phone number without international code
         self.assertEqual(
-            remove_international_code_phone("5521994029275"), "21994029275"
+            remove_international_dialing_code("5521994029275"), "21994029275"
         )
         self.assertEqual(
-            remove_international_code_phone("+5521994029275"), "+21994029275"
+            remove_international_dialing_code("+5521994029275"), "+21994029275"
         )
         self.assertEqual(
-            remove_international_code_phone("+5555994029275"), "+55994029275"
+            remove_international_dialing_code("+5555994029275"), "+55994029275"
         )
         self.assertEqual(
-            remove_international_code_phone("5511994029275"), "11994029275"
+            remove_international_dialing_code("5511994029275"), "11994029275"
         )
 
 
