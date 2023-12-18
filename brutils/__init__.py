@@ -63,6 +63,8 @@ from brutils.license_plate import (
 )
 from brutils.phone import (
     format_phone,
+    remove_international_dialing_code,
+    remove_symbols_phone,
 )
 from brutils.phone import (
     generate as generate_phone,

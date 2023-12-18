@@ -189,6 +189,13 @@ def generate(format="LLLNLNN"):  # type: (str) -> str | None
 def _is_valid_old_format(license_plate: str) -> bool:
     """
     Checks whether a string matches the old format of Brazilian license plate.
+    Args:
+        license_plate (str): The desired format for the license plate.
+                                pattern:'LLLNNNN'
+
+    Returns:
+        bool: True if the plate number is valid. False otherwise.
+
     """
     pattern = re.compile(r"^[A-Za-z]{3}[0-9]{4}$")
     return (
@@ -199,9 +206,14 @@ def _is_valid_old_format(license_plate: str) -> bool:
 
 def _is_valid_mercosul(license_plate: str) -> bool:
     """
-    Returns whether or not the provided license_plate is valid according to the
-    Mercosul pattern (LLLNLNN). Input should be a digit string of proper
-    length. Ex: ABC4E67
+    Checks whether a string matches the old format of Brazilian license plate.
+    Args:
+        license_plate (str): The desired format for the license plate.
+                            pattern:'LLLNLNN'
+
+    Returns:
+        bool: True if the plate number is valid. False otherwise.
+
     """
     if not isinstance(license_plate, str):
         return False

@@ -20,7 +20,6 @@ def format_phone(phone):  # type: (str) -> str
     >>> format_phone("1635014415")
     '(16)3501-4415'
     >>> format_phone("333333")
-    >>>
     """
     if not is_valid(phone):
         return None
@@ -63,7 +62,14 @@ def remove_symbols_phone(phone_number):  # type: (str) -> str
     """
     Removes common symbols from a Brazilian phone number string.
 
+    Args:
+        phone_number (str): The phone number to remove symbols.
+                            Can include two digits DDD.
+
+    Returns:
+        str: A new string with the specified symbols removed.
     """
+
     cleaned_phone = (
         phone_number.replace("(", "")
         .replace(")", "")
@@ -90,7 +96,7 @@ def generate(type=None):  # type: (str) -> str
         "2234451215"
         >>> generate("mobile")
         "1899115895"
-        >>> generate()"landline")
+        >>> generate("landline")
         "5535317900"
     """
 
@@ -104,7 +110,7 @@ def generate(type=None):  # type: (str) -> str
     return choice(generate_functions)()
 
 
-def remove_international_code_phone(phone_number):  # type: (str) -> str
+def remove_international_dialing_code(phone_number):  # type: (str) -> str
     """
     Function responsible for remove a international code phone
 
@@ -115,11 +121,12 @@ def remove_international_code_phone(phone_number):  # type: (str) -> str
         str: The phone number without international code
             or the same phone number.
 
-    >>> remove_international_code_phone("5511994029275")
+    Example:
+    >>> remove_international_dialing_code("5511994029275")
     '11994029275'
-    >>> remove_international_code_phone("1635014415")
+    >>> remove_international_dialing_code("1635014415")
     '1635014415'
-    >>> remove_international_code_phone("+5511994029275")
+    >>> remove_international_dialing_code("+5511994029275")
     '+11994029275'
     """
 
