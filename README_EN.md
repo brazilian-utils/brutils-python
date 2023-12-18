@@ -57,30 +57,31 @@ False
   - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)
 - [Phone](#phone)
-  - [format_phone](#format_phone)
   - [is_valid_phone](#is_valid_phone)
+  - [format_phone](#format_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
+  - [remove_international_dialing_code](#remove_international_dialing_code)
   - [generate_phone](#generate_phone)
-  - [remove_international_code_phone](#remove_international_code_phone)
 - [Email](#email)
   - [is_valid_email](#is_valid_email)
 - [License_Plate](#license-plate)
   - [is_valid_license_plate](#is_valid_license_plate)
-  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
   - [format_license_plate](#format_license_plate)
-  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
-  - [get_license_plate_format](#get_license_plate_format)
+  - [remove_symbols_license_plate](#remove_symbols_license_plate)
   - [generate_license_plate](#generate_license_plate)
+  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
+  - [get_license_plate_format](#get_license_plate_format)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
-  - [generate_pis](#generate_pis)
+  - [format_pis](#format_pis)  
   - [remove_symbols_pis](#remove_symbols_pis)
-  - [format_pis](#format_pis)
+  - [generate_pis](#generate_pis)
 - [Legal Process](#legal-process)
+  - [is_valid_legal_process](#is_valid_legal_process)  
   - [format_legal_process](#format_legal_process)
-  - [remove\_symbols\_processo\_juridico](#remove_symbols_legal_process)
+  - [remove_symbols_legal_process](#remove_symbols_legal_process)
   - [generate_legal_process](#generate_legal_process)
-  - [is_valid_legal_process](#is_valid_legal_process)
+
 - [Voter ID](#voter-id)
   - [is_valid_voter_id](#is_valid_voter_id)
 
@@ -284,6 +285,10 @@ Example:
 >>> from brutils import is_valid_cep
 >>> is_valid_cep('01310200')
 True
+>>> is_valid_cep("12345")
+False
+>>> is_valid_cep("abcdefgh")
+False
 ```
 
 ### format_cep
@@ -350,20 +355,6 @@ Example:
 
 ## Phone
 
-### format_phone
-Formats a given phone number to a human-presentable format. If it is not a valid number, returns `None`
-***Example: 11994029275 will be formatted to (11)99402-9275***
-
-
-```python
->>> format_phone("11994029275")
-'(11)99402-9275'
->>> format_phone("1635014415")
-'(16)3501-4415'
->>> format_phone("333333")
->>>
-```
-
 ### is_valid_phone
 
 Return whether a Brazilian phone number is valid.
@@ -373,25 +364,25 @@ It does not verify if the number actually exists.
 is_valid_phone(phone_number, type)
 ```
 
-Args
-  - phone_number:
+Args:
+  * phone_number:
     * the phone number to be validated
-    * mandatory
     * digits only, no symbols
     * without the country code
     * should include the area code (DDD) with two digits
     * example: '+55 48 9999 9999' should be used as '4899999999'
+    * mandatory
 
-  - type:
+  * type:
     * 'mobile' to validate only mobile numbers
     * 'landline' to validate only landline phone numbers
     * if not specified, it validates for either.
     * optional
 
-Return
-  - bool: True if the phone number is valid. False otherwise.
+Returns:
+  * bool: True if the phone number is valid. False otherwise.
 
-Example
+Example:
 
 ```python
 >>> from brutils import is_valid_phone
@@ -403,16 +394,75 @@ True
 True
 ```
 
+### format_phone
+
+Format a phone number for visual display. This function takes a string representing a phone number containing only numbers as input and adds standard formatting symbols for display.
+
+Args:
+  * phone (str): A string representing a phone number.
+
+Returns:
+  * str: The formatted phone number for display or None if it is not valid.
+
+Example:
+
+```python
+>>> from brutils import format_phone
+>>> format_phone("11994029275")
+'(11)99402-9275'
+>>> format_phone("1635014415")
+'(16)3501-4415'
+>>> format_phone("333333")
+>>>
+```
+
 ### remove_symbols_phone
 
-Remove symbols from phone number. ***Example: +55 (21) 2569-6969 will return '552125696969'.***
+Remove symbols from the phone number. This function takes a phone number as input and removes all symbols, such as parentheses '()', dashes '-', and spaces ' '.
+
+Args:
+  * phone (str): The input phone number containing the symbols to be removed.
+
+Returns:
+  * str: A new string with the specified symbols removed.
+
+Example:
 
 ```python
 >>> from brutils import remove_symbols_phone
->>> remove_symbols_phone('+55 (21) 2569-6969')
-'552125696969'
+>>> remove_symbols_phone('(21)2569-6969')
+'2125696969'
+>>> remove_symbols_phone('11 9999-8888')
+'1199998888'
+>>> remove_symbols_phone('333333')
+'333333'
 ```
 
+### remove_international_dialing_code
+
+Remove the international code (+55) from a string containing a Brazilian phone number, preserving other special characters.
+
+Args:
+  * phone (str): The input phone number that may contain the international code.
+
+Returns:
+  * str: A new string without the international code, preserving other special characters.
+
+Example:
+
+```python
+>>> from brutils import remove_international_dialing_code
+>>> remove_international_dialing_code("5521994029275")
+"21994029275"
+>>> remove_international_dialing_code("+5521994029275")
+"+21994029275"
+>>> remove_international_dialing_code("5555994029275")
+"55994029275"
+>>> remove_international_dialing_code("21994029275")
+"21994029275"
+>>> remove_international_dialing_code("(+55)21994029275")
+"(+)21994029275"
+```
 
 ### generate_phone
 
@@ -436,23 +486,6 @@ Example:
 "1899115895"
 >>> generate_phone("landline")
 "5535317900"
-```
-
-### remove_international_code_phone
-
-Remove the international code (+55) from a string that contains a Brazilian phone number.
-
-```python
->>> from brutils import remove_international_code_phone
->>> remove_international_code_phone("5521994029275")
-"21994029275"
->>> remove_international_code_phone("+5521994029275")
-"+21994029275"
->>> remove_international_code_phone("5555994029275")
-"55994029275"
->>> remove_international_code_phone("21994029275")
-"21994029275"
->>>
 ```
 
 ## Email
@@ -514,53 +547,90 @@ True
 False
 ```
 
-### is_valid_license_plate_old_format
+### format_license_plate
 
-Checks whether a string matches the old format of Brazilian license plate
-(LLLNNNN).
-This function does not verify if the license plate is a real license plate;
-it only validates the format of the string.
+Formats a license plate into the correct pattern.
+This function receives a license plate in any pattern (LLLNNNN or LLLNLNN)
+and returns a formatted version.
 
 Args:
   * license_plate (str): A license plate string.
 
 Returns:
-  * bool: True if the string corresponds to a license plate in the old
-          pattern format, False otherwise.
+  * str: The formatted license plate string or
+         'None' if the input is invalid.
 
 Example:
 
 ```python
->>> from brutils import is_valid_license_plate_old_format
->>> is_valid_license_plate_old_format('ABC1234')
-True
->>> is_valid_license_plate_old_format('def5678')
-True
->>> is_valid_license_plate_old_format('GHI-4567')
-False
+>>> from brutils import format_license_plate
+>>> format_license_plate("ABC1234") 
+"ABC-1234"
+# old format (contains a dash)
+>>> format_license_plate("abc1234") 
+"ABC-1234"
+# old format (contains a dash)
+>>> format_license_plate("ABC1D23") 
+"ABC1D23"
+# mercosul format
+>>> format_license_plate("abc1d23") 
+"ABC1D23"
+# mercosul format
+>>> format_license_plate("ABCD123")
+None
 ```
 
-### is_valid_license_plate_mercosul
+### remove_symbols_license_plate
 
-Checks whether a string matches the Mercosul license plate format (LLLNNNN).
-This function does not verify if the license plate is a real license plate;
-it only validates the format of the string.
+Removes the dash (-) symbol from a license plate string.
 
 Args:
-  * license_plate (str): A license plate string.
+  * license_plate_number (str): A license plate number containing symbols to
+                                be removed.
 
 Returns:
-  * bool: True if the string corresponds to a license plate in the Mercosul
-          pattern format, False otherwise.
+  * str: The license plate number with the specified symbols removed.
 
 Example:
 
 ```python
->>> from brutils import is_valid_license_plate_mercosul
->>> is_valid_license_plate_mercosul('ABC4E67')
-True
->>> is_valid_license_plate_mercosul('abc167')
-False
+from brutils import remove_symbols_license_plate
+>>> remove_symbols_license_plate("ABC-123")
+"ABC123"
+>>> remove_symbols_license_plate("abc123")
+"abc123"
+>>> remove_symbols_license_plate("ABCD123")
+"ABCD123"
+>>> remove_symbols_license_plate("@abc#-#123@")
+"@abc##123@"
+```
+
+### generate_license_plate
+
+Generate a valid license plate in the given format. In case no format is
+provided, it will return a license plate in the Mercosul format.
+
+Args:
+  * format (str): The desired format for the license plate.
+                  'LLLNNNN' for the old pattern or 'LLLNLNN' for the
+                   Mercosul one. Default is 'LLLNLNN'
+
+Returns:
+  * str: A randomly generated license plate number or
+         'None' if the format is invalid.
+
+Example:
+
+```python
+from brutils import generate_license_plate
+>>> generate_license_plate()
+"ABC1D23"
+>>> generate_license_plate(format="LLLNLNN")
+"ABC4D56"
+>>> generate_license_plate(format="LLLNNNN")
+"ABC123"
+>>> generate_license_plate(format="invalid")
+None
 ```
 
 ### convert_license_plate_to_mercosul
@@ -588,61 +658,6 @@ Example:
 None
 ```
 
-### format_license_plate
-
-Formats a license plate into the correct pattern.
-This function receives a license plate in any pattern (LLLNNNN or LLLNLNN)
-and returns a formatted version.
-
-Args:
-  * license_plate (str): A license plate string.
-
-Returns:
-  * str: The formatted license plate string or
-         'None' if the input is invalid.
-
-Example:
-
-```python
->>> from brutils import format_license_plate
->>> format_license_plate("ABC1234") # old format (contains a dash)
-"ABC-1234"
->>> format_license_plate("abc1234") # old format (contains a dash)
-"ABC-1234"
->>> format_license_plate("ABC1D23") # mercosul format
-"ABC1D23"
->>> format_license_plate("abc1d23") # mercosul format
-"ABC1D23"
->>> format_license_plate("ABCD123")
-None
-```
-
-### remove_symbols_license_plate
-
-Removes the dash (-) symbol from a license plate string.
-
-Args:
-  * license_plate_number (str): A license plate number containing symbols to
-                                be removed.
-
-Returns:
-  * str: The license plate number with the specified symbols removed.
-
-Example:
-
-```python
-from brutils import remove_symbols_license_plate
-
->>> remove_symbols_license_plate("ABC-123")
-"ABC123"
->>> remove_symbols_license_plate("abc123")
-"abc123"
->>> remove_symbols_license_plate("ABCD123")
-"ABCD123"
->>> remove_symbols_license_plate("@abc#-#123@")
-"@abc##123@"
-```
-
 ### get_license_plate_format
 
 Return the format of a license plate. 'LLLNNNN' for the old pattern and
@@ -659,7 +674,6 @@ Example:
 
 ```python
 from brutils import get_license_plate_format
-
 >>> get_license_plate_format("ABC123")
 "LLLNNNN"
 >>> get_license_plate_format("abc123")
@@ -671,92 +685,121 @@ from brutils import get_license_plate_format
 >>> get_license_plate_format("ABCD123")
 None
 ```
-### generate_license_plate
-
-Generate a valid license plate in the given format. In case no format is
-provided, it will return a license plate in the Mercosul format.
-
-Args:
-  * format (str): The desired format for the license plate.
-                  'LLLNNNN' for the old pattern or 'LLLNLNN' for the
-                   Mercosul one. Default is 'LLLNLNN'
-
-Returns:
-  * str: A randomly generated license plate number or
-         'None' if the format is invalid.
-
-Example:
-
-```python
-from brutils import generate_license_plate
-
->>> generate_license_plate()
-"ABC1D23"
->>> generate_license_plate(format="LLLNLNN")
-"ABC4D56"
->>> generate_license_plate(format="LLLNNNN")
-"ABC123"
->>> generate_license_plate(format="invalid")
-None
-```
 
 ## PIS
 
 ### is_valid_pis
 
-Check if PIS/PASEP number is valid. Numbers only, formatted as strings. Does not check if PIS/PASEP exists.
-More details about the validation can be found here: https://www.macoratti.net/alg_pis.htm.
+Verifies if the PIS/PASEP number is valid. Only numbers, formatted as a string. It does not check if the PIS/PASEP actually exists.
+
+References:
+  - https://www.macoratti.net/alg_pis.htm.
+
+Args:
+  * pis (str): PIS number as a string with the proper length.
+
+Returns:
+  * bool: True if the PIS is valid, False otherwise.
+
+Example:
 
 ```python
 from brutils import is_valid_pis
-
->>> is_valid_pis("12038619494")
+>>> is_valid_pis("82178537464")
+False
+>>> is_valid_pis("12082043519")
 True
->>> is_valid_pis("11111111111")
-False
->>> is_valid_pis("123456")
-False
-```
-
-### generate_pis
-
-Generates a valid random PIS/PASEP number.
-
-```python
-from brutils import generate_pis
-
->>> generate_pis()
-'12038619494'
->>> generate_pis()
-'57817700092'
->>> generate_pis()
-'49850211630'
-```
-
-### remove_symbols_pis
-
-Removes the formatting symbols ("-" and ".") from a PIS/PASEP number. It doesn't remove other symbols on purpose.
-
-```python
-from brutils import remove_symbols_pis
-
->>> remove_symbols_pis('170.33259.50-4')
-'17033259504'
->>> remove_symbols_pis('/._')
-'/_'
 ```
 
 ### format_pis
 
-Format the PIS number. Returns None if the PIS is invalid.
+Formats a valid PIS (Programa de Integração Social) string with symbols and adds standard formatting symbols for display.
+
+Args:
+  * pis (str): A valid string of PIS containing only numbers.
+
+Returns:
+  * str: A formatted PIS string with standard visual aid symbols or None if the input is invalid.
+
+Example:
 
 ```python
->>> from brutils import format_pis
->>> format_pis('12038619494')
-'120.38619.49-4'
+from brutils import format_pis
+>>> format_pis("17033259504")
+'170.33259.50-4'
+>>> format_pis("12013128292")
+'120.13128.29-2'
+```
+
+### remove_symbols_pis
+
+This function takes a string of PIS (Programa de Integração Social) with formatting symbols and returns a clean version without certain symbols. It intentionally removes only the symbols "-" and ".", leaving other symbols untouched.
+
+Args:
+  * pis (str): A string of PIS that may contain formatting symbols.
+
+Returns:
+  * str: A clean string of PIS without formatting symbols.
+
+Example:
+
+```python
+from brutils import remove_symbols_pis
+>>> remove_symbols_pis('170.33259.50-4')
+'17033259504'
+>>> remove_symbols_pis("123.456.789-09")
+'12345678909'
+>>> remove_symbols_pis('/._')
+'/_'
+```
+
+### generate_pis
+
+Generates a string of digits containing a random valid Brazilian PIS number.
+
+Returns:
+  * str: A randomly generated valid PIS number as a string.
+
+Example:
+
+```python
+from brutils import generate_pis
+>>> generate_pis()
+'61352489741'
+>>> generate_pis()
+'73453349671'
 ```
 
 ## Legal Process
+
+## is_valid_legal_process
+
+Check if a legal process ID is valid.
+
+This function does not verify if the legal process ID is a real legal
+process ID; it only validates the format of the string.
+
+Args:
+  * legal_process_id (str): A digit-only string representing the legal
+                            process ID.
+
+Returns:
+  * bool: True if the legal process ID is valid, False otherwise.
+
+Example:
+
+```python
+>>> from brutils import is_valid_legal_process
+>>> is_valid_legal_process('10188748220234018200')
+True
+>>> is_valid_legal_process('45532346920234025107')
+True
+>>> is_valid_legal_process('00000000000000000000')
+False
+>>> is_valid_legal_process('455323423QQWEQWSsasd&*(()')
+False
+>>>
+```
 
 ### format_legal_process
 
@@ -798,7 +841,6 @@ Example:
 
 ```python
 from brutils import remove_symbols_legal_process
-
 >>> remove_symbols_legal_process("6439067-89.2023.4.04.5902")
 "64390678920234045902"
 >>> remove_symbols_legal_process("4976023-82.2012.7.00.2263")
@@ -819,7 +861,7 @@ Args:
                  (default is random).
 
 Returns:
-    str: A randomly generated legal process ID.
+  * str: A randomly generated legal process ID.
          None if one of the arguments is invalid.
 
 Example:
@@ -834,35 +876,6 @@ Example:
 "37573041520235090313"
 >>> generate_legal_process(year=2024, orgao=4)
 "33158248820244017105"
-```
-
-## is_valid_legal_process
-
-Check if a legal process ID is valid.
-
-This function does not verify if the legal process ID is a real legal
-process ID; it only validates the format of the string.
-
-Args:
-  * legal_process_id (str): A digit-only string representing the legal
-                            process ID.
-
-Returns:
-  * bool: True if the legal process ID is valid, False otherwise.
-
-Example:
-
-```python
->>> from brutils import is_valid_legal_process
->>> is_valid_legal_process('10188748220234018200')
-True
->>> is_valid_legal_process('45532346920234025107')
-True
->>> is_valid_legal_process('00000000000000000000')
-False
->>> is_valid_legal_process('455323423QQWEQWSsasd&*(()')
-False
->>>
 ```
 
 ## Voter ID

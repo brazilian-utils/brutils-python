@@ -7,6 +7,29 @@ from random import randint
 ############
 
 
+def remove_symbols(legal_process: str):  # type: (str) -> str
+    """
+    Removes specific symbols from a given legal process.
+
+    This function takes a legal process as input and removes all occurrences
+    of the '.' and '-' characters from it.
+
+    Args:
+        legal_process (str): A legal process containing symbols to be removed.
+
+    Returns:
+        str: The legal process string with the specified symbols removed.
+
+    Example:
+        >>> remove_symbols("123.45-678.901.234-56.7890")
+        '12345678901234567890'
+        >>> remove_symbols("9876543-21.0987.6.54.3210")
+        '98765432109876543210'
+    """
+
+    return legal_process.replace(".", "").replace("-", "")
+
+
 def format_legal_process(legal_process_id):  # type: (str) -> (str)
     """
     Format a legal process ID into a standard format.
@@ -34,29 +57,6 @@ def format_legal_process(legal_process_id):  # type: (str) -> (str)
         return re.sub(capture_fields, include_chars, legal_process_id)
 
     return None
-
-
-def remove_symbols(legal_process: str):  # type: (str) -> str
-    """
-    Removes specific symbols from a given legal process.
-
-    This function takes a legal process as input and removes all occurrences
-    of the '.' and '-' characters from it.
-
-    Args:
-        legal_process (str): A legal process containing symbols to be removed.
-
-    Returns:
-        str: The legal process string with the specified symbols removed.
-
-    Example:
-        >>> remove_symbols("123.45-678.901.234-56.7890")
-        '12345678901234567890'
-        >>> remove_symbols("9876543-21.0987.6.54.3210")
-        '98765432109876543210'
-    """
-
-    return legal_process.replace(".", "").replace("-", "")
 
 
 # OPERATIONS
