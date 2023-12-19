@@ -72,7 +72,7 @@ False
   - [remove_symbols_license_plate](#remove_symbols_license_plate)
   - [generate_license_plate](#generate_license_plate)
   - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
-  - [get_license_plate_format](#get_license_plate_format)
+  - [get_format_license_plate](#get_format_license_plate)
 - [PIS](#pis)
   - [is_valid_pis](#is_valid_pis)
   - [format_pis](#format_pis)
@@ -653,7 +653,7 @@ Exemplo:
 None
 ```
 
-### get_license_plate_format
+### get_format_license_plate
 
 Retorna o formato de uma placa de carro. 'LLLNNNN' para o formato antigo e
 'LLLNLNN' para o formato Mercosul.
@@ -668,16 +668,16 @@ Retorna:
 Exemplo:
 
 ```python
-from brutils import get_license_plate_format
->>> get_license_plate_format("ABC123")
+from brutils import get_format_license_plate
+>>> get_format_license_plate("ABC123")
 "LLLNNNN"
->>> get_license_plate_format("abc123")
+>>> get_format_license_plate("abc123")
 "LLLNNNN"
->>> get_license_plate_format("ABC1D23")
+>>> get_format_license_plate("ABC1D23")
 "LLLNLNN"
->>> get_license_plate_format("abc1d23")
+>>> get_format_license_plate("abc1d23")
 "LLLNLNN"
->>> get_license_plate_format("ABCD123")
+>>> get_format_license_plate("ABCD123")
 None
 ```
 
