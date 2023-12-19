@@ -7,17 +7,10 @@ from brutils.pis import (
     generate,
     is_valid,
     remove_symbols,
-    validate,
 )
 
 
 class TestPIS(TestCase):
-    def test_validate(self):
-        self.assertIs(validate("123456789ab"), False)
-        self.assertIs(validate("901.85930.32-3"), False)
-        self.assertIs(validate("90185930323"), True)
-        self.assertIs(validate("93616217820"), True)
-
     def test_is_valid(self):
         # When PIS is not string, returns False
         self.assertIs(is_valid(1), False)
@@ -30,6 +23,7 @@ class TestPIS(TestCase):
 
         # When PIS does not contain only digits, returns False
         self.assertIs(is_valid("123pis"), False)
+        self.assertIs(is_valid("123456789ab"), False)
 
         # When checksum digit doesn't match last digit, returns False
         self.assertIs(is_valid("11111111111"), False)
@@ -53,7 +47,7 @@ class TestPIS(TestCase):
 
     def test_generate(self):
         for _ in range(10_000):
-            self.assertIs(validate(generate()), True)
+            self.assertIs(is_valid(generate()), True)
 
     def test_remove_symbols(self):
         self.assertEqual(remove_symbols("00000000000"), "00000000000")
