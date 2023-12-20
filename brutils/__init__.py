@@ -53,7 +53,7 @@ from brutils.license_plate import (
     format_license_plate,
 )
 from brutils.license_plate import (
-    get_format as get_license_plate_format,
+    get_format as get_format_licence_plate,
 )
 from brutils.license_plate import (
     is_valid as is_valid_license_plate,
