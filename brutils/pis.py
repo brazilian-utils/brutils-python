@@ -79,11 +79,12 @@ def is_valid(pis: str) -> bool:
 
     """
 
-    if isinstance(pis, str) and len(pis) == 11 and pis.isdigit():
-        if pis[-1] == str(_checksum(pis[:-1])):
-            return True
-
-    return False
+    return (
+        isinstance(pis, str)
+        and len(pis) == 11
+        and pis.isdigit()
+        and pis[-1] == str(_checksum(pis[:-1]))
+    )
 
 
 def generate() -> str:
