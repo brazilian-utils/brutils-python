@@ -58,7 +58,7 @@ False
   - [format_cep](#format_cep)
   - [remove_symbols_cep](#remove_symbols_cep)
   - [generate_cep](#generate_cep)
-- [Phone](#phone)
+- [Telefone](#telefone)
   - [is_valid_phone](#is_valid_phone)
   - [format_phone](#format_phone)
   - [remove_symbols_phone](#remove_symbols_phone)
@@ -359,7 +359,7 @@ Exemplo:
 '29641407'
 ```
 
-## Phone
+## Telefone
 
 ### is_valid_phone
 
