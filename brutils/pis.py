@@ -60,33 +60,6 @@ def format_pis(pis: str) -> str:
 ############
 
 
-def validate(pis: str) -> bool:
-    """
-     Validate a Brazilian PIS number.
-
-     The PIS is valid if:
-     - It has 11 digits
-     - All characters are digits
-     - It passes the weight calculation check
-
-     Args:
-         pis(str): PIS number as a string.
-
-     Returns:
-         bool: True if PIS is valid, False otherwise.
-
-    Example:
-         >>> validate("82178537464")
-         True
-         >>> validate("55550207753")
-         True
-    """
-    if len(pis) != 11 or not pis.isdigit():
-        return False
-
-    return pis[-1] == str(_checksum(pis[:-1]))
-
-
 def is_valid(pis: str) -> bool:
     """
     Returns whether or not the verifying checksum digit of the
@@ -105,7 +78,13 @@ def is_valid(pis: str) -> bool:
     True
 
     """
-    return isinstance(pis, str) and validate(pis)
+
+    return (
+        isinstance(pis, str)
+        and len(pis) == 11
+        and pis.isdigit()
+        and pis[-1] == str(_checksum(pis[:-1]))
+    )
 
 
 def generate() -> str:
