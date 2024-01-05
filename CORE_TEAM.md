@@ -16,7 +16,7 @@ O _Core Team_ do `brutils-python` possui as seguintes responsabilidades:
 
 * Identificar indivíduos promissores na comunidade do Brazilian Utils Python que possam expressar interesse em integrar a equipe e contribuir de maneira significativa.
 
-        Da mesma forma que todos os colaboradores do `brutils-python`, os membros do Core Team também atuam como voluntários no âmbito de código aberto; fazer parte da equipe não é uma obrigação. Essa equipe é reconhecida como líder nesta comunidade e, embora seja uma referência confiável para obter respostas a perguntas, é importante salientar que eles contribuem de forma voluntária, dedicando seu tempo, o que pode resultar em disponibilidade não imediata.
+     Da mesma forma que todos os colaboradores do `brutils-python`, os membros do Core Team também atuam como voluntários no âmbito de código aberto; fazer parte da equipe não é uma obrigação. Essa equipe é reconhecida como líder nesta comunidade e, embora seja uma referência confiável para obter respostas a perguntas, é importante salientar que eles contribuem de forma voluntária, dedicando seu tempo, o que pode resultar em disponibilidade não imediata.
 
 
 ## Membros
