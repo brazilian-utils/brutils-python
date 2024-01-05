@@ -7,31 +7,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2024-01-05
+
 ### Added
 
-- Utilitário `generate_phone` [#295](https://github.com/brazilian-utils/brutils-python/pull/295)
-- Utilitário `is_valid_voter_id` [#235](https://github.com/brazilian-utils/brutils-python/pull/235)
 - Suporte ao Python 3.12 [#245](https://github.com/brazilian-utils/brutils-python/pull/245)
-- Utilitário `is_valid_processo_juridico` [#207](https://github.com/brazilian-utils/brutils-python/pull/207)
-- Utilitário `generate_processo_juridico` [#208](https://github.com/brazilian-utils/brutils-python/pull/208)
-- Utilitário `get_format_license_plate` [#243](https://github.com/brazilian-utils/brutils-python/pull/243)
-- Utilitário `is_valid_license_plate` [#237](https://github.com/brazilian-utils/brutils-python/pull/237)
-- Utilitário `remove_symbols_pis` [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
-- Utilitário `format_processo_juridico` [#210](https://github.com/brazilian-utils/brutils-python/pull/210)
-- Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
-- Utilitário `is_valid_pis` [#216](https://github.com/brazilian-utils/brutils-python/pull/216)
-- Utilitário `is_valid_email` [#213](https://github.com/brazilian-utils/brutils-python/pull/213)
-- Utilitário `is_valid_phone` [#147](https://github.com/brazilian-utils/brutils-python/pull/147)
-- Utilitário `is_valid_mobile_phone` [#146](https://github.com/brazilian-utils/brutils-python/pull/146)
-- Utilitário `is_valid_landline_phone` [#143](https://github.com/brazilian-utils/brutils-python/pull/143)
-- Utilitário `remove_symbols_processo_juridico` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
-- Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
-- Utilitário `remove_symbols_license_plate` [#182](https://github.com/brazilian-utils/brutils-python/pull/182)
 - Utilitário `convert_license_plate_to_mercosul` [#226](https://github.com/brazilian-utils/brutils-python/pull/226)
 - Utilitário `format_license_plate` [#230](https://github.com/brazilian-utils/brutils-python/pull/230)
 - Utilitário `format_phone` [#231](https://github.com/brazilian-utils/brutils-python/pull/231)
 - Utilitário `format_pis` [#224](https://github.com/brazilian-utils/brutils-python/pull/224)
+- Utilitário `format_legal_process` [#210](https://github.com/brazilian-utils/brutils-python/pull/210)
 - Utilitário `generate_license_plate` [#241](https://github.com/brazilian-utils/brutils-python/pull/241)
+- Utilitário `generate_phone` [#295](https://github.com/brazilian-utils/brutils-python/pull/295)
+- Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
+- Utilitário `generate_legal_process` [#208](https://github.com/brazilian-utils/brutils-python/pull/208)
+- Utilitário `get_format_license_plate` [#243](https://github.com/brazilian-utils/brutils-python/pull/243)
+- Utilitário `is_valid_email` [#213](https://github.com/brazilian-utils/brutils-python/pull/213)
+- Utilitário `is_valid_license_plate` [#237](https://github.com/brazilian-utils/brutils-python/pull/237)
+- Utilitário `is_valid_phone` [#147](https://github.com/brazilian-utils/brutils-python/pull/147)
+- Utilitário `is_valid_pis` [#216](https://github.com/brazilian-utils/brutils-python/pull/216)
+- Utilitário `is_valid_legal_process` [#207](https://github.com/brazilian-utils/brutils-python/pull/207)
+- Utilitário `is_valid_voter_id` [#235](https://github.com/brazilian-utils/brutils-python/pull/235)
+- Utilitário `remove_international_dialing_code` [192](https://github.com/brazilian-utils/brutils-python/pull/192)
+- Utilitário `remove_symbols_license_plate` [#182](https://github.com/brazilian-utils/brutils-python/pull/182)
+- Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
+- Utilitário `remove_symbols_pis` [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
+- Utilitário `remove_symbols_legal_process` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
 
 ### Removed
 
@@ -51,7 +52,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `is_valid_cnpj` [36](https://github.com/brazilian-utils/brutils-python/pull/36)
 - Utilitário `format_cnpj` [52](https://github.com/brazilian-utils/brutils-python/pull/52)
 - Utilitário `remove_symbols_cnpj` [58](https://github.com/brazilian-utils/brutils-python/pull/58)
-- Utilitário `remove_international_code_phone` [192](https://github.com/brazilian-utils/brutils-python/pull/192)
 
 ### Deprecated
 
@@ -62,5 +62,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `cnpj.display`
 - Utilitário `cnpj.validate`
 
-[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.1.0
 [2.0.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.0.0
