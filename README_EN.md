@@ -260,7 +260,7 @@ Example:
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
->>> generate(1234)
+>>> generate_cnpj(1234)
 "01745284123455"
 ```
 
@@ -413,7 +413,7 @@ Example:
 >>> format_phone("1635014415")
 '(16)3501-4415'
 >>> format_phone("333333")
->>>
+None
 ```
 
 ### remove_symbols_phone
