@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- `generate_legal_process` [#325](https://github.com/brazilian-utils/brutils-python/pull/325)
+- `is_valid_legal_process` [#325](https://github.com/brazilian-utils/brutils-python/pull/325)
 - Import do utilitário `convert_license_plate_to_mercosul` [#324](https://github.com/brazilian-utils/brutils-python/pull/324)
 - Import do utilitário `generate_license_plate` [#324](https://github.com/brazilian-utils/brutils-python/pull/324)
 - Import do utilitário `get_format_license_plate` [#324](https://github.com/brazilian-utils/brutils-python/pull/324)
