@@ -1,7 +1,12 @@
 import json
+import os
 import re
 from datetime import datetime
 from random import randint
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR = f"{ROOT_DIR}/data"
+VALID_IDS_FILE = f"{DATA_DIR}/legal_process_ids.json"
 
 # FORMATTING
 ############
@@ -92,7 +97,7 @@ def is_valid(legal_process_id):  # type: (str) -> bool
     TR = clean_legal_process_id[14:16]
     OOOO = clean_legal_process_id[16:]
 
-    with open("brutils/data/legal_process_ids.json") as file:
+    with open(VALID_IDS_FILE) as file:
         legal_process_ids = json.load(file)
         process = legal_process_ids.get(f"orgao_{J}")
         if not process:
@@ -135,7 +140,7 @@ def generate(year=datetime.now().year, orgao=randint(1, 9)):  # type: (int, int)
         return None
 
     # Getting possible legal process ids from 'legal_process_ids.json' asset
-    with open("brutils/data/legal_process_ids.json") as file:
+    with open(VALID_IDS_FILE) as file:
         legal_process_ids = json.load(file)
         _ = legal_process_ids[f"orgao_{orgao}"]
         TR = str(
