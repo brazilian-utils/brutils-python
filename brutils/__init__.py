@@ -50,10 +50,16 @@ from brutils.legal_process import (
     remove_symbols as remove_symbols_legal_process,
 )
 from brutils.license_plate import (
+    convert_to_mercosul as convert_license_plate_to_mercosul,
+)
+from brutils.license_plate import (
     format_license_plate,
 )
 from brutils.license_plate import (
-    get_format as get_format_licence_plate,
+    generate as generate_license_plate,
+)
+from brutils.license_plate import (
+    get_format as get_format_license_plate,
 )
 from brutils.license_plate import (
     is_valid as is_valid_license_plate,
