@@ -190,10 +190,22 @@ Create the number of changes/commits you need and push them.
 
 Here you will find how to deploy a new production version of brutils:
 
-- [1. Create a Release PR](#1-create-a-release-pr)
-- [2. Deploy via GitHub](#2-deploy-via-github)
+- [1. Create a Release Issue](#1-create-a-release-issue)
+- [2. Create a Release PR](#2-create-a-release-pr)
+- [3. Deploy via GitHub](#3-deploy-via-github)
 
-### 1. Create a Release PR
+### 1. Create a Release Issue
+
+#### Create the Issue
+
+For the issue creation, you can use the feature template, with the issue name being `Release v<version>`. [Example](https://github.com/brazilian-utils/brutils-python/issues/322)
+
+#### Create a Branch
+
+The branch name created for the release is related to the Issue number, as shown in [this example](https://github.com/brazilian-utils/brutils-python/pull/326)
+
+
+### 2. Create a Release PR
 
 #### Bump the lib Version
 
@@ -205,7 +217,7 @@ in the `pyproject.toml` file: https://github.com/brazilian-utils/brutils-python/
 Add a new version title with the new version number and the current date, like
 [this](https://github.com/brazilian-utils/brutils-python/blob/main/CHANGELOG.md?plain=1#L9).
 
-And add the version links, like [this](https://github.com/brazilian-utils/brutils-python/blob/bc10b7242bd939cc445070f7e937e3ad187ff95a/CHANGELOG.md?plain=1#L33-L34)
+And add the version links, like [this](https://github.com/antoniamaia/brutils-python/blob/eac770e8b213532d2bb5948d117f6f4684f65be2/CHANGELOG.md?plain=1#L76)
 
 #### Create the PR
 
