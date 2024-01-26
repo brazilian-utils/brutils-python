@@ -202,7 +202,7 @@ Para a criação da issue, pode ser utilizado o template de feature, sendo o nom
 
 ### Crie uma Branch
 
-O nome da branch criada para o release é relacionado ao número da Issue, como mostra[este exemplo](https://github.com/brazilian-utils/brutils-python/pull/326)
+O nome da branch criada para o release é relacionado ao número da Issue, como mostra [este exemplo](https://github.com/brazilian-utils/brutils-python/pull/326)
 
 ### 2. Criar um Release PR
 
