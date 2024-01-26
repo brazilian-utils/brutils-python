@@ -190,10 +190,21 @@ Crie a quantidade de alterações/commits que você precisa e os envie.
 
 Aqui você encontrará como lançar uma nova versão em produção do brutils:
 
-- [1. Criar um Release PR](#1-criar-um-release-pr)
-- [2. Deploy via GitHub](#2-deploy-via-github)
+- [1. Criar uma Issue de Release](#1-criar-uma-issue-de-release)
+- [2. Criar um Release PR](#2-criar-um-release-pr)
+- [3. Deploy via GitHub](#3-deploy-via-github)
 
-### 1. Criar um Release PR
+### 1. Criar uma Issue de Release
+
+### Crie a Issue
+
+Para a criação da issue, pode ser utilizado o template de feature, sendo o nome da issue `Release v<versão>`. [Exemplo](https://github.com/brazilian-utils/brutils-python/issues/322) 
+
+### Crie uma Branch
+
+O nome da branch criada para o release é relacionado ao número da Issue, como mostra [este exemplo](https://github.com/brazilian-utils/brutils-python/pull/326)
+
+### 2. Criar um Release PR
 
 #### Atualizar a Versão da Biblioteca
 
@@ -207,19 +218,19 @@ no arquivo `pyproject.toml`:
 Adicione um título para a nova versão com o novo número e a data atual, como
 [neste exemplo](https://github.com/brazilian-utils/brutils-python/blob/main/CHANGELOG.md?plain=1#L9).
 
-E adicione os links da versão, como [neste exemplo](https://github.com/brazilian-utils/brutils-python/blob/bc10b7242bd939cc445070f7e937e3ad187ff95a/CHANGELOG.md?plain=1#L33-L34)
+E adicione os links da versão, como [neste exemplo](https://github.com/antoniamaia/brutils-python/blob/eac770e8b213532d2bb5948d117f6f4684f65be2/CHANGELOG.md?plain=1#L76)
 
 #### Crie o PR
 
-Crie um PR com o nome `Release v<versão>` contendo as duas alterações acima.
+Crie um PR com o nome `Release v<versão>` contendo as duas alterações acima. Na descrição da Pull Request, adicione o trecho do changelog alterado.
 
-[Exemplo de Release PR](https://github.com/brazilian-utils/brutils-python/pull/128)
+[Exemplo de Release PR](https://github.com/brazilian-utils/brutils-python/pull/326)
 
 #### Faça o Merge do PR
 
 Assim que o PR for aceito e passar em todas as verificações, faça o merge.
 
-### 2. Deploy via GitHub
+### 3. Deploy via GitHub
 
 O lançamento da nova versão em produção é feita automaticamente quando uma
 [nova release é criada][creating-releases] no GitHub.
