@@ -7,7 +7,7 @@ from brutils.voter_id import (
     _get_sequential_number,
     _get_verifying_digits,
     _is_length_valid,
-    generate_voter_id,
+    generate,
     is_valid,
 )
 
@@ -90,22 +90,22 @@ class TestIsValid(TestCase):
 
     def test_generate_voter_id(self):
         # test if is_valid a voter id from MG
-        voter_id = generate_voter_id(state="MG")
+        voter_id = generate(state="MG")
 
         self.assertIs(is_valid(voter_id), True)
 
         # test if is_valid a voter id from AC
-        voter_id = generate_voter_id(state="AC")
+        voter_id = generate(state="AC")
 
         self.assertIs(is_valid(voter_id), True)
 
         # test if is_valid a voter id from foreigner
-        voter_id = generate_voter_id()
+        voter_id = generate()
 
         self.assertIs(is_valid(voter_id), True)
 
         # test if UF is not valid
-        voter_id = generate_voter_id(state="XX")
+        voter_id = generate(state="XX")
 
         self.assertIs(is_valid(voter_id), False)
 

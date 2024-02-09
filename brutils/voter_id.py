@@ -214,7 +214,7 @@ def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
     return vd2
 
 
-def generate_voter_id(state="ZZ") -> str:
+def generate(state="ZZ") -> str:
     """
     Generates a random valid Brazilian voter registration.
 
