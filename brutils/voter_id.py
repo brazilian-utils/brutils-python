@@ -1,3 +1,6 @@
+from random import randint
+
+
 def is_valid(voter_id):  # type: (str) -> bool
     """
     Check if a Brazilian voter id number is valid.
@@ -204,4 +207,59 @@ def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
     if federative_union in ["01", "02"] and rest == 0:
         vd2 = 1
 
+    # edge case: rest == 10, declare vd1 as zero
+    if rest == 10:
+        vd2 = 0
+
     return vd2
+
+
+def generate_voter_id(state="ZZ") -> str:
+    """
+    Generates a random valid Brazilian voter registration.
+
+    Args:
+        Federative unit[str]
+
+    Returns:
+        value[str]: Brazilian voter registration.
+    """
+    UFs = {
+        "SP": "01",
+        "MG": "02",
+        "RJ": "03",
+        "RS": "04",
+        "BA": "05",
+        "PR": "06",
+        "CE": "07",
+        "PE": "08",
+        "SC": "09",
+        "GO": "10",
+        "MA": "11",
+        "PB": "12",
+        "PA": "13",
+        "ES": "14",
+        "PI": "15",
+        "RN": "16",
+        "AL": "17",
+        "MT": "18",
+        "MS": "19",
+        "DF": "20",
+        "SE": "21",
+        "AM": "22",
+        "RO": "23",
+        "AC": "24",
+        "AP": "25",
+        "RR": "26",
+        "TO": "27",
+        "ZZ": "28",
+    }
+
+    state = state.upper()
+    if state in (UFs):
+        sequential_number = str(randint(0, 99999999)).zfill(8)
+        federative_union = UFs[state]
+        if _is_federative_union_valid(federative_union):
+            vd1 = _calculate_vd1(sequential_number, federative_union)
+            vd2 = _calculate_vd2(federative_union, vd1)
+            return f"{sequential_number}{federative_union}{vd1}{vd2}"

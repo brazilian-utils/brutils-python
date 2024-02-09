@@ -77,6 +77,7 @@ False
   - [remove_symbols_pis](#remove_symbols_pis)
   - [generate_pis](#generate_pis)
 - [Legal Process](#legal-process)
+<<<<<<< HEAD
   - [is_valid_legal_process](#is_valid_legal_process)  
   - [format_legal_process](#format_legal_process)
   - [remove_symbols_legal_process](#remove_symbols_legal_process)
@@ -84,6 +85,14 @@ False
 
 - [Voter ID](#voter-id)
   - [is_valid_voter_id](#is_valid_voter_id)
+=======
+  - [format_processo_juridico](#format_processo_juridico)
+  - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
+  - [generate_processo_juridico](#generate_processo_juridico)
+  - [is_valid_processo_juridico](#is_valid_processo_juridico)
+- [Título ELeitoral](#título-eleitoral)
+  - [generate_titulo_eleitoral](#generate_titulo_eleitoral)
+>>>>>>> 6e22034d1f9918376b786c463e9974c6d2f4da2b
 
 ## CPF
 
@@ -877,6 +886,7 @@ Example:
 >>> generate_legal_process(year=2024, orgao=4)
 "33158248820244017105"
 ```
+<<<<<<< HEAD
 
 ## Voter ID
 
@@ -888,6 +898,9 @@ It does not verify if the voter id actually exists.
 References:
 - https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor,
 - http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+=======
+## is_valid_processo_juridico
+>>>>>>> 6e22034d1f9918376b786c463e9974c6d2f4da2b
 
 Args:
   * voter_id(str): string representing the voter id to be verified.
@@ -904,6 +917,41 @@ False
 >>> is_valid_voter_id('427503840213')
 True
 ```
+
+### generate_voter_id
+
+Generate a valid random Voter ID string of digits from an informed Brazilian federation union.
+
+Args:
+  * state(str): string representing the brazilian federation union.
+
+Returns:
+  * str: A randomly generated valid voter ID.
+
+Example:
+
+```python
+>>> from brutils import generate_voter_id
+>>> generate_voter_id()
+'183475722801'
+>>> generate_voter_id(state="MG")
+'950125640248'
+```
+
+
+
+## Voter registration
+
+### generate_titulo_eleitoral
+
+Generate a valid random voter registration number given a federative unit. The argument has default value (foreigner) if the federative unit is not informed.
+
+```python
+>>> from brutils import generate_titulo_eleitoral
+>>> generate_titulo_eleitoral(state='MG')
+'744770710280'
+```
+
 
 # Feature Request and Bug Report
 

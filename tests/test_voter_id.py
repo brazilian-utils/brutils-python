@@ -7,6 +7,7 @@ from brutils.voter_id import (
     _get_sequential_number,
     _get_verifying_digits,
     _is_length_valid,
+    generate_voter_id,
     is_valid,
 )
 
@@ -79,13 +80,34 @@ class TestIsValid(TestCase):
         self.assertIs(_calculate_vd1("73146415", "03"), 0)
 
     def test_calculate_vd2(self):
-        self.assertIs(_calculate_vd2("03", 7), 10)
+        self.assertIs(_calculate_vd2("03", 7), 0)
         # edge case: if UF is "01" (for SP) and rest == 0
         # declare dv2 as 1 instead
         self.assertIs(_calculate_vd2("01", 4), 1)
         # edge case: if UF is "02" (for MG) and rest == 0
         # declare dv2 as 1 instead
         self.assertIs(_calculate_vd2("02", 8), 1)
+
+    def test_generate_voter_id(self):
+        # test if is_valid a voter id from MG
+        voter_id = generate_voter_id(state="MG")
+
+        self.assertIs(is_valid(voter_id), True)
+
+        # test if is_valid a voter id from AC
+        voter_id = generate_voter_id(state="AC")
+
+        self.assertIs(is_valid(voter_id), True)
+
+        # test if is_valid a voter id from foreigner
+        voter_id = generate_voter_id()
+
+        self.assertIs(is_valid(voter_id), True)
+
+        # test if UF is not valid
+        voter_id = generate_voter_id(state="XX")
+
+        self.assertIs(is_valid(voter_id), False)
 
 
 if __name__ == "__main__":
