@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `format_pis` [#224](https://github.com/brazilian-utils/brutils-python/pull/224)
 - Utilitário `format_legal_process` [#210](https://github.com/brazilian-utils/brutils-python/pull/210)
 - Utilitário `generate_license_plate` [#241](https://github.com/brazilian-utils/brutils-python/pull/241)
+<<<<<<< HEAD
 - Utilitário `generate_phone` [#295](https://github.com/brazilian-utils/brutils-python/pull/295)
 - Utilitário `generate_pis` [#218](https://github.com/brazilian-utils/brutils-python/pull/218)
 - Utilitário `generate_legal_process` [#208](https://github.com/brazilian-utils/brutils-python/pull/208)
@@ -43,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
 - Utilitário `remove_symbols_pis` [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
 - Utilitário `remove_symbols_legal_process` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
+=======
+>>>>>>> 6e22034d1f9918376b786c463e9974c6d2f4da2b
+- Utilitário `generate_titulo_eleitoral` [#220](https://github.com/brazilian-utils/brutils-python/pull/220)
 
 ### Removed
 
