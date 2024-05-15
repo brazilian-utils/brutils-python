@@ -1,14 +1,15 @@
 from unittest import TestCase, main
 from unittest.mock import patch
+
 import requests_mock
 
 from brutils.cep import (
+    Address,
+    fetch_address,
     format_cep,
     generate,
     is_valid,
     remove_symbols,
-    Address,
-    fetch_address,
 )
 
 
@@ -55,7 +56,7 @@ class TestFetchAddress(TestCase):
             "ibge": "3550308",
             "gia": "1004",
             "ddd": "11",
-            "siafi": "7107"
+            "siafi": "7107",
         }
         self.keys = self.api_response.keys()
 
@@ -69,7 +70,10 @@ class TestFetchAddress(TestCase):
 
         self.assertIsNone(error)
         for each in self.keys:
-            self.assertEqual(expected_address.__dict__[each], actual_address.__dict__[each])
+            self.assertEqual(
+                expected_address.__dict__[each], actual_address.__dict__[each]
+            )
+
 
 @patch("brutils.cep.is_valid")
 class TestIsValidToFormat(TestCase):

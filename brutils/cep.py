@@ -3,9 +3,11 @@ from random import randint
 # FORMATTING
 ############
 
+
 class Address:
     def __init__(self, data):
         self.__dict__ = data
+
 
 def remove_symbols(dirty):  # type: (str) -> str
     """
@@ -60,6 +62,7 @@ def format_cep(cep):  # type: (str) -> str
 # OPERATIONS
 ############
 
+
 def is_valid(cep):  # type: (str) -> bool
     """
     Checks if a CEP (Postal Code) is valid.
@@ -109,8 +112,10 @@ def generate():  # type: () -> str
 
     return generated_number
 
+
 def fetch_address(cep):
     import requests
+
     """
     This function fetches address information from a given CEP (Postal Code)
     using the ViaCEP API. It returns a dictionary containing the following
@@ -134,7 +139,9 @@ def fetch_address(cep):
             "siafi": "7107"
         }
     """
-    api_base_url = "https://viacep.com.br/ws"  # Replace with the actual base URL
+    api_base_url = (
+        "https://viacep.com.br/ws"  # Replace with the actual base URL
+    )
     url = f"{api_base_url}/{cep}/json/"
 
     try:
