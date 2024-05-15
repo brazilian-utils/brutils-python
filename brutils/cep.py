@@ -3,6 +3,9 @@ from random import randint
 # FORMATTING
 ############
 
+class Address:
+    def __init__(self, data):
+        self.__dict__ = data
 
 def remove_symbols(dirty):  # type: (str) -> str
     """
@@ -57,7 +60,6 @@ def format_cep(cep):  # type: (str) -> str
 # OPERATIONS
 ############
 
-
 def is_valid(cep):  # type: (str) -> bool
     """
     Checks if a CEP (Postal Code) is valid.
@@ -106,3 +108,45 @@ def generate():  # type: () -> str
         generated_number = generated_number + str(randint(0, 9))
 
     return generated_number
+
+def fetch_address(cep):
+    import requests
+    """
+    This function fetches address information from a given CEP (Postal Code)
+    using the ViaCEP API. It returns a dictionary containing the following
+    fields:
+
+    Returns:
+        dict: A dictionary containing address information.
+
+    Example:
+        >>> fetch_address("01001000")
+        {
+            "cep": "01001-000",
+            "logradouro": "Praça da Sé",
+            "complemento": "lado ímpar",
+            "bairro": "Sé",
+            "localidade": "São Paulo",
+            "uf": "SP",
+            "ibge": "3550308",
+            "gia": "1004",
+            "ddd": "11",
+            "siafi": "7107"
+        }
+    """
+    api_base_url = "https://viacep.com.br/ws"  # Replace with the actual base URL
+    url = f"{api_base_url}/{cep}/json/"
+
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an HTTPError for bad responses (4xx and 5xx)
+    except requests.RequestException as e:
+        return None, f"Error making request to API: {e}"
+
+    try:
+        address_data = response.json()
+        address = Address(address_data)
+    except ValueError as e:
+        return None, f"Error decoding response from API: {e}"
+
+    return address, None

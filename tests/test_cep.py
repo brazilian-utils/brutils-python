@@ -1,11 +1,14 @@
 from unittest import TestCase, main
 from unittest.mock import patch
+import requests_mock
 
 from brutils.cep import (
     format_cep,
     generate,
     is_valid,
     remove_symbols,
+    Address,
+    fetch_address,
 )
 
 
@@ -39,6 +42,34 @@ class TestCEP(TestCase):
             self.assertIs(is_valid(generate()), True)
         # assert format(generate()) is not None
 
+
+class TestFetchAddress(TestCase):
+    def setUp(self):
+        self.api_response = {
+            "cep": "01001-000",
+            "logradouro": "Praça da Sé",
+            "complemento": "lado ímpar",
+            "bairro": "Sé",
+            "localidade": "São Paulo",
+            "uf": "SP",
+            "ibge": "3550308",
+            "gia": "1004",
+            "ddd": "11",
+            "siafi": "7107"
+        }
+        self.keys = self.api_response.keys()
+
+    @requests_mock.Mocker()
+    def test_fetch_address(self, mocker):
+        url = "https://viacep.com.br/ws/01001-000/json/"
+        mocker.get(url, json=self.api_response)
+
+        expected_address = Address(self.api_response)
+        actual_address, error = fetch_address("01001-000")
+
+        self.assertIsNone(error)
+        for each in self.keys:
+            self.assertEqual(expected_address.__dict__[each], actual_address.__dict__[each])
 
 @patch("brutils.cep.is_valid")
 class TestIsValidToFormat(TestCase):
