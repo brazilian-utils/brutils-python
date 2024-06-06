@@ -1,7 +1,7 @@
-from typing_extensions import TypedDict
+from typing import TypedDict
 
 
-class CEP(TypedDict):
+class Address(TypedDict):
     cep: str
     logradouro: str
     complemento: str
