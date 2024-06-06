@@ -1,10 +1,16 @@
 from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 
-from brutils.cep import (Address, CEPNotFound, InvalidCEP, format_cep,
-                         generate, get_address_from_cep,
-                         get_cep_information_from_address, is_valid,
-                         remove_symbols)
+from brutils.cep import (
+    CEPNotFound,
+    InvalidCEP,
+    format_cep,
+    generate,
+    get_address_from_cep,
+    get_cep_information_from_address,
+    is_valid,
+    remove_symbols,
+)
 
 
 class TestCEP(TestCase):
@@ -58,53 +64,97 @@ class TestIsValidToFormat(TestCase):
 class TestCEPAPICalls(TestCase):
     @patch("brutils.cep.loads")
     def test_get_address_from_cep_success(self, mock_loads, mock_urlopen):
-        mock_loads.return_value = {"cep":"01310-200"}
+        mock_loads.return_value = {"cep": "01310-200"}
 
-        self.assertEqual(get_address_from_cep("01310200", True), {"cep": "01310-200"})
-        
-    def test_get_address_from_cep_raise_exception_invalid_cep(self, mock_urlopen):
+        self.assertEqual(
+            get_address_from_cep("01310200", True), {"cep": "01310-200"}
+        )
+
+    def test_get_address_from_cep_raise_exception_invalid_cep(
+        self, mock_urlopen
+    ):
         mock_response = MagicMock()
         mock_response.read.return_value = {"erro": True}
         mock_urlopen.return_value = mock_response
 
         self.assertIsNone(get_address_from_cep("013102009"))
-        
-    def test_get_address_from_cep_invalid_cep_raise_exception_invalid_cep(self, mock_urlopen):
+
+    def test_get_address_from_cep_invalid_cep_raise_exception_invalid_cep(
+        self, mock_urlopen
+    ):
         with self.assertRaises(InvalidCEP):
             get_address_from_cep("abcdef", True)
-            
-    def test_get_address_from_cep_invalid_cep_raise_exception_cep_not_found(self, mock_urlopen):
+
+    def test_get_address_from_cep_invalid_cep_raise_exception_cep_not_found(
+        self, mock_urlopen
+    ):
         mock_response = MagicMock()
         mock_response.read.return_value = {"erro": True}
         mock_urlopen.return_value = mock_response
 
         with self.assertRaises(CEPNotFound):
             get_address_from_cep("01310209", True)
-            
-    @patch("brutils.cep.loads")
-    def test_get_cep_information_from_address_success(self, mock_loads, mock_urlopen):
-        mock_loads.return_value = [{"cep":"01310-200"}]
 
-        self.assertDictEqual(get_cep_information_from_address("SP", "Example", "Rua Example", True)[0], {"cep": "01310-200"})
-        
-    def test_get_cep_information_from_address_raise_exception_invalid_cep(self, mock_urlopen):
+    @patch("brutils.cep.loads")
+    def test_get_cep_information_from_address_success(
+        self, mock_loads, mock_urlopen
+    ):
+        mock_loads.return_value = [{"cep": "01310-200"}]
+
+        self.assertDictEqual(
+            get_cep_information_from_address(
+                "SP", "Example", "Rua Example", True
+            )[0],
+            {"cep": "01310-200"},
+        )
+
+    @patch("brutils.cep.loads")
+    def test_get_cep_information_from_address_empty_response(
+        self, mock_loads, mock_urlopen
+    ):
+        mock_loads.return_value = []
+
+        self.assertIsNone(
+            get_cep_information_from_address("SP", "Example", "Rua Example")
+        )
+
+    def test_get_cep_information_from_address_raise_exception_invalid_cep(
+        self, mock_urlopen
+    ):
         mock_response = MagicMock()
         mock_response.read.return_value = {"erro": True}
         mock_urlopen.return_value = mock_response
 
-        self.assertIsNone(get_cep_information_from_address("SP", "Example", "Rua Example"))
-        
-    def test_get_cep_information_from_address_invalid_cep_raise_exception_invalid_uf(self, mock_urlopen):
+        self.assertIsNone(
+            get_cep_information_from_address("SP", "Example", "Rua Example")
+        )
+
+    def test_get_cep_information_from_address_invalid_cep_dont_raise_exception_invalid_uf(
+        self, mock_urlopen
+    ):
+        self.assertIsNone(
+            get_cep_information_from_address("ABC", "Example", "Rua Example")
+        )
+
+    def test_get_cep_information_from_address_invalid_cep_raise_exception_invalid_uf(
+        self, mock_urlopen
+    ):
         with self.assertRaises(ValueError):
-            get_cep_information_from_address("ABC", "Example", "Rua Example", True)
-            
-    def test_get_cep_information_from_address_invalid_cep_raise_exception_cep_not_found(self, mock_urlopen):
+            get_cep_information_from_address(
+                "ABC", "Example", "Rua Example", True
+            )
+
+    def test_get_cep_information_from_address_invalid_cep_raise_exception_cep_not_found(
+        self, mock_urlopen
+    ):
         mock_response = MagicMock()
         mock_response.read.return_value = {"erro": True}
         mock_urlopen.return_value = mock_response
 
         with self.assertRaises(CEPNotFound):
-            get_cep_information_from_address("SP", "Example", "Rua Example", True)
+            get_cep_information_from_address(
+                "SP", "Example", "Rua Example", True
+            )
 
 
 if __name__ == "__main__":

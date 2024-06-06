@@ -34,7 +34,7 @@ def remove_symbols(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in ".-", dirty))
 
 
-def format_cep(cep):    # type: (str) -> str | None
+def format_cep(cep):  # type: (str) -> str | None
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
@@ -111,6 +111,7 @@ def generate():  # type: () -> str
 
     return generated_number
 
+
 # Reference: https://viacep.com.br/
 def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> Address | None
     """
@@ -126,7 +127,7 @@ def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> A
 
     Returns:
         Address | None: An Address object (TypedDict) containing the address information if the CEP is found, None otherwise.
-        
+
     Example:
         >>> get_address_from_cep("12345678")
         {
@@ -141,13 +142,13 @@ def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> A
             "ddd": "12",
             "siafi": "1234"
         }
-        
+
         >>> get_address_from_cep("abcdefg")
         None
-        
+
         >>> get_address_from_cep("abcdefg", True)
         InvalidCEP: CEP 'abcdefg' is invalid.
-        
+
         >>> get_address_from_cep("00000000", True)
         CEPNotFound: 00000000
     """
@@ -179,8 +180,9 @@ def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> A
         return None
 
 
-
-def get_cep_information_from_address(federal_unit, city, street, raise_exceptions=False):  # type: (str, str, str, bool) -> list[Address] | None
+def get_cep_information_from_address(
+    federal_unit, city, street, raise_exceptions=False
+):  # type: (str, str, str, bool) -> list[Address] | None
     """
     Fetches CEP (Postal Code) options from a given address using the ViaCEP API.
 
@@ -196,7 +198,7 @@ def get_cep_information_from_address(federal_unit, city, street, raise_exception
 
     Returns:
         list[Address] | None: A list of Address objects (TypedDict) containing the address information if the address is found, None otherwise.
-        
+
     Example:
         >>> get_cep_information_from_address("EX", "Example", "Rua Example")
         [
@@ -216,10 +218,10 @@ def get_cep_information_from_address(federal_unit, city, street, raise_exception
 
         >>> get_cep_information_from_address("A", "Example", "Rua Example")
         None
-        
+
         >>> get_cep_information_from_address("XX", "Example", "Example", True)
         ValueError: Invalid UF: XX
-        
+
         >>> get_cep_information_from_address("SP", "Example", "Example", True)
         CEPNotFound: SP - Example - Example
     """
@@ -231,11 +233,23 @@ def get_cep_information_from_address(federal_unit, city, street, raise_exception
 
     base_api_url = "https://viacep.com.br/ws/{}/{}/{}/json/"
 
-    parsed_city = normalize('NFD', city).encode('ascii', 'ignore').decode('utf-8').replace(" ", "%20")
-    parsed_street = normalize('NFD', street).encode('ascii', 'ignore').decode('utf-8').replace(" ", "%20")
+    parsed_city = (
+        normalize("NFD", city)
+        .encode("ascii", "ignore")
+        .decode("utf-8")
+        .replace(" ", "%20")
+    )
+    parsed_street = (
+        normalize("NFD", street)
+        .encode("ascii", "ignore")
+        .decode("utf-8")
+        .replace(" ", "%20")
+    )
 
     try:
-        with urlopen(base_api_url.format(federal_unit, parsed_city, parsed_street)) as f:
+        with urlopen(
+            base_api_url.format(federal_unit, parsed_city, parsed_street)
+        ) as f:
             response = f.read()
             response = loads(response)
 
