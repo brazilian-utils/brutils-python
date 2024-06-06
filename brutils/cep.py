@@ -225,6 +225,9 @@ def get_cep_information_from_address(
         >>> get_cep_information_from_address("SP", "Example", "Example", True)
         CEPNotFound: SP - Example - Example
     """
+    if federal_unit in UF.values:
+        federal_unit = UF(federal_unit).name
+
     if federal_unit not in UF.names:
         if raise_exceptions:
             raise ValueError(f"Invalid UF: {federal_unit}")

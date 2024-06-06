@@ -109,6 +109,19 @@ class TestCEPAPICalls(TestCase):
         )
 
     @patch("brutils.cep.loads")
+    def test_get_cep_information_from_address_success_with_uf_conversion(
+        self, mock_loads, mock_urlopen
+    ):
+        mock_loads.return_value = [{"cep": "01310-200"}]
+
+        self.assertDictEqual(
+            get_cep_information_from_address(
+                "São Paulo", "Example", "Rua Example", True
+            )[0],
+            {"cep": "01310-200"},
+        )
+
+    @patch("brutils.cep.loads")
     def test_get_cep_information_from_address_empty_response(
         self, mock_loads, mock_urlopen
     ):
@@ -118,12 +131,11 @@ class TestCEPAPICalls(TestCase):
             get_cep_information_from_address("SP", "Example", "Rua Example")
         )
 
+    @patch("brutils.cep.loads")
     def test_get_cep_information_from_address_raise_exception_invalid_cep(
-        self, mock_urlopen
+        self, mock_loads, mock_urlopen
     ):
-        mock_response = MagicMock()
-        mock_response.read.return_value = {"erro": True}
-        mock_urlopen.return_value = mock_response
+        mock_loads.return_value = {"erro": True}
 
         self.assertIsNone(
             get_cep_information_from_address("SP", "Example", "Rua Example")
