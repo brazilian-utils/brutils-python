@@ -7,6 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.1.2] - 2024-06-06
+
+### Fixed
+
+- Inconsistências de type-hints no módulo de CEP
+
+### Added
+
+- Utilitário `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
+- Utilitário `get_cep_information_from_address` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
+- Enumerador `UF` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
+- Tipo `Address` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
+- Excessão `InvalidCEP` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
+- Excessão `CEPNotFound` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
+
 ## [2.1.1] - 2024-01-06
 
 ### Fixed
