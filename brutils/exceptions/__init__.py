@@ -1,1 +1,1 @@
-from .cep import *
+from .cep import CEPNotFound, InvalidCEP
