@@ -43,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `remove_symbols_phone` [#188](https://github.com/brazilian-utils/brutils-python/pull/188)
 - Utilitário `remove_symbols_pis` [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
 - Utilitário `remove_symbols_legal_process` [#209](https://github.com/brazilian-utils/brutils-python/pull/209)
+- Utilitário `generate_titulo_eleitoral` [#220](https://github.com/brazilian-utils/brutils-python/pull/220)
 
 ### Removed
 

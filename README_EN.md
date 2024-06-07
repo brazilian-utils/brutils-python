@@ -84,6 +84,7 @@ False
 
 - [Voter ID](#voter-id)
   - [is_valid_voter_id](#is_valid_voter_id)
+  - [generate_voter_id](#generate_voter_id)
 
 ## CPF
 
@@ -903,6 +904,26 @@ Example:
 False
 >>> is_valid_voter_id('427503840213')
 True
+```
+
+### generate_voter_id
+
+Generate a valid random Voter ID string of digits from an informed Brazilian federation union.
+
+Args:
+  * federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
+
+Returns:
+  * str: A randomly generated valid voter ID.
+
+Example:
+
+```python
+>>> from brutils import generate_voter_id
+>>> generate_voter_id()
+'183475722801'
+>>> generate_voter_id(federative_union ="MG")
+'950125640248'
 ```
 
 # Feature Request and Bug Report
