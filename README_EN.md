@@ -911,7 +911,7 @@ True
 Generate a valid random Voter ID string of digits from an informed Brazilian federation union.
 
 Args:
-  * state(str): string representing the brazilian federation union.
+  * federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
 
 Returns:
   * str: A randomly generated valid voter ID.
@@ -922,7 +922,7 @@ Example:
 >>> from brutils import generate_voter_id
 >>> generate_voter_id()
 '183475722801'
->>> generate_voter_id(state="MG")
+>>> generate_voter_id(federative_union ="MG")
 '950125640248'
 ```
 

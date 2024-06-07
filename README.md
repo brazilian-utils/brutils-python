@@ -902,6 +902,10 @@ True
 
 Gera uma string de dígitos de Título de Eleitor válida aleatória a partir de um estado brasileiro informado.
 
+
+Args:
+  * federative_union (str): Unidade federativa para o título de eleitor que será gerado. O valor padrão "ZZ" é usado para títulos de eleitor emitidos para estrangeiros.
+
 Retorna:
   * str: Um Título de eleitor válido gerado aleatoriamente.
 
@@ -911,7 +915,7 @@ Exemplo:
 >>> from brutils import generate_voter_id
 >>> generate_voter_id()
 '183475722801'
->>> generate_voter_id(state="MG")
+>>> generate_voter_id(federative_union ="MG")
 '950125640248'
 ```
 
