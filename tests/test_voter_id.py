@@ -92,11 +92,11 @@ class TestIsValid(TestCase):
 
     def test_generate_voter_id(self):
         # test if is_valid a voter id from MG
-        voter_id = generate(federative_union ="MG")
+        voter_id = generate(federative_union="MG")
         self.assertIs(is_valid(voter_id), True)
 
         # test if is_valid a voter id from AC
-        voter_id = generate(federative_union ="AC")
+        voter_id = generate(federative_union="AC")
         self.assertIs(is_valid(voter_id), True)
 
         # test if is_valid a voter id from foreigner
@@ -104,7 +104,7 @@ class TestIsValid(TestCase):
         self.assertIs(is_valid(voter_id), True)
 
         # test if UF is not valid
-        voter_id = generate(federative_union ="XX")
+        voter_id = generate(federative_union="XX")
         self.assertIs(is_valid(voter_id), False)
 
 
