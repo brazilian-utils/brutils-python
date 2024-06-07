@@ -214,7 +214,7 @@ def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
     return vd2
 
 
-def generate(state="ZZ") -> str:
+def generate(federative_union ="ZZ") -> str:
     """
     Generates a random valid Brazilian voter registration.
 
@@ -259,7 +259,7 @@ def generate(state="ZZ") -> str:
     if federative_union in (UFs):
         sequential_number = str(randint(0, 99999999)).zfill(8)
         uf_number = UFs[federative_union]
-        if _is_uf_number_valid(uf_number):
+        if _is_federative_union_valid(uf_number):
             vd1 = _calculate_vd1(sequential_number, uf_number)
             vd2 = _calculate_vd2(uf_number, vd1)
             return f"{sequential_number}{uf_number}{vd1}{vd2}"
