@@ -79,7 +79,6 @@ False
   - [remove_symbols_pis](#remove_symbols_pis)
   - [generate_pis](#generate_pis)
 - [Processo Jurídico](#processo-jurídico)
-<<<<<<< HEAD
   - [is_valid_legal_process](#is_valid_legal_process)
   - [format_legal_process](#format_legal_process)
   - [remove_symbols_legal_process](#remove_symbols_legal_process)
@@ -87,15 +86,7 @@ False
 
 - [Título Eleitoral](#titulo-eleitoral)
   - [is_valid_voter_id](#is_valid_voter_id)
-=======
-  - [format_processo_juridico](#format_processo_juridico)
-  - [remove\_symbols\_processo\_juridico](#remove_symbols_processo_juridico)
-  - [generate_processo_juridico](#generate_processo_juridico)
-  - [is_valid_processo_juridico](#is_valid_processo_juridico)
-- [Título ELeitoral](#título-eleitoral)
-  - [generate_titulo_eleitoral](#generate_titulo_eleitoral)
-
->>>>>>> 6e22034d1f9918376b786c463e9974c6d2f4da2b
+  - [generate_voter_id](#generate_voter_id)
 
 ## CPF
 
@@ -909,7 +900,7 @@ True
 
 ### generate_voter_id
 
-Gerar uma string de dígitos de Título de Eleitor válida aleatória a partir de um estado brasileiro informado.
+Gera uma string de dígitos de Título de Eleitor válida aleatória a partir de um estado brasileiro informado.
 
 Retorna:
   * str: Um Título de eleitor válido gerado aleatoriamente.
@@ -925,22 +916,6 @@ Exemplo:
 ```
 
 
-<<<<<<< HEAD
-=======
-## Título eleitoral
-
-### generate_titulo_eleitoral
-
-Gera um número de título eleitoral válido aleatório dado uma unidade federativa. Por padrão o título é emitido fora do Brasil, caso a unidade federativa não seja inforamda.
-
-```python
->>> from brutils import generate_titulo_eleitoral
->>> generate_titulo_eleitoral(state='MG')
-'744770710280'
-```
-
-
->>>>>>> 6e22034d1f9918376b786c463e9974c6d2f4da2b
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar

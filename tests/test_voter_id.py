@@ -80,6 +80,8 @@ class TestIsValid(TestCase):
         self.assertIs(_calculate_vd1("73146415", "03"), 0)
 
     def test_calculate_vd2(self):
+        self.assertIs(_calculate_vd2("02", 7), 2)
+        # edge case: if rest == 10, declare vd2 as zero
         self.assertIs(_calculate_vd2("03", 7), 0)
         # edge case: if UF is "01" (for SP) and rest == 0
         # declare dv2 as 1 instead
@@ -91,22 +93,18 @@ class TestIsValid(TestCase):
     def test_generate_voter_id(self):
         # test if is_valid a voter id from MG
         voter_id = generate(state="MG")
-
         self.assertIs(is_valid(voter_id), True)
 
         # test if is_valid a voter id from AC
         voter_id = generate(state="AC")
-
         self.assertIs(is_valid(voter_id), True)
 
         # test if is_valid a voter id from foreigner
         voter_id = generate()
-
         self.assertIs(is_valid(voter_id), True)
 
         # test if UF is not valid
         voter_id = generate(state="XX")
-
         self.assertIs(is_valid(voter_id), False)
 
 

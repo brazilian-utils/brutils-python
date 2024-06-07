@@ -207,7 +207,7 @@ def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
     if federative_union in ["01", "02"] and rest == 0:
         vd2 = 1
 
-    # edge case: rest == 10, declare vd1 as zero
+    # edge case: rest == 10, declare vd2 as zero
     if rest == 10:
         vd2 = 0
 
@@ -219,10 +219,10 @@ def generate(state="ZZ") -> str:
     Generates a random valid Brazilian voter registration.
 
     Args:
-        Federative unit[str]
+        federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
 
     Returns:
-        value[str]: Brazilian voter registration.
+        str: A randomly generated valid voter ID for the given federative union
     """
     UFs = {
         "SP": "01",
@@ -255,11 +255,11 @@ def generate(state="ZZ") -> str:
         "ZZ": "28",
     }
 
-    state = state.upper()
-    if state in (UFs):
+    federative_union = federative_union.upper()
+    if federative_union in (UFs):
         sequential_number = str(randint(0, 99999999)).zfill(8)
-        federative_union = UFs[state]
-        if _is_federative_union_valid(federative_union):
-            vd1 = _calculate_vd1(sequential_number, federative_union)
-            vd2 = _calculate_vd2(federative_union, vd1)
-            return f"{sequential_number}{federative_union}{vd1}{vd2}"
+        uf_number = UFs[federative_union]
+        if _is_uf_number_valid(uf_number):
+            vd1 = _calculate_vd1(sequential_number, uf_number)
+            vd2 = _calculate_vd2(uf_number, vd1)
+            return f"{sequential_number}{uf_number}{vd1}{vd2}"
