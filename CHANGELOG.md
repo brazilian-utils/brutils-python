@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
 - Utilitário `generate_voter_id` [#220](https://github.com/brazilian-utils/brutils-python/pull/220)
 
 ## [2.1.1] - 2024-01-06
