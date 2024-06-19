@@ -263,3 +263,32 @@ def generate(federative_union="ZZ") -> str:
             vd1 = _calculate_vd1(sequential_number, uf_number)
             vd2 = _calculate_vd2(uf_number, vd1)
             return f"{sequential_number}{uf_number}{vd1}{vd2}"
+
+
+def format_voter_id(voter_id):  # type: (str) -> str
+    """
+    Format a voter ID for display with visual spaces.
+
+    This function takes a numeric voter ID string as input and adds standard
+    formatting for display purposes.
+
+    Args:
+        voter_id (str): A numeric voter ID string.
+
+    Returns:
+        str: A formatted voter ID string with standard visual spacing, or None
+        if the input is invalid.
+
+    Example:
+        >>> format_voter_id("690847092828")
+        '6908 4709 28 28'
+        >>> format_voter_id("163204010922")
+        '1632 0401 09 22'
+    """
+
+    if not is_valid(voter_id):
+        return None
+
+    return "{} {} {} {}".format(
+        voter_id[:4], voter_id[4:8], voter_id[8:10], voter_id[10:12]
+    )
