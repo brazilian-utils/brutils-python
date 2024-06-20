@@ -91,6 +91,9 @@ from brutils.pis import (
     remove_symbols as remove_symbols_pis,
 )
 from brutils.voter_id import (
+    format_voter_id,
+)
+from brutils.voter_id import (
     generate as generate_voter_id,
 )
 from brutils.voter_id import (

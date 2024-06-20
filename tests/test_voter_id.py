@@ -7,6 +7,7 @@ from brutils.voter_id import (
     _get_sequential_number,
     _get_verifying_digits,
     _is_length_valid,
+    format_voter_id,
     generate,
     is_valid,
 )
@@ -106,6 +107,13 @@ class TestIsValid(TestCase):
         # test if UF is not valid
         voter_id = generate(federative_union="XX")
         self.assertIs(is_valid(voter_id), False)
+
+    def test_format_voter_id(self):
+        self.assertEqual(format_voter_id("277627122852"), "2776 2712 28 52")
+        self.assertIsNone(format_voter_id("00000000000"))
+        self.assertIsNone(format_voter_id("0000000000a"))
+        self.assertIsNone(format_voter_id("000000000000"))
+        self.assertIsNone(format_voter_id("800911840197"))
 
 
 if __name__ == "__main__":
