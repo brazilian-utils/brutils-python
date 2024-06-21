@@ -3,9 +3,9 @@ from random import randint
 from unicodedata import normalize
 from urllib.request import urlopen
 
-from .data.enums import UF
-from .exceptions import CEPNotFound, InvalidCEP
-from .types import Address
+from brutils.data.enums import UF
+from brutils.exceptions import CEPNotFound, InvalidCEP
+from brutils.types import Address
 
 # FORMATTING
 ############

@@ -41,50 +41,57 @@ False
 
 # Utilitários
 
-- [CPF](#cpf)
-  - [is\_valid\_cpf](#is_valid_cpf)
-  - [format\_cpf](#format_cpf)
-  - [remove\_symbols\_cpf](#remove_symbols_cpf)
-  - [generate\_cpf](#generate_cpf)
-- [CNPJ](#cnpj)
-  - [is\_valid\_cnpj](#is_valid_cnpj)
-  - [format\_cnpj](#format_cnpj)
-  - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
-  - [generate\_cnpj](#generate_cnpj)
-- [CEP](#cep)
-  - [is\_valid\_cep](#is_valid_cep)
-  - [format\_cep](#format_cep)
-  - [remove\_symbols\_cep](#remove_symbols_cep)
-  - [generate\_cep](#generate_cep)
-  - [get\_address\_from\_cep](#get_address_from_cep)
-  - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
-- [Telefone](#telefone)
-  - [is\_valid\_phone](#is_valid_phone)
-  - [format\_phone](#format_phone)
-  - [remove\_symbols\_phone](#remove_symbols_phone)
-  - [remove\_international\_dialing\_code](#remove_international_dialing_code)
-  - [generate\_phone](#generate_phone)
-- [Email](#email)
-  - [is\_valid\_email](#is_valid_email)
-- [Placa de Carro](#placa-de-carro)
-  - [is\_valid\_license\_plate](#is_valid_license_plate)
-  - [format\_license\_plate](#format_license_plate)
-  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
-  - [generate\_license\_plate](#generate_license_plate)
-  - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
-  - [get\_format\_license\_plate](#get_format_license_plate)
-- [PIS](#pis)
-  - [is\_valid\_pis](#is_valid_pis)
-  - [format\_pis](#format_pis)
-  - [remove\_symbols\_pis](#remove_symbols_pis)
-  - [generate\_pis](#generate_pis)
-- [Processo Jurídico](#processo-jurídico)
-- [is\_valid\_legal\_process](#is_valid_legal_process)
-  - [format\_legal\_process](#format_legal_process)
-  - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
-  - [generate\_legal\_process](#generate_legal_process)
-- [Titulo Eleitoral](#titulo-eleitoral)
-  - [is\_valid\_voter\_id](#is_valid_voter_id)
+- [Introdução](#introdução)
+- [Instalação](#instalação)
+- [Utilização](#utilização)
+- [Utilitários](#utilitários)
+  - [CPF](#cpf)
+    - [is\_valid\_cpf](#is_valid_cpf)
+    - [format\_cpf](#format_cpf)
+    - [remove\_symbols\_cpf](#remove_symbols_cpf)
+    - [generate\_cpf](#generate_cpf)
+  - [CNPJ](#cnpj)
+    - [is\_valid\_cnpj](#is_valid_cnpj)
+    - [format\_cnpj](#format_cnpj)
+    - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+    - [generate\_cnpj](#generate_cnpj)
+  - [CEP](#cep)
+    - [is\_valid\_cep](#is_valid_cep)
+    - [format\_cep](#format_cep)
+    - [remove\_symbols\_cep](#remove_symbols_cep)
+    - [generate\_cep](#generate_cep)
+    - [get\_address\_from\_cep](#get_address_from_cep)
+    - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
+  - [Telefone](#telefone)
+    - [is\_valid\_phone](#is_valid_phone)
+    - [format\_phone](#format_phone)
+    - [remove\_symbols\_phone](#remove_symbols_phone)
+    - [remove\_international\_dialing\_code](#remove_international_dialing_code)
+    - [generate\_phone](#generate_phone)
+  - [Email](#email)
+    - [is\_valid\_email](#is_valid_email)
+  - [Placa de Carro](#placa-de-carro)
+    - [is\_valid\_license\_plate](#is_valid_license_plate)
+    - [format\_license\_plate](#format_license_plate)
+    - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+    - [generate\_license\_plate](#generate_license_plate)
+    - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
+    - [get\_format\_license\_plate](#get_format_license_plate)
+  - [PIS](#pis)
+    - [is\_valid\_pis](#is_valid_pis)
+    - [format\_pis](#format_pis)
+    - [remove\_symbols\_pis](#remove_symbols_pis)
+    - [generate\_pis](#generate_pis)
+  - [Processo Jurídico](#processo-jurídico)
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
+    - [format\_legal\_process](#format_legal_process)
+    - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
+    - [generate\_legal\_process](#generate_legal_process)
+  - [Titulo Eleitoral](#titulo-eleitoral)
+    - [is\_valid\_voter\_id](#is_valid_voter_id)
+- [Novos Utilitários e Reportar Bugs](#novos-utilitários-e-reportar-bugs)
+- [Dúvidas? Ideias?](#dúvidas-ideias)
+- [Contribuindo com o Código do Projeto](#contribuindo-com-o-código-do-projeto)
 
 ## CPF
 
@@ -386,12 +393,12 @@ Busca as informações de endereço a partir de um CEP (Código de Endereçament
 
 Argumentos:
 
-- cep (str): The CEP (Postal Code) to be used in the search.
-- raise_exceptions (bool, optional): Whether to raise exceptions when the CEP is invalid or not found. Defaults to False.
+- cep (str): O CEP a ser utilizado na busca.
+- raise_exceptions (bool, opcional): Se deve gerar exceções quando o CEP for inválido ou não for encontrado. O padrão é False.
 
 Retorna:
 
-- Address | None: An Address object (TypedDict) containing the address information if the CEP is found, None otherwise.
+- Address | None: Um objeto Address (TypedDict) contendo as informações de endereço se o CEP for encontrado, caso contrário, None.
 
 Exemplo:
 
@@ -417,14 +424,14 @@ Busca o CEP e outras informações a partir de um endereço utilizando a API da 
 
 Argumentos:
 
-- federal_unit (str): The two-letter abbreviation of the Brazilian state.
-- city (str): The name of the city.
-- street (str): The name (or substring) of the street.
-- raise_exceptions (bool, optional): Whether to raise exceptions when the address is invalid or not found. Defaults to False.
+- federal_unit (str): Abreviação de duas letras do estado brasileiro.
+- city (str): Nome da cidade.
+- street (str): Nome (ou substring) da rua.
+- raise_exceptions (bool, opcional): Se deve gerar exceções quando o endereço é inválido ou não foi encontrado. O padrão é False.
 
 Retorna:
 
-- list[Address] | None: A list of Address objects (TypedDict) containing the address information if the address is found, None otherwise.
+- list[Address] | None: Uma lista de objetos Address (TypedDict) contendo as informações de endereço se o endereço for encontrado, None caso contrário.
 
 Exemplo:
 
@@ -452,7 +459,6 @@ Exemplo:
 
 Retorna se um número de telefone brasileiro é válido conforme o formato da string.
 Não verifica se o número realmente existe.
-
 ```
 
 is_valid_phone(phone_number, type)
