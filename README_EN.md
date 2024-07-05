@@ -79,12 +79,14 @@ False
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
 - [Legal Process](#legal-process)
-- [is\_valid\_legal\_process](#is_valid_legal_process)
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
   - [format\_legal\_process](#format_legal_process)
   - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
   - [generate\_legal\_process](#generate_legal_process)
 - [Voter ID](#voter-id)
   - [is\_valid\_voter\_id](#is_valid_voter_id)
+  - [format\_voter\_id](#format_voter_id)
+  - [generate\_voter\_id](#generate_voter_id)
 
 ## CPF
 
@@ -1035,6 +1037,52 @@ Example:
 False
 >>> is_valid_voter_id('427503840213')
 True
+```
+
+### format_voter_id
+
+Formats a voter ID number for visual display.
+
+This function takes a voter ID string containing only numbers as input 
+and adds the standard formatting spaces for display.
+
+Arguments:
+  - voter_id (str): A voter ID string containing only numbers.
+
+Returns:
+  - str: The formatted voter ID with spaces if valid.
+         Returns None if not valid.
+
+Example:
+
+```python
+>>> from brutils import format_voter_id
+>>> format_voter_id("246593980493")
+'2465 9398 04 93'
+>>> format_voter_id("202715292895")
+'2027 1529 28 95'
+>>> format_voter_id("739035552205")
+>>>
+```
+
+### generate_voter_id
+
+Generate a valid random Voter ID string of digits from an informed Brazilian federation union.
+
+Args:
+  - federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
+
+Returns:
+  - str: A randomly generated valid voter ID.
+
+Example:
+
+```python
+>>> from brutils import generate_voter_id
+>>> generate_voter_id()
+'183475722801'
+>>> generate_voter_id(federative_union ="MG")
+'950125640248'
 ```
 
 # Feature Request and Bug Report

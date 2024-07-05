@@ -1,3 +1,6 @@
+from random import randint
+
+
 def is_valid(voter_id):  # type: (str) -> bool
     """
     Check if a Brazilian voter id number is valid.
@@ -204,4 +207,88 @@ def _calculate_vd2(federative_union, vd1):  # type: (str, int) -> str
     if federative_union in ["01", "02"] and rest == 0:
         vd2 = 1
 
+    # edge case: rest == 10, declare vd2 as zero
+    if rest == 10:
+        vd2 = 0
+
     return vd2
+
+
+def generate(federative_union="ZZ") -> str:
+    """
+    Generates a random valid Brazilian voter registration.
+
+    Args:
+        federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
+
+    Returns:
+        str: A randomly generated valid voter ID for the given federative union
+    """
+    UFs = {
+        "SP": "01",
+        "MG": "02",
+        "RJ": "03",
+        "RS": "04",
+        "BA": "05",
+        "PR": "06",
+        "CE": "07",
+        "PE": "08",
+        "SC": "09",
+        "GO": "10",
+        "MA": "11",
+        "PB": "12",
+        "PA": "13",
+        "ES": "14",
+        "PI": "15",
+        "RN": "16",
+        "AL": "17",
+        "MT": "18",
+        "MS": "19",
+        "DF": "20",
+        "SE": "21",
+        "AM": "22",
+        "RO": "23",
+        "AC": "24",
+        "AP": "25",
+        "RR": "26",
+        "TO": "27",
+        "ZZ": "28",
+    }
+
+    federative_union = federative_union.upper()
+    if federative_union in (UFs):
+        sequential_number = str(randint(0, 99999999)).zfill(8)
+        uf_number = UFs[federative_union]
+        if _is_federative_union_valid(uf_number):
+            vd1 = _calculate_vd1(sequential_number, uf_number)
+            vd2 = _calculate_vd2(uf_number, vd1)
+            return f"{sequential_number}{uf_number}{vd1}{vd2}"
+
+
+def format_voter_id(voter_id):  # type: (str) -> str
+    """
+    Format a voter ID for display with visual spaces.
+
+    This function takes a numeric voter ID string as input and adds standard
+    formatting for display purposes.
+
+    Args:
+        voter_id (str): A numeric voter ID string.
+
+    Returns:
+        str: A formatted voter ID string with standard visual spacing, or None
+        if the input is invalid.
+
+    Example:
+        >>> format_voter_id("690847092828")
+        '6908 4709 28 28'
+        >>> format_voter_id("163204010922")
+        '1632 0401 09 22'
+    """
+
+    if not is_valid(voter_id):
+        return None
+
+    return "{} {} {} {}".format(
+        voter_id[:4], voter_id[4:8], voter_id[8:10], voter_id[10:12]
+    )
