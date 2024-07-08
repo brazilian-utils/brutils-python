@@ -6,6 +6,7 @@
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
+
 ### [Procurando pela versão em português?](README.md)
 
 </div>
@@ -21,7 +22,6 @@ the development of applications for the Brazilian business.
 - [Feature Request and Bug Report](#feature-request-and-bug-report)
 - [Questions? Ideas?](#questions-ideas)
 - [Code Contribution](#code-contribution)
-
 
 # Installation
 
@@ -42,50 +42,51 @@ False
 # Utilities
 
 - [CPF](#cpf)
-  - [is_valid_cpf](#is_valid_cpf)
-  - [format_cpf](#format_cpf)
-  - [remove_symbols_cpf](#remove_symbols_cpf)
-  - [generate_cpf](#generate_cpf)
+  - [is\_valid\_cpf](#is_valid_cpf)
+  - [format\_cpf](#format_cpf)
+  - [remove\_symbols\_cpf](#remove_symbols_cpf)
+  - [generate\_cpf](#generate_cpf)
 - [CNPJ](#cnpj)
-  - [is_valid_cnpj](#is_valid_cnpj)
-  - [format_cnpj](#format_cnpj)
-  - [remove_symbols_cnpj](#remove_symbols_cnpj)
-  - [generate_cnpj](#generate_cnpj)
+  - [is\_valid\_cnpj](#is_valid_cnpj)
+  - [format\_cnpj](#format_cnpj)
+  - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+  - [generate\_cnpj](#generate_cnpj)
 - [CEP](#cep)
-  - [is_valid_cep](#is_valid_cep)
-  - [format_cep](#format_cep)
-  - [remove_symbols_cep](#remove_symbols_cep)
-  - [generate_cep](#generate_cep)
+  - [is\_valid\_cep](#is_valid_cep)
+  - [format\_cep](#format_cep)
+  - [remove\_symbols\_cep](#remove_symbols_cep)
+  - [generate\_cep](#generate_cep)
+  - [get\_address\_from\_cep](#get_address_from_cep)
+  - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
 - [Phone](#phone)
-  - [is_valid_phone](#is_valid_phone)
-  - [format_phone](#format_phone)
-  - [remove_symbols_phone](#remove_symbols_phone)
-  - [remove_international_dialing_code](#remove_international_dialing_code)
-  - [generate_phone](#generate_phone)
+  - [is\_valid\_phone](#is_valid_phone)
+  - [format\_phone](#format_phone)
+  - [remove\_symbols\_phone](#remove_symbols_phone)
+  - [remove\_international\_dialing\_code](#remove_international_dialing_code)
+  - [generate\_phone](#generate_phone)
 - [Email](#email)
-  - [is_valid_email](#is_valid_email)
-- [License_Plate](#license-plate)
-  - [is_valid_license_plate](#is_valid_license_plate)
-  - [format_license_plate](#format_license_plate)
-  - [remove_symbols_license_plate](#remove_symbols_license_plate)
-  - [generate_license_plate](#generate_license_plate)
-  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
-  - [get_format_license_plate](#get_format_license_plate)
+  - [is\_valid\_email](#is_valid_email)
+- [License Plate](#license-plate)
+  - [is\_valid\_license\_plate](#is_valid_license_plate)
+  - [format\_license\_plate](#format_license_plate)
+  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [generate\_license\_plate](#generate_license_plate)
+  - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
+  - [get\_format\_license\_plate](#get_format_license_plate)
 - [PIS](#pis)
-  - [is_valid_pis](#is_valid_pis)
-  - [format_pis](#format_pis)  
-  - [remove_symbols_pis](#remove_symbols_pis)
-  - [generate_pis](#generate_pis)
+  - [is\_valid\_pis](#is_valid_pis)
+  - [format\_pis](#format_pis)
+  - [remove\_symbols\_pis](#remove_symbols_pis)
+  - [generate\_pis](#generate_pis)
 - [Legal Process](#legal-process)
-  - [is_valid_legal_process](#is_valid_legal_process)  
-  - [format_legal_process](#format_legal_process)
-  - [remove_symbols_legal_process](#remove_symbols_legal_process)
-  - [generate_legal_process](#generate_legal_process)
-
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
+  - [format\_legal\_process](#format_legal_process)
+  - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
+  - [generate\_legal\_process](#generate_legal_process)
 - [Voter ID](#voter-id)
-  - [is_valid_voter_id](#is_valid_voter_id)
-  - [format_voter_id] (#format_voter_id)
-  - [generate_voter_id](#generate_voter_id)
+  - [is\_valid\_voter\_id](#is_valid_voter_id)
+  - [format\_voter\_id](#format_voter_id)
+  - [generate\_voter\_id](#generate_voter_id)
 
 ## CPF
 
@@ -97,10 +98,12 @@ This function does not verify the existence of the CPF; it only
 validates the format of the string.
 
 Args:
-  * cpf (str): The CPF to be validated, a 11-digit string
+
+- cpf (str): The CPF to be validated, a 11-digit string
 
 Returns:
-  * bool: True if the checksum digits match the base number,
+
+- bool: True if the checksum digits match the base number,
           False otherwise.
 
 Example:
@@ -120,10 +123,12 @@ aid symbols. This function takes a numbers-only CPF string as input and adds
 standard formatting visual aid symbols for display.
 
 Args:
-  * cpf (str): A numbers-only CPF string.
+
+- cpf (str): A numbers-only CPF string.
 
 Returns:
-  * str: A formatted CPF string with standard visual aid symbols or
+
+- str: A formatted CPF string with standard visual aid symbols or
          None if the input is invalid.
 
 Example:
@@ -143,10 +148,12 @@ string. This function takes a CPF string as input and removes all occurrences of
 the '.', '-' characters from it.
 
 Args:
-  * cpf (str): The CPF string containing symbols to be removed.
+
+- cpf (str): The CPF string containing symbols to be removed.
 
 Returns:
-  * str: A new string with the specified symbols removed.
+
+- str: A new string with the specified symbols removed.
 
 Example:
 
@@ -161,7 +168,8 @@ Example:
 Generate a random valid CPF (Brazilian Individual Taxpayer Number) digit string.
 
 Returns:
-  * str: A random valid CPF string.
+
+- str: A random valid CPF string.
 
 Example:
 
@@ -184,10 +192,12 @@ This function does not verify the existence of the CNPJ; it only
 validates the format of the string.
 
 Args:
-  * cnpj (str): The CNPJ to be validated.
+
+- cnpj (str): The CNPJ to be validated.
 
 Returns:
-  * bool: True if the checksum digits match the base number,
+
+- bool: True if the checksum digits match the base number,
           False otherwise.
 
 Example:
@@ -208,10 +218,12 @@ This function takes a CNPJ string as input, validates its format, and
 formats it with standard visual aid symbols for display purposes.
 
 Args:
-  * cnpj (str): The CNPJ string to be formatted for display.
+
+- cnpj (str): The CNPJ string to be formatted for display.
 
 Returns:
-  * str: The formatted CNPJ with visual aid symbols if it's valid,
+
+- str: The formatted CNPJ with visual aid symbols if it's valid,
          None if it's not valid.
 
 Example:
@@ -232,10 +244,12 @@ This function takes a CNPJ string as input and removes all occurrences of
 the '.', '/' and '-' characters from it.
 
 Args:
-  * cnpj (str): The CNPJ string containing symbols to be removed.
+
+- cnpj (str): The CNPJ string containing symbols to be removed.
 
 Returns:
-  * str: A new string with the specified symbols removed.
+
+- str: A new string with the specified symbols removed.
 
 Example:
 
@@ -251,10 +265,12 @@ Generates a random valid CNPJ (Brazilian Company Registration Number) digit
 string. An optional branch number parameter can be given; it defaults to 1.
 
 Args:
-  * branch (int): An optional branch number to be included in the CNPJ.
+
+- branch (int): An optional branch number to be included in the CNPJ.
 
 Returns:
-  * str: A randomly generated valid CNPJ string.
+
+- str: A randomly generated valid CNPJ string.
 
 Example:
 
@@ -276,10 +292,12 @@ This function does not verify if the CEP is a real postal code; it only
 validates the format of the string.
 
 Args:
-  * cep (str): The string containing the CEP to be checked.
+
+- cep (str): The string containing the CEP to be checked.
 
 Returns:
-  * bool: True if the CEP is valid (8 digits), False otherwise.
+
+- bool: True if the CEP is valid (8 digits), False otherwise.
 
 Example:
 
@@ -299,10 +317,12 @@ This function takes a CEP (Postal Code) as input and, if it is a valid
 8-digit CEP, formats it into the standard "12345-678" format.
 
 Args:
-  * cep (str): The input CEP (Postal Code) to be formatted.
+
+- cep (str): The input CEP (Postal Code) to be formatted.
 
 Returns:
-  * str: The formatted CEP in the "12345-678" format if it's valid,
+
+- str: The formatted CEP in the "12345-678" format if it's valid,
          None if it's not valid.
 
 Example:
@@ -323,10 +343,12 @@ This function takes a CEP (Postal Code) as input and removes all occurrences of
 the '.' and '-' characters from it.
 
 Args:
-  * cep (str): The input CEP (Postal Code) containing symbols to be removed.
+
+- cep (str): The input CEP (Postal Code) containing symbols to be removed.
 
 Returns:
-  * str: A new string with the specified symbols removed.
+
+- str: A new string with the specified symbols removed.
 
 Example:
 
@@ -345,7 +367,8 @@ Example:
 Generates a random 8-digit CEP (Postal Code) number as a string.
 
 Returns:
-  * str: A randomly generated 8-digit number.
+
+- str: A randomly generated 8-digit number.
 
 Example:
 
@@ -353,6 +376,72 @@ Example:
 >>> from brutils import generate_cep
 >>> generate_cep()
 '77520503'
+```
+
+### get_address_from_cep
+
+Fetches address information from a given CEP (Postal Code) using the ViaCEP API.
+
+Args:
+
+- cep (str): The CEP (Postal Code) to be used in the search.
+- raise_exceptions (bool, optional): Whether to raise exceptions when the CEP is invalid or not found. Defaults to False.
+
+Returns:
+
+- Address | None: An Address object (TypedDict) containing the address information if the CEP is found, None otherwise.
+
+Example:
+
+```python
+>>> get_address_from_cep("12345678")
+{
+    "cep": "12345-678",
+    "logradouro": "Rua Example",
+    "complemento": "",
+    "bairro": "Example",
+    "localidade": "Example",
+    "uf": "EX",
+    "ibge": "1234567",
+    "gia": "1234",
+    "ddd": "12",
+    "siafi": "1234"
+}
+```
+
+### get_cep_information_from_address
+
+Fetches CEP (Postal Code) options from a given address using the ViaCEP API.
+
+Args:
+
+- federal_unit (str): The two-letter abbreviation of the Brazilian state.
+- city (str): The name of the city.
+- street (str): The name (or substring) of the street.
+- raise_exceptions (bool, optional): Whether to raise exceptions when the address is invalid or not found. Defaults to False.
+
+Returns:
+
+- list[Address] | None: A list of Address objects (TypedDict) containing the address information if the address is found, None otherwise.
+
+Example:
+
+```python
+>>> get_cep_information_from_address("EX", "Example", "Rua Example")
+[
+    {
+        "cep": "12345-678",
+        "logradouro": "Rua Example",
+        "complemento": "",
+        "bairro": "Example",
+        "localidade": "Example",
+        "uf": "EX",
+        "ibge": "1234567",
+        "gia": "1234",
+        "ddd": "12",
+        "siafi": "1234"
+    }
+]
 ```
 
 ## Phone
@@ -367,22 +456,24 @@ is_valid_phone(phone_number, type)
 ```
 
 Args:
-  * phone_number:
-    * the phone number to be validated
-    * digits only, no symbols
-    * without the country code
-    * should include the area code (DDD) with two digits
-    * example: '+55 48 9999 9999' should be used as '4899999999'
-    * mandatory
 
-  * type:
-    * 'mobile' to validate only mobile numbers
-    * 'landline' to validate only landline phone numbers
-    * if not specified, it validates for either.
-    * optional
+- phone_number:
+  - the phone number to be validated
+  - digits only, no symbols
+  - without the country code
+  - should include the area code (DDD) with two digits
+  - example: '+55 48 9999 9999' should be used as '4899999999'
+  - mandatory
+
+- type:
+  - 'mobile' to validate only mobile numbers
+  - 'landline' to validate only landline phone numbers
+  - if not specified, it validates for either.
+  - optional
 
 Returns:
-  * bool: True if the phone number is valid. False otherwise.
+
+- bool: True if the phone number is valid. False otherwise.
 
 Example:
 
@@ -401,10 +492,12 @@ True
 Format a phone number for visual display. This function takes a string representing a phone number containing only numbers as input and adds standard formatting symbols for display.
 
 Args:
-  * phone (str): A string representing a phone number.
+
+- phone (str): A string representing a phone number.
 
 Returns:
-  * str: The formatted phone number for display or None if it is not valid.
+
+- str: The formatted phone number for display or None if it is not valid.
 
 Example:
 
@@ -423,10 +516,12 @@ None
 Remove symbols from the phone number. This function takes a phone number as input and removes all symbols, such as parentheses '()', dashes '-', and spaces ' '.
 
 Args:
-  * phone (str): The input phone number containing the symbols to be removed.
+
+- phone (str): The input phone number containing the symbols to be removed.
 
 Returns:
-  * str: A new string with the specified symbols removed.
+
+- str: A new string with the specified symbols removed.
 
 Example:
 
@@ -445,10 +540,12 @@ Example:
 Remove the international code (+55) from a string containing a Brazilian phone number, preserving other special characters.
 
 Args:
-  * phone (str): The input phone number that may contain the international code.
+
+- phone (str): The input phone number that may contain the international code.
 
 Returns:
-  * str: A new string without the international code, preserving other special characters.
+
+- str: A new string without the international code, preserving other special characters.
 
 Example:
 
@@ -471,12 +568,14 @@ Example:
 Generates a valid random phone number.
 
 Args:
-  * type (str): It can be "landline" or "mobile".
+
+- type (str): It can be "landline" or "mobile".
                 If not specified, the function generates
                 a random number of any type.
 
 Returns:
-  * str: A randomly generated valid phone number.
+
+- str: A randomly generated valid phone number.
 
 Example:
 
@@ -497,10 +596,12 @@ Example:
 Check if a string corresponds to a valid email address.
 
 Args:
-  * email (str): The input string to be checked.
+
+- email (str): The input string to be checked.
 
 Returns:
-  * bool: True if email is a valid email address, False otherwise.
+
+- bool: True if email is a valid email address, False otherwise.
 
 Example:
 
@@ -526,12 +627,14 @@ This function does not verify if the license plate is a real license plate;
 it only validates the format of the string.
 
 Args:
-  * license_plate (str): A license plate string.
-  * type (str): "old_format" or "mercosul".
+
+- license_plate (str): A license plate string.
+- type (str): "old_format" or "mercosul".
                 If not specified, checks for one or another.
 
 Returns:
-  * bool: True if the license plate is valid, False otherwise.
+
+- bool: True if the license plate is valid, False otherwise.
 
 Example:
 
@@ -556,10 +659,12 @@ This function receives a license plate in any pattern (LLLNNNN or LLLNLNN)
 and returns a formatted version.
 
 Args:
-  * license_plate (str): A license plate string.
+
+- license_plate (str): A license plate string.
 
 Returns:
-  * str: The formatted license plate string or
+
+- str: The formatted license plate string or
          'None' if the input is invalid.
 
 Example:
@@ -587,11 +692,13 @@ None
 Removes the dash (-) symbol from a license plate string.
 
 Args:
-  * license_plate_number (str): A license plate number containing symbols to
+
+- license_plate_number (str): A license plate number containing symbols to
                                 be removed.
 
 Returns:
-  * str: The license plate number with the specified symbols removed.
+
+- str: The license plate number with the specified symbols removed.
 
 Example:
 
@@ -613,12 +720,14 @@ Generate a valid license plate in the given format. In case no format is
 provided, it will return a license plate in the Mercosul format.
 
 Args:
-  * format (str): The desired format for the license plate.
+
+- format (str): The desired format for the license plate.
                   'LLLNNNN' for the old pattern or 'LLLNLNN' for the
                    Mercosul one. Default is 'LLLNLNN'
 
 Returns:
-  * str: A randomly generated license plate number or
+
+- str: A randomly generated license plate number or
          'None' if the format is invalid.
 
 Example:
@@ -641,11 +750,13 @@ Converts an old pattern license plate (LLLNNNN) to a Mercosul format
 (LLLNLNN).
 
 Args:
-  * license_plate (str): A string of proper length representing the
+
+- license_plate (str): A string of proper length representing the
                          old pattern license plate.
 
 Returns:
-  * str: The converted Mercosul license plate (LLLNLNN) or
+
+- str: The converted Mercosul license plate (LLLNLNN) or
          'None' if the input is invalid.
 
 Example:
@@ -666,10 +777,12 @@ Return the format of a license plate. 'LLLNNNN' for the old pattern and
 'LLLNLNN' for the Mercosul one.
 
 Args:
-  * license_plate (str): A license plate string without symbols.
+
+- license_plate (str): A license plate string without symbols.
 
 Returns:
-  * str: The format of the license plate (LLLNNNN, LLLNLNN) or
+
+- str: The format of the license plate (LLLNNNN, LLLNLNN) or
           'None' if the format is invalid.
 
 Example:
@@ -695,13 +808,16 @@ None
 Verifies if the PIS/PASEP number is valid. Only numbers, formatted as a string. It does not check if the PIS/PASEP actually exists.
 
 References:
-  - https://www.macoratti.net/alg_pis.htm.
+
+- <https://www.macoratti.net/alg_pis.htm>.
 
 Args:
-  * pis (str): PIS number as a string with the proper length.
+
+- pis (str): PIS number as a string with the proper length.
 
 Returns:
-  * bool: True if the PIS is valid, False otherwise.
+
+- bool: True if the PIS is valid, False otherwise.
 
 Example:
 
@@ -718,10 +834,12 @@ True
 Formats a valid PIS (Programa de Integração Social) string with symbols and adds standard formatting symbols for display.
 
 Args:
-  * pis (str): A valid string of PIS containing only numbers.
+
+- pis (str): A valid string of PIS containing only numbers.
 
 Returns:
-  * str: A formatted PIS string with standard visual aid symbols or None if the input is invalid.
+
+- str: A formatted PIS string with standard visual aid symbols or None if the input is invalid.
 
 Example:
 
@@ -738,10 +856,12 @@ from brutils import format_pis
 This function takes a string of PIS (Programa de Integração Social) with formatting symbols and returns a clean version without certain symbols. It intentionally removes only the symbols "-" and ".", leaving other symbols untouched.
 
 Args:
-  * pis (str): A string of PIS that may contain formatting symbols.
+
+- pis (str): A string of PIS that may contain formatting symbols.
 
 Returns:
-  * str: A clean string of PIS without formatting symbols.
+
+- str: A clean string of PIS without formatting symbols.
 
 Example:
 
@@ -760,7 +880,8 @@ from brutils import remove_symbols_pis
 Generates a string of digits containing a random valid Brazilian PIS number.
 
 Returns:
-  * str: A randomly generated valid PIS number as a string.
+
+- str: A randomly generated valid PIS number as a string.
 
 Example:
 
@@ -782,11 +903,13 @@ This function does not verify if the legal process ID is a real legal
 process ID; it only validates the format of the string.
 
 Args:
-  * legal_process_id (str): A digit-only string representing the legal
+
+- legal_process_id (str): A digit-only string representing the legal
                             process ID.
 
 Returns:
-  * bool: True if the legal process ID is valid, False otherwise.
+
+- bool: True if the legal process ID is valid, False otherwise.
 
 Example:
 
@@ -808,11 +931,13 @@ False
 Format a legal process ID into a standard format.
 
 Args:
-  * legal_process_id (str): A 20-digits string representing the legal
+
+- legal_process_id (str): A 20-digits string representing the legal
                             process ID.
 
 Returns:
-  * str: The formatted legal process ID or None if the input is invalid.
+
+- str: The formatted legal process ID or None if the input is invalid.
 
 Example:
 
@@ -834,10 +959,12 @@ This function takes a legal process as input and removes all occurrences
 of the '.' and '-' characters from it.
 
 Args:
-  * legal_process (str): A legal process containing symbols to be removed.
+
+- legal_process (str): A legal process containing symbols to be removed.
 
 Returns:
-  * str: The legal process string with the specified symbols removed.
+
+- str: The legal process string with the specified symbols removed.
 
 Example:
 
@@ -856,14 +983,16 @@ from brutils import remove_symbols_legal_process
 Generate a random legal process ID number.
 
 Args:
-  * year (int): The year for the legal process ID (default is the current
+
+- year (int): The year for the legal process ID (default is the current
                 year).
                 The year should not be in the past
-  * orgao (int): The organization code (1-9) for the legal process ID
+- orgao (int): The organization code (1-9) for the legal process ID
                  (default is random).
 
 Returns:
-  * str: A randomly generated legal process ID.
+
+- str: A randomly generated legal process ID.
          None if one of the arguments is invalid.
 
 Example:
@@ -888,14 +1017,17 @@ Check if a Brazilian voter id number is valid.
 It does not verify if the voter id actually exists.
 
 References:
-- https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor,
-- http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+- <https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor>,
+- <http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/>
 
 Args:
-  * voter_id(str): string representing the voter id to be verified.
+
+- voter_id(str): string representing the voter id to be verified.
 
 Returns:
-  * bool: True if the voter id is valid. False otherwise.
+
+- bool: True if the voter id is valid. False otherwise.
 
 Example:
 
@@ -915,10 +1047,10 @@ This function takes a voter ID string containing only numbers as input
 and adds the standard formatting spaces for display.
 
 Arguments:
-  * voter_id (str): A voter ID string containing only numbers.
+  - voter_id (str): A voter ID string containing only numbers.
 
 Returns:
-  * str: The formatted voter ID with spaces if valid.
+  - str: The formatted voter ID with spaces if valid.
          Returns None if not valid.
 
 Example:
@@ -938,10 +1070,10 @@ Example:
 Generate a valid random Voter ID string of digits from an informed Brazilian federation union.
 
 Args:
-  * federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
+  - federative_union(str): federative union for the voter id that will be generated. The default value "ZZ" is used for voter IDs issued to foreigners.
 
 Returns:
-  * str: A randomly generated valid voter ID.
+  - str: A randomly generated valid voter ID.
 
 Example:
 
