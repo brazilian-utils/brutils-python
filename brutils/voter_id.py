@@ -292,3 +292,12 @@ def format_voter_id(voter_id):  # type: (str) -> str
     return "{} {} {} {}".format(
         voter_id[:4], voter_id[4:8], voter_id[8:10], voter_id[10:12]
     )
+
+def verify_situation(voter_id):
+    if(is_valid(voter_id) == True):
+        return False
+    
+    else:
+        return True
+
+
