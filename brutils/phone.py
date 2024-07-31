@@ -211,6 +211,6 @@ def _generate_landline_phone():  # type () -> str
 
 def return_region_from_ddd(phone_number: str):
     if(is_valid(phone_number) == True):
-        return False
+        return "Numero valido"
     else:
-        return True
+        return "Numero invalido"

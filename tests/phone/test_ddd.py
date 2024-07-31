@@ -1,5 +1,5 @@
 from unittest import TestCase, main
-#import brutils
+import brutils
 from brutils.phone import return_region_from_ddd
 
 class TestDDD(TestCase):
@@ -17,10 +17,10 @@ class TestDDD(TestCase):
     def test_invalid_number_with_invalid_ddd(self):
         # Casos onde o numero é inválido
         phone = '123'
-        self.assertIs(return_region_from_ddd(phone), False)
+        self.assertIs(return_region_from_ddd(phone), "Numero invalido")
 
         phone = 'abcdefghijk'
-        self.assertIs(return_region_from_ddd(phone), False)
+        self.assertIs(return_region_from_ddd(phone), "Numero invalido")
 
     def test_valid_number_with_invalid_ddd(self):
         # Casos onde o numero é válido e o ddd não
