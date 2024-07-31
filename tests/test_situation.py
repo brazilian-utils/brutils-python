@@ -1,45 +1,39 @@
-#existem 3 casos a serem tratados antes, um se o formato não é válido e é outro processo que analisa isso, um onde ele é valido e a situação é irregular,
-#outro onde ele é válido e a situação é regular
-
 from unittest import TestCase, main
 import brutils
-from brutils.voter_id import (
-    _calculate_vd1,
-    _calculate_vd2,
-    _get_federative_union,
-    _get_sequential_number,
-    _get_verifying_digits,
-    _is_length_valid,
-    format_voter_id,
-    generate,
-    is_valid,
-    verify_situation
-)
+from brutils.voter_id import verify_situation
 
 class TestSituation(TestCase):
-    def test_is_valid(self):
-        voter_id = "12345678" #caso onde o Titulo de eleitor é irregular
-        self.assertIs(verify_situation(voter_id), False)#mudar para false
+    def test_invalid_format(self):
+        # Caso onde o formato do título de eleitor não é válido
+        invalid_voter_ids = [
+            "123",            # Muito curto
+            "12345678901234", # Muito longo
+            "abcdefghijk"     # Contém caracteres não numéricos
+        ]
+        for voter_id in invalid_voter_ids:
+            with self.subTest(voter_id=voter_id):
+                self.assertIs(verify_situation(voter_id), None)  # Assume None para formatos inválidos
 
-        voter_id = "123456789017" #caso onde o título de eleitor é irregular
-        self.assertIs(verify_situation(voter_id), False)#mudar para false
-
-
-
-    def valid_and_irregular(self):
-        voter_id = '217633460930' #caso onde o título de eleitor é válido e não é regular
+    def test_invalid_and_irregular(self):
+        # Casos onde o título de eleitor é inválido pelo formato e é irregular
+        voter_id = "12345678"
         self.assertIs(verify_situation(voter_id), False)
-        
-        voter_id = '183475722801' #caso onde o título de eleitor é válido e não é regular
+
+        voter_id = "123456789017"
         self.assertIs(verify_situation(voter_id), False)
-    
-    
-    def valid_and_regular(self):
+
+    def test_valid_and_irregular(self):
+        # Casos onde o título de eleitor é válido pelo formato e não é regular
+        voter_id = '217633460930'
+        self.assertIs(verify_situation(voter_id), False)
+
+        voter_id = '183475722801'
+        self.assertIs(verify_situation(voter_id), False)
+
+    def test_valid_and_regular(self):
+        # Caso onde o título de eleitor é válido pelo formato e é regular
         voter_id = '460230490124'
         self.assertIs(verify_situation(voter_id), True)
 
-
-
-    
-
-
+if __name__ == '__main__':
+    main()
