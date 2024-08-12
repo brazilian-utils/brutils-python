@@ -79,12 +79,14 @@ False
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
 - [Processo Jurídico](#processo-jurídico)
-- [is\_valid\_legal\_process](#is_valid_legal_process)
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
   - [format\_legal\_process](#format_legal_process)
   - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
   - [generate\_legal\_process](#generate_legal_process)
-- [Titulo Eleitoral](#titulo-eleitoral)
-  - [is\_valid\_voter\_id](#is_valid_voter_id)
+- [Título Eleitoral](#titulo-eleitoral)
+  - [is_valid_voter_id](#is_valid_voter_id)
+  - [format_voter_id](#format_voter_id)
+  - [generate_voter_id](#generate_voter_id)
 
 ## CPF
 
@@ -1008,7 +1010,7 @@ Exemplo:
 
 ### is_valid_voter_id
 
-Verifica se um número de título de eleitor brasileiro é válido. Não verifica se realmente existe.
+Verifica se um número de Título de Eleitor brasileiro é válido. Não verifica se realmente existe.
 
 Referências:
 
@@ -1032,6 +1034,54 @@ False
 >>> is_valid_voter_id('427503840213')
 True
 ```
+
+### format_voter_id
+
+Formata um número de Título de Eleitor para exibição visual.
+
+Esta função recebe uma string de Título de Eleitor contendo 
+apenas números como entrada e adiciona os espaços de formatação 
+padrão para exibição.
+
+Argumentos:
+  * voter_id (str): Uma string de Título de Eleitor contendo apenas números.
+
+Retorna:
+  * str: O Título de Eleitor formatado com os espaços, se for válido.
+         Retorna None se não for válido.
+
+Exemplo:
+
+```python
+>>> from brutils import format_voter_id
+>>> format_voter_id("246593980493")
+'2465 9398 04 93'
+>>> format_voter_id("202715292895")
+'2027 1529 28 95'
+>>> format_voter_id("739035552205")
+>>> 
+```
+
+### generate_voter_id
+
+Gera uma string de dígitos de Título de Eleitor válida aleatória a partir de um estado brasileiro informado.
+
+Args:
+  * federative_union (str): Unidade Federativa para o título de eleitor que será gerado. O valor padrão "ZZ" é usado para Títulos de Eleitor emitidos para estrangeiros.
+
+Retorna:
+  * str: Um Título de Eleitor válido gerado aleatoriamente.
+
+Exemplo:
+
+```python
+>>> from brutils import generate_voter_id
+>>> generate_voter_id()
+'183475722801'
+>>> generate_voter_id(federative_union ="MG")
+'950125640248'
+```
+
 
 # Novos Utilitários e Reportar Bugs
 
