@@ -3,11 +3,9 @@
 
 <p>Utils library for Brazilian-specific businesses.</p>
 
-
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
 [![Package version](https://shields.io/pypi/v/brutils)](https://pypi.org/project/brutils/)
-
 
 ### [Looking for the english version?](README_EN.md)
 
@@ -44,49 +42,50 @@ False
 # Utilitários
 
 - [CPF](#cpf)
-  - [is_valid_cpf](#is_valid_cpf)
-  - [format_cpf](#format_cpf)
-  - [remove_symbols_cpf](#remove_symbols_cpf)
-  - [generate_cpf](#generate_cpf)
+  - [is\_valid\_cpf](#is_valid_cpf)
+  - [format\_cpf](#format_cpf)
+  - [remove\_symbols\_cpf](#remove_symbols_cpf)
+  - [generate\_cpf](#generate_cpf)
 - [CNPJ](#cnpj)
-  - [is_valid_cnpj](#is_valid_cnpj)
-  - [format_cnpj](#format_cnpj)
-  - [remove_symbols_cnpj](#remove_symbols_cnpj)
-  - [generate_cnpj](#generate_cnpj)
+  - [is\_valid\_cnpj](#is_valid_cnpj)
+  - [format\_cnpj](#format_cnpj)
+  - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+  - [generate\_cnpj](#generate_cnpj)
 - [CEP](#cep)
-  - [is_valid_cep](#is_valid_cep)
-  - [format_cep](#format_cep)
-  - [remove_symbols_cep](#remove_symbols_cep)
-  - [generate_cep](#generate_cep)
+  - [is\_valid\_cep](#is_valid_cep)
+  - [format\_cep](#format_cep)
+  - [remove\_symbols\_cep](#remove_symbols_cep)
+  - [generate\_cep](#generate_cep)
+  - [get\_address\_from\_cep](#get_address_from_cep)
+  - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
 - [Telefone](#telefone)
-  - [is_valid_phone](#is_valid_phone)
-  - [format_phone](#format_phone)
-  - [remove_symbols_phone](#remove_symbols_phone)
-  - [remove_international_dialing_code](#remove_international_dialing_code)
-  - [generate_phone](#generate_phone)
+  - [is\_valid\_phone](#is_valid_phone)
+  - [format\_phone](#format_phone)
+  - [remove\_symbols\_phone](#remove_symbols_phone)
+  - [remove\_international\_dialing\_code](#remove_international_dialing_code)
+  - [generate\_phone](#generate_phone)
 - [Email](#email)
-  - [is_valid_email](#is_valid_email)
+  - [is\_valid\_email](#is_valid_email)
 - [Placa de Carro](#placa-de-carro)
-  - [is_valid_license_plate](#is_valid_license_plate)
-  - [format_license_plate](#format_license_plate)
-  - [remove_symbols_license_plate](#remove_symbols_license_plate)
-  - [generate_license_plate](#generate_license_plate)
-  - [convert_license_plate_to_mercosul](#convert_license_plate_to_mercosul)
-  - [get_format_license_plate](#get_format_license_plate)
+  - [is\_valid\_license\_plate](#is_valid_license_plate)
+  - [format\_license\_plate](#format_license_plate)
+  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+  - [generate\_license\_plate](#generate_license_plate)
+  - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
+  - [get\_format\_license\_plate](#get_format_license_plate)
 - [PIS](#pis)
-  - [is_valid_pis](#is_valid_pis)
-  - [format_pis](#format_pis)
-  - [remove_symbols_pis](#remove_symbols_pis)
-  - [generate_pis](#generate_pis)
+  - [is\_valid\_pis](#is_valid_pis)
+  - [format\_pis](#format_pis)
+  - [remove\_symbols\_pis](#remove_symbols_pis)
+  - [generate\_pis](#generate_pis)
 - [Processo Jurídico](#processo-jurídico)
-  - [is_valid_legal_process](#is_valid_legal_process)
-  - [format_legal_process](#format_legal_process)
-  - [remove_symbols_legal_process](#remove_symbols_legal_process)
-  - [generate_legal_process](#generate_legal_process)
-
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
+  - [format\_legal\_process](#format_legal_process)
+  - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
+  - [generate\_legal\_process](#generate_legal_process)
 - [Título Eleitoral](#titulo-eleitoral)
   - [is_valid_voter_id](#is_valid_voter_id)
-  - [format_voter_id] (#format_voter_id)
+  - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
 
 ## CPF
@@ -98,10 +97,12 @@ correspondem ao seu número base. Esta função não verifica a existência do C
 ela apenas valida o formato da string.
 
 Argumentos:
-  * cpf (str): O CPF a ser validado, uma string de 11 dígitos
+
+- cpf (str): O CPF a ser validado, uma string de 11 dígitos
 
 Retorna:
-  * bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
+
+- bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
           Falso caso contrário.
 
 Exemplo:
@@ -121,10 +122,12 @@ Esta função recebe uma string de CPF contendo apenas números como entrada e
 adiciona símbolos de formatação padrão para exibição.
 
 Argumentos:
-  * cpf (str): Uma string de CPF contendo apenas números.
+
+- cpf (str): Uma string de CPF contendo apenas números.
 
 Retorna:
-  * str: O CPF formatado com símbolos visuais se for válido,
+
+- str: O CPF formatado com símbolos visuais se for válido,
          None se não for válido.
 
 Exemplo:
@@ -144,10 +147,12 @@ brasileiro). Esta função recebe como entrada uma string de CPF e remove todas 
 ocorrências dos caracteres '.', '-' dela.
 
 Argumentos:
-  * cpf (str): A string de CPF contendo os símbolos a serem removidos.
+
+- cpf (str): A string de CPF contendo os símbolos a serem removidos.
 
 Retorna:
-  * str: Uma nova string com os símbolos especificados removidos.
+
+- str: Uma nova string com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -162,7 +167,8 @@ Exemplo:
 Gerar uma string de dígitos de CPF válida aleatória.
 
 Retorna:
-  * str: Um CPF válido gerado aleatoriamente.
+
+- str: Um CPF válido gerado aleatoriamente.
 
 Exemplo:
 
@@ -184,10 +190,12 @@ string de dígitos com o comprimento apropriado. Esta função não verifica a
 existência do CNPJ; ela só valida o formato da string.
 
 Argumentos:
-  * cnpj (str): O CNPJ a ser validado.
+
+- cnpj (str): O CNPJ a ser validado.
 
 Retorna:
-  * bool: True se os dígitos de verificação corresponderem ao número base,
+
+- bool: True se os dígitos de verificação corresponderem ao número base,
         False caso contrário.
 
 Exemplo:
@@ -208,10 +216,12 @@ Esta função recebe uma string de CNPJ como entrada, valida seu formato e a
 formata com símbolos visuais padrão para fins de exibição.
 
 Argumentos:
-  * cnpj (str): A string de CNPJ a ser formatada para exibição.
+
+- cnpj (str): A string de CNPJ a ser formatada para exibição.
 
 Retorna:
-  * str: O CNPJ formatado com símbolos visuais se for válido, None se não for válido.
+
+- str: O CNPJ formatado com símbolos visuais se for válido, None se não for válido.
 
 Exemplo:
 
@@ -231,10 +241,12 @@ Esta função recebe uma string de CNPJ como entrada e remove todas as
 ocorrências dos caracteres '.', '/' e '-' dela.
 
 Argumentos:
-  * cnpj (str): A string de CNPJ que contém os símbolos a serem removidos.
+
+- cnpj (str): A string de CNPJ que contém os símbolos a serem removidos.
 
 Retorna:
-  * str: Uma nova string com os símbolos especificados removidos.
+
+- str: Uma nova string com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -250,10 +262,12 @@ Gera uma string de dígitos CNPJ válida aleatória. Um número de filial
 opcional pode ser fornecido; o padrão é 1.
 
 Argumentos:
-  * branch (int): Um número de filial opcional a ser incluído no CNPJ.
+
+- branch (int): Um número de filial opcional a ser incluído no CNPJ.
 
 Retorna:
-  * str: Um CNPJ válido gerado aleatoriamente.
+
+- str: Um CNPJ válido gerado aleatoriamente.
 
 Exemplo:
 
@@ -275,10 +289,12 @@ exatamente 8 dígitos. Esta função não verifica se o CEP é um CEP real, pois
 valida apenas o formato da string.
 
 Argumentos:
-  * cep (str): A string contendo o CEP a ser verificado.
+
+- cep (str): A string contendo o CEP a ser verificado.
 
 Retorno:
-  * bool: True se o CEP for válido (8 dígitos), False caso contrário.
+
+- bool: True se o CEP for válido (8 dígitos), False caso contrário.
 
 Exemplo:
 
@@ -299,11 +315,13 @@ Esta função recebe um CEP como entrada e, se for um CEP válido com 8 dígitos
 o formata no padrão "12345-678".
 
 Argumentos:
-  * cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
+
+- cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
               formatado.
 
 Retorna:
-  * str: O CEP formatado no formato "12345-678" se for válido, None se não for
+
+- str: O CEP formatado no formato "12345-678" se for válido, None se não for
         válido.
 
 Example:
@@ -325,11 +343,13 @@ fornecido. Esta função recebe um CEP como entrada e remove todas as ocorrênci
 dos caracteres '.' e '-' dele.
 
 Argumentos:
-  * cep (str): O CEP (Código de Endereçamento Postal) de entrada que contém os
+
+- cep (str): O CEP (Código de Endereçamento Postal) de entrada que contém os
                símbolos a serem removidos.
 
 Retorna:
-  * str: Uma nova string com os símbolos especificados removidos.
+
+- str: Uma nova string com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -349,7 +369,8 @@ Gera um número de CEP (Código de Endereçamento Postal) aleatório de 8 dígit
 como uma string.
 
 Retorna:
-  * str: Um número de 8 dígitos gerado aleatoriamente.
+
+- str: Um número de 8 dígitos gerado aleatoriamente.
 
 Exemplo:
 
@@ -361,34 +382,103 @@ Exemplo:
 '29641407'
 ```
 
+### get_address_from_cep
+
+Busca as informações de endereço a partir de um CEP (Código de Endereçamento Postal) utilizando a API da ViaCEP.
+
+Argumentos:
+
+- cep (str): O CEP a ser utilizado na busca.
+- raise_exceptions (bool, opcional): Se deve gerar exceções quando o CEP for inválido ou não for encontrado. O padrão é False.
+
+Retorna:
+
+- Address | None: Um objeto Address (TypedDict) contendo as informações de endereço se o CEP for encontrado, caso contrário, None.
+
+Exemplo:
+
+```python
+>>> get_address_from_cep("12345678")
+{
+    "cep": "12345-678",
+    "logradouro": "Rua Example",
+    "complemento": "",
+    "bairro": "Example",
+    "localidade": "Example",
+    "uf": "EX",
+    "ibge": "1234567",
+    "gia": "1234",
+    "ddd": "12",
+    "siafi": "1234"
+}
+```
+
+### get_cep_information_from_address
+
+Busca o CEP e outras informações a partir de um endereço utilizando a API da ViaCEP.
+
+Argumentos:
+
+- federal_unit (str): Abreviação de duas letras do estado brasileiro.
+- city (str): Nome da cidade.
+- street (str): Nome (ou substring) da rua.
+- raise_exceptions (bool, opcional): Se deve gerar exceções quando o endereço é inválido ou não foi encontrado. O padrão é False.
+
+Retorna:
+
+- list[Address] | None: Uma lista de objetos Address (TypedDict) contendo as informações de endereço se o endereço for encontrado, None caso contrário.
+
+Exemplo:
+
+```python
+>>> get_cep_information_from_address("EX", "Example", "Rua Example")
+[
+    {
+        "cep": "12345-678",
+        "logradouro": "Rua Example",
+        "complemento": "",
+        "bairro": "Example",
+        "localidade": "Example",
+        "uf": "EX",
+        "ibge": "1234567",
+        "gia": "1234",
+        "ddd": "12",
+        "siafi": "1234"
+    }
+]
+```
+
 ## Telefone
 
 ### is_valid_phone
 
 Retorna se um número de telefone brasileiro é válido conforme o formato da string.
 Não verifica se o número realmente existe.
-
 ```
+
 is_valid_phone(phone_number, type)
+
 ```
 
 Argumentos:
-  * phone_number (str):
-    * o número de telefone a ser validado 
-    * apenas dígitos, sem símbolos
-    * sem o código do país
-    * deve incluir o número de DDD com dois dígitos
-    * exemplo: '+55 48 9999 9999' deve ser utilizado como '4899999999'
-    * obrigatório
 
-  * type (str):
-    * 'mobile' para validar apenas números de celular
-    * 'landline' para validar apenas números de telefone fixo
-    * caso não especificado, valida para um para o outro.
-    * opcional
+- phone_number (str):
+  - o número de telefone a ser validado
+  - apenas dígitos, sem símbolos
+  - sem o código do país
+  - deve incluir o número de DDD com dois dígitos
+  - exemplo: '+55 48 9999 9999' deve ser utilizado como '4899999999'
+  - obrigatório
+
+- type (str):
+  - 'mobile' para validar apenas números de celular
+  - 'landline' para validar apenas números de telefone fixo
+  - caso não especificado, valida para um para o outro.
+  - opcional
 
 Retorna:
-  * bool: True se o número é válido, False caso contrário.
+
+- bool: True se o número é válido, False caso contrário.
 
 Exemplo:
 
@@ -403,15 +493,19 @@ True
 ```
 
 ### format_phone
+
 Formata um número de telefone para exibição visual. Esta função recebe uma string representando um número de telefone contendo apenas números como entrada e adiciona símbolos de formatação padrão para exibição.
 
 Argumentos:
-  * phone (str): Uma string representando um número de telefone.
+
+- phone (str): Uma string representando um número de telefone.
 
 Retorna:
-  * str: O número de telefone formatado para exibição ou None se não for válido.
+
+- str: O número de telefone formatado para exibição ou None se não for válido.
 
 Exemplo:
+
 ```python
 >>> from brutils import format_phone
 >>> format_phone("11994029275")
@@ -427,12 +521,15 @@ None
 Remove símbolos do número de telefone. Esta função recebe um número de telefone como entrada e remove todos os símbolos, como parênteses '()', traços '-' e espaços ' '.
 
 Argumentos:
-  * phone (str): O número de telefone de entrada que contém os símbolos a serem removidos.
+
+- phone (str): O número de telefone de entrada que contém os símbolos a serem removidos.
 
 Retorna:
-  * str: Uma nova string com os símbolos especificados removidos.
+
+- str: Uma nova string com os símbolos especificados removidos.
 
 Exemplo:
+
 ```python
 >>> from brutils import remove_symbols_phone
 >>> remove_symbols_phone('(21)2569-6969')
@@ -448,12 +545,15 @@ Exemplo:
 Remove o código internacional (+55) de uma string que contém um número de telefone brasileiro, mantendo outros caracteres especiais.
 
 Argumentos:
-  * phone (str): O número de telefone de entrada que pode conter o código internacional.
+
+- phone (str): O número de telefone de entrada que pode conter o código internacional.
 
 Retorna:
-  * str: Uma nova string sem o código internacional, preservando outros caracteres especiais.
+
+- str: Uma nova string sem o código internacional, preservando outros caracteres especiais.
 
 Exemplo:
+
 ```python
 >>> from brutils import remove_international_dialing_code
 >>> remove_international_dialing_code("5521994029275")
@@ -473,12 +573,14 @@ Exemplo:
 Gera um número de telefone aleatório válido.
 
 Argumentos:
-  * type (str): Pode ser "landline" ou "mobile".
+
+- type (str): Pode ser "landline" ou "mobile".
                 Se não for especificado, a função gera um número
                 aleatório de qualquer tipo.
 
 Retorna:
-  * str: Um número de telefone válido gerado aleatoriamente.
+
+- str: Um número de telefone válido gerado aleatoriamente.
 
 Exemplo:
 
@@ -499,10 +601,12 @@ Exemplo:
 Verificar se uma string corresponde a um endereço de e-mail válido.
 
 Argumentos:
-  * email (str): A string de entrada a ser verificada.
+
+- email (str): A string de entrada a ser verificada.
 
 Retorna:
-  * bool: Verdadeiro se o email for um endereço de e-mail válido, Falso
+
+- bool: Verdadeiro se o email for um endereço de e-mail válido, Falso
           caso contrário.
 
 Exemplo:
@@ -529,12 +633,14 @@ Esta função não verifica se a placa de carro é uma placa de carro real,
 apenas valida o formato da string.
 
 Argumentos:
-  * license_plate (str): Uma string representando uma placa de carro.
-  * type (str): "old_format" ou "mercosul".
+
+- license_plate (str): Uma string representando uma placa de carro.
+- type (str): "old_format" ou "mercosul".
                 Se não especificado, verifica um ou outro.
 
 Retorna:
-  * bool: True se a placa de carro for válida, False caso contrário.
+
+- bool: True se a placa de carro for válida, False caso contrário.
 
 Exemplo:
 
@@ -558,10 +664,12 @@ Formata uma placa de carro no padrão correto.
 Esta função recebe uma placa de carro em qualquer formato (LLLNNNN ou LLLNLNN) e retorna uma versão formatada.
 
 Argumentos:
-  * license_plate (str): Uma string representando uma placa de carro.
+
+- license_plate (str): Uma string representando uma placa de carro.
 
 Retorna:
-  * str: A string da placa de carro formatada ou
+
+- str: A string da placa de carro formatada ou
          'None' se a entrada for inválida.
 
 Exemplo:
@@ -589,10 +697,12 @@ None
 Remove o símbolo de hífen (-) de uma string de placa de carro.
 
 Argumentos:
-  * license_plate_number (str): Uma string de placa de carro contendo símbolos a serem removidos.
+
+- license_plate_number (str): Uma string de placa de carro contendo símbolos a serem removidos.
 
 Retorna:
-  * str: A string da placa de carro com os símbolos especificados removidos.
+
+- str: A string da placa de carro com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -613,10 +723,12 @@ from brutils import remove_symbols_license_plate
 Gera uma placa de carro válida no formato especificado. Caso nenhum formato seja fornecido, ele retornará uma placa de carro no formato Mercosul.
 
 Argumentos:
-  * format (str): O formato desejado para a placa de carro. 'LLLNNNN' para o formato antigo ou 'LLLNLNN' para o formato Mercosul. O padrão é 'LLLNLNN'.
+
+- format (str): O formato desejado para a placa de carro. 'LLLNNNN' para o formato antigo ou 'LLLNLNN' para o formato Mercosul. O padrão é 'LLLNLNN'.
 
 Retorna:
-  * str: Um número de placa de carro gerado aleatoriamente ou
+
+- str: Um número de placa de carro gerado aleatoriamente ou
    None se o formato for inválido.
 
 Exemplo:
@@ -638,10 +750,12 @@ None
 Converte uma placa de carro no formato antigo (LLLNNNN) para o formato Mercosul (LLLNLNN).
 
 Argumentos:
-  * license_plate(str): Uma string com o tamanho adequado que representa a placa no formato antigo.
+
+- license_plate(str): Uma string com o tamanho adequado que representa a placa no formato antigo.
 
 Retorna:
-  * str: A placa Mercosul convertida (LLLNLNN) ou None se a entrada for inválida.
+
+- str: A placa Mercosul convertida (LLLNLNN) ou None se a entrada for inválida.
 
 Exemplo:
 
@@ -661,10 +775,12 @@ Retorna o formato de uma placa de carro. 'LLLNNNN' para o formato antigo e
 'LLLNLNN' para o formato Mercosul.
 
 Argumentos:
-  * license_plate (str): Uma string de placa de carro sem símbolos.
+
+- license_plate (str): Uma string de placa de carro sem símbolos.
 
 Retorna:
-  * str: O formato da placa de carro (LLLNNNN, LLLNLNN) ou
+
+- str: O formato da placa de carro (LLLNNNN, LLLNLNN) ou
          'None' se o formato for inválido.
 
 Exemplo:
@@ -690,15 +806,19 @@ None
 Verifica se o número PIS/PASEP é valido. Apenas números, formatados como string. Não verifica se o PIS/PASEP realmente existe.
 
 Referências:
-  - https://www.macoratti.net/alg_pis.htm.
+
+- <https://www.macoratti.net/alg_pis.htm>.
 
 Argumentos:
-  * pis (str): Número PIS como uma string com o comprimento apropriado.
+
+- pis (str): Número PIS como uma string com o comprimento apropriado.
 
 Retorna:
-  * bool: True se o PIS for válido, False caso contrário.
+
+- bool: True se o PIS for válido, False caso contrário.
 
 Exemplo:
+
 ```python
 from brutils import is_valid_pis
 >>> is_valid_pis("82178537464")
@@ -712,10 +832,12 @@ True
 Formata uma string de PIS (Programa de Integração Social) válida com símbolos e adiciona símbolos de formatação padrão para exibição.
 
 Argumentos:
-  * pis (str): Uma string válida de PIS contendo apenas números.
+
+- pis (str): Uma string válida de PIS contendo apenas números.
 
 Retorna:
-  * str: Uma string de PIS formatada com símbolos visuais padrão ou None se a entrada for inválida.
+
+- str: Uma string de PIS formatada com símbolos visuais padrão ou None se a entrada for inválida.
 
 Exemplo:
 
@@ -732,10 +854,12 @@ from brutils import format_pis
 Esta função recebe uma string de PIS (Programa de Integração Social) com símbolos de formatação e retorna uma versão limpa sem símbolos. Remove apenas os símbolos "-" e "." , propositalmente não remove outros símbolos.
 
 Argumentos:
-  * pis (str): Uma string de PIS que pode conter símbolos de formatação.
+
+- pis (str): Uma string de PIS que pode conter símbolos de formatação.
 
 Retorna:
-  * str: Uma string de PIS limpa, sem símbolos de formatação.
+
+- str: Uma string de PIS limpa, sem símbolos de formatação.
 
 Exemplo:
 
@@ -755,7 +879,8 @@ from brutils import remove_symbols_pis
 Gera uma string de dígitos contendo um número de um PIS brasileiro válido aleatório.
 
 Retorna:
-  * str: Um número PIS válido gerado aleatoriamente como string.
+
+- str: Um número PIS válido gerado aleatoriamente como string.
 
 Exemplo:
 
@@ -775,11 +900,13 @@ Verifica se um ID de processo jurídico é válido, não verifica se o ID de pro
 jurídico real; ela apenas valida o formato da string.
 
 Argumentos:
-  * legal_process_id (str): Uma string contendo apenas dígitos que representa
+
+- legal_process_id (str): Uma string contendo apenas dígitos que representa
                             o ID do processo jurídico.
 
 Retorna:
-  * bool: True se o ID do processo jurídico for válido, False caso
+
+- bool: True se o ID do processo jurídico for válido, False caso
           contrário.
 
 Examplo:
@@ -802,11 +929,13 @@ False
 Formata um ID de processo jurídico em um formato padrão.
 
 Argumentos:
-  * legal_process_id (str): Uma string de 20 dígitos que representa o ID do
+
+- legal_process_id (str): Uma string de 20 dígitos que representa o ID do
                             processo jurídico.
 
 Retorna:
-  * str: O ID do processo jurídico formatado ou None se a entrada for inválida.
+
+- str: O ID do processo jurídico formatado ou None se a entrada for inválida.
 
 Exemplo:
 
@@ -827,11 +956,13 @@ Esta função recebe um processo jurídico como entrada e remove todas as
 ocorrências dos caracteres '.' e '-' dele.
 
 Argumentos:
-  * legal_process (str): Um processo jurídico contendo símbolos a serem
+
+- legal_process (str): Um processo jurídico contendo símbolos a serem
                          removidos.
 
 Retorna:
-  * str: A string do processo jurídico com os símbolos especificados removidos.
+
+- str: A string do processo jurídico com os símbolos especificados removidos.
 
 Exemplo:
 
@@ -850,13 +981,15 @@ from brutils import remove_symbols_legal_process
 Gera um número válido aleatório de ID de processo jurídico.
 
 Argumentos:
-  * year (int): O ano para o ID do processo jurídico (o padrão é o ano atual).
+
+- year (int): O ano para o ID do processo jurídico (o padrão é o ano atual).
                 Não pode ser um ano do passado.
-  * orgao (int): O órgão (1-9) para o ID do processo jurídico
+- orgao (int): O órgão (1-9) para o ID do processo jurídico
                  (o padrão é aleatório).
 
 Retorna:
-  * str: Um ID de processo jurídico gerado aleatoriamente.
+
+- str: Um ID de processo jurídico gerado aleatoriamente.
          None caso algum dos argumento seja inválido.
 
 Exemplo:
@@ -880,14 +1013,17 @@ Exemplo:
 Verifica se um número de Título de Eleitor brasileiro é válido. Não verifica se realmente existe.
 
 Referências:
-  - https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor
-  - http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/
+
+- <https://pt.wikipedia.org/wiki/T%C3%ADtulo_de_eleitor>
+- <http://clubes.obmep.org.br/blog/a-matematica-nos-documentos-titulo-de-eleitor/>
 
 Argumentos:
-  * voter_id (str): string representando o número do Título de Eleitor a ser verificado.
+
+- voter_id (str): string representando o número do título de eleitor a ser verificado.
 
 Retorna:
-  * bool: True se o número do Título de Eleitor for válido. False, caso contrário.
+
+- bool: True se o número do título de eleitor for válido. False, caso contrário.
 
 Exemplo:
 

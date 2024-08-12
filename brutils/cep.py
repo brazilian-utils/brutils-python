@@ -1,4 +1,11 @@
+from json import loads
 from random import randint
+from unicodedata import normalize
+from urllib.request import urlopen
+
+from brutils.data.enums import UF
+from brutils.exceptions import CEPNotFound, InvalidCEP
+from brutils.types import Address
 
 # FORMATTING
 ############
@@ -27,7 +34,7 @@ def remove_symbols(dirty):  # type: (str) -> str
     return "".join(filter(lambda char: char not in ".-", dirty))
 
 
-def format_cep(cep):  # type: (str) -> str
+def format_cep(cep):  # type: (str) -> str | None
     """
     Formats a Brazilian CEP (Postal Code) into a standard format.
 
@@ -48,10 +55,7 @@ def format_cep(cep):  # type: (str) -> str
         None
     """
 
-    if not is_valid(cep):
-        return None
-
-    return "{}-{}".format(cep[:5], cep[5:8])
+    return f"{cep[:5]}-{cep[5:8]}" if is_valid(cep) else None
 
 
 # OPERATIONS
@@ -102,7 +106,163 @@ def generate():  # type: () -> str
 
     generated_number = ""
 
-    for _ in range(0, 8):
+    for _ in range(8):
         generated_number = generated_number + str(randint(0, 9))
 
     return generated_number
+
+
+# Reference: https://viacep.com.br/
+def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> Address | None
+    """
+    Fetches address information from a given CEP (Postal Code) using the ViaCEP API.
+
+    Args:
+        cep (str): The CEP (Postal Code) to be used in the search.
+        raise_exceptions (bool, optional): Whether to raise exceptions when the CEP is invalid or not found. Defaults to False.
+
+    Raises:
+        InvalidCEP: When the input CEP is invalid.
+        CEPNotFound: When the input CEP is not found.
+
+    Returns:
+        Address | None: An Address object (TypedDict) containing the address information if the CEP is found, None otherwise.
+
+    Example:
+        >>> get_address_from_cep("12345678")
+        {
+            "cep": "12345-678",
+            "logradouro": "Rua Example",
+            "complemento": "",
+            "bairro": "Example",
+            "localidade": "Example",
+            "uf": "EX",
+            "ibge": "1234567",
+            "gia": "1234",
+            "ddd": "12",
+            "siafi": "1234"
+        }
+
+        >>> get_address_from_cep("abcdefg")
+        None
+
+        >>> get_address_from_cep("abcdefg", True)
+        InvalidCEP: CEP 'abcdefg' is invalid.
+
+        >>> get_address_from_cep("00000000", True)
+        CEPNotFound: 00000000
+    """
+    base_api_url = "https://viacep.com.br/ws/{}/json/"
+
+    clean_cep = remove_symbols(cep)
+    cep_is_valid = is_valid(clean_cep)
+
+    if not cep_is_valid:
+        if raise_exceptions:
+            raise InvalidCEP(cep)
+
+        return None
+
+    try:
+        with urlopen(base_api_url.format(clean_cep)) as f:
+            response = f.read()
+            response = loads(response)
+
+            if response.get("erro", False):
+                raise CEPNotFound(cep)
+
+            return Address(**loads(response))
+
+    except Exception as e:
+        if raise_exceptions:
+            raise CEPNotFound(cep) from e
+
+        return None
+
+
+def get_cep_information_from_address(
+    federal_unit, city, street, raise_exceptions=False
+):  # type: (str, str, str, bool) -> list[Address] | None
+    """
+    Fetches CEP (Postal Code) options from a given address using the ViaCEP API.
+
+    Args:
+        federal_unit (str): The two-letter abbreviation of the Brazilian state.
+        city (str): The name of the city.
+        street (str): The name (or substring) of the street.
+        raise_exceptions (bool, optional): Whether to raise exceptions when the address is invalid or not found. Defaults to False.
+
+    Raises:
+        ValueError: When the input UF is invalid.
+        CEPNotFound: When the input address is not found.
+
+    Returns:
+        list[Address] | None: A list of Address objects (TypedDict) containing the address information if the address is found, None otherwise.
+
+    Example:
+        >>> get_cep_information_from_address("EX", "Example", "Rua Example")
+        [
+            {
+                "cep": "12345-678",
+                "logradouro": "Rua Example",
+                "complemento": "",
+                "bairro": "Example",
+                "localidade": "Example",
+                "uf": "EX",
+                "ibge": "1234567",
+                "gia": "1234",
+                "ddd": "12",
+                "siafi": "1234"
+            }
+        ]
+
+        >>> get_cep_information_from_address("A", "Example", "Rua Example")
+        None
+
+        >>> get_cep_information_from_address("XX", "Example", "Example", True)
+        ValueError: Invalid UF: XX
+
+        >>> get_cep_information_from_address("SP", "Example", "Example", True)
+        CEPNotFound: SP - Example - Example
+    """
+    if federal_unit in UF.values:
+        federal_unit = UF(federal_unit).name
+
+    if federal_unit not in UF.names:
+        if raise_exceptions:
+            raise ValueError(f"Invalid UF: {federal_unit}")
+
+        return None
+
+    base_api_url = "https://viacep.com.br/ws/{}/{}/{}/json/"
+
+    parsed_city = (
+        normalize("NFD", city)
+        .encode("ascii", "ignore")
+        .decode("utf-8")
+        .replace(" ", "%20")
+    )
+    parsed_street = (
+        normalize("NFD", street)
+        .encode("ascii", "ignore")
+        .decode("utf-8")
+        .replace(" ", "%20")
+    )
+
+    try:
+        with urlopen(
+            base_api_url.format(federal_unit, parsed_city, parsed_street)
+        ) as f:
+            response = f.read()
+            response = loads(response)
+
+            if len(response) == 0:
+                raise CEPNotFound(f"{federal_unit} - {city} - {street}")
+
+            return [Address(**address) for address in response]
+
+    except Exception as e:
+        if raise_exceptions:
+            raise CEPNotFound(f"{federal_unit} - {city} - {street}") from e
+
+        return None
