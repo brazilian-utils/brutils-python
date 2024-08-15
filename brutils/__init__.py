@@ -2,6 +2,8 @@
 
 from brutils.cep import (
     format_cep,
+    get_address_from_cep,
+    get_cep_information_from_address,
 )
 from brutils.cep import (
     generate as generate_cep,
@@ -11,12 +13,6 @@ from brutils.cep import (
 )
 from brutils.cep import (
     remove_symbols as remove_symbols_cep,
-)
-from brutils.cep import (
-    get_address_from_cep,
-)
-from brutils.cep import (
-    get_cep_information_from_address,
 )
 from brutils.cnpj import (
     format_cnpj,

@@ -394,6 +394,7 @@ Returns:
 Example:
 
 ```python
+>>> from brutils import get_address_from_cep
 >>> get_address_from_cep("12345678")
 {
     "cep": "12345-678",
@@ -427,6 +428,7 @@ Returns:
 Example:
 
 ```python
+>>> from brutils import get_cep_information_from_address
 >>> get_cep_information_from_address("EX", "Example", "Rua Example")
 [
     {
