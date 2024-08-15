@@ -166,9 +166,9 @@ def get_address_from_cep(cep, raise_exceptions=False):  # type: (str, bool) -> A
     try:
         with urlopen(base_api_url.format(clean_cep)) as f:
             response = f.read()
-            response = loads(response)
+            data = loads(response)
 
-            if response.get("erro", False):
+            if data.get("erro", False):
                 raise CEPNotFound(cep)
 
             return Address(**loads(response))
