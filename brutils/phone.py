@@ -213,21 +213,16 @@ def _generate_landline_phone():  # type () -> str
 def return_region_from_ddd(phone_number: str):
     if(is_valid(phone_number) == True):
             #ddds = load_ddds('dddBrasil.json')
-        with open('dddBrasil.json', 'r') as file:
+        with open('data/dddBrasil.json', 'r') as file:
             ddds = json.load(file)
-        phone_number = input("Digite o número de telefone (com DDD): ")
-        #region = get_region(phone_number, ddds)
-        phone_number = ''.join(filter(str.isdigit, phone_number))
-        #if len(phone_number) < 10 or len(phone_number) > 13:
+       
+        # phone_number = input("Digite o número de telefone (com DDD): ")
+        # region = get_region(phone_number, ddds)
+        # phone_number = ''.join(filter(str.isdigit, phone_number))
+        # if len(phone_number) < 10 or len(phone_number) > 13:
         #    return "Número inválido"
         
         ddd = phone_number[:2]  
+        region = ddds.get(ddd, "Região não encontrada")
         
-        region = ddds.get(ddd, "DDD não encontrado")
-
-        if region == "Número inválido" or region == "DDD não encontrado":
-            print(region)
-        else:
-            print(f"A região para o número {phone_number} é: {region}")
-    else:
-        return "Numero invalido"
+        return region
