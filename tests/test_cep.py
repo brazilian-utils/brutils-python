@@ -73,9 +73,9 @@ class TestCEPAPICalls(TestCase):
     def test_get_address_from_cep_raise_exception_invalid_cep(
         self, mock_urlopen
     ):
-        mock_response = MagicMock()
-        mock_response.read.return_value = {"erro": True}
-        mock_urlopen.return_value = mock_response
+        mock_data = MagicMock()
+        mock_data.read.return_value = {"erro": True}
+        mock_urlopen.return_value = mock_data
 
         self.assertIsNone(get_address_from_cep("013102009"))
 
@@ -88,9 +88,9 @@ class TestCEPAPICalls(TestCase):
     def test_get_address_from_cep_invalid_cep_raise_exception_cep_not_found(
         self, mock_urlopen
     ):
-        mock_response = MagicMock()
-        mock_response.read.return_value = {"erro": True}
-        mock_urlopen.return_value = mock_response
+        mock_data = MagicMock()
+        mock_data.read.return_value = {"erro": True}
+        mock_urlopen.return_value = mock_data
 
         with self.assertRaises(CEPNotFound):
             get_address_from_cep("01310209", True)
