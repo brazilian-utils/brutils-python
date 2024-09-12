@@ -25,7 +25,7 @@ the development of applications for the Brazilian business.
 
 # Installation
 
-```
+```bash
 pip install brutils
 ```
 
@@ -673,16 +673,16 @@ Example:
 
 ```python
 >>> from brutils import format_license_plate
->>> format_license_plate("ABC1234") 
+>>> format_license_plate("ABC1234")
 "ABC-1234"
 # old format (contains a dash)
->>> format_license_plate("abc1234") 
+>>> format_license_plate("abc1234")
 "ABC-1234"
 # old format (contains a dash)
->>> format_license_plate("ABC1D23") 
+>>> format_license_plate("ABC1D23")
 "ABC1D23"
 # mercosul format
->>> format_license_plate("abc1d23") 
+>>> format_license_plate("abc1d23")
 "ABC1D23"
 # mercosul format
 >>> format_license_plate("ABCD123")
@@ -1045,7 +1045,7 @@ True
 
 Formats a voter ID number for visual display.
 
-This function takes a voter ID string containing only numbers as input 
+This function takes a voter ID string containing only numbers as input
 and adds the standard formatting spaces for display.
 
 Arguments:
