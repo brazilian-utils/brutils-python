@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.2.0] - 2024-09-12
+
 ### Added
 
 - Utilitário `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
@@ -79,7 +81,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `cnpj.display`
 - Utilitário `cnpj.validate`
 
-[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.1.1...HEAD
+[Unreleased]: https://github.com/brazilian-utils/brutils-python/compare/v2.2.0...HEAD
+[2.2.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.2.0
 [2.1.1]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.1.1
 [2.1.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.1.0
 [2.0.0]: https://github.com/brazilian-utils/brutils-python/releases/tag/v2.0.0
