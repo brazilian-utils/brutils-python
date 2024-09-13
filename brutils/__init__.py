@@ -116,6 +116,10 @@ from brutils.voter_id import (
 from brutils.voter_id import (
     is_valid as is_valid_voter_id,
 )
+# IBGE Imports    
+from brutils.ibge.uf import (
+    convert_code_to_uf,
+)
 
 # Defining __all__ to expose the public methods
 __all__ = [
@@ -165,4 +169,6 @@ __all__ = [
     "format_voter_id",
     "generate_voter_id",
     "is_valid_voter_id",
+    # IBGE
+    "convert_code_to_uf",
 ]
