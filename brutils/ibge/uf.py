@@ -1,17 +1,18 @@
 from brutils.data.enums.uf import CODE_TO_UF
 
-def convert_code_to_uf(code): # type: (str) -> str | None
+
+def convert_code_to_uf(code):  # type: (str) -> str | None
     """
     Converts a given IBGE code (2-digit string) to its corresponding UF (state abbreviation).
 
-    This function takes a 2-digit IBGE code and returns the corresponding UF code. 
-    It handles all Brazilian states and the Federal District. 
+    This function takes a 2-digit IBGE code and returns the corresponding UF code.
+    It handles all Brazilian states and the Federal District.
 
     Args:
         code (str): The 2-digit IBGE code to be converted.
 
     Returns:
-        str or None: The UF code corresponding to the IBGE code, 
+        str or None: The UF code corresponding to the IBGE code,
             or None if the IBGE code is invalid.
 
     Example:
@@ -27,5 +28,5 @@ def convert_code_to_uf(code): # type: (str) -> str | None
 
     if code in CODE_TO_UF.values:
         result = CODE_TO_UF(code).name
-    
+
     return result

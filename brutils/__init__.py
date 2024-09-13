@@ -45,6 +45,11 @@ from brutils.cpf import (
 # Email Import
 from brutils.email import is_valid as is_valid_email
 
+# IBGE Imports
+from brutils.ibge.uf import (
+    convert_code_to_uf,
+)
+
 # Legal Process Imports
 from brutils.legal_process import (
     format_legal_process,
@@ -115,10 +120,6 @@ from brutils.voter_id import (
 )
 from brutils.voter_id import (
     is_valid as is_valid_voter_id,
-)
-# IBGE Imports    
-from brutils.ibge.uf import (
-    convert_code_to_uf,
 )
 
 # Defining __all__ to expose the public methods
