@@ -25,7 +25,7 @@ desenvolvimento de aplicações para o business Brasileiro.
 
 # Instalação
 
-```
+```bash
 pip install brutils
 ```
 
@@ -678,16 +678,16 @@ Exemplo:
 
 ```python
 >>> from brutils import format_license_plate
->>> format_license_plate("ABC1234") 
+>>> format_license_plate("ABC1234")
 "ABC-1234"
 # formato antigo (contém traço)
->>> format_license_plate("abc1234") 
+>>> format_license_plate("abc1234")
 "ABC-1234"
 # formato antigo (contém traço)
->>> format_license_plate("ABC1D23") 
+>>> format_license_plate("ABC1D23")
 "ABC1D23"
 # formato mercosul
->>> format_license_plate("abc1d23") 
+>>> format_license_plate("abc1d23")
 "ABC1D23"
 # formato mercosul
 >>> format_license_plate("ABCD123")
@@ -1041,8 +1041,8 @@ True
 
 Formata um número de Título de Eleitor para exibição visual.
 
-Esta função recebe uma string de Título de Eleitor contendo 
-apenas números como entrada e adiciona os espaços de formatação 
+Esta função recebe uma string de Título de Eleitor contendo
+apenas números como entrada e adiciona os espaços de formatação
 padrão para exibição.
 
 Argumentos:
@@ -1061,7 +1061,7 @@ Exemplo:
 >>> format_voter_id("202715292895")
 '2027 1529 28 95'
 >>> format_voter_id("739035552205")
->>> 
+>>>
 ```
 
 ### generate_voter_id
