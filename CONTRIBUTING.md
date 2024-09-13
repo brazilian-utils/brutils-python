@@ -265,14 +265,76 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### 10. Atualizar READMEs
 
-Atualize os arquivos `brutils-python/README.md` e `brutils-python/README_EN.md` com as suas alterações.
+Atualize os arquivos `brutils-python/README.md` e `brutils-python/README_EN.md` com suas alterações.
 
-Esses arquivos são fundamentais para a documentação da biblioteca, garantindo que os usuários saibam como utilizar corretamente os recursos oferecidos. Por isso, é essencial que eles estejam sempre atualizados.
+Esses arquivos são essenciais para a documentação da biblioteca, ajudando os usuários a entender como utilizar os recursos oferecidos. Portanto, é importante mantê-los sempre atualizados.
 
-- O arquivo brutils-python/README.md contém a documentação em Português.
-- O arquivo brutils-python/README_EN.md contém a documentação em Inglês.
+- O arquivo brutils-python/README_EN.md contém a documentação em Inglês, e pode usar o conteúdo já descrito na docstring diretamente.
+- O arquivo brutils-python/README.md contém a documentação em Português. Para este, basta traduzir a docstring da função.
 
-Se precisar de ajuda para traduzir, você pode utilizar ferramentas como o Google Tradutor ou ChatGPT. Não se preocupe com possíveis erros na tradução, pois sugeriremos ajustes quando necessário.
+Se precisar de assistência na tradução para o Português, ferramentas como Google Tradutor ou ChatGPT podem ajudar. Não se preocupe com possíveis erros de tradução, pois sugeriremos ajustes quando necessário.
+
+Exemplo em Inglês (README_EN.md):
+
+````md
+### format_cep
+
+This function takes a CEP (Postal Code) as input and, if it is a valid
+8-digit CEP, formats it into the standard "12345-678" format.
+
+Args:
+
+- cep (str): The input CEP (Postal Code) to be formatted.
+
+Returns:
+
+- str: The formatted CEP in the "12345-678" format if it's valid,
+         None if it's not valid.
+
+Example:
+
+```python
+>>> from brutils import format_cep
+>>> format_cep('01310200')
+'01310-200'
+>>> format_cep("12345678")
+"12345-678"
+>>> format_cep("12345")
+None
+```
+````
+
+Exemplo em Português (README.md):
+
+````md
+### format_cep
+
+Formata um CEP (Código de Endereçamento Postal) brasileiro em um formato padrão.
+Esta função recebe um CEP como entrada e, se for um CEP válido com 8 dígitos,
+o formata no padrão "12345-678".
+
+Argumentos:
+
+- cep (str): O CEP (Código de Endereçamento Postal) de entrada a ser
+              formatado.
+
+Retorna:
+
+- str: O CEP formatado no formato "12345-678" se for válido, None se não for
+        válido.
+
+Example:
+
+```python
+>>> from brutils import format_cep
+>>> format_cep('01310200')
+'01310-200'
+>>> format_cep("12345678")
+"12345-678"
+>>> format_cep("12345")
+None
+```
+````
 
 ### 11. Faça o Commit e Envie as Suas Alterações
 
