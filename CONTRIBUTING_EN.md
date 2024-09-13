@@ -32,9 +32,7 @@ Make sure you have a [GitHub account][github-join] and you are logged in with it
 Visit the [brutils issues page][brutils-issues] and find an issue you would like to work with
 and no one assigned to it yet.
 
-Send a comment in the issue asking to work with it. Something like: "hey, can I work on this?".
-
-Wait until someone assign you to the ticket. Once you are assigned to it, you can move to the next
+Send a comment in the issue with the content "bora!" This will trigger a bot that will assign you to the ticket. Once you are assigned to it, you can move to the next
 step.
 
 Please, feel free to ask any questions in the issue's page before or during the development
