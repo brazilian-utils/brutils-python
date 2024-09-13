@@ -23,6 +23,7 @@ jobs:
       - name: Create or Update Comment
         uses: peter-evans/create-or-update-comment@v4.0.0
         with:
+          issue-number: ${{ github.event.issue.number }}
           body: |
             Issue ${{ github.event.issue.number }} atribuida a ${{ github.event.comment.user.login }} :rocket:"
             "Verifique [o guia de contribuição](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md) para mais informações sobre como submeter sua Pull Request."
