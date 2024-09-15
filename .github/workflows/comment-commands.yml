@@ -1,0 +1,29 @@
+name: Comandos nos comentários
+on:
+  issue_comment:
+    types: created
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  issue_assign:
+    runs-on: ubuntu-22.04
+    if: (!github.event.issue.pull_request) && github.event.comment.body == 'bora!'
+    concurrency:
+      group: ${{ github.actor }}-issue-assign
+    steps:
+      - run: |
+          echo "Issue ${{ github.event.issue.number }} atribuida a ${{ github.event.comment.user.login }}"
+          echo "Verifique [o guia de contribuição](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md) para mais informações sobre como submeter sua Pull Request."
+          curl -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" -d '{"assignees": ["${{ github.event.comment.user.login }}"]}' https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/assignees
+
+      - name: Create or Update Comment
+        uses: peter-evans/create-or-update-comment@v4.0.0
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Issue ${{ github.event.issue.number }} atribuida a ${{ github.event.comment.user.login }} :rocket:"
+            "Verifique [o guia de contribuição](https://github.com/brazilian-utils/brutils-python/blob/main/CONTRIBUTING.md) para mais informações sobre como submeter sua Pull Request."

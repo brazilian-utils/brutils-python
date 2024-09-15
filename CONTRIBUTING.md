@@ -35,11 +35,7 @@ Caso não tenha uma conta, siga os passos de [como criar de uma conta pessoal no
 Visite a [página de issues do brutils][brutils-issues] e encontre uma issue com a qual você gostaria
 de trabalhar e que ainda não tenha sido atribuída a ninguém.
 
-Deixe um comentário na issue perguntando se você pode trabalhar nela. Algo como: "Olá, posso
-trabalhar nessa issue?".
-
-Aguarde até que alguém atribua a issue a você. Uma vez atribuída, você pode prosseguir para a próxima
-etapa.
+Deixe um comentário na issue com conteúdo "bora!" Em seguida, um bot vai atribuir a issue a você. Uma vez atribuída, você pode prosseguir para a próxima etapa.
 
 Sinta-se à vontade para fazer qualquer pergunta na página da issue antes ou durante o processo de
 desenvolvimento.
