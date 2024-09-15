@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `get_cep_information_from_address` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
 - Utilitário `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
 - Utilitário `generate_voter_id` [#220](https://github.com/brazilian-utils/brutils-python/pull/220)
-
+- Utilitário `get_municipality_by_code` [412](https://github.com/brazilian-utils/brutils-python/pull/412)
 ## [2.1.1] - 2024-01-06
 
 ### Fixed
