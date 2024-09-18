@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Utilitário `convert_code_to_uf` [#397](https://github.com/brazilian-utils/brutils-python/pull/410)
+- Utilitário `convert_date_to_text`[#394](https://github.com/brazilian-utils/brutils-python/pull/415)
 
 ## [2.2.0] - 2024-09-12
 
