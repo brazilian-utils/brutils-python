@@ -1094,7 +1094,7 @@ Args:
   * code (str): O código IBGE de 2 dígitos a ser convertido.
 
 Retorna:
-  * str or None: O código UF correspondente ao código IBGE, ou Nenhum se o
+  * str or None: O código UF correspondente ao código IBGE, ou None se o
                  código IBGE for inválido.
 
 Exemplo:
