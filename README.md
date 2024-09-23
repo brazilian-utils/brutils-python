@@ -87,6 +87,8 @@ False
   - [is_valid_voter_id](#is_valid_voter_id)
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
+- [IBGE](#ibge)
+  - [convert_code_to_uf](#convert_code_to_uf)
 
 ## CPF
 
@@ -1082,6 +1084,29 @@ Exemplo:
 '183475722801'
 >>> generate_voter_id(federative_union ="MG")
 '950125640248'
+```
+
+## IBGE
+### convert_code_to_uf
+Converte um determinado código do IBGE (string de 2 dígitos) para sua UF (abreviatura estadual) correspondente.
+
+Args:
+  * code (str): O código IBGE de 2 dígitos a ser convertido.
+
+Retorna:
+  * str or None: O código UF correspondente ao código IBGE, ou None se o
+                 código IBGE for inválido.
+
+Exemplo:
+
+```python
+>>> from brutils.ibge.uf import convert_code_to_uf
+>>> convert_code_to_uf("12")
+'AC'
+>>> convert_code_to_uf("33")
+'RJ'
+>>> convert_code_to_uf("99")
+>>>
 ```
 
 

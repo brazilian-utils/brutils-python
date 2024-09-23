@@ -45,6 +45,11 @@ from brutils.cpf import (
 # Email Import
 from brutils.email import is_valid as is_valid_email
 
+# IBGE Imports
+from brutils.ibge.uf import (
+    convert_code_to_uf,
+)
+
 # Legal Process Imports
 from brutils.legal_process import (
     format_legal_process,
@@ -165,4 +170,6 @@ __all__ = [
     "format_voter_id",
     "generate_voter_id",
     "is_valid_voter_id",
+    # IBGE
+    "convert_code_to_uf",
 ]

@@ -1,1 +1,1 @@
-from .uf import UF
+from .uf import CODE_TO_UF, UF
