@@ -87,7 +87,8 @@ False
   - [is_valid_voter_id](#is_valid_voter_id)
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
-
+- [IBGE](#ibge)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 ## CPF
 
 ### is_valid_cpf
@@ -1084,6 +1085,25 @@ Exemplo:
 '950125640248'
 ```
 
+## IBGE
+
+### get_municipality_by_code
+
+Retorna o nome do município e a UF para um código do IBGE.
+
+Args:
+  * code (str): O código do IBGE para o município.
+
+Returns:
+  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
+  * None: Retorna None se o código for inválido.
+
+Example:
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
+```
 
 # Novos Utilitários e Reportar Bugs
 

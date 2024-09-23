@@ -87,6 +87,8 @@ False
   - [is_valid_voter_id](#is_valid_voter_id)
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
+- [IBGE](#ibge)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 
 ## CPF
 
@@ -1085,6 +1087,25 @@ Example:
 '183475722801'
 >>> generate_voter_id(federative_union ="MG")
 '950125640248'
+```
+## IBGE
+
+### get_municipality_by_code
+
+Returns the municipality name and UF for a given IBGE code.
+
+Args:
+  * code (str): The IBGE code of the municipality.
+
+Returns:
+  * tuple: Returns a tuple formatted as ("Município", "UF").
+  * None: Returns None if the code is not valid.
+
+Example:
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
 ```
 
 # Feature Request and Bug Report
