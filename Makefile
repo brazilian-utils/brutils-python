@@ -19,3 +19,6 @@ check:
 
 test:
 	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
+
+oi:
+	echo "oi"

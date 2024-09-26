@@ -10,35 +10,36 @@ Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every littl
 How to make your first contribution:
 
 - [1. Create a GitHub Account](#1-create-a-github-account)
-- [2. Find an Issue to Work With](#2-find-an-issue-to-work-with)
+- [2. Find an Issue to Work On](#2-find-an-issue-to-work-on)
 - [3. Install Git](#3-install-git)
 - [4. Fork the Project](#4-fork-the-project)
 - [5. Clone your Fork](#5-clone-your-fork)
 - [6. Create a New Branch](#6-create-a-new-branch)
-- [7. Run brutils locally](#7-run-brutils-locally)
-- [8. Make your changes](#8-make-your-changes)
-- [9. Test your changes](#9-test-your-changes)
-- [10. Commit and push your changes](#10-commit-and-push-your-changes)
-- [11. Add changelog entries](#11-add-changelog-entries)
-- [12. Create a GitHub PR](#12-create-a-github-pr)
-- [13. Update your branch if needed.](#13-update-your-branch-if-needed)
+- [7. Run brutils Locally](#7-run-brutils-locally)
+- [8. Make your Changes](#8-make-your-changes)
+- [9. Test your Changes](#9-test-your-changes)
+- [10. Update READMEs](#10-update-readmes)
+- [11. Commit and push your Changes](#10-commit-and-push-your-changes)
+- [12. Add changelog Entries](#11-add-changelog-entries)
+- [13. Create a GitHub PR](#12-create-a-github-pr)
+- [14. Update your branch if Needed.](#13-update-your-branch-if-needed)
 
 ### 1. Create a GitHub Account
 
-Make sure you have a [GitHub account][github-join] and you are logged in with it.
+Ensure you have a [GitHub account][github-join] and you are logged in.
+
+If you don't have an account, 
+follow the steps on [how to create a personal GitHub account][github-essentials-create-account].
 
 ### 2. Find an Issue to Work With
 
-Visit the [brutils issues page][brutils-issues] and find an issue you would like to work with
-and no one assigned to it yet.
+Visit the [brutils issues page][brutils-issues] and find an issue that interests you and hasn't been assigned yet.
 
-Send a comment in the issue with the content "bora!" This will trigger a bot that will assign you to the ticket. Once you are assigned to it, you can move to the next
-step.
+Leave a comment in the issue with "bora!". A bot will assign the issue to you. Once assigned, proceed to the next step.
 
-Please, feel free to ask any questions in the issue's page before or during the development
-process.
+Feel free to ask any questions in the issue's page before or during the development process.
 
-When starting to contribute to the project, it is advisable to pick one issue at a time. This helps ensure that others also have the opportunity to collaborate and prevents resources from staying inactive for too long.
+When starting to contribute, it is advised to handle one issue at a time. This ensures others have the chance to collaborate and avoids inactive resources.
 
 ### 3. Install Git
 
