@@ -58,6 +58,8 @@ False
   - [generate\_cep](#generate_cep)
   - [get\_address\_from\_cep](#get_address_from_cep)
   - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
+- [Date](#date)
+  - [convert\_date\_to_text](#convert_date_to_text) 
 - [Phone](#phone)
   - [is\_valid\_phone](#is_valid_phone)
   - [format\_phone](#format_phone)
@@ -447,6 +449,32 @@ Example:
     }
 ]
 ```
+
+## Date
+
+### convert_date_to_text 
+Convert a brazilian date (dd/mm/yyyy) format in their portuguese textual representation.
+
+Args:
+ - date (str): A date in a string format dd/mm/yyyy.
+
+Return:
+ - (str) | None: A portuguese textual representation of the date or None case a date is invalid.
+ 
+
+Example:
+
+````python
+>>> from brutils.date import convert_date_to_text
+>>> convert_date_to_text("25/12/2000")
+"Vinte e cinco de dezembro de dois mil"
+>>> convert_date_to_text("31/02/2000")
+None
+>>> convert_date_to_text("29/02/2024")
+"Vinte e nove de fevereiro de dois mil e vinte e quatro"
+>>> convert_date_to_text("1/08/2024")
+"Primeiro de agosto de dois mil e vinte e quatro"
+````
 
 ## Phone
 
