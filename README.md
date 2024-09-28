@@ -87,6 +87,8 @@ False
   - [is_valid_voter_id](#is_valid_voter_id)
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
+- [IBGE](#ibge)
+  - [get_code_by_municipality_name](#get_code_by_municipality_name)
 
 ## CPF
 
@@ -1084,6 +1086,37 @@ Exemplo:
 '950125640248'
 ```
 
+## IBGE
+
+### get_code_by_municipality_name
+
+Retorna o código IBGE para um dado nome de município e código de UF.
+
+Essa função recebe uma string representando o nome de um município e o código da UF, e retorna o código IBGE correspondente (string). A função lida com os nomes ignorando diferenças de maiúsculas, acentos, tratando o caractere "ç" como "c", e ignorando diferenças de maiúsculas para o código da UF.
+
+Argumentos:
+  * municipality_name (str): O nome do município.
+  * uf (str): O código UF do estado.
+
+Retorna:
+  * str: O código IBGE do município. Retorna None se o nome não for válido ou não existir.
+
+Exemplo:
+
+```python
+>>> get_code_by_municipality_name("São Paulo", "SP")
+"3550308"
+>>> get_code_by_municipality_name("goiania", "go")
+"5208707"
+>>> get_code_by_municipality_name("Conceição do Coité", "BA")
+"2908408"
+>>> get_code_by_municipality_name("conceicao do Coite", "Ba")
+"2908408"
+>>> get_code_by_municipality_name("Municipio Inexistente", "")
+None
+>>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+None
+```
 
 # Novos Utilitários e Reportar Bugs
 

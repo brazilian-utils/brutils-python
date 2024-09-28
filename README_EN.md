@@ -87,6 +87,8 @@ False
   - [is_valid_voter_id](#is_valid_voter_id)
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
+- [IBGE](#ibge)
+  - [get_code_by_municipality_name](#get_code_by_municipality_name)
 
 ## CPF
 
@@ -1085,6 +1087,41 @@ Example:
 '183475722801'
 >>> generate_voter_id(federative_union ="MG")
 '950125640248'
+```
+
+## IBGE
+
+### get_code_by_municipality_name
+
+Returns the IBGE code for a given municipality name and uf code.
+
+This function takes a string representing a municipality's name
+and uf's code and returns the corresponding IBGE code (string). The function
+will handle names by ignoring differences in case, accents, and
+treating the character ç as c and ignoring case differences for the uf code.
+
+Args:
+  * municipality_name (str): The name of the municipality.
+  * uf (str): The uf code of the state.
+
+Returns:
+  * str: The IBGE code of the municipality. Returns None if the name is not valid or does not exist.
+
+Example:
+
+```python
+>>> get_code_by_municipality_name("São Paulo", "SP")
+"3550308"
+>>> get_code_by_municipality_name("goiania", "go")
+"5208707"
+>>> get_code_by_municipality_name("Conceição do Coité", "BA")
+"2908408"
+>>> get_code_by_municipality_name("conceicao do Coite", "Ba")
+"2908408"
+>>> get_code_by_municipality_name("Municipio Inexistente", "")
+None
+>>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+None
 ```
 
 # Feature Request and Bug Report
