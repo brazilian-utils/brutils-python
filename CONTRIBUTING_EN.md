@@ -164,6 +164,13 @@ Commit the changes:
 $ git commit -a -m "<commit_message>"
 ```
 
+Add the changes:
+
+```bash
+$ git add --all
+...
+```
+
 Push your commit to GitHub:
 
 ```bash
