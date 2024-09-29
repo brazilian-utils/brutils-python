@@ -349,6 +349,13 @@ $ make format
 All checks passed!
 ```
 
+Adicione as alterações:
+
+```bash
+$ git add --all
+...
+```
+
 Faça o commit das alterações:
 
 ```bash
