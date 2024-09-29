@@ -1104,6 +1104,7 @@ Retorna:
 Exemplo:
 
 ```python
+>>> from brutils import get_code_by_municipality_name
 >>> get_code_by_municipality_name("São Paulo", "SP")
 "3550308"
 >>> get_code_by_municipality_name("goiania", "go")
