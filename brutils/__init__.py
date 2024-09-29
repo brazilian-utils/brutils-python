@@ -45,9 +45,12 @@ from brutils.cpf import (
 # Email Import
 from brutils.email import is_valid as is_valid_email
 
-# IBGE Import
+# IBGE Imports
 from brutils.ibge.municipality import (
     get_code_by_municipality_name,
+)
+from brutils.ibge.uf import (
+    convert_code_to_uf,
 )
 
 # Legal Process Imports
@@ -143,8 +146,6 @@ __all__ = [
     "remove_symbols_cpf",
     # Email
     "is_valid_email",
-    # IBGE
-    "get_code_by_municipality_name",
     # Legal Process
     "format_legal_process",
     "generate_legal_process",
@@ -172,4 +173,7 @@ __all__ = [
     "format_voter_id",
     "generate_voter_id",
     "is_valid_voter_id",
+    # IBGE
+    "convert_code_to_uf",
+    "get_code_by_municipality_name",
 ]

@@ -89,6 +89,7 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
+  - [convert_code_to_uf](#convert_code_to_uf)
 
 ## CPF
 
@@ -1090,6 +1091,29 @@ Example:
 ```
 
 ## IBGE
+
+### convert_code_to_uf
+Converts a given IBGE code (2-digit string) to its corresponding UF (state abbreviation).
+
+Args:
+  * code (str): The 2-digit IBGE code to be converted.
+
+Retorna:
+  * str or None: The UF code corresponding to the IBGE code, or None if the
+                 IBGE code is invalid.
+
+Exemplo:
+
+```python
+>>> from brutils.ibge.uf import convert_code_to_uf
+>>> convert_code_to_uf("12")
+'AC'
+>>> convert_code_to_uf("33")
+'RJ'
+>>> convert_code_to_uf("99")
+>>>
+>>>>>>> main
+```
 
 ### get_code_by_municipality_name
 

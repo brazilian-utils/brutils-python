@@ -89,6 +89,7 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
+  - [convert_code_to_uf](#convert_code_to_uf)
 
 ## CPF
 
@@ -1087,6 +1088,28 @@ Exemplo:
 ```
 
 ## IBGE
+### convert_code_to_uf
+Converte um determinado código do IBGE (string de 2 dígitos) para sua UF (abreviatura estadual) correspondente.
+
+Args:
+  * code (str): O código IBGE de 2 dígitos a ser convertido.
+
+Retorna:
+  * str or None: O código UF correspondente ao código IBGE, ou None se o
+                 código IBGE for inválido.
+
+Exemplo:
+
+```python
+>>> from brutils.ibge.uf import convert_code_to_uf
+>>> convert_code_to_uf("12")
+'AC'
+>>> convert_code_to_uf("33")
+'RJ'
+>>> convert_code_to_uf("99")
+>>>
+```
+
 
 ### get_code_by_municipality_name
 
@@ -1100,10 +1123,9 @@ Argumentos:
 
 Retorna:
   * str: O código IBGE do município. Retorna None se o nome não for válido ou não existir.
-
 Exemplo:
 
-```python
+```
 >>> from brutils import get_code_by_municipality_name
 >>> get_code_by_municipality_name("São Paulo", "SP")
 "3550308"
@@ -1118,7 +1140,6 @@ None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
 None
 ```
-
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
