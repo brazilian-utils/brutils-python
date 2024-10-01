@@ -464,7 +464,7 @@ First, you need to identify the type of your change. Types of changes:
 - `Removed` for features that were removed. 
 - `Security` in case of vulnerabilities.
 
-You should always add new entries to the changelog in the Unreleased section. At the time of release, we will move the changes from the Unreleased section to a new version section.
+You should always add new entries to the changelog in the `Unreleased` section. At the time of release, we will move the changes from the `Unreleased` section to a new version section.
 
 So, within the Unreleased section, you should add your entry to the appropriate section by type. If there is no section yet for the type of your change, you should add one.
 
