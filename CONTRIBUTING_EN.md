@@ -495,7 +495,7 @@ You would need to add a new `Fixed` section and include your new entry there:
 
 Note that the order of sections by type matters. We have a lint that checks this, so the sections must be ordered alphabetically. First `Added`, then `Changed`, third `Deprecated`, and so on.
 
-Now, let’s say you have another entry to add, and its type is Added. Since we already have a section for that, you should just add a new line:
+Now, let’s say you have another entry to add, and its type is `Added`. Since we already have a section for that, you should just add a new line:
 
 ```md
 ## [Unreleased]
