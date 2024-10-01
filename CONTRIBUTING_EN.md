@@ -457,12 +457,12 @@ The changelog is available in the [CHANGELOG.md][changelog] file.
 
 First, you need to identify the type of your change. Types of changes:
 
-- Added for new features. 
-- Changed for changes to existing features. 
-- Deprecated for features that will soon be removed. 
-- Fixed for any bug fixes. 
-- Removed for features that were removed. 
-- Security in case of vulnerabilities.
+- `Added` for new features. 
+- `Changed` for changes to existing features. 
+- `Deprecated` for features that will soon be removed. 
+- `Fixed` for any bug fixes. 
+- `Removed` for features that were removed. 
+- `Security` in case of vulnerabilities.
 
 You should always add new entries to the changelog in the Unreleased section. At the time of release, we will move the changes from the Unreleased section to a new version section.
 
