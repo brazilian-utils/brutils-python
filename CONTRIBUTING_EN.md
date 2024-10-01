@@ -237,7 +237,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ### 10. Update READMEs
 
-Update the brutils-python/README.md and brutils-python/README_EN.md files with your changes.
+Update the `brutils-python/README.md` and `brutils-python/README_EN.md` files with your changes.
 
 These files are essential for the library’s documentation, helping users understand how to use the provided features. Therefore, it’s important to always keep them up to date.
 
