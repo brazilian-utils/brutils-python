@@ -479,7 +479,7 @@ Let’s see some examples. Suppose you have a new `Fixed` change to add, and the
 - Utility `fmt_voter_id` renamed to `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
 ```
 
-You would need to add a new Fixed section and include your new entry there:
+You would need to add a new `Fixed` section and include your new entry there:
 
 ```md
 ## [Unreleased]
