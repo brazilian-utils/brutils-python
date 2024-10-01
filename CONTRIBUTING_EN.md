@@ -233,8 +233,7 @@ Open an interactive environment to manually test your changes:
 $ python
 Python 3.x.y ...
 Type "help", "copyright", "credits" or "license" for more information.
->>> # Teste as suas mudanças aqui!
-```
+>>> # Test your changes here!
 
 ### 10. Update READMEs
 
