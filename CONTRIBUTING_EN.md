@@ -466,7 +466,7 @@ First, you need to identify the type of your change. Types of changes:
 
 You should always add new entries to the changelog in the `Unreleased` section. At the time of release, we will move the changes from the `Unreleased` section to a new version section.
 
-So, within the Unreleased section, you should add your entry to the appropriate section by type. If there is no section yet for the type of your change, you should add one.
+So, within the `Unreleased` section, you should add your entry to the appropriate section by type. If there is no section yet for the type of your change, you should add one.
 
 Let’s see some examples. Suppose you have a new `Fixed` change to add, and the current CHANGELOG.md file looks like this:
 
