@@ -27,6 +27,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
+ruff = "^0.6.9"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.7"

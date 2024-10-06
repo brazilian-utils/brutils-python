@@ -45,6 +45,11 @@ from brutils.cpf import (
 # Email Import
 from brutils.email import is_valid as is_valid_email
 
+# UF Imports
+from brutils.ibge.uf import (
+    convert_uf_to_text,
+)
+
 # Legal Process Imports
 from brutils.legal_process import (
     format_legal_process,
@@ -161,6 +166,8 @@ __all__ = [
     "generate_pis",
     "is_valid_pis",
     "remove_symbols_pis",
+    # UF
+    "convert_uf_to_text",
     # Voter ID
     "format_voter_id",
     "generate_voter_id",
