@@ -28,9 +28,6 @@ How to make your first contribution:
 
 Ensure you have a [GitHub account][github-join] and you are logged in.
 
-If you don't have an account, 
-follow the steps on [how to create a personal GitHub account][github-essentials-create-account].
-
 ### 2. Find an Issue to Work With
 
 Visit the [brutils issues page][brutils-issues] and find an issue that interests you and hasn't been assigned yet.
