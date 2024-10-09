@@ -40,7 +40,7 @@ When starting to contribute, it is advised to handle one issue at a time. This e
 
 ### 3. Install Git
 
-Make sure you have [Git installed][install-git] by following [this tutorial][github-essentials-installing-git].
+Make sure you have [Git installed][install-git].
 
 ### 4. Fork the Project
 
