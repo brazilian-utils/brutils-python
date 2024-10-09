@@ -590,5 +590,5 @@ When the GitHub deployment is completed, the new version will also be automatica
 [poetry]: https://python-poetry.org/docs/#installation
 [python]: https://www.python.org/downloads/
 [release-pr-example]: https://github.com/brazilian-utils/brutils-python/pull/326
-[semantic-versioning]: https://semver.org/lang/pt-BR/
+[semantic-versioning]: https://semver.org
 [virtualenv]: https://virtualenv.pypa.io/en/latest/
