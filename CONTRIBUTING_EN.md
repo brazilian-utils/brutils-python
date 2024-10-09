@@ -585,8 +585,8 @@ When the GitHub deployment is completed, the new version will also be automatica
 [creating-releases]: https://docs.github.com/repositories/releasing-projects-on-github/managing-releases-in-a-repository#creating-a-release
 [docstring-definition]: https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring
 [github-cloning]: https://docs.github.com/repositories/creating-and-managing-repositories/cloning-a-repository
-[github-creating-a-pr]: https://docs.github.com/pt/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
-[github-forking]: https://docs.github.com/pt/get-started/quickstart/contributing-to-projects
+[github-creating-a-pr]: https://docs.github.com/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
+[github-forking]: https://docs.github.com/get-started/quickstart/contributing-to-projects
 [github-join]: https://github.com/join
 [github-sync-pr]: https://docs.github.com/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/keeping-your-pull-request-in-sync-with-the-base-branch
 [keep-a-changelog]: https://keepachangelog.com/en/1.0.0/
