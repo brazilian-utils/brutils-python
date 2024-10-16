@@ -88,8 +88,8 @@ False
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
-  - [get\_municipality\_by\_code](#get_municipality_by_code)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 
 ## CPF
 

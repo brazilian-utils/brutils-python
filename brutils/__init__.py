@@ -44,11 +44,11 @@ from brutils.cpf import (
 
 # Email Import
 from brutils.email import is_valid as is_valid_email
-
-# IBGE Imports
 from brutils.ibge.municipality import (
     get_municipality_by_code,
 )
+
+# IBGE Imports
 from brutils.ibge.uf import (
     convert_code_to_uf,
 )

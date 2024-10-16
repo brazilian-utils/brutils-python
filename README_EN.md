@@ -88,8 +88,8 @@ False
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
-  - [get\_municipality\_by\_code](#get_municipality_by_code)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 
 ## CPF
 
@@ -1091,25 +1091,6 @@ Example:
 ```
 ## IBGE
 
-### get_municipality_by_code
-
-Returns the municipality name and UF for a given IBGE code.
-
-Args:
-  * code (str): The IBGE code of the municipality.
-
-Returns:
-  * tuple: Returns a tuple formatted as ("Município", "UF").
-  * None: Returns None if the code is not valid.
-
-Example:
-```python
->>> from brutils import get_municipality_by_code
->>> get_municipality_by_code(3550308)
-("São Paulo", "SP")
-```
-
-## IBGE
 ### convert_code_to_uf
 Converts a given IBGE code (2-digit string) to its corresponding UF (state abbreviation).
 
@@ -1130,6 +1111,24 @@ Exemplo:
 'RJ'
 >>> convert_code_to_uf("99")
 >>>
+```
+
+### get_municipality_by_code
+
+Returns the municipality name and UF for a given IBGE code.
+
+Args:
+  * code (str): The IBGE code of the municipality.
+
+Returns:
+  * tuple: Returns a tuple formatted as ("Município", "UF").
+  * None: Returns None if the code is not valid.
+
+Example:
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
 ```
 
 # Feature Request and Bug Report
