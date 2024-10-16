@@ -1089,23 +1089,6 @@ Exemplo:
 
 ## IBGE
 
-### get_municipality_by_code
-
-Retorna o nome do município e a UF para um código do IBGE.
-
-Args:
-  * code (str): O código do IBGE para o município.
-
-Returns:
-  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
-  * None: Retorna None se o código for inválido.
-
-Example:
-```python
->>> from brutils import get_municipality_by_code
->>> get_municipality_by_code(3550308)
-("São Paulo", "SP")
-```
 ### convert_code_to_uf
 Converte um determinado código do IBGE (string de 2 dígitos) para sua UF (abreviatura estadual) correspondente.
 
@@ -1128,6 +1111,23 @@ Exemplo:
 >>>
 ```
 
+### get_municipality_by_code
+
+Retorna o nome do município e a UF para um código do IBGE.
+
+Args:
+  * code (str): O código do IBGE para o município.
+
+Returns:
+  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
+  * None: Retorna None se o código for inválido.
+
+Example:
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
+```
 
 # Novos Utilitários e Reportar Bugs
 
