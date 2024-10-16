@@ -53,11 +53,6 @@ from brutils.ibge.uf import (
     convert_code_to_uf,
 )
 
-# IBGE Imports
-from brutils.ibge.uf import (
-    convert_code_to_uf,
-)
-
 # Legal Process Imports
 from brutils.legal_process import (
     format_legal_process,
