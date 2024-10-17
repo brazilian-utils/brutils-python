@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from num2words import num2words
 
+from brutils import convert_date_to_text
 from brutils.data.enums.months import MonthsEnum
-from brutils.date import convert_date_to_text
 
 
 class TestNum2Words(TestCase):
@@ -75,6 +75,6 @@ class TestDate(TestCase):
     ]
 
     def testMonthEnum(self):
-        for day, month in self.months_year:
-            month = MonthsEnum(day)
-            self.assertEqual(month.month_name, month)
+        for number_month, name_month in self.months_year:
+            month = MonthsEnum(number_month)
+            self.assertEqual(month.month_name, name_month)
