@@ -16,7 +16,7 @@ class MonthsEnum(BetterEnum):
     DEZEMBRO = 12
 
     @property
-    def mont_name(self) -> str:
+    def month_name(self) -> str:
         if self == MonthsEnum.JANEIRO:
             return "janeiro"
         elif self == MonthsEnum.FEVEREIRO:

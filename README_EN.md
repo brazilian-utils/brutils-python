@@ -465,7 +465,7 @@ Return:
 Example:
 
 ````python
->>> from brutils.date import convert_date_to_text
+>>> from brutils import convert_date_to_text
 >>> convert_date_to_text("25/12/2000")
 "Vinte e cinco de dezembro de dois mil"
 >>> convert_date_to_text("31/02/2000")

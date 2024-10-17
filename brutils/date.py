@@ -57,7 +57,7 @@ def convert_date_to_text(date: str) -> Union[str, None]:
     date_string = (
         day_string.capitalize()
         + " de "
-        + month.mont_name
+        + month.month_name
         + " de "
         + year_string
     )

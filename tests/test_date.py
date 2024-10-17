@@ -76,5 +76,5 @@ class TestDate(TestCase):
 
     def testMonthEnum(self):
         for day, month in self.months_year:
-            mont = MonthsEnum(day)
-            self.assertEqual(mont.mont_name, month)
+            month = MonthsEnum(day)
+            self.assertEqual(month.month_name, month)
