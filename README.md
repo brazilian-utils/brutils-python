@@ -81,18 +81,20 @@ False
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
 - [Processo Jurídico](#processo-jurídico)
-  - [is\_valid\_legal\_process](#is_valid_legal_process)
+- [is\_valid\_legal\_process](#is_valid_legal_process)
   - [format\_legal\_process](#format_legal_process)
   - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
   - [generate\_legal\_process](#generate_legal_process)
-- [Título Eleitoral](#titulo-eleitoral)
-  - [is_valid_voter_id](#is_valid_voter_id)
-  - [format_voter_id](#format_voter_id)
-  - [generate_voter_id](#generate_voter_id)
+- [Titulo Eleitoral](#titulo-eleitoral)
+  - [is\_valid\_voter\_id](#is_valid_voter_id)
+  - [format\_voter\_id](#format_voter_id)
+  - [generate\_voter\_id](#generate_voter_id)
 - [IBGE](#ibge)
-  - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
+- [Monetário](#monetário)
+  - [format\_currency](#format_currency)
 
 ## CPF
 
@@ -1190,6 +1192,33 @@ None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
 None
 ```
+
+## Monetário
+
+### format_currency
+
+Formata um número seguindo o padrão monetário brasileiro. O número será formatado
+adicionando o símbolo R$ como prefixo, vírgula como separador decimal, e ponto como 
+agrupador de milhar.
+
+Argumentos:
+  * float ou Decimal: Um número com ou sem casas decimais.
+
+Retorna:
+  * str ou None: O número formatado seguindo o padrão brasileiro.
+
+Exemplo:
+
+```python
+>>> from brutils.currency import format_currency
+>>> format_currency(1259.03)
+'R$ 1.259,03'
+>>> format_currency(0)
+'R$ 0,00'
+>>> format_currency("not a number")
+None
+```
+
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
