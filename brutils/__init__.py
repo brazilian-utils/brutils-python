@@ -111,6 +111,11 @@ from brutils.pis import (
     remove_symbols as remove_symbols_pis,
 )
 
+# RENAVAM Imports
+from brutils.renavam import (
+    is_valid_renavam,
+)
+
 # Voter ID Imports
 from brutils.voter_id import (
     format_voter_id,
@@ -120,11 +125,6 @@ from brutils.voter_id import (
 )
 from brutils.voter_id import (
     is_valid as is_valid_voter_id,
-)
-
-# RENAVAM Imports
-from brutils.renavam import (
-    is_valid_renavam,
 )
 
 # Defining __all__ to expose the public methods
@@ -178,5 +178,5 @@ __all__ = [
     # IBGE
     "convert_code_to_uf",
     # RENAVAM
-    'is_valid_renavam',
+    "is_valid_renavam",
 ]

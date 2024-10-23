@@ -33,7 +33,10 @@ def is_valid_renavam(renavam):  # type: (str) -> bool
         renavam_digitis = [int(d) for d in renavam]
         renavam_digitis = renavam_digitis[:-1]
         multipliers = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3]
-        sum_digits = sum(digit * multipliers[i] for i, digit in enumerate(renavam_digitis[::-1]))
+        sum_digits = sum(
+            digit * multipliers[i]
+            for i, digit in enumerate(renavam_digitis[::-1])
+        )
         remainder_division = sum_digits % 11
         if remainder_division <= 1:
             check_digit_calculated = 0
