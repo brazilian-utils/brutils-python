@@ -89,6 +89,8 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
+- [RENAVAM](#renavam)
+  - [is_valid_renavam](#is_valid_renavam)
 
 ## CPF
 
@@ -1109,6 +1111,37 @@ Exemplo:
 >>>
 ```
 
+## RENAVAM
+
+### is_valid_renavam
+Valida o número de registro dos veículos brasileiros (RENAVAM).
+
+Essa função recebe a string do RENAVAM e veirifíca se está válido.
+Um renavam válido é constituído por 11 digitos, onde o último é o digito verificador que é calculado por meio dos 10 digitos anteriores.
+
+Args:
+  * renavam (str): A string do RENAVAM para ser validado.  
+
+Retorna:
+  * bool: Verdadeiro caso o RENAVAM seja válido, Falso caso contrário.
+
+Exemplo:
+```python
+  >>> is_valid_renavam('12345678900')
+  True
+  >>> is_valid_renavam('12345678901')
+  False
+  >>> is_valid_renavam('1234567890a')
+  False
+  >>> is_valid_renavam('12345678 901')
+  False
+  >>> is_valid_renavam('12345678')  # Less than 11 digits
+  False
+  >>> is_valid_renavam('')  # Empty string
+  False
+  >>> is_valid_renavam(None)  # None
+  False
+```
 
 # Novos Utilitários e Reportar Bugs
 

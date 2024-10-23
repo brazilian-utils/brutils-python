@@ -122,6 +122,11 @@ from brutils.voter_id import (
     is_valid as is_valid_voter_id,
 )
 
+# RENAVAM Imports
+from brutils.renavam import (
+    is_valid_renavam,
+)
+
 # Defining __all__ to expose the public methods
 __all__ = [
     # CEP
@@ -172,4 +177,6 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
+    # RENAVAM
+    'is_valid_renavam',
 ]

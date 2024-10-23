@@ -89,7 +89,8 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
-
+- [RENAVAM](#renavam)
+  - [is_valid_renavam](#is_valid_renavam)
 ## CPF
 
 ### is_valid_cpf
@@ -1110,6 +1111,39 @@ Exemplo:
 'RJ'
 >>> convert_code_to_uf("99")
 >>>
+```
+
+## RENAVAM
+
+### is_valid_renavam
+Validates the Brazilian vehicle registration number (RENAVAM).
+
+This function takes a RENAVAM string and checks if it is valid.
+A valid RENAVAM consists of exactly 11 digits, with the last digit as
+a verification digit calculated from the previous 10 digits.
+
+Args:
+  * renavam (str): The RENAVAM string to be validated.
+
+Returns:
+  * bool: True if the RENAVAM is valid, False otherwise.
+
+Example:
+```python
+  >>> is_valid_renavam('12345678900')
+  True
+  >>> is_valid_renavam('12345678901')
+  False
+  >>> is_valid_renavam('1234567890a')
+  False
+  >>> is_valid_renavam('12345678 901')
+  False
+  >>> is_valid_renavam('12345678')  # Less than 11 digits
+  False
+  >>> is_valid_renavam('')  # Empty string
+  False
+  >>> is_valid_renavam(None)  # None
+  False
 ```
 
 # Feature Request and Bug Report
