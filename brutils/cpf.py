@@ -243,3 +243,47 @@ def _checksum(basenum):  # type: (str) -> str
     verifying_digits += str(_hashdigit(basenum + verifying_digits, 11))
 
     return verifying_digits
+
+
+def remove_symbols_cpf(cpf: str) -> str:
+    """
+    Compute the checksum digits for a given CPF base number.
+
+    This function removes the symbols dot and dash (`.` and `-`) from a CPF.
+
+    Args:
+        basenum (str): A formatted CPF string with standard visual aid symbols or None
+        if the input is invalid.
+
+    Returns:
+        str: A numbers-only CPF string. If it's not a valid number or format, it'll return None.
+
+    Example:
+        >>> from brutils import remove_symbols_cpf
+        >>> remove_symbols_cpf('000.111.222-33')
+        '00011122233'
+        >>> remove_symbols_cpf('')
+        None
+        >>>     remove_symbols_cpf(123)
+        None
+        >>> remove_symbols_cpf('000.111.222')
+        None
+        >>> remove_symbols_cpf('000.111.222-333')
+        None
+    """
+
+    cpf_no_symbols = ""
+    if cpf == "":
+        return None
+    elif not isinstance(cpf, str):
+        return None
+    else:
+        for character in cpf:
+            if character not in ".-":
+                cpf_no_symbols += character
+        if len(cpf_no_symbols) < 10:
+            return None
+        elif len(cpf_no_symbols) > 11:
+            return None
+        else:
+            return cpf_no_symbols

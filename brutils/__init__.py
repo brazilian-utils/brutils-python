@@ -31,15 +31,14 @@ from brutils.cnpj import (
 # CPF Imports
 from brutils.cpf import (
     format_cpf,
+    remove_symbols,
+    remove_symbols_cpf,
 )
 from brutils.cpf import (
     generate as generate_cpf,
 )
 from brutils.cpf import (
     is_valid as is_valid_cpf,
-)
-from brutils.cpf import (
-    remove_symbols as remove_symbols_cpf,
 )
 
 # Email Import

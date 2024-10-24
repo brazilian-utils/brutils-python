@@ -151,7 +151,8 @@ the '.', '-' characters from it.
 
 Args:
 
-- cpf (str): The CPF string containing symbols to be removed.
+- cpf (str): The CPF string containing symbols to be removed. If the provided
+CPF is invalid, it'll return None.
 
 Returns:
 
@@ -163,6 +164,14 @@ Example:
 >>> from brutils import remove_symbols_cpf
 >>> remove_symbols_cpf('000.111.222-33')
 '00011122233'
+>>> remove_symbols_cpf('000.111.222-3')
+None
+>>> remove_symbols_cpf('000.111.222-333')
+None
+>>> remove_symbols_cpf('')
+None
+>>> remove_symbols_cpf(123)
+None
 ```
 
 ### generate_cpf

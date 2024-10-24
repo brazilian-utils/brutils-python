@@ -154,7 +154,8 @@ Argumentos:
 
 Retorna:
 
-- str: Uma nova string com os símbolos especificados removidos.
+- str: Uma nova string com os símbolos especificados removidos. Caso o CPF
+fornecido não seja válido, retornará None
 
 Exemplo:
 
@@ -162,6 +163,14 @@ Exemplo:
 >>> from brutils import remove_symbols_cpf
 >>> remove_symbols_cpf('000.111.222-33')
 '00011122233'
+>>> remove_symbols_cpf('000.111.222-3')
+None
+>>> remove_symbols_cpf('000.111.222-333')
+None
+>>> remove_symbols_cpf('')
+None
+>>> remove_symbols_cpf(123)
+None
 ```
 
 ### generate_cpf
