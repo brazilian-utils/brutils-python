@@ -121,6 +121,12 @@ class TestRemoveSymbolsCPF(TestCase):
     def test_remove_symbols_cpf_negative_empy(self, mock_remove_symbols_cpf):
         self.assertIsNone(remove_symbols_cpf(""))
 
+    def test_remove_symbols_cpf_negative_longer(self, mock_remove_symbols_cpf):
+        self.assertIsNone(remove_symbols_cpf("111.222.333-444"))
+
+    def test_remove_symbols_cpf_negative_shorter(self, mock_remove_symbols_cpf):
+        self.assertIsNone(remove_symbols_cpf("111.222.333"))
+
 
 if __name__ == "__main__":
     main()
