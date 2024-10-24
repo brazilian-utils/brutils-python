@@ -31,14 +31,18 @@ from brutils.cnpj import (
 # CPF Imports
 from brutils.cpf import (
     format_cpf,
-    remove_symbols,
-    remove_symbols_cpf,
 )
 from brutils.cpf import (
     generate as generate_cpf,
 )
 from brutils.cpf import (
     is_valid as is_valid_cpf,
+)
+from brutils.cpf import (
+    remove_symbols as remove_symbols_cpf,
+)
+from brutils.cpf import (
+    remove_symbols_cpf as remove_symbols_from_cpf,
 )
 
 # Email Import
@@ -140,6 +144,7 @@ __all__ = [
     "generate_cpf",
     "is_valid_cpf",
     "remove_symbols_cpf",
+    "remove_symbols_from_cpf",
     # Email
     "is_valid_email",
     # Legal Process
