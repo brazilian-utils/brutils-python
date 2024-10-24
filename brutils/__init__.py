@@ -41,6 +41,9 @@ from brutils.cpf import (
 from brutils.cpf import (
     remove_symbols as remove_symbols_cpf,
 )
+from brutils.cpf import (
+    remove_symbols_cpf as remove_symbols_from_cpf,
+)
 
 # Email Import
 from brutils.email import is_valid as is_valid_email
@@ -141,6 +144,7 @@ __all__ = [
     "generate_cpf",
     "is_valid_cpf",
     "remove_symbols_cpf",
+    "remove_symbols_from_cpf",
     # Email
     "is_valid_email",
     # Legal Process
