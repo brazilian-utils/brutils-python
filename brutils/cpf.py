@@ -272,18 +272,12 @@ def remove_symbols_cpf(cpf: str) -> str:
         None
     """
 
+    result = None
     cpf_no_symbols = ""
-    if cpf == "":
-        return None
-    elif not isinstance(cpf, str):
-        return None
-    else:
-        for character in cpf:
-            if character not in ".-":
-                cpf_no_symbols += character
-        if len(cpf_no_symbols) < 10:
-            return None
-        elif len(cpf_no_symbols) > 11:
-            return None
-        else:
-            return cpf_no_symbols
+    if isinstance(cpf, str) and cpf != "":
+        cpf_no_symbols = "".join([char for char in cpf if char not in ".-"])
+
+    if len(cpf_no_symbols) == 11:
+        result = cpf_no_symbols
+
+    return result
