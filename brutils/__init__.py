@@ -41,6 +41,12 @@ from brutils.cpf import (
 from brutils.cpf import (
     remove_symbols as remove_symbols_cpf,
 )
+from brutils.date import (
+    is_holiday,
+)
+from brutils.date import (
+    is_holiday as is_holiday_date,
+)
 
 # Email Import
 from brutils.email import is_valid as is_valid_email
@@ -120,9 +126,6 @@ from brutils.voter_id import (
 )
 from brutils.voter_id import (
     is_valid as is_valid_voter_id,
-)
-from brutils.date import (
-    is_holiday as is_holiday_date, is_holiday,
 )
 
 # Defining __all__ to expose the public methods
