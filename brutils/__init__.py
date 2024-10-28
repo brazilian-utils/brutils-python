@@ -121,6 +121,9 @@ from brutils.voter_id import (
 from brutils.voter_id import (
     is_valid as is_valid_voter_id,
 )
+from brutils.date import (
+    is_holiday as is_holiday_date, is_holiday,
+)
 
 # Defining __all__ to expose the public methods
 __all__ = [
@@ -172,4 +175,6 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
+    # Date
+    "is_holiday",
 ]

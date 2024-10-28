@@ -89,6 +89,8 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
+- [Feriados](#feriados)
+  - [is_holiday](#is_holiday)
 
 ## CPF
 
@@ -1109,6 +1111,38 @@ Exemplo:
 >>>
 ```
 
+## Feriados
+
+### is_holiday
+
+Verifica se uma determinada data é um feriado nacional ou estadual no Brasil.
+
+Esta função recebe um objeto `datetime` como a data e uma UF opcional (Unidade Federativa) para especificar feriados estaduais. Retorna `True` se a data for um feriado, `False` se não for, ou `None` se a data ou UF forem inválidas. Nota: a função não abrange feriados municipais.
+
+Argumentos:
+
+- `date (datetime)`: A data a ser verificada.
+- `uf (str, opcional)`: A abreviação do estado (UF) para verificar feriados estaduais. Se não fornecido, apenas feriados nacionais são considerados.
+
+Retorna:
+
+- `bool | None`: `True` se a data for um feriado, `False` se não for, ou `None` se a data ou UF forem inválidas.
+
+Exemplo:
+
+```python
+>>> from datetime import datetime
+>>> from brutils import is_holiday
+
+>>> is_holiday(datetime(2024, 1, 1))
+True
+>>> is_holiday(datetime(2024, 1, 2))
+False
+>>> is_holiday(datetime(2024, 3, 2), uf="SP")
+False
+>>> is_holiday(datetime(2024, 12, 25), uf="RJ")
+True
+```
 
 # Novos Utilitários e Reportar Bugs
 
