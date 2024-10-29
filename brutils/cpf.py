@@ -271,13 +271,13 @@ def remove_symbols_cpf(cpf: str) -> str:
         >>> remove_symbols_cpf('000.111.222-333')
         None
     """
+    CPF_LENGHT = 11
 
-    result = None
-    cpf_no_symbols = ""
+    if not cpf:
+        return None
+
     if isinstance(cpf, str) and cpf != "":
-        cpf_no_symbols = "".join([char for char in cpf if char not in ".-"])
+        cpf_no_symbols = "".join([char for char in cpf if char.isalnum()])
 
-    if len(cpf_no_symbols) == 11:
-        result = cpf_no_symbols
-
-    return result
+        if len(cpf_no_symbols) == CPF_LENGHT:
+            return cpf_no_symbols
