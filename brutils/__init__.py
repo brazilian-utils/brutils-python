@@ -41,10 +41,7 @@ from brutils.cpf import (
 from brutils.cpf import (
     remove_symbols as remove_symbols_cpf,
 )
-from brutils.date_utils import (
-    is_holiday
-)
-
+from brutils.date_utils import is_holiday
 
 # Email Import
 from brutils.email import is_valid as is_valid_email
