@@ -85,6 +85,34 @@ files = [
 toml = ["tomli"]
 
 [[package]]
+name = "holidays"
+version = "0.58"
+description = "Generate and work with holidays in Python"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "holidays-0.58-py3-none-any.whl", hash = "sha256:74eb0bd07db862c5b108d5e42cbd33c37ea066a2e8dc54f4858dd3cceef5ee8b"},
+    {file = "holidays-0.58.tar.gz", hash = "sha256:cbe5f3b862474b8f6e5f7ee423f17f3ebd7836fcc74b38540f97b27a7f92dca7"},
+]
+
+[package.dependencies]
+python-dateutil = "*"
+
+[[package]]
+name = "python-dateutil"
+version = "2.9.0.post0"
+description = "Extensions to the standard Python datetime module"
+optional = false
+python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,>=2.7"
+files = [
+    {file = "python-dateutil-2.9.0.post0.tar.gz", hash = "sha256:37dd54208da7e1cd875388217d5e00ebd4179249f90fb72437e91a35459a0ad3"},
+    {file = "python_dateutil-2.9.0.post0-py2.py3-none-any.whl", hash = "sha256:a8b2bc7bffae282281c8140a97d3aa9c14da0b136dfe83f850eea9a5f7470427"},
+]
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
 name = "ruff"
 version = "0.6.7"
 description = "An extremely fast Python linter and code formatter, written in Rust."
@@ -111,7 +139,18 @@ files = [
     {file = "ruff-0.6.7.tar.gz", hash = "sha256:44e52129d82266fa59b587e2cd74def5637b730a69c4542525dfdecfaae38bd5"},
 ]
 
+[[package]]
+name = "six"
+version = "1.16.0"
+description = "Python 2 and 3 compatibility utilities"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+files = [
+    {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
+    {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
+]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8.1"
-content-hash = "989d447f5ac999811a4e25ed6b1fc0749aa127fb45290a675b17e652d85b4123"
+content-hash = "f38c6c11feb849e1688dd9d97b4c6913d516eb305c3727ef0e28c41dcd547380"
