@@ -98,7 +98,7 @@ emulate bash -c '. .../bin/activate'
 Para testar se o ambiente virtual está ativo corretamente, execute o comando e verifique se a resposta é algo parecido com a seguinte:
 
 ```sh
-$ poetry env inf
+$ poetry env info
 Virtualenv
 Python:         3.x.y
 Implementation: CPython

@@ -42,6 +42,9 @@ from brutils.cpf import (
     remove_symbols as remove_symbols_cpf,
 )
 
+# Date Utils Import
+from brutils.date_utils import is_holiday
+
 # Email Import
 from brutils.email import is_valid as is_valid_email
 
@@ -172,4 +175,6 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
+    # Date Utils
+    "is_holiday",
 ]
