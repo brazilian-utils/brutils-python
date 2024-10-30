@@ -41,10 +41,10 @@ from brutils.cpf import (
 from brutils.cpf import (
     remove_symbols as remove_symbols_cpf,
 )
-from brutils.date import (
+from brutils.date_utils import (
     is_holiday,
 )
-from brutils.date import (
+from brutils.date_utils import (
     is_holiday as is_holiday_date,
 )
 

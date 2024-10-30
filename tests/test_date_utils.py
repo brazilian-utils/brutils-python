@@ -1,7 +1,7 @@
 from datetime import datetime
 from unittest import TestCase
 
-from brutils.date import is_holiday
+from brutils.date_utils import is_holiday
 
 
 class TestIsHoliday(TestCase):

@@ -4,7 +4,7 @@ from typing import Union
 import holidays
 
 
-def is_holiday(date: datetime, uf: str = None) -> Union[bool, None]:
+def is_holiday(target_date: datetime, uf: str = None) -> Union[bool, None]:
     """
     Checks if the given date is a national or state holiday in Brazil.
 
@@ -15,7 +15,7 @@ def is_holiday(date: datetime, uf: str = None) -> Union[bool, None]:
     The method does not handle municipal holidays.
 
     Args:
-        date (datetime): The date to be checked.
+        target_date (datetime): The date to be checked.
         uf (str, optional): The state abbreviation (UF) to check for state holidays.
                             If not provided, only national holidays will be considered.
 
@@ -42,20 +42,20 @@ def is_holiday(date: datetime, uf: str = None) -> Union[bool, None]:
         True
     """
 
-    if not isinstance(date, datetime):
+    if not isinstance(target_date, datetime):
         return None
 
     valid_ufs = holidays.Brazil().subdivisions
     if uf is not None and uf not in valid_ufs:
         return None
 
-    national_holidays = holidays.Brazil(years=date.year)
+    national_holidays = holidays.Brazil(years=target_date.year)
 
-    if date in national_holidays:
+    if target_date in national_holidays:
         return True
 
     if uf is not None:
-        state_holidays = holidays.Brazil(prov=uf, years=date.year)
-        return date in state_holidays
+        state_holidays = holidays.Brazil(prov=uf, years=target_date.year)
+        return target_date in state_holidays
 
     return False
