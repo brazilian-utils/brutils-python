@@ -24,7 +24,7 @@ jobs:
         run: poetry install --no-root --with test
       - name: Generate Report
         run: |
-          coverage run -m unittest discover -s tests
+          poetry run coverage run -m unittest discover -s tests
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
