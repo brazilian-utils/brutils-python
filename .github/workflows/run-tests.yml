@@ -19,11 +19,10 @@ jobs:
       - name: Poetry Setup
         uses: snok/install-poetry@v1
       - name: Install Dependencies
-        run: make install
+        run: poetry install --no-root --with test
       - name: Generate Report
         run: |
-          pip install coverage
-          coverage run -m unittest discover tests/
+          coverage run -m unittest discover -s tests
       - name: Upload Coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
