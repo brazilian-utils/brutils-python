@@ -16,6 +16,10 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Poetry Setup
+        uses: snok/install-poetry@v1
+      - name: Install Dependencies
+        run: make install
       - name: Generate Report
         run: |
           pip install coverage
