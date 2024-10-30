@@ -4,6 +4,7 @@ from typing import Union
 
 def is_holiday(target_date: datetime, uf: str = None) -> Union[bool, None]:
     import holidays
+
     """
     Checks if the given date is a national or state holiday in Brazil.
 
