@@ -48,6 +48,7 @@ from brutils.email import is_valid as is_valid_email
 # IBGE Imports
 from brutils.ibge.uf import (
     convert_code_to_uf,
+    convert_text_to_uf,    
 )
 
 # Legal Process Imports
@@ -172,4 +173,5 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
+    "convert_text_to_uf",
 ]
