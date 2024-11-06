@@ -58,6 +58,6 @@ def convert_text_to_uf(state_name): # type: (str) -> str | None
         None
     """
 
-    dct = {unidecode(i.value.upper()): i.name  for i in UF}
+    federal_units = {unidecode(i.value.upper()): i.name  for i in UF}
 
-    return dct.get(unidecode(state_name.upper()), None)
+    return federal_units.get(unidecode(state_name.upper()), None)
