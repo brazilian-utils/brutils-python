@@ -1,5 +1,7 @@
-from brutils.data.enums.uf import CODE_TO_UF, UF
 from unidecode import unidecode
+
+from brutils.data.enums.uf import CODE_TO_UF, UF
+
 
 def convert_code_to_uf(code):  # type: (str) -> str | None
     """
@@ -31,18 +33,19 @@ def convert_code_to_uf(code):  # type: (str) -> str | None
 
     return result
 
-def convert_text_to_uf(state_name): # type: (str) -> str | None
+
+def convert_text_to_uf(state_name):  # type: (str) -> str | None
     """
     Converts a given Brazilian state full name to its corresponding UF code.
 
-    This function takes the full name of a Brazilian state and returns the corresponding 
-    2-letter UF code. It handles all Brazilian states and the Federal District. 
+    This function takes the full name of a Brazilian state and returns the corresponding
+    2-letter UF code. It handles all Brazilian states and the Federal District.
 
     Args:
         state_name (str): The full name of the state to be converted.
 
     Returns:
-        str or None: The UF code corresponding to the full state name, 
+        str or None: The UF code corresponding to the full state name,
             or None if the full state name is invalid.
 
     Example:
@@ -58,6 +61,6 @@ def convert_text_to_uf(state_name): # type: (str) -> str | None
         None
     """
 
-    federal_units = {unidecode(i.value.upper()): i.name  for i in UF}
+    federal_units = {unidecode(i.value.upper()): i.name for i in UF}
 
     return federal_units.get(unidecode(state_name.upper()), None)
