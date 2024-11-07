@@ -319,13 +319,6 @@ $ make format
 All checks passed!
 ```
 
-Add files to your staging area:
-
-```bash
-$ git add --all
-...
-```
-
 Commit your changes:
 
 ```bash
