@@ -35,5 +35,3 @@ class TestUF(TestCase):
         self.assertIsNone(convert_text_to_uf('São Paulo SP'))  # Nome com sigla incluída
         self.assertIsNone(convert_text_to_uf('A'))  # Nome com letra não mapeada
         self.assertIsNone(convert_text_to_uf('ZZZ'))  # Nome com mais de 2 letras
-
-        # implementar mais casos de teste aqui se necessário
