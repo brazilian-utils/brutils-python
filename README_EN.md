@@ -1125,6 +1125,7 @@ Returns:
   * None: Returns None if the code is not valid.
 
 Example:
+
 ```python
 >>> from brutils import get_municipality_by_code
 >>> get_municipality_by_code(3550308)

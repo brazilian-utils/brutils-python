@@ -1123,6 +1123,7 @@ Returns:
   * None: Retorna None se o código for inválido.
 
 Example:
+
 ```python
 >>> from brutils import get_municipality_by_code
 >>> get_municipality_by_code(3550308)
