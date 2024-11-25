@@ -9,6 +9,7 @@ from brutils.cpf import (
     generate,
     is_valid,
     remove_symbols,
+    remove_symbols_cpf,
     sieve,
     validate,
 )
@@ -107,6 +108,24 @@ class TestIsValidToFormat(TestCase):
 
         # When cpf isn't valid, returns None
         self.assertIsNone(format_cpf("11144477735"))
+
+
+@patch("brutils.cpf.remove_symbols_cpf")
+class TestRemoveSymbolsCPF(TestCase):
+    def test_remove_symbols_cpf_positive(self, mock_remove_symbols_cpf):
+        self.assertEqual(remove_symbols_cpf("123.456.789-10"), "12345678910")
+
+    def test_remove_symbols_cpf_negative_int(self, mock_remove_symbols_cpf):
+        self.assertIsNone(remove_symbols_cpf(123456789))
+
+    def test_remove_symbols_cpf_negative_empy(self, mock_remove_symbols_cpf):
+        self.assertIsNone(remove_symbols_cpf(""))
+
+    def test_remove_symbols_cpf_negative_longer(self, mock_remove_symbols_cpf):
+        self.assertIsNone(remove_symbols_cpf("111.222.333-444"))
+
+    def test_remove_symbols_cpf_negative_shorter(self, mock_remove_symbols_cpf):
+        self.assertIsNone(remove_symbols_cpf("111.222.333"))
 
 
 if __name__ == "__main__":
