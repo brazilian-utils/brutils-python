@@ -66,6 +66,8 @@ False
   - [generate\_phone](#generate_phone)
 - [Email](#email)
   - [is\_valid\_email](#is_valid_email)
+- [Data](#date)
+  - [convert\_date\_to_text](#convert_date_to_text) 
 - [Placa de Carro](#placa-de-carro)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -87,6 +89,10 @@ False
   - [is_valid_voter_id](#is_valid_voter_id)
   - [format_voter_id](#format_voter_id)
   - [generate_voter_id](#generate_voter_id)
+- [IBGE](#ibge)
+  - [get_code_by_municipality_name](#get_code_by_municipality_name)
+  - [convert_code_to_uf](#convert_code_to_uf)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 
 ## CPF
 
@@ -626,6 +632,33 @@ False
 False
 ```
 
+## Data
+
+## convert_date_to_text
+
+Converte uma data em sua representação textual.
+
+Argumentos:
+ - date (str): Uma string no formato dd/mm/aaaa
+
+Retorna:
+ - A represetação textual da data ou None caso a data esteja mal formatada ou a data seja inválida.
+
+Exemplo:
+
+````python
+>>> from brutils import convert_date_to_text
+>>> convert_date_to_text("25/12/2000")
+"Vinte e cinco de dezembro de dois mil"
+>>> convert_date_to_text("31/02/2000")
+None
+>>> convert_date_to_text("29/02/2024")
+"Vinte e nove de fevereiro de dois mil e vinte e quatro"
+>>> convert_date_to_text("1/08/2024")
+"Primeiro de agosto de dois mil e vinte e quatro"
+````
+
+
 ## Placa de Carro
 
 ### is_valid_license_plate
@@ -1084,7 +1117,79 @@ Exemplo:
 '950125640248'
 ```
 
+## IBGE
 
+### convert_code_to_uf
+Converte um determinado código do IBGE (string de 2 dígitos) para sua UF (abreviatura estadual) correspondente.
+
+Args:
+  * code (str): O código IBGE de 2 dígitos a ser convertido.
+
+Retorna:
+  * str or None: O código UF correspondente ao código IBGE, ou None se o
+                 código IBGE for inválido.
+
+Exemplo:
+
+```python
+>>> from brutils.ibge.uf import convert_code_to_uf
+>>> convert_code_to_uf("12")
+'AC'
+>>> convert_code_to_uf("33")
+'RJ'
+>>> convert_code_to_uf("99")
+>>>
+```
+
+### get_municipality_by_code
+
+Retorna o nome do município e a UF para um código do IBGE.
+
+Args:
+  * code (str): O código do IBGE para o município.
+
+Returns:
+  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
+  * None: Retorna None se o código for inválido.
+
+Example:
+
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
+```
+
+### get_code_by_municipality_name
+
+Retorna o código IBGE para um dado nome de município e código de UF.
+
+Essa função recebe uma string representando o nome de um município e o código da UF, e retorna o código IBGE correspondente (string). A função lida com os nomes ignorando diferenças de maiúsculas, acentos, tratando o caractere "ç" como "c", e ignorando diferenças de maiúsculas para o código da UF.
+
+Argumentos:
+  * municipality_name (str): O nome do município.
+  * uf (str): O código UF do estado.
+
+Retorna:
+  * str: O código IBGE do município. Retorna None se o nome não for válido ou não existir.
+
+Exemplo:
+
+```python
+>>> from brutils import get_code_by_municipality_name
+>>> get_code_by_municipality_name("São Paulo", "SP")
+"3550308"
+>>> get_code_by_municipality_name("goiania", "go")
+"5208707"
+>>> get_code_by_municipality_name("Conceição do Coité", "BA")
+"2908408"
+>>> get_code_by_municipality_name("conceicao do Coite", "Ba")
+"2908408"
+>>> get_code_by_municipality_name("Municipio Inexistente", "")
+None
+>>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+None
+```
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
