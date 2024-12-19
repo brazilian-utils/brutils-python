@@ -87,6 +87,7 @@ class TestIBGE(TestCase):
     def test_error_json_key_error(self, mock_json_loads):
         result = get_municipality_by_code("3550308")
         self.assertIsNone(result)
+
     def test_get_code_by_municipality_name(self):
         self.assertEqual(
             get_code_by_municipality_name("Florianópolis", "sc"), "4205407"
