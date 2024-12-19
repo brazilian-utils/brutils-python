@@ -1123,9 +1123,10 @@ Argumentos:
 
 Retorna:
   * str: O código IBGE do município. Retorna None se o nome não for válido ou não existir.
+
 Exemplo:
 
-```
+```python
 >>> from brutils import get_code_by_municipality_name
 >>> get_code_by_municipality_name("São Paulo", "SP")
 "3550308"

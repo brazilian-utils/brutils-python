@@ -1112,7 +1112,6 @@ Exemplo:
 'RJ'
 >>> convert_code_to_uf("99")
 >>>
->>>>>>> main
 ```
 
 ### get_code_by_municipality_name
