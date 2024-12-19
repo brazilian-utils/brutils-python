@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from brutils.ibge.uf import (
-    convert_code_to_uf, 
+    convert_code_to_uf,
     convert_uf_to_text,
 )
 
