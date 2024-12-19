@@ -4,7 +4,10 @@ from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 from urllib.error import HTTPError
 
-from brutils.ibge.municipality import get_municipality_by_code, get_code_by_municipality_name
+from brutils.ibge.municipality import (
+    get_code_by_municipality_name,
+    get_municipality_by_code,
+)
 
 
 class TestIBGE(TestCase):

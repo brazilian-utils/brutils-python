@@ -127,7 +127,7 @@ def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (st
 
     return code
 
-  
+ 
 def _get_values(data):
     municipio = data["nome"]
     estado = data["microrregiao"]["mesorregiao"]["UF"]["sigla"]
