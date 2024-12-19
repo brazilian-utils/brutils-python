@@ -66,6 +66,8 @@ False
   - [generate\_phone](#generate_phone)
 - [Email](#email)
   - [is\_valid\_email](#is_valid_email)
+- [Data](#date)
+  - [convert\_date\_to_text](#convert_date_to_text) 
 - [Placa de Carro](#placa-de-carro)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -90,6 +92,7 @@ False
 - [IBGE](#ibge)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 
 ## CPF
 
@@ -629,6 +632,33 @@ False
 False
 ```
 
+## Data
+
+## convert_date_to_text
+
+Converte uma data em sua representação textual.
+
+Argumentos:
+ - date (str): Uma string no formato dd/mm/aaaa
+
+Retorna:
+ - A represetação textual da data ou None caso a data esteja mal formatada ou a data seja inválida.
+
+Exemplo:
+
+````python
+>>> from brutils import convert_date_to_text
+>>> convert_date_to_text("25/12/2000")
+"Vinte e cinco de dezembro de dois mil"
+>>> convert_date_to_text("31/02/2000")
+None
+>>> convert_date_to_text("29/02/2024")
+"Vinte e nove de fevereiro de dois mil e vinte e quatro"
+>>> convert_date_to_text("1/08/2024")
+"Primeiro de agosto de dois mil e vinte e quatro"
+````
+
+
 ## Placa de Carro
 
 ### is_valid_license_plate
@@ -1088,6 +1118,7 @@ Exemplo:
 ```
 
 ## IBGE
+
 ### convert_code_to_uf
 Converte um determinado código do IBGE (string de 2 dígitos) para sua UF (abreviatura estadual) correspondente.
 
@@ -1110,6 +1141,24 @@ Exemplo:
 >>>
 ```
 
+### get_municipality_by_code
+
+Retorna o nome do município e a UF para um código do IBGE.
+
+Args:
+  * code (str): O código do IBGE para o município.
+
+Returns:
+  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
+  * None: Retorna None se o código for inválido.
+
+Example:
+
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
+```
 
 ### get_code_by_municipality_name
 
