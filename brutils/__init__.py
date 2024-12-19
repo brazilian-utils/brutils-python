@@ -49,14 +49,12 @@ from brutils.date import convert_date_to_text
 from brutils.email import is_valid as is_valid_email
 
 # IBGE Imports
-from brutils.ibge.uf import (
-    convert_code_to_uf,
-)
-from brutils.ibge.municipality import (
-    get_municipality_by_code,
-)
 from brutils.ibge.municipality import (
     get_code_by_municipality_name,
+    get_municipality_by_code,
+)
+from brutils.ibge.uf import (
+    convert_code_to_uf,
 )
 
 # Legal Process Imports
