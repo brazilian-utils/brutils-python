@@ -42,13 +42,17 @@ from brutils.cpf import (
     remove_symbols as remove_symbols_cpf,
 )
 
+# Date imports
+from brutils.date import convert_date_to_text
+
 # Email Import
 from brutils.email import is_valid as is_valid_email
-from brutils.ibge.municipality import (
-    get_municipality_by_code,
-)
 
 # IBGE Imports
+from brutils.ibge.municipality import (
+    get_code_by_municipality_name,
+    get_municipality_by_code,
+)
 from brutils.ibge.uf import (
     convert_code_to_uf,
 )
@@ -144,6 +148,8 @@ __all__ = [
     "generate_cpf",
     "is_valid_cpf",
     "remove_symbols_cpf",
+    # Date
+    "convert_date_to_text",
     # Email
     "is_valid_email",
     # Legal Process
@@ -176,4 +182,5 @@ __all__ = [
     # IBGE
     "convert_code_to_uf",
     "get_municipality_by_code",
+    "get_code_by_municipality_name",
 ]

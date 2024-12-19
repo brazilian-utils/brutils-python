@@ -58,6 +58,8 @@ False
   - [generate\_cep](#generate_cep)
   - [get\_address\_from\_cep](#get_address_from_cep)
   - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
+- [Date](#date)
+  - [convert\_date\_to_text](#convert_date_to_text) 
 - [Phone](#phone)
   - [is\_valid\_phone](#is_valid_phone)
   - [format\_phone](#format_phone)
@@ -90,6 +92,7 @@ False
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
+  - [get_code_by_municipality_name](#get_code_by_municipality_name)
 
 ## CPF
 
@@ -448,6 +451,32 @@ Example:
     }
 ]
 ```
+
+## Date
+
+### convert_date_to_text 
+Convert a brazilian date (dd/mm/yyyy) format in their portuguese textual representation.
+
+Args:
+ - date (str): A date in a string format dd/mm/yyyy.
+
+Return:
+ - (str) | None: A portuguese textual representation of the date or None case a date is invalid.
+ 
+
+Example:
+
+````python
+>>> from brutils import convert_date_to_text
+>>> convert_date_to_text("25/12/2000")
+"Vinte e cinco de dezembro de dois mil"
+>>> convert_date_to_text("31/02/2000")
+None
+>>> convert_date_to_text("29/02/2024")
+"Vinte e nove de fevereiro de dois mil e vinte e quatro"
+>>> convert_date_to_text("1/08/2024")
+"Primeiro de agosto de dois mil e vinte e quatro"
+````
 
 ## Phone
 
@@ -1130,6 +1159,40 @@ Example:
 >>> from brutils import get_municipality_by_code
 >>> get_municipality_by_code(3550308)
 ("São Paulo", "SP")
+```
+
+### get_code_by_municipality_name
+
+Returns the IBGE code for a given municipality name and uf code.
+
+This function takes a string representing a municipality's name
+and uf's code and returns the corresponding IBGE code (string). The function
+will handle names by ignoring differences in case, accents, and
+treating the character ç as c and ignoring case differences for the uf code.
+
+Args:
+  * municipality_name (str): The name of the municipality.
+  * uf (str): The uf code of the state.
+
+Returns:
+  * str: The IBGE code of the municipality. Returns None if the name is not valid or does not exist.
+
+Example:
+
+```python
+>>> from brutils import get_code_by_municipality_name
+>>> get_code_by_municipality_name("São Paulo", "SP")
+"3550308"
+>>> get_code_by_municipality_name("goiania", "go")
+"5208707"
+>>> get_code_by_municipality_name("Conceição do Coité", "BA")
+"2908408"
+>>> get_code_by_municipality_name("conceicao do Coite", "Ba")
+"2908408"
+>>> get_code_by_municipality_name("Municipio Inexistente", "")
+None
+>>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+None
 ```
 
 # Feature Request and Bug Report
