@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Utilitário `convert_code_to_uf` [#397](https://github.com/brazilian-utils/brutils-python/pull/410)
 - Utilitário `convert_date_to_text`[#394](https://github.com/brazilian-utils/brutils-python/pull/415)
+- Utilitário `get_municipality_by_code` [412](https://github.com/brazilian-utils/brutils-python/pull/412)
 
 ## [2.2.0] - 2024-09-12
 

@@ -47,6 +47,9 @@ from brutils.date import convert_date_to_text
 
 # Email Import
 from brutils.email import is_valid as is_valid_email
+from brutils.ibge.municipality import (
+    get_municipality_by_code,
+)
 
 # IBGE Imports
 from brutils.ibge.uf import (
@@ -177,4 +180,5 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
+    "get_municipality_by_code",
 ]
