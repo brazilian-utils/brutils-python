@@ -1,36 +1,68 @@
 from brutils.types.boleto import Boleto
-from brutils.data.enums.boleto import BASE_DATE
 
-from datetime import datetime
 
 def format_boleto(boleto: Boleto) -> str:
-    base_date = BASE_DATE.date.value
+    """
+     This function takes information from a boleto
+     and turns it into a string.
 
-    due_date = boleto['due_date']
+     **Args:**
+     boleto (Boleto): A dictionary with boleto information
 
-    current_year = datetime.now().year
+     **Return:**
+     str: A string with the formatted boleto reading code
 
-    due_date_full = f"{current_year}{due_date[2:]}"
+    **Example:**
+     >>> boleto = Boleto(
+             num_bank="001",
+             code_coin="9",
+             first_free_field="0500",
+             second_free_field="9",
+             verify_digit_first_field="5",
+             thirty_free_field="4014481606",
+             verify_digit_second_field="9",
+             forty_free_field="0680935031",
+             verify_digit_thirty_field="4",
+             verify_digit_barcode="3",
+             maturity_factor="3737",
+             document_value="0000000100"
+         )
+     >>> format_boleto(boleto)
+     >>> "00190.50095 40144.816069 06809.350314 3 37370000000100"
+    """
 
-    factor_of_expiration = (datetime.strptime(due_date_full, "%Y%m%d") - datetime.strptime(base_date, "%Y%m%d")).days
-
-    amount = str(int(boleto["amount"] * 100)).zfill(10)
-
-    barcode = (
-        f"{boleto['bank_issuing']:03}"  
-        + f"{boleto['coin_type']:1}"  
-        + f"{factor_of_expiration:4}"  
-        + f"{amount:010}" 
-        + f"{boleto['our_number']:11}"  
-        + f"{boleto['free_field']:1}"
+    boleto = (
+        boleto["num_bank"]
+        + boleto["code_coin"]
+        + boleto["first_free_field"]
+        + boleto["second_free_field"]
+        + boleto["verify_digit_first_field"]
+        + boleto["thirty_free_field"]
+        + boleto["verify_digit_second_field"]
+        + boleto["forty_free_field"]
+        + boleto["verify_digit_thirty_field"]
+        + boleto["verify_digit_barcode"]
+        + boleto["maturity_factor"]
+        + boleto["document_value"]
     )
+
+    boleto_array = list(boleto)
+
+    first_piece = "".join(boleto_array[:5])
+    second_piece = "".join(boleto_array[5:10])
+    third_piece = "".join(boleto_array[10:15])
+    fourth_piece = "".join(boleto_array[15:21])
+    fifth_piece = "".join(boleto_array[21:26])
+    sixth_piece = "".join(boleto_array[26:32])
+    seventh_piece = "".join(boleto_array[32:33])
+    eighth_piece = "".join(boleto_array[33:])
 
     formatted_boleto = (
-        barcode[:5] + '.' + barcode[5:10] + ' ' +
-        barcode[10:15] + '.' + barcode[15:20] + ' ' +  
-        barcode[20:25] + '.' + barcode[25:30] + ' ' +  
-        barcode[30:31] + ' ' +  
-        barcode[31:] 
+        f"{first_piece}.{second_piece} "
+        + f"{third_piece}.{fourth_piece} "
+        + f"{fifth_piece}.{sixth_piece} "
+        + f"{seventh_piece} "
+        + f"{eighth_piece}"
     )
-    
+
     return formatted_boleto

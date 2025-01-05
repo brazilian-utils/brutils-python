@@ -1,4 +1,6 @@
 # CEP Imports
+# Boleto imports
+from brutils.boleto import format_boleto
 from brutils.cep import (
     format_cep,
     get_address_from_cep,
@@ -183,4 +185,6 @@ __all__ = [
     "convert_code_to_uf",
     "get_municipality_by_code",
     "get_code_by_municipality_name",
+    # Boleto
+    "format_boleto",
 ]

@@ -93,6 +93,8 @@ False
   - [convert_code_to_uf](#convert_code_to_uf)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
+- [Boleto](#Boleto)
+  - [format_boleto](#format_boleto)
 
 ## CPF
 
@@ -1193,6 +1195,40 @@ Example:
 None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
 None
+```
+
+## Boleto
+
+### format_boleto
+This function takes information from a boleto
+and turns it into a string.
+
+**Args:**
+boleto (Boleto): A dictionary with boleto information
+
+**Returns:**
+str: A string with the formatted boleto reading code
+
+**Examples:** 
+
+```python
+>>>from brutils import format_boleto 
+>>> boleto = {
+      "num_bank":"001",  
+      "code_coin":"9",  
+      "first_free_field":"0500",  
+      "second_free_field":"9",  
+      "verify_digit_first_field":"5",  
+      "thirty_free_field":"4014481606",  
+      "verify_digit_second_field":"9",  
+      "forty_free_field":"0680935031",
+      "verify_digit_thirty_field":"4",  
+      "verify_digit_barcode":"3",  
+      "maturity_factor":"3737",  
+      "document_value":"0000000100"
+  }
+>>> format_boleto(boleto) 
+'00190.50095 40144.816069 06809.350314 3 37370000000100'
 ```
 
 # Feature Request and Bug Report
