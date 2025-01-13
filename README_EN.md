@@ -93,6 +93,8 @@ False
   - [convert_code_to_uf](#convert_code_to_uf)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
+- [Monetary](#monetary)
+  - [format_currency](#format_currency)
 
 ## CPF
 
@@ -1192,6 +1194,32 @@ Example:
 >>> get_code_by_municipality_name("Municipio Inexistente", "")
 None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
+None
+```
+
+## Monetary
+
+### format_currency
+
+Formats a number following the Brazilian monetary standard. The number will be 
+formatted by adding the R$ symbol as a prefix, a comma as a decimal separator, and a 
+period as a thousands grouper.
+
+Args:
+  * float or Decimal: A number with or without decimal places.
+
+Returns:
+  * str or None: The number formatted following the Brazilian standard.
+
+Example:
+
+```python
+>>> from brutils.currency import format_currency
+>>> format_currency(1259.03)
+'R$ 1.259,03'
+>>> format_currency(0)
+'R$ 0,00'
+>>> format_currency("not a number")
 None
 ```
 
