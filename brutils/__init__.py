@@ -34,7 +34,6 @@ from brutils.ibge.municipality import (
     get_code_by_municipality_name,
     get_municipality_by_code,
 )
-
 from brutils.ibge.uf import (
     convert_code_to_uf,
     convert_uf_to_text,
