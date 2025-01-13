@@ -75,7 +75,7 @@ Switched to a new branch '386'
 
 ### 7. Run brutils locally
 
-## Installation
+## Installation with poetry
 
 ### Requirements
 
@@ -110,6 +110,28 @@ git config --local core.hooksPath .githooks/
 chmod -R +x .githooks
 Installing dependencies from lock file
 ...
+```
+
+## Installation with pip
+
+If you prefer to use pip, you can install the project in development mode as follows:
+
+### Requirements
+
+- [Python 3.8+][python]
+- [pip][pip]
+
+Create a [virtualenv][virtualenv] for brutils and activate it using the following command:
+
+```sh
+python -m venv venv
+source venv/bin/activate  # On Windows use: venv\Scripts\activate
+```
+
+Use the pip command to install the dev and test dependencies through the requirements-dev.txt file:
+
+```sh
+pip install -r requirements-dev.txt
 ```
 
 ## Using locally
@@ -317,6 +339,13 @@ Exemple:
 $ make format
 31 files left unchanged
 All checks passed!
+```
+
+Add your changes to the staging area:
+
+```bash
+$ git add --all
+...
 ```
 
 Commit your changes:

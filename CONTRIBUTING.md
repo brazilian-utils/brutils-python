@@ -80,7 +80,7 @@ Switched to a new branch '386'
 
 ### 7. Execute o brutils Localmente
 
-#### Instalação
+#### Instalação com poetry
 
 ##### Requisitos
 
@@ -98,7 +98,7 @@ emulate bash -c '. .../bin/activate'
 Para testar se o ambiente virtual está ativo corretamente, execute o comando e verifique se a resposta é algo parecido com a seguinte:
 
 ```sh
-$ poetry env inf
+$ poetry env info
 Virtualenv
 Python:         3.x.y
 Implementation: CPython
@@ -115,6 +115,28 @@ git config --local core.hooksPath .githooks/
 chmod -R +x .githooks
 Installing dependencies from lock file
 ...
+```
+
+#### Instalação com pip
+
+Se preferir usar pip, você pode instalar o projeto em modo de desenvolvimento da seguinte forma:
+
+##### Requisitos
+
+- [Python 3.8+][python]
+- [pip][pip]
+
+Crie um [virtualenv][virtualenv] para o brutils e o ative através do comando:
+
+```sh
+python -m venv venv
+source venv/bin/activate  # No Windows use: venv\Scripts\activate
+```
+
+Utilize o comando pip para instalar as dependencias de dev e testes através do arquivo requirements-dev.txt
+
+```sh
+pip install -r requirements-dev.txt
 ```
 
 #### Utilizando Localmente
@@ -347,6 +369,13 @@ Exemplo:
 $ make format
 31 files left unchanged
 All checks passed!
+```
+
+Adicione suas mudanças para staging area:
+
+```bash
+$ git add --all
+...
 ```
 
 Faça o commit das alterações:
