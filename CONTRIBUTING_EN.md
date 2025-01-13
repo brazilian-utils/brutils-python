@@ -341,6 +341,13 @@ $ make format
 All checks passed!
 ```
 
+Add your changes to the staging area:
+
+```bash
+$ git add --all
+...
+```
+
 Commit your changes:
 
 ```bash
