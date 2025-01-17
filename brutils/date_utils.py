@@ -51,11 +51,8 @@ def is_holiday(target_date: datetime, uf: str = None) -> Union[bool, None]:
 
     national_holidays = holidays.Brazil(years=target_date.year)
 
-    if target_date in national_holidays:
-        return True
+if uf is None:
+    return target_date in national_holidays
 
-    if uf is not None:
-        state_holidays = holidays.Brazil(prov=uf, years=target_date.year)
-        return target_date in state_holidays
-
-    return False
+state_holidays = holidays.Brazil(prov=uf, years=target_date.year)
+return target_date in state_holidays
