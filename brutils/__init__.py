@@ -26,6 +26,9 @@ from brutils.currency import format_currency
 # Date imports
 from brutils.date import convert_date_to_text
 
+# Date Utils Import
+from brutils.date_utils import is_holiday
+
 # Email Import
 from brutils.email import is_valid as is_valid_email
 
@@ -126,6 +129,8 @@ __all__ = [
     "convert_code_to_uf",
     "get_municipality_by_code",
     "get_code_by_municipality_name",
+    # Date Utils
+    "is_holiday",
     # Currency
     "format_currency",
 ]

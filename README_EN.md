@@ -93,6 +93,8 @@ False
   - [convert_code_to_uf](#convert_code_to_uf)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
+- [Holidays](#holidays)
+  - [is_holiday](#is_holiday)
 - [Monetary](#monetary)
   - [format_currency](#format_currency)
 
@@ -1195,6 +1197,38 @@ Example:
 None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
 None
+```
+
+## Holidays
+
+### is_holiday
+
+Checks if a given date is a national or state holiday in Brazil.
+
+This function takes a `datetime` object as the date and an optional state abbreviation (UF) to specify state holidays. It returns `True` if the date is a holiday, `False` if it’s not, or `None` if the date or UF are invalid. Note that the function does not cover municipal holidays.
+
+Args:
+
+- `date (datetime)`: The date to be checked.
+- `uf (str, optional)`: The state abbreviation (UF) to check for state holidays. If not provided, only national holidays are considered.
+
+Returns:
+
+- `bool | None`: `True` if the date is a holiday, `False` if it’s not, or `None` if the date or UF are invalid.
+
+Example:
+
+```python
+>>> from datetime import datetime
+>>> from brutils import is_holiday
+>>> is_holiday(datetime(2024, 1, 1))
+True
+>>> is_holiday(datetime(2024, 1, 2))
+False
+>>> is_holiday(datetime(2024, 3, 2), uf="SP")
+False
+>>> is_holiday(datetime(2024, 12, 25), uf="RJ")
+True
 ```
 
 ## Monetary
