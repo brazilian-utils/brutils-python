@@ -16,10 +16,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Poetry Setup
-        uses: snok/install-poetry@v1
-      - name: Install Dependencies
-        run: poetry install --no-root --with test
       - name: Generate Report
         run: |
           pip install coverage num2words holidays
