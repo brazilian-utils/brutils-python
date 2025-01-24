@@ -1284,3 +1284,11 @@ Vamos construir juntos! 🚀🚀
 [github-discussions]: https://github.com/brazilian-utils/brutils-python/discussions
 [github-issues-doc]: https://docs.github.com/pt/issues/tracking-your-work-with-issues/creating-an-issue
 [github-issues]: https://github.com/brazilian-utils/brutils-python/issues
+
+## ❤️ Quem já Contribuiu
+
+<a href="https://github.com/brazilian-utils/brutils-python/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=brazilian-utils/brutils-python" />
+</a></br></br>
+
+_Feito por [contrib.rocks](https://contrib.rocks)._
