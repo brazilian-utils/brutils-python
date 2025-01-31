@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   lint:
     name: Check Lint
@@ -11,17 +12,26 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
       - name: Poetry Setup
         uses: snok/install-poetry@v1
+
       - name: Install Dependencies
         run: poetry install
+
       - name: Run Lint Check
         id: lint
         run: |
-          make check
+          set -o pipefail
+          make check 2>&1 | tee lint_output.log
         continue-on-error: true
+
       - name: Lint Failed
         if: steps.lint.outcome != 'success'
         run: |
-          echo -e "\033[0;31m Please, run \`make format\` and push the changes to fix this error"
+          echo -e "\033[0;31m Linting failed. See the errors below:\n"
+          cat lint_output.log
+          echo -e "\n\033[0;33m Please, run \`make format\` and push the changes to fix this error."
           exit 1
+
+          
