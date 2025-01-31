@@ -1,0 +1,61 @@
+name: Remove Inactive Issue Assignees
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+  cleanup_assignees:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Identify and notify inactive issues
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const inactiveDays = 60;
+            const warningDays = 7;
+
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open'
+            });
+
+            const now = new Date();
+
+            for (const issue of issues) {
+              const lastUpdate = new Date(issue.updated_at);
+              const daysInactive = Math.floor((now - lastUpdate) / (1000 * 60 * 60 * 24));
+
+              if (daysInactive >= inactiveDays && issue.assignees.length > 0) {
+                const warningComment = issue.comments.some(comment => comment.body.includes('[PT-BR] Os assignees serão removidos. \n\n[EN] The assignees will be removed.'));
+
+                if (!warningComment) {
+                  await github.rest.issues.createComment({
+                    owner: context.repo.owner,
+                    repo: context.repo.repo,
+                    issue_number: issue.number,
+                    body: `:warning: [PT-BR] Esta issue está inativa há ${daysInactive} dias. Os assignees serão removidos em ${warningDays} dias caso não haja atualizações.\n\n:warning: [EN] This issue has been inactive for ${daysInactive} days. The assignees will be removed in ${warningDays} days if there are no updates.`
+                  });
+                }
+              } else if (daysInactive >= inactiveDays + warningDays && issue.assignees.length > 0) {
+                await github.rest.issues.removeAssignees({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  assignees: issue.assignees.map(assignee => assignee.login)
+                });
+
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `✅ [PT-BR] Os assignees foram removidos devido à inatividade prolongada da issue.\n\n✅ [EN] The assignees have been removed due to prolonged inactivity of this issue.`
+                });
+              }
+            }
+
