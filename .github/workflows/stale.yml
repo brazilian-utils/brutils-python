@@ -1,0 +1,29 @@
+name: 'Mark stale pull requests'
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+permissions:
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          days-before-stale: 60
+          days-before-close: 7
+          stale-pr-label: "Stale"
+          stale-pr-message: >
+            [PT-BR] Este PR está inativo há muito tempo. Caso não seja atualizado, será fechado em 7 dias.  
+            [EN] This PR has been inactive for a long time. If no updates are made, it will be closed in 7 days.
+          close-pr-message: >
+            [PT-BR] Este PR foi fechado devido à inatividade. Caso ainda seja relevante, por favor, reabra ou crie um novo PR.  
+            [EN] This PR has been closed due to inactivity. If it is still relevant, please reopen or create a new PR.
+          exempt-issue-labels: "keep-open"
+          operations-per-run: 30
+          remove-stale-when-updated: true
