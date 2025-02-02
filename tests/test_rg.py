@@ -1,5 +1,7 @@
 from unittest import TestCase
+
 from brutils.rg import is_valid_rg
+
 
 class TestRG(TestCase):
     # Base do Github
