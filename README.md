@@ -46,6 +46,8 @@ False
   - [format\_cpf](#format_cpf)
   - [remove\_symbols\_cpf](#remove_symbols_cpf)
   - [generate\_cpf](#generate_cpf)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
 - [CNPJ](#cnpj)
   - [is\_valid\_cnpj](#is_valid_cnpj)
   - [format\_cnpj](#format_cnpj)
@@ -188,6 +190,37 @@ Exemplo:
 '17433964657'
 >>> generate_cpf()
 "10895948109"
+```
+
+## CNH
+
+### is_valid_cnh
+
+Valida uma CNH brasileira (Carteira Nacional de Habilitação).
+
+Esta função verifica se a CNH fornecida é válida com base no formato e caracteres permitidos.
+Ela considera a CNH com ou sem o caractere de verificação.
+
+Argumentos:
+
+- cnh (str): A CNH a ser validada.
+
+Retorna:
+
+- bool: True se a CNH for válida, False caso contrário.
+
+Exemplo:
+
+```python
+>>> from brutils import is_valid_cnh
+>>> is_valid_cnh('12345678900')
+True
+>>> is_valid_cnh('123456789012345')
+True
+>>> is_valid_cnh('12345')
+False
+>>> is_valid_cnh('A1B2C3D4E5F6')
+True
 ```
 
 ## CNPJ
