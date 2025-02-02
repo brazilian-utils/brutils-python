@@ -1,4 +1,6 @@
 # RG Imports
+from brutils.rg import is_valid_rg
+
 # CEP Imports
 from brutils.cep import (
     format_cep,
@@ -70,9 +72,6 @@ from brutils.pis import format_pis
 from brutils.pis import generate as generate_pis
 from brutils.pis import is_valid as is_valid_pis
 from brutils.pis import remove_symbols as remove_symbols_pis
-
-# RG Imports
-from brutils.rg import is_valid as is_valid_rg
 
 # Voter ID Imports
 from brutils.voter_id import format_voter_id
