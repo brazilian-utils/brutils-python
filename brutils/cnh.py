@@ -26,8 +26,8 @@ def is_valid_cnh(cnh: str) -> bool:
     """
     if not isinstance(cnh, str):
         return False
-    
+
     if not (11 <= len(cnh) <= 15):
         return False
-    
+
     return bool(re.match(r"^[A-Z0-9]+$", cnh))
