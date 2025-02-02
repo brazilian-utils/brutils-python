@@ -70,9 +70,9 @@ from brutils.pis import format_pis
 from brutils.pis import generate as generate_pis
 from brutils.pis import is_valid as is_valid_pis
 from brutils.pis import remove_symbols as remove_symbols_pis
-from brutils.rg import (
-    is_valid_rg,
-)
+
+# RG Imports
+from brutils.rg import is_valid as is_valid_rg
 
 # Voter ID Imports
 from brutils.voter_id import format_voter_id
@@ -81,8 +81,6 @@ from brutils.voter_id import is_valid as is_valid_voter_id
 
 # Defining __all__ to expose the public methods
 __all__ = [
-    # RG
-    "is_valid_rg",
     # CEP
     "format_cep",
     "get_address_from_cep",
@@ -127,6 +125,8 @@ __all__ = [
     "generate_pis",
     "is_valid_pis",
     "remove_symbols_pis",
+    # RG
+    "is_valid_rg",
     # Voter ID
     "format_voter_id",
     "generate_voter_id",
