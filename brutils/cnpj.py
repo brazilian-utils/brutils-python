@@ -262,9 +262,6 @@ def _checksum(basenum):  # type: (str) -> str
     verifying_digits += str(_hashdigit(basenum + verifying_digits, 14))
     return verifying_digits
 
-import re
-import unittest
-
 def is_valid_new_cnpj(cnpj: str) -> bool:
     """
     Verifica se o CNPJ segue o novo formato alfanumérico e se os dígitos verificadores são válidos.
