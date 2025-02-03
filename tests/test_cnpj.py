@@ -11,6 +11,7 @@ from brutils.cnpj import (
     remove_symbols,
     sieve,
     validate,
+    is_valid_new_cnpj
 )
 
 
@@ -81,6 +82,21 @@ class TestCNPJ(TestCase):
     def test__checksum(self):
         self.assertEqual(_checksum("00000000000000"), "00")
         self.assertEqual(_checksum("52513127000299"), "99")
+
+    def test_empty_string(self):
+        self.assertFalse(is_valid_new_cnpj(""))
+    
+    def test_length_not_14(self):
+        self.assertFalse(is_valid_new_cnpj("123456789012")) #menos de 14 dígitos 
+        self.assertFalse(is_valid_new_cnpj("123456789012345"))  # mais de 14 dígitos
+    
+    def test_alphanumeric(self):
+        self.assertTrue(is_valid_new_cnpj("ABC123DEF45678"))  
+        self.assertFalse(is_valid_new_cnpj("ABC123DEF45@78"))  
+
+    def test_last_2_digits_numeric(self):
+        self.assertTrue(is_valid_new_cnpj("ABC123DEF45678")) 
+        self.assertFalse(is_valid_new_cnpj("ABC123DEF4567A"))  
 
 
 @patch("brutils.cnpj.sieve")

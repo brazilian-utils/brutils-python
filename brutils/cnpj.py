@@ -1,5 +1,6 @@
 from itertools import chain
 from random import randint
+import re
 
 # FORMATTING
 ############
@@ -260,3 +261,43 @@ def _checksum(basenum):  # type: (str) -> str
     verifying_digits = str(_hashdigit(basenum, 13))
     verifying_digits += str(_hashdigit(basenum + verifying_digits, 14))
     return verifying_digits
+
+import re
+import unittest
+
+def is_valid_new_cnpj(cnpj: str) -> bool:
+    """
+    Verifica se o CNPJ segue o novo formato alfanumérico e se os dígitos verificadores são válidos.
+
+    Esta função valida um CNPJ considerando o novo formato alfanumérico. Ele deve conter 14 caracteres,
+    onde os primeiros 12 podem ser letras ou números e os últimos 2 devem ser números.
+
+    Args:
+        cnpj (str): O CNPJ a ser validado.
+
+    Returns:
+        bool: Retorna True se o CNPJ for válido, caso contrário, False.
+
+    Exemplos:
+        >>> is_valid_cnpj("ABC123DEF45678")
+        True
+        >>> is_valid_cnpj("ABC123DEF45@78")
+        False
+        >>> is_valid_cnpj("12345678901234")
+        True
+        >>> is_valid_cnpj("1234567890")
+        False
+    """
+    # Verifica se a string está vazia
+    if not cnpj:
+        return False
+    
+    # Verifica se o CNPJ tem exatamente 14 caracteres
+    if len(cnpj) != 14:
+        return False
+    
+    # Verifica se os primeiros 12 caracteres são alfanuméricos e os últimos 2 são numéricos
+    if not re.match(r'^[A-Za-z0-9]{12}\d{2}$', cnpj):
+        return False
+    
+    return True
