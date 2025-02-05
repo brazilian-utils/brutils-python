@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [2.3.0]
 ### Added
 
 - Utilitário `convert_code_to_uf` [#397](https://github.com/brazilian-utils/brutils-python/pull/410)
@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `get_code_by_municipality_name` [#399](https://github.com/brazilian-utils/brutils-python/issues/399)
 - Utilitário `format_currency` [#426](https://github.com/brazilian-utils/brutils-python/issues/426)
 - Utilitário `is_valid_renavam` [#430](https://github.com/brazilian-utils/brutils-python/issues/430)
+- Utilitário `is_valid_rg` [#428] (https://github.com/brazilian-utils/brutils-python/issues/428)
 
 ## [2.2.0] - 2024-09-12
 

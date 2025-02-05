@@ -73,6 +73,9 @@ from brutils.pis import remove_symbols as remove_symbols_pis
 # RENAVAM Imports
 from brutils.renavam import is_valid_renavam
 
+# RG Imports
+from brutils.rg import is_valid_rg
+
 # Voter ID Imports
 from brutils.voter_id import format_voter_id
 from brutils.voter_id import generate as generate_voter_id
@@ -124,6 +127,10 @@ __all__ = [
     "generate_pis",
     "is_valid_pis",
     "remove_symbols_pis",
+    # RENAVAM
+    "is_valid_renavam",
+    # RG
+    "is_valid_rg",
     # Voter ID
     "format_voter_id",
     "generate_voter_id",
@@ -136,6 +143,4 @@ __all__ = [
     "is_holiday",
     # Currency
     "format_currency",
-    # RENAVAM
-    "is_valid_renavam",
 ]
