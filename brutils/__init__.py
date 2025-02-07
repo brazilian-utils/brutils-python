@@ -1,4 +1,6 @@
 # CEP Imports
+# BOLETO Imports
+from brutils.boleto import format_boleto
 from brutils.cep import (
     format_cep,
     get_address_from_cep,
@@ -133,4 +135,6 @@ __all__ = [
     "is_holiday",
     # Currency
     "format_currency",
+    # Boleto
+    "format_boleto",
 ]
