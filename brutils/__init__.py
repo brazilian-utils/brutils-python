@@ -1,12 +1,8 @@
 # CEP Imports
 from brutils.cep import (
-    format_cep,
     get_address_from_cep,
     get_cep_information_from_address,
 )
-from brutils.cep import generate as generate_cep
-from brutils.cep import is_valid as is_valid_cep
-from brutils.cep import remove_symbols as remove_symbols_cep
 
 # CNPJ Imports
 from brutils.cnpj import format_cnpj
@@ -82,8 +78,6 @@ __all__ = [
     "get_address_from_cep",
     "get_cep_information_from_address",
     "generate_cep",
-    "is_valid_cep",
-    "remove_symbols_cep",
     # CNPJ
     "format_cnpj",
     "generate_cnpj",
