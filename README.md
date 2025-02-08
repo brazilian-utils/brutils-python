@@ -80,6 +80,8 @@ False
   - [format\_pis](#format_pis)
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
+- [RG](#rg)
+  - [is\_valid\_rg](#is_valid_rg)
 - [Processo Jurídico](#processo-jurídico)
 - [is\_valid\_legal\_process](#is_valid_legal_process)
   - [format\_legal\_process](#format_legal_process)
@@ -930,6 +932,36 @@ from brutils import generate_pis
 >>> generate_pis()
 '73453349671'
 ```
+
+## RG 
+
+## is_valid_rg
+
+Validação do Registro Geral (RG) brasileiro, levando em conta as particularidades de formatação e regras de cada Unidade Federativa (UF).
+
+Argumentos:
+
+- is_valid_rg (str): Receba como parâmetros o RG (string) e a UF (string) para a qual o RG deverá ser validado.
+
+Retorna:
+
+- bool: True se o RG estiver em um formato válido para a UF especificada ou False caso contrário.
+
+Exemplo:
+
+```python
+>>> is_valid_rg('12.345.678-9', 'SP')
+True
+>>> is_valid_rg('MG-12.345.678', 'MG')
+True
+>>> is_valid_rg('123456789', 'RJ')
+False
+>>> is_valid_rg('A12345678', 'SP')
+False
+>>> is_valid_rg('12.345.678', 'SP')
+False
+```
+
 
 ## Processo Jurídico
 
