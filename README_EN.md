@@ -46,6 +46,8 @@ False
   - [format\_cpf](#format_cpf)
   - [remove\_symbols\_cpf](#remove_symbols_cpf)
   - [generate\_cpf](#generate_cpf)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
 - [CNPJ](#cnpj)
   - [is\_valid\_cnpj](#is_valid_cnpj)
   - [format\_cnpj](#format_cnpj)
@@ -189,6 +191,33 @@ Example:
 '17433964657'
 >>> generate_cpf()
 "10895948109"
+```
+
+## CNH
+
+### is_valid_cnh
+
+Validates the Brazilian CNH (Carteira Nacional de Habilitação).
+
+This function checks if the given CNH is valid based on the format and allowed characters.
+It considers the CNH with or without the verification character.
+
+Args:
+    cnh (str): The CNH number to be validated.
+
+Returns:
+    bool: True if the CNH is valid, False otherwise.
+
+Example:
+```python
+>>> is_valid_cnh('12345678900')
+True
+>>> is_valid_cnh('123456789012345')
+True
+>>> is_valid_cnh('12345')
+False
+>>> is_valid_cnh('A1B2C3D4E5F6')
+True
 ```
 
 ## CNPJ
