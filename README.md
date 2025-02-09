@@ -1254,6 +1254,40 @@ Exemplo:
 None
 ```
 
+## RENAVAM
+
+### is_valid_renavam
+
+Valida o número de registro de veículo brasileiro (RENAVAM).
+
+Esta função recebe uma string RENAVAM e verifica se é válida. Um RENAVAM 
+válido consiste exatamente em 11 dígitos. O último dígito é um dígito verificador
+calculado a partir dos primeiros 10 dígitos usando um sistema de pesos específicos.
+
+Parâmetros:
+  renavam (str): A string do RENAVAM a ser validada.
+
+Retorna:
+  bool: True se o RENAVAM for válido, False caso contrário.
+
+Exemplo:
+
+```python
+>>> from brutils import is_valid_renavam
+>>> is_valid_renavam('35298206229')
+True
+>>> is_valid_renavam('12345678900')
+False
+>>> is_valid_renavam('1234567890a')
+False
+>>> is_valid_renavam('12345678 901')
+False
+>>> is_valid_renavam('12345678')  # Less than 11 digits
+False
+>>> is_valid_renavam('')  # Empty string
+False
+```
+
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
