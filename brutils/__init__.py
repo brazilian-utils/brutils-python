@@ -75,6 +75,9 @@ from brutils.voter_id import format_voter_id
 from brutils.voter_id import generate as generate_voter_id
 from brutils.voter_id import is_valid as is_valid_voter_id
 
+# RG Imports
+from brutils.rg import is_valid_rg
+
 # Defining __all__ to expose the public methods
 __all__ = [
     # CEP
@@ -133,4 +136,6 @@ __all__ = [
     "is_holiday",
     # Currency
     "format_currency",
+    # RG
+    "is_valid_rg",
 ]

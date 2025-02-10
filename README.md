@@ -1254,6 +1254,43 @@ Exemplo:
 None
 ```
 
+## RG
+### is_valid_rg
+
+Valida o Registro Geral (RG) brasileiro, considerando o estado (UF) de emissão.
+Esta função recebe uma string de RG e uma Unidade Federativa (UF), e verifica se o 
+RG está no formato correto para o estado especificado. Cada estado pode ter um formato
+diferente de RG, com variações na quantidade de dígitos e a presença de caracteres especiais.
+A função também lida com casos como dígitos repetidos ou formatos malformados.
+
+Parâmetros:
+  rg (str): A string do RG a ser validada.
+  uf (str): A Unidade Federativa (UF) onde o RG foi emitido.
+
+Retorna:
+  bool: True se o RG for válido, False caso contrário.
+
+Exemplo:
+```python
+>>> from brutils import is_valid_rg
+>>> is_valid_rg('12.345.678-9', 'SP')
+True
+>>> is_valid_rg('MG-12.345.678', 'MG')
+True
+>>> is_valid_rg('123456789', 'RJ')
+False
+>>> is_valid_rg('A12345678', 'SP')
+False
+>>> is_valid_rg('12.345.678', 'SP')  # Missing verifier digit
+False
+>>> is_valid_rg('111111111', 'SP')  # Repeated digits
+False
+>>> is_valid_rg('', 'SP')  # Empty string
+False
+>>> is_valid_rg('12.345.678-9', 'XX')  # Invalid UF
+False
+
+
 # Novos Utilitários e Reportar Bugs
 
 Caso queira sugerir novas funcionalidades ou reportar bugs, basta criar
