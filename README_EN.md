@@ -1257,6 +1257,42 @@ Example:
 None
 ```
 
+## RG
+### is_valid_rg
+
+Validates the Brazilian Identity Card number (RG) based on the state (UF) of issuance.
+This function takes a string of RG and a Federal Unit (UF) and checks if the RG is in the correct format 
+for the specified state. Each state may have a different RG format, with variations in the number of digits 
+and the presence of special characters. The function also handles cases such as repeated digits or malformed formats.
+
+Parameters:
+  rg (str): The RG string to be validated.
+  uf (str): The Federal Unit (UF) where the RG was issued.
+
+Returns:
+  bool: True if the RG is valid, False otherwise.
+
+Example:
+```python
+>>> from brutils import is_valid_rg
+>>> is_valid_rg('12.345.678-9', 'SP')
+True
+>>> is_valid_rg('MG-12.345.678', 'MG')
+True
+>>> is_valid_rg('123456789', 'RJ')
+False
+>>> is_valid_rg('A12345678', 'SP')
+False
+>>> is_valid_rg('12.345.678', 'SP')  # Missing verifier digit
+False
+>>> is_valid_rg('111111111', 'SP')  # Repeated digits
+False
+>>> is_valid_rg('', 'SP')  # Empty string
+False
+>>> is_valid_rg('12.345.678-9', 'XX')  # Invalid UF
+False
+
+
 # Feature Request and Bug Report
 
 If you want to suggest new features or report bugs, simply create
