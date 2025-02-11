@@ -1,8 +1,7 @@
-from random import choice, randint
+from random import randint, choice
 
 # FORMAT AND VALIDATION FUNCTIONS
 #################################
-
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -56,7 +55,6 @@ def is_valid(tin):  # type: (str) -> str
 # GENERATE FUNCTIONS
 ####################
 
-
 def generate(is_foreigner=False):  # type: (bool) -> str
     """
     Generates a random valid South Korean Resident Registration Number (tin).
@@ -87,9 +85,7 @@ def generate(is_foreigner=False):  # type: (bool) -> str
 
     # Calculate checksum
     weights = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5]
-    checksum = (
-        sum(int(tin_without_checksum[i]) * weights[i] for i in range(12)) % 11
-    )
+    checksum = sum(int(tin_without_checksum[i]) * weights[i] for i in range(12)) % 11
     check_digit = (11 - checksum) % 10
 
     # Complete tin
@@ -98,7 +94,6 @@ def generate(is_foreigner=False):  # type: (bool) -> str
 
 # FORMAT FUNCTION
 #################
-
 
 def format_tin(tin):  # type: (str) -> str
     """
@@ -121,18 +116,13 @@ def format_tin(tin):  # type: (str) -> str
 # USAGE EXAMPLES
 ################
 
-
 def example_usage():
     # Generate examples
     generated_tin = generate()
-    print(
-        f"Generated tin (Resident): {format_tin(generated_tin)} - Valid? {is_valid(generated_tin)}"
-    )
+    print(f"Generated tin (Resident): {format_tin(generated_tin)} - Valid? {is_valid(generated_tin)}")
 
     generated_tin_foreigner = generate(is_foreigner=True)
-    print(
-        f"Generated tin (Foreigner): {format_tin(generated_tin_foreigner)} - Valid? {is_valid(generated_tin_foreigner)}"
-    )
+    print(f"Generated tin (Foreigner): {format_tin(generated_tin_foreigner)} - Valid? {is_valid(generated_tin_foreigner)}")
 
     # Validate user input
     user_input = input("Enter a Resident Registration Number (tin): ")

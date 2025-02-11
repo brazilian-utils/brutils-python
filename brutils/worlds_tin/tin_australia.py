@@ -1,5 +1,4 @@
-from random import randint
-
+from random import randint, choice
 
 # REMOVE SYMBOLS
 def remove_symbols(dirty_tin):  # type: (str) -> str
@@ -7,7 +6,6 @@ def remove_symbols(dirty_tin):  # type: (str) -> str
     Removes spaces, dots, dashes, and other symbols from a string.
     """
     return "".join(filter(str.isdigit, dirty_tin))
-
 
 # VALIDATION FUNCTIONS
 def is_valid_tfn(tfn):  # type: (str) -> str
@@ -29,12 +27,11 @@ def is_valid_tfn(tfn):  # type: (str) -> str
         return "Invalid TFN: Must be 8 or 9 numeric digits."
 
     # Weighted checksum validation
-    weights = [1, 4, 3, 7, 5, 8, 6, 9, 10][: len(tfn)]
+    weights = [1, 4, 3, 7, 5, 8, 6, 9, 10][:len(tfn)]
     checksum = sum(int(digit) * weight for digit, weight in zip(tfn, weights))
     if checksum % 11 == 0:
         return "Valid TFN"
     return "Invalid TFN: Failed checksum validation."
-
 
 def is_valid_abn(abn):  # type: (str) -> str
     """
@@ -62,7 +59,6 @@ def is_valid_abn(abn):  # type: (str) -> str
         return "Valid ABN"
     return "Invalid ABN: Failed checksum validation."
 
-
 # GENERATE FUNCTIONS
 def generate_tfn():  # type: () -> str
     """
@@ -75,7 +71,6 @@ def generate_tfn():  # type: () -> str
         tfn = f"{randint(10**7, 10**9 - 1)}"
         if is_valid_tfn(tfn) == "Valid TFN":
             return tfn
-
 
 def generate_abn():  # type: () -> str
     """
@@ -90,7 +85,6 @@ def generate_abn():  # type: () -> str
             abn = f"{prefix}{identifier}"
             if is_valid_abn(abn) == "Valid ABN":
                 return abn
-
 
 # FORMAT FUNCTIONS
 def format_tfn(tfn):  # type: (str) -> str
@@ -111,7 +105,6 @@ def format_tfn(tfn):  # type: (str) -> str
             return f"{tfn[:2]} {tfn[2:5]} {tfn[5:]}"
     return None
 
-
 def format_abn(abn):  # type: (str) -> str
     """
     Formats an ABN as XX XXX XXX XXX.
@@ -127,20 +120,15 @@ def format_abn(abn):  # type: (str) -> str
         return f"{abn[:2]} {abn[2:5]} {abn[5:8]} {abn[8:]}"
     return None
 
-
 # USAGE EXAMPLES
 def example_usage():
     # Generate examples
     generated_tfn = generate_tfn()
-    print(
-        f"Generated TFN: {generated_tfn} - Valid? {is_valid_tfn(generated_tfn)}"
-    )
+    print(f"Generated TFN: {generated_tfn} - Valid? {is_valid_tfn(generated_tfn)}")
     print(f"Formatted TFN: {format_tfn(generated_tfn)}")
 
     generated_abn = generate_abn()
-    print(
-        f"Generated ABN: {generated_abn} - Valid? {is_valid_abn(generated_abn)}"
-    )
+    print(f"Generated ABN: {generated_abn} - Valid? {is_valid_abn(generated_abn)}")
     print(f"Formatted ABN: {format_abn(generated_abn)}")
 
     # User input
@@ -153,7 +141,6 @@ def example_usage():
         print(f"Formatted ABN: {format_abn(user_input)}")
     else:
         print("Invalid input. Please enter a valid TFN or ABN.")
-
 
 # Run example
 example_usage()

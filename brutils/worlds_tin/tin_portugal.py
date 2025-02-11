@@ -1,8 +1,8 @@
-from random import randint
+from random import randint, choice
+
 
 # FORMATTING
 #############
-
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -24,14 +24,14 @@ def format_tin(tin):  # type: (str) -> str
     """
     Formats a Portuguese tin for display with visual aid symbols.
 
-    This function formats a numbers-only tin string by adding periods and
+    This function formats a numbers-only tin string by adding periods and 
     a dash for better readability, commonly used in Portuguese documents.
 
     Args:
         tin (str): A numbers-only tin string of exactly 9 digits.
 
     Returns:
-        str: A formatted tin string with periods and a dash, or None
+        str: A formatted tin string with periods and a dash, or None 
         if the input is invalid.
 
     Example:
@@ -50,7 +50,6 @@ def format_tin(tin):  # type: (str) -> str
 
 # OPERATIONS
 #############
-
 
 def is_valid(tin):  # type: (str) -> bool
     """
@@ -79,14 +78,12 @@ def is_valid(tin):  # type: (str) -> bool
 
     # 2. Determine the taxpayer type by the first digit
     first_digit = int(tin[0])
-
+    
     # List of valid first digits for Portuguese tins
     valid_types = [1, 2, 4, 5, 6, 7, 9]
-
+    
     if first_digit not in valid_types:
-        print(
-            f"The first digit {first_digit} is not valid for a Portuguese tin."
-        )
+        print(f"The first digit {first_digit} is not valid for a Portuguese tin.")
         return False
 
     base, check_digit = tin[:8], int(tin[8])

@@ -1,8 +1,8 @@
-from random import randint
+from random import randint, choice
+
 
 # Format and Validation Functions
 #################################
-
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -41,20 +41,13 @@ def is_valid_tin(tin):  # type: (str) -> str
 
     # Calculate the checksum
     weights = [2, 3, 4, 5, 6, 7, 2, 3, 4, 5, 6, 7, 2]
-    checksum = (
-        sum(int(digit) * weight for digit, weight in zip(main_digits, weights))
-        % 11
-    )
+    checksum = sum(int(digit) * weight for digit, weight in zip(main_digits, weights)) % 11
 
     # Check the result
     if checksum == 10:
         checksum = 0
 
-    return (
-        "Valid tin"
-        if checksum == checksum_digit
-        else "Invalid tin: Checksum does not match."
-    )
+    return "Valid tin" if checksum == checksum_digit else "Invalid tin: Checksum does not match."
 
 
 def format_tin(tin):  # type: (str) -> str
@@ -75,7 +68,6 @@ def format_tin(tin):  # type: (str) -> str
 # Generate Functions
 ####################
 
-
 def generate_tin():  # type: () -> str
     """
     Generates a random valid Salvadoran tin.
@@ -85,9 +77,7 @@ def generate_tin():  # type: () -> str
     """
     main_digits = [randint(0, 9) for _ in range(13)]
     weights = [2, 3, 4, 5, 6, 7, 2, 3, 4, 5, 6, 7, 2]
-    checksum = (
-        sum(digit * weight for digit, weight in zip(main_digits, weights)) % 11
-    )
+    checksum = sum(digit * weight for digit, weight in zip(main_digits, weights)) % 11
 
     if checksum == 10:
         checksum = 0
@@ -97,7 +87,6 @@ def generate_tin():  # type: () -> str
 
 # User Input and Validation
 ###########################
-
 
 def is_valid_user_input(user_input):  # type: (str) -> str
     """
@@ -116,19 +105,15 @@ def is_valid_user_input(user_input):  # type: (str) -> str
 # Usage Examples
 ################
 
-
 def example_usage():
     # Generate examples
     generated_tin = generate_tin()
-    print(
-        f"Generated tin: {generated_tin} - Valid? {is_valid_tin(generated_tin)}"
-    )
+    print(f"Generated tin: {generated_tin} - Valid? {is_valid_tin(generated_tin)}")
     print(f"Formatted: {format_tin(generated_tin)}")
 
     # Validate user input
     user_input = input("Enter a tin (with or without symbols): ")
     print(f"Validation result: {is_valid_user_input(user_input)}")
-
 
 # Run the example usage
 example_usage()

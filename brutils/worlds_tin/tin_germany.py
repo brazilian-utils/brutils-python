@@ -1,8 +1,8 @@
-from random import randint
+from random import randint, choice
+
 
 # FORMATTING
 #############
-
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -41,7 +41,6 @@ def format_tin(tin):  # type: (str) -> str
 
 # OPERATIONS
 #############
-
 
 def is_valid(tin):  # type: (str) -> bool
     """
