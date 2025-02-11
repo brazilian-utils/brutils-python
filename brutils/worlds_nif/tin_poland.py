@@ -1,11 +1,13 @@
 from random import randint
 
+
 # REMOVE SYMBOLS
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
     Removes spaces, dots, dashes, and other symbols from a string.
     """
     return "".join(filter(str.isdigit, dirty_tin))
+
 
 # VALIDATION FUNCTION
 def is_valid(tin):  # type: (str) -> str
@@ -33,6 +35,7 @@ def is_valid(tin):  # type: (str) -> str
     if check_digit == int(tin[-1]):
         return "Valid tin"
     return "Invalid tin: Checksum failed."
+
 
 # GENERATE FUNCTION
 def generate():  # type: () -> str
@@ -66,6 +69,7 @@ def generate():  # type: () -> str
 
     return tin_base + str(check_digit)
 
+
 # FORMAT FUNCTION
 def format_tin(tin):  # type: (str) -> str
     """
@@ -82,6 +86,7 @@ def format_tin(tin):  # type: (str) -> str
     if is_valid(tin) == "Valid tin":
         return f"{tin[:2]}-{tin[2:4]}-{tin[4:6]}-{tin[6:11]}"
     return None
+
 
 # USER INPUT VALIDATION
 def validate_user_input(user_input):  # type: (str) -> str
@@ -100,6 +105,7 @@ def validate_user_input(user_input):  # type: (str) -> str
         return f"Valid tin: {user_input}"
     return "Invalid tin format."
 
+
 # USAGE EXAMPLES
 def example_usage():
     # Generate examples
@@ -111,6 +117,7 @@ def example_usage():
     user_input = input("Enter a Polish tin (with or without symbols): ")
     print(validate_user_input(user_input))
     print(f"Formatted tin: {format_tin(user_input)}")
+
 
 # Run the example usage
 example_usage()

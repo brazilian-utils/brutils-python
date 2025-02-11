@@ -1,11 +1,13 @@
 from random import randint
 
+
 # REMOVE SYMBOLS
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
     Removes spaces, dots, dashes, and other symbols from a string.
     """
     return "".join(filter(str.isdigit, dirty_tin))
+
 
 # VALIDATION FUNCTION
 def is_valid(tin):  # type: (str) -> str
@@ -25,6 +27,7 @@ def is_valid(tin):  # type: (str) -> str
             return "Valid tin"
     return "Invalid tin: Must be 9 or 13 numeric digits."
 
+
 # GENERATE FUNCTION
 def generate(tin_type="individual"):  # type: (str) -> str
     """
@@ -42,6 +45,7 @@ def generate(tin_type="individual"):  # type: (str) -> str
         return f"{randint(1000000000000, 9999999999999)}"  # 13 digits
     else:
         raise ValueError("Invalid tin type. Use 'individual' or 'business'.")
+
 
 # FORMAT FUNCTION
 def format_tin(tin):  # type: (str) -> str
@@ -63,6 +67,7 @@ def format_tin(tin):  # type: (str) -> str
             return f"{tin[:4]} {tin[4:8]} {tin[8:]}"  # Split into groups for 13-digit numbers
     return None
 
+
 # USER INPUT VALIDATION
 def is_valid_user_input(user_input):  # type: (str) -> str
     """
@@ -80,21 +85,27 @@ def is_valid_user_input(user_input):  # type: (str) -> str
         return f"Valid tin: {user_input}"
     return "Invalid tin format."
 
+
 # USAGE EXAMPLES
 def example_usage():
     # Generate examples
     generated_individual_tin = generate("individual")
-    print(f"Generated Individual tin: {generated_individual_tin} - Valid? {is_valid(generated_individual_tin)}")
+    print(
+        f"Generated Individual tin: {generated_individual_tin} - Valid? {is_valid(generated_individual_tin)}"
+    )
     print(f"Formatted Individual tin: {format_tin(generated_individual_tin)}")
 
     generated_business_tin = generate("business")
-    print(f"Generated Business tin: {generated_business_tin} - Valid? {is_valid(generated_business_tin)}")
+    print(
+        f"Generated Business tin: {generated_business_tin} - Valid? {is_valid(generated_business_tin)}"
+    )
     print(f"Formatted Business tin: {format_tin(generated_business_tin)}")
 
     # User input
     user_input = input("Enter an Austrian tin (with or without symbols): ")
     print(is_valid_user_input(user_input))
     print(f"Formatted tin: {format_tin(user_input)}")
+
 
 # Run the example usage
 example_usage()

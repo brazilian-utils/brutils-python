@@ -1,12 +1,13 @@
 from random import randint
 
+
 # REMOVE SYMBOLS
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
     Removes spaces, dots, and hyphens from the input string.
     """
     return "".join(filter(str.isdigit, dirty_tin))
-    
+
 
 # VALIDATE EMIRATES ID
 def is_valid(tin):  # type: (str) -> str
@@ -34,7 +35,7 @@ def calculate_control_digit(tin):  # type: (str) -> int
     remainder = weighted_sum % 11
     control_digit = (11 - remainder) if remainder != 10 else 0
     return control_digit
-    
+
 
 # FORMAT FOR DISPLAY
 def format_tin(tin):  # type: (str) -> str
@@ -45,6 +46,7 @@ def format_tin(tin):  # type: (str) -> str
     if len(tin) != 15:
         return None
     return f"{tin[:3]}-{tin[3:7]}-{tin[7:14]}-{tin[14]}"
+
 
 # GENERATE EMIRATES ID
 def generate():  # type: () -> str
@@ -64,7 +66,7 @@ def example_usage():
     # Generate a valid Emirates ID
     tin = generate()
     print(f"Generated Emirates ID: {format_tin(tin)} - Valid? {is_valid(tin)}")
-    
+
     # User input
     user_input = input("Enter your Emirates ID (with or without formatting): ")
     print(is_valid(user_input))
@@ -73,6 +75,7 @@ def example_usage():
         print(f"Formatted Emirates ID: {formatted_input}")
     else:
         print("Invalid Emirates ID format.")
+
 
 # Run example
 example_usage()

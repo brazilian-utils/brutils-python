@@ -3,6 +3,7 @@ from random import randint
 # FORMATTING
 #############
 
+
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
     Removes spaces, dots, dashes, and other symbols from a tin.
@@ -23,7 +24,7 @@ def format_tin(tin):  # type: (str) -> str
     """
     Formats a Haitian tin for display with visual aid symbols.
 
-    This function formats a numbers-only tin string by adding dashes 
+    This function formats a numbers-only tin string by adding dashes
     for better readability, commonly used in Haitian documents.
 
     Args:
@@ -48,6 +49,7 @@ def format_tin(tin):  # type: (str) -> str
 
 # OPERATIONS
 #############
+
 
 def is_valid(tin):  # type: (str) -> bool
     """

@@ -1,5 +1,6 @@
 from random import randint
 
+
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
     Removes spaces, dots, dashes, and other symbols from a tin.
@@ -14,7 +15,7 @@ def remove_symbols(dirty_tin):  # type: (str) -> str
         remove_symbols("123-45678-Z") -> "12345678Z"
     """
     return "".join(filter(str.isalnum, dirty_tin))
-    
+
 
 def is_valid(tin):  # type: (str) -> bool
     """
@@ -58,7 +59,9 @@ def is_valid(tin):  # type: (str) -> bool
         if base[1:].isdigit() and control.isalpha():
             print(f"The tin corresponds to a NIE without NIE ({first_char}).")
             return True
-        print("Invalid format for NIE without NIE (L/K/M + 7 digits + 1 letter).")
+        print(
+            "Invalid format for NIE without NIE (L/K/M + 7 digits + 1 letter)."
+        )
         return False
 
     # Validation for tin for legal entities
@@ -66,12 +69,14 @@ def is_valid(tin):  # type: (str) -> bool
         if base[1:].isdigit() and control.isalpha():
             print(f"The tin corresponds to a legal entity ({first_char}).")
             return True
-        print("Invalid format for tin for legal entity (Letter + 7 digits + 1 letter).")
+        print(
+            "Invalid format for tin for legal entity (Letter + 7 digits + 1 letter)."
+        )
         return False
 
     print("The first character is not valid for a Spanish tin.")
     return False
-    
+
 
 def format_tin(tin):  # type: (str) -> str
     """
@@ -88,13 +93,12 @@ def format_tin(tin):  # type: (str) -> str
         format_tin("X1234567L") -> "X-1234567-L"
     """
     tin = remove_symbols(tin)
-    
+
     if len(tin) == 9:
         if tin[0].isalpha():
             return "{}-{}-{}".format(tin[0], tin[1:8], tin[8])
         return "{}-{}-{}".format(tin[:3], tin[3:8], tin[8])
     return None
-
 
 
 def generate():  # type: () -> str

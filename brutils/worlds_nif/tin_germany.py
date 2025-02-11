@@ -3,6 +3,7 @@ from random import randint
 # FORMATTING
 #############
 
+
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
     Removes spaces, dots, dashes, and other symbols from a Steuer-ID.
@@ -40,6 +41,7 @@ def format_tin(tin):  # type: (str) -> str
 
 # OPERATIONS
 #############
+
 
 def is_valid(tin):  # type: (str) -> bool
     """
