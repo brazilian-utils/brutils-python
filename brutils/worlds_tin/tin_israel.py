@@ -1,4 +1,4 @@
-from random import randint, choice
+from random import randint
 
 
 # REMOVE SYMBOLS
@@ -7,6 +7,7 @@ def remove_symbols(dirty_tin):  # type: (str) -> str
     Removes spaces, dots, dashes, and other symbols from a string.
     """
     return "".join(filter(str.isdigit, dirty_tin))
+
 
 # VALIDATION FUNCTION
 def is_valid_tin(id_number):  # type: (str) -> str
@@ -27,9 +28,12 @@ def is_valid_tin(id_number):  # type: (str) -> str
     # Checksum validation
     total = 0
     for i, digit in enumerate(id_number):
-        num = int(digit) * (1 + (i % 2))  # Alternates between multiplying by 1 and 2
+        num = int(digit) * (
+            1 + (i % 2)
+        )  # Alternates between multiplying by 1 and 2
         total += num if num < 10 else num - 9  # Subtract 9 if num >= 10
     return "Valid tin" if total % 10 == 0 else "Invalid tin: Checksum failed."
+
 
 # GENERATE FUNCTION
 def generate_tin():  # type: () -> str
@@ -39,13 +43,18 @@ def generate_tin():  # type: () -> str
     Returns:
         str: A valid randomly generated tin.
     """
-    base_number = f"{randint(10000000, 99999999)}"  # Generate the first 8 digits
+    base_number = (
+        f"{randint(10000000, 99999999)}"  # Generate the first 8 digits
+    )
     total = 0
     for i, digit in enumerate(base_number):
-        num = int(digit) * (1 + (i % 2))  # Alternates between multiplying by 1 and 2
+        num = int(digit) * (
+            1 + (i % 2)
+        )  # Alternates between multiplying by 1 and 2
         total += num if num < 10 else num - 9  # Subtract 9 if num >= 10
     check_digit = (10 - (total % 10)) % 10  # Calculate the checksum digit
     return base_number + str(check_digit)
+
 
 # FORMAT FUNCTION
 def format_tin(id_number):  # type: (str) -> str
@@ -64,6 +73,7 @@ def format_tin(id_number):  # type: (str) -> str
         return f"{id_number[:3]}-{id_number[3:9]}"
     return None
 
+
 # USER INPUT VALIDATION
 def is_valid_user_input(user_input):  # type: (str) -> str
     """
@@ -81,6 +91,7 @@ def is_valid_user_input(user_input):  # type: (str) -> str
         return f"Valid tin: {user_input}"
     return "Invalid tin format."
 
+
 # USAGE EXAMPLES
 def example_usage():
     # Generate examples
@@ -92,6 +103,7 @@ def example_usage():
     user_input = input("Enter an Israeli tin (with or without symbols): ")
     print(is_valid_user_input(user_input))
     print(f"Formatted ID: {format_tin(user_input)}")
+
 
 # Run the example usage
 example_usage()

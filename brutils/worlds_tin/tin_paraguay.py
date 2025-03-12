@@ -1,8 +1,8 @@
-from random import randint, choice
-
+from random import randint
 
 # FORMATTING
 #############
+
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -47,7 +47,9 @@ def is_valid(tin):  # type: (str) -> bool
 
     expected_verifier = calculate_verifier_digit(base)
     if int(verifier) != expected_verifier:
-        print(f"Invalid tin: Expected verifier {expected_verifier}, got {verifier}.")
+        print(
+            f"Invalid tin: Expected verifier {expected_verifier}, got {verifier}."
+        )
         return False
 
     print("The tin is valid.")
@@ -70,7 +72,9 @@ def calculate_verifier_digit(base):  # type: (str) -> int
     weights = [2, 3, 4, 5, 6, 7]
     base_reversed = list(map(int, reversed(base)))
 
-    total = sum(d * weights[i % len(weights)] for i, d in enumerate(base_reversed))
+    total = sum(
+        d * weights[i % len(weights)] for i, d in enumerate(base_reversed)
+    )
     verifier = 11 - (total % 11)
 
     return verifier if verifier < 10 else 0  # Return 0 if verifier is 10
@@ -96,9 +100,9 @@ def format_tin(tin):  # type: (str) -> str
     return None
 
 
-
 # GENERATION
 #############
+
 
 def generate():  # type: () -> str
     """

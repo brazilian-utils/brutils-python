@@ -1,8 +1,8 @@
-from random import randint, choice
-
+from random import randint
 
 # FORMATTING
 #############
+
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -44,7 +44,9 @@ def is_valid(tin):  # type: (str) -> bool
         print("The tin is a valid Corporate Number (13 digits for businesses).")
         return True
     else:
-        print("The Japanese tin must have 12 digits for My Number (individuals) or 13 digits for Corporate Number (businesses).")
+        print(
+            "The Japanese tin must have 12 digits for My Number (individuals) or 13 digits for Corporate Number (businesses)."
+        )
         return False
 
 
@@ -52,7 +54,7 @@ def format_tin(tin):  # type: (str) -> str
     """
     Formats a Japanese tin (My Number or Corporate Number) for display.
 
-    This function adds dashes for better readability, commonly used in 
+    This function adds dashes for better readability, commonly used in
     Japanese documents.
 
     Args:
@@ -90,7 +92,9 @@ def generate():  # type: () -> str
     if randint(0, 1) == 0:
         return str(randint(100000000000, 999999999999))  # My Number (12 digits)
     else:
-        return str(randint(1000000000000, 9999999999999))  # Corporate Number (13 digits)
+        return str(
+            randint(1000000000000, 9999999999999)
+        )  # Corporate Number (13 digits)
 
 
 # USAGE EXAMPLE

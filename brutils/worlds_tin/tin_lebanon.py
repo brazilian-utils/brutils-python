@@ -1,8 +1,8 @@
-from random import randint, choice
-
+from random import randint
 
 # FORMAT AND VALIDATION FUNCTIONS
 #################################
+
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -63,8 +63,10 @@ def format_tin(tin):  # type: (str) -> str
 
     return f"{tin[:2]}.{tin[2:5]}.{tin[5:]}"
 
+
 # GENERATE FUNCTION
 ###################
+
 
 def generate_tin():  # type: () -> str
     """
@@ -82,16 +84,20 @@ def generate_tin():  # type: () -> str
     first_7_digits.append(checksum)
 
     # Combine digits into a string
-    return ''.join(map(str, first_7_digits))
+    return "".join(map(str, first_7_digits))
+
 
 # USAGE EXAMPLES
 ################
+
 
 def example_usage():
     # Generate a Lebanese tin
     generated_tin = generate_tin()
     formatted_tin = format_tin(generated_tin)
-    print(f"Generated tin: {formatted_tin} - Valid? {is_valid_tin(generated_tin)}")
+    print(
+        f"Generated tin: {formatted_tin} - Valid? {is_valid_tin(generated_tin)}"
+    )
 
     # Validate user input
     user_input = input("Enter a Lebanese tin: ")
@@ -99,6 +105,7 @@ def example_usage():
     if formatted_user_input:
         print(f"Formatted tin: {formatted_user_input}")
     print(is_valid_tin(user_input))
+
 
 # Run the example usage
 example_usage()

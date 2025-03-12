@@ -1,4 +1,5 @@
-from random import randint, choice
+from random import choice, randint
+
 
 # REMOVE SYMBOLS
 def remove_symbols(dirty_tin):  # type: (str) -> str
@@ -6,7 +7,7 @@ def remove_symbols(dirty_tin):  # type: (str) -> str
     Removes spaces, dots, and hyphens from the input string.
     """
     return "".join(filter(str.isalnum, dirty_tin))
-    
+
 
 # VALIDATE tin
 def is_valid(tin):  # type: (str) -> str
@@ -31,6 +32,7 @@ def letter_to_numeric(letter):  # type: (str) -> tuple[int, int]
     value = ord(letter.upper()) - 55  # A=10, B=11, ..., Z=35
     return divmod(value, 10)
 
+
 # CALCULATE CONTROL DIGIT
 def calculate_control_digit(tin):  # type: (str) -> int
     """
@@ -54,7 +56,7 @@ def format_tin(tin):  # type: (str) -> str
     if len(tin) != 10:
         return None
     return f"{tin[:1]}-{tin[1:9]}-{tin[9]}"
-    
+
 
 # GENERATE tin
 def generate():  # type: () -> str
@@ -74,7 +76,7 @@ def example_usage():
     # Generate a valid Taiwan tin
     tin = generate()
     print(f"Generated Taiwan tin: {format_tin(tin)} - Valid? {is_valid(tin)}")
-    
+
     # User input
     user_input = input("Enter your Taiwan tin (with or without formatting): ")
     print(is_valid(user_input))
@@ -83,6 +85,7 @@ def example_usage():
         print(f"Formatted Taiwan tin: {formatted_input}")
     else:
         print("Invalid Taiwan tin format.")
+
 
 # Run example
 example_usage()

@@ -1,7 +1,8 @@
-from random import randint, choice
+from random import randint
 
 # FORMAT AND VALIDATION FUNCTIONS
 #################################
+
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -67,7 +68,9 @@ def is_valid_trust_account_number(tan):  # type: (str) -> str
 
     if len(tan) == 9 and tan[0].upper() == "T" and tan[1:].isdigit():
         return "Valid Trust Account Number"
-    return "Invalid Trust Account Number: Format must be 'T' followed by 8 digits."
+    return (
+        "Invalid Trust Account Number: Format must be 'T' followed by 8 digits."
+    )
 
 
 def format_tin(tin):  # type: (str) -> str
@@ -97,7 +100,9 @@ def format_tin(tin):  # type: (str) -> str
 
     # Detect and format TAN
     if is_valid_trust_account_number(tin) == "Valid Trust Account Number":
-        return f"{tin[0]}-{tin[1:4]}-{tin[4:7]}-{tin[7:]}"  # Format: T-XXX-XXX-XX
+        return (
+            f"{tin[0]}-{tin[1:4]}-{tin[4:7]}-{tin[7:]}"  # Format: T-XXX-XXX-XX
+        )
 
     # Invalid tin
     return None
@@ -105,6 +110,7 @@ def format_tin(tin):  # type: (str) -> str
 
 # GENERATE FUNCTIONS
 ####################
+
 
 def generate_sin():  # type: () -> str
     """
@@ -139,6 +145,7 @@ def generate_trust_account_number():  # type: () -> str
 # USER INPUT AND VALIDATION
 ###########################
 
+
 def is_valid_user_input(user_input):  # type: (str) -> str
     """
     Validates a user input against SIN, BN, and Trust Account Number formats.
@@ -160,7 +167,10 @@ def is_valid_user_input(user_input):  # type: (str) -> str
         return f"Valid BN: {user_input}"
 
     # Check for Trust Account Number
-    if is_valid_trust_account_number(user_input) == "Valid Trust Account Number":
+    if (
+        is_valid_trust_account_number(user_input)
+        == "Valid Trust Account Number"
+    ):
         return f"Valid Trust Account Number: {user_input}"
 
     return "Invalid input format."
@@ -169,16 +179,23 @@ def is_valid_user_input(user_input):  # type: (str) -> str
 # USAGE EXAMPLES
 ################
 
+
 def example_usage():
     # Generate examples
     generated_sin = generate_sin()
-    print(f"Generated SIN: {format_tin(generated_sin)} - Valid? {is_valid_sin(generated_sin)}")
+    print(
+        f"Generated SIN: {format_tin(generated_sin)} - Valid? {is_valid_sin(generated_sin)}"
+    )
 
     generated_bn = generate_bn()
-    print(f"Generated BN: {format_tin(generated_bn)} - Valid? {is_valid_bn(generated_bn)}")
+    print(
+        f"Generated BN: {format_tin(generated_bn)} - Valid? {is_valid_bn(generated_bn)}"
+    )
 
     generated_tan = generate_trust_account_number()
-    print(f"Generated Trust Account Number: {format_tin(generated_tan)} - Valid? {is_valid_trust_account_number(generated_tan)}")
+    print(
+        f"Generated Trust Account Number: {format_tin(generated_tan)} - Valid? {is_valid_trust_account_number(generated_tan)}"
+    )
 
     # Validate user input
     user_input = input("Enter a number (SIN, BN, or Trust Account Number): ")
@@ -186,9 +203,13 @@ def example_usage():
     formatted_input = format_tin(user_input)
 
     if formatted_input:
-        print(f"Validation Result: {validation_result}. Formatted Input: {formatted_input}")
+        print(
+            f"Validation Result: {validation_result}. Formatted Input: {formatted_input}"
+        )
     else:
-        print(f"Validation Result: {validation_result}. Unable to format input.")
+        print(
+            f"Validation Result: {validation_result}. Unable to format input."
+        )
 
 
 # Run the example usage

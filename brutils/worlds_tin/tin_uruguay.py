@@ -1,8 +1,6 @@
-from random import randint, choice
-
-
 # FORMATTING
 #############
+
 
 def remove_symbols(dirty_tin):  # type: (str) -> str
     """
@@ -137,7 +135,6 @@ def format_tin(tin):  # type: (str) -> str
     elif len(tin) == 8:  # Identity Card Number
         return "{}.{}-{}".format(tin[:1], tin[1:7], tin[7:])
     return None
-
 
 
 def generate_rut():  # type: () -> str
