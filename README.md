@@ -164,7 +164,7 @@ Exemplo:
 
 ### example_usage
 
-Generate valid Anguilla TIN for individuals and companies, analisa o input do usuário, além de formatá-los.
+Gera TIN válido aleatoriamente como exemplo para pessoas físicas e jurídicas, analisa o input do usuário, além de formatá-los.
 
 Argumentos:
 
