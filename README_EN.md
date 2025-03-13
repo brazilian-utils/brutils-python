@@ -148,11 +148,11 @@ Example:
 
 ### generate
 
-Generates a valid Anguilla TIN.
+Generates a valid TIN.
 
 Args:
 
-- tin (str): Generates a valid Anguilla TIN.
+- tin (str): Generates a valid TIN.
 
 Returns:
 
@@ -169,7 +169,7 @@ Example:
 
 ### example_usage
 
-Generate valid Anguilla TIN for individuals and companies, parsing user input and formatting it.
+Generates random valid TIN as an example for individuals and legal entities, analyzes user input, and formats them.
 
 Arguments:
 
