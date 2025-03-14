@@ -1,45 +1,51 @@
 from typing import List, Literal, Optional, TypedDict
 
-from brutils.data.enums import UF, CODE_TO_UF
+from brutils.data.enums import CODE_TO_UF, UF
 
 
 class Porte(TypedDict):
     """
     Company size classification information.
-    
+
     Args:
         id: Size classification code.
         descricao: Size classification description (e.g., "Micro Empresa").
     """
+
     id: str
     descricao: str
+
 
 class NaturezaJuridica(TypedDict):
     """
     Legal nature of the company.
-    
+
     Args:
         id: Legal nature code.
         descricao: Legal nature description (e.g., "Sociedade Empresária Limitada").
     """
+
     id: str
     descricao: str
+
 
 class QualificacaoResponsavel(TypedDict):
     """
     Qualification of the company's responsible person.
-    
+
     Args:
         id: Qualification code.
         descricao: Qualification description (e.g., "Sócio-Administrador").
     """
+
     id: int
     descricao: str
+
 
 class Pais(TypedDict):
     """
     Country information.
-    
+
     Args:
         id: Country ID.
         iso2: ISO 3166-1 alpha-2 code.
@@ -47,27 +53,31 @@ class Pais(TypedDict):
         nome: Country name.
         comex_id: Foreign trade ID.
     """
+
     id: str
     iso2: str
     iso3: str
     nome: str
     comex_id: str
 
+
 class QualificacaoSocio(TypedDict):
     """
     Partner qualification information.
-    
+
     Args:
         id: Qualification code.
         descricao: Qualification description.
     """
+
     id: int
     descricao: str
+
 
 class Socio(TypedDict):
     """
     Company partner/shareholder information.
-    
+
     Args:
         cpf_cnpj_socio: Partially masked partner's CPF (individual) or CNPJ (company).
         nome: Partner's name.
@@ -82,6 +92,7 @@ class Socio(TypedDict):
         qualificacao_representante: Representative's qualification (if applicable).
         pais: Country information.
     """
+
     cpf_cnpj_socio: str
     nome: str
     tipo: str
@@ -95,10 +106,11 @@ class Socio(TypedDict):
     qualificacao_representante: Optional[str]
     pais: Pais
 
+
 class Simples(TypedDict):
     """
     Information about the company's participation in Simples Nacional tax regime.
-    
+
     Args:
         simples: Whether the company is in Simples Nacional.
         data_opcao_simples: Date the company opted into Simples Nacional.
@@ -108,6 +120,7 @@ class Simples(TypedDict):
         data_exclusao_mei: Date the company left MEI status.
         atualizado_em: Last update timestamp.
     """
+
     simples: Literal["Sim", "Não"]
     data_opcao_simples: Optional[str]
     data_exclusao_simples: Optional[str]
@@ -116,10 +129,11 @@ class Simples(TypedDict):
     data_exclusao_mei: Optional[str]
     atualizado_em: str
 
+
 class AtividadeEconomica(TypedDict):
     """
     Economic activity classification.
-    
+
     Args:
         id: CNAE (National Classification of Economic Activities) code.
         secao: CNAE section.
@@ -129,6 +143,7 @@ class AtividadeEconomica(TypedDict):
         subclasse: CNAE subclass.
         descricao: Activity description.
     """
+
     id: str
     secao: str
     divisao: str
@@ -137,40 +152,45 @@ class AtividadeEconomica(TypedDict):
     subclasse: str
     descricao: str
 
+
 class Estado(TypedDict):
     """
     Brazilian state information.
-    
+
     Args:
         id: State ID.
         nome: State name.
         sigla: State abbreviation.
         ibge_id: IBGE (Brazilian Institute of Geography and Statistics) code.
     """
+
     id: int
     nome: Literal[tuple(UF.values)]
     sigla: Literal[tuple(UF.names)]
     ibge_id: Literal[tuple(CODE_TO_UF.values)]
 
+
 class Cidade(TypedDict):
     """
     City information.
-    
+
     Args:
         id: City ID.
         nome: City name.
         ibge_id: IBGE code.
         siafi_id: SIAFI (Integrated System of Financial Administration) code.
     """
+
     id: int
     nome: str
     ibge_id: int
     siafi_id: str
 
+
 class Estabelecimento(TypedDict):
     """
     Establishment information (physical location of the company).
-    
+
     Args:
         cnpj: Full CNPJ number.
         atividades_secundarias: List of secondary economic activities.
@@ -206,6 +226,7 @@ class Estabelecimento(TypedDict):
         motivo_situacao_cadastral: Reason for current registration status.
         inscricoes_estaduais: State registration numbers.
     """
+
     cnpj: str
     atividades_secundarias: List[AtividadeEconomica]
     cnpj_raiz: str
@@ -240,10 +261,11 @@ class Estabelecimento(TypedDict):
     motivo_situacao_cadastral: Optional[str]
     inscricoes_estaduais: List[str]
 
+
 class CnpjData(TypedDict):
     """
     Complete data for a company registered in the Brazilian Federal Revenue system.
-    
+
     Args:
         cnpj_raiz: Base CNPJ (first 8 digits).
         razao_social: Company's official registered name.
@@ -257,6 +279,7 @@ class CnpjData(TypedDict):
         simples: Simples Nacional tax regime information.
         estabelecimento: Physical establishment information.
     """
+
     cnpj_raiz: str
     razao_social: str
     capital_social: str

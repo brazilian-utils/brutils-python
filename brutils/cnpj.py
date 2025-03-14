@@ -267,6 +267,7 @@ def _checksum(basenum):  # type: (str) -> str
     verifying_digits += str(_hashdigit(basenum + verifying_digits, 14))
     return verifying_digits
 
+
 def get_cnpj_information(cnpj, raise_exceptions=False):  # type: (str, bool) -> CnpjData | None
     """
     Fetches company information from a given CNPJ (Brazilian Company
@@ -275,7 +276,7 @@ def get_cnpj_information(cnpj, raise_exceptions=False):  # type: (str, bool) -> 
     Args:
         cnpj (str): The CNPJ to be checked.
         raise_exceptions (bool, optional): Whether to raise exceptions when the CNPJ is invalid or not found. Defaults to False.
-        
+
     Raises:
         InvalidCNPJ: When the given CNPJ is not valid.
         CNPJNotFound: When the given CNPJ is not found in the database.
@@ -283,7 +284,7 @@ def get_cnpj_information(cnpj, raise_exceptions=False):  # type: (str, bool) -> 
     Returns:
         CnpjData: A dictionary containing the company information fetched from the
               ReceitaWS API.
-              
+
     Example:
         >>> get_cnpj_information("42.064.856/0001-70")
         {
@@ -469,29 +470,29 @@ def get_cnpj_information(cnpj, raise_exceptions=False):  # type: (str, bool) -> 
                 },
                 'motivo_situacao_cadastral': None,
                 'inscricoes_estaduais': [
-                
+
                 ]
             }
             }
     """
     base_api_url = "https://publica.cnpj.ws/cnpj/{}"
-    
+
     clean_cnpj = remove_symbols(cnpj)
     cnpj_is_valid = is_valid(clean_cnpj)
-    
+
     if not cnpj_is_valid:
         if raise_exceptions:
             raise InvalidCNPJ(cnpj)
 
         return None
-    
+
     try:
         with urlopen(base_api_url.format(clean_cnpj)) as f:
             response = f.read()
             data = loads(response)
 
             return CnpjData(**data)
-        
+
     except HTTPError as e:
         if raise_exceptions:
             if e.code == 400:
@@ -499,7 +500,7 @@ def get_cnpj_information(cnpj, raise_exceptions=False):  # type: (str, bool) -> 
 
             elif e.code == 404:
                 raise CNPJNotFound(cnpj) from e
-            
+
             raise e
 
         return None

@@ -51,6 +51,7 @@ False
   - [format\_cnpj](#format_cnpj)
   - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
   - [generate\_cnpj](#generate_cnpj)
+  - [get\_cnpj\_information](#get_cnpj_information)
 - [CEP](#cep)
   - [is\_valid\_cep](#is_valid_cep)
   - [format\_cep](#format_cep)
@@ -287,6 +288,214 @@ Exemplo:
 '34665388000161'
 >>> generate_cnpj(1234)
 "01745284123455"
+```
+
+### get_cnpj_information
+
+Obtém informações da empresa de um determinado CNPJ usando a API CNPJws.
+
+Args:
+
+- cnpj (str): O CNPJ a ser checado.
+- raise_exceptions (bool, opcional): Se deve gerar exceções quando o CNPJ for inválido ou não encontrado. O padrão é False.
+
+Returns:
+
+- CnpjData: Um dicionário contendo as informações da empresa obtidas da API ReceitaWS.
+
+Example:
+
+```python
+>>> from brutils import get_cnpj_information
+>>> get_cnpj_information("42.064.856/0001-70")
+{
+  'cnpj_raiz': '42064856',
+  'razao_social': 'C D TIRABASSI JUNIOR TECNOLOGIA DA INFORMACAO LTDA',
+  'capital_social': '1000.00',
+  'responsavel_federativo': '',
+  'atualizado_em': '2025-02-08T03:00:00.000Z',
+  'porte': {
+      'id': '01',
+      'descricao': 'Micro Empresa'
+  },
+  'natureza_juridica': {
+      'id': '2062',
+      'descricao': 'Sociedade Empresária Limitada'
+  },
+  'qualificacao_do_responsavel': {
+      'id': 49,
+      'descricao': 'Sócio-Administrador '
+  },
+  'socios': [
+      {
+      'cpf_cnpj_socio': '***529958**',
+      'nome': 'CARLOS DONIZETE TIRABASSI JUNIOR',
+      'tipo': 'Pessoa Física',
+      'data_entrada': '2021-05-24',
+      'cpf_representante_legal': '***000000**',
+      'nome_representante': None,
+      'faixa_etaria': '31 a 40 anos',
+      'atualizado_em': '2025-02-08T03:00:00.000Z',
+      'pais_id': '1058',
+      'qualificacao_socio': {
+          'id': 49,
+          'descricao': 'Sócio-Administrador '
+      },
+      'qualificacao_representante': None,
+      'pais': {
+          'id': '1058',
+          'iso2': 'BR',
+          'iso3': 'BRA',
+          'nome': 'Brasil',
+          'comex_id': '105'
+      }
+      }
+  ],
+  'simples': {
+      'simples': 'Sim',
+      'data_opcao_simples': '2021-05-24',
+      'data_exclusao_simples': None,
+      'mei': 'Não',
+      'data_opcao_mei': None,
+      'data_exclusao_mei': None,
+      'atualizado_em': '2025-02-08T03:00:00.000Z'
+  },
+  'estabelecimento': {
+      'cnpj': '42064856000170',
+      'atividades_secundarias': [
+      {
+          'id': '6201501',
+          'secao': 'J',
+          'divisao': '62',
+          'grupo': '62.0',
+          'classe': '62.01-5',
+          'subclasse': '6201-5/01',
+          'descricao': 'Desenvolvimento de programas de computador sob encomenda'
+      },
+      {
+          'id': '6201502',
+          'secao': 'J',
+          'divisao': '62',
+          'grupo': '62.0',
+          'classe': '62.01-5',
+          'subclasse': '6201-5/02',
+          'descricao': 'Web desing'
+      },
+      {
+          'id': '6202300',
+          'secao': 'J',
+          'divisao': '62',
+          'grupo': '62.0',
+          'classe': '62.02-3',
+          'subclasse': '6202-3/00',
+          'descricao': 'Desenvolvimento e licenciamento de programas de computador customizáveis'
+      },
+      {
+          'id': '6204000',
+          'secao': 'J',
+          'divisao': '62',
+          'grupo': '62.0',
+          'classe': '62.04-0',
+          'subclasse': '6204-0/00',
+          'descricao': 'Consultoria em tecnologia da informação'
+      },
+      {
+          'id': '6209100',
+          'secao': 'J',
+          'divisao': '62',
+          'grupo': '62.0',
+          'classe': '62.09-1',
+          'subclasse': '6209-1/00',
+          'descricao': 'Suporte técnico, manutenção e outros serviços em tecnologia da informação'
+      },
+      {
+          'id': '6311900',
+          'secao': 'J',
+          'divisao': '63',
+          'grupo': '63.1',
+          'classe': '63.11-9',
+          'subclasse': '6311-9/00',
+          'descricao': 'Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na Internet'
+      },
+      {
+          'id': '6319400',
+          'secao': 'J',
+          'divisao': '63',
+          'grupo': '63.1',
+          'classe': '63.19-4',
+          'subclasse': '6319-4/00',
+          'descricao': 'Portais, provedores de conteúdo e outros serviços de informação na Internet'
+      },
+      {
+          'id': '8599603',
+          'secao': 'P',
+          'divisao': '85',
+          'grupo': '85.9',
+          'classe': '85.99-6',
+          'subclasse': '8599-6/03',
+          'descricao': 'Treinamento em informática'
+      }
+      ],
+      'cnpj_raiz': '42064856',
+      'cnpj_ordem': '0001',
+      'cnpj_digito_verificador': '70',
+      'tipo': 'Matriz',
+      'nome_fantasia': 'BITIZE',
+      'situacao_cadastral': 'Ativa',
+      'data_situacao_cadastral': '2021-05-24',
+      'data_inicio_atividade': '2021-05-24',
+      'nome_cidade_exterior': None,
+      'tipo_logradouro': 'RUA',
+      'logradouro': 'EUGENIO RABELLO',
+      'numero': '98',
+      'complemento': None,
+      'bairro': 'JARDIM EMBAIXADOR',
+      'cep': '18040436',
+      'ddd1': '41',
+      'telefone1': '96869828',
+      'ddd2': None,
+      'telefone2': None,
+      'ddd_fax': None,
+      'fax': None,
+      'email': 'meucnpj@contabilizei.com.br',
+      'situacao_especial': None,
+      'data_situacao_especial': None,
+      'atualizado_em': '2025-02-08T03:00:00.000Z',
+      'atividade_principal': {
+      'id': '6203100',
+      'secao': 'J',
+      'divisao': '62',
+      'grupo': '62.0',
+      'classe': '62.03-1',
+      'subclasse': '6203-1/00',
+      'descricao': 'Desenvolvimento e licenciamento de programas de computador não customizáveis'
+      },
+      'pais': {
+      'id': '1058',
+      'iso2': 'BR',
+      'iso3': 'BRA',
+      'nome': 'Brasil',
+      'comex_id': '105'
+      },
+      'estado': {
+      'id': 26,
+      'nome': 'São Paulo',
+      'sigla': 'SP',
+      'ibge_id': 35
+      },
+      'cidade': {
+      'id': 3851,
+      'nome': 'Sorocaba',
+      'ibge_id': 3552205,
+      'siafi_id': '7145'
+      },
+      'motivo_situacao_cadastral': None,
+      'inscricoes_estaduais': [
+      
+      ]
+  }
+  }
+
 ```
 
 ## CEP

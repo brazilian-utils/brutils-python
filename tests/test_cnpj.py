@@ -1,12 +1,16 @@
 from unittest import TestCase, main
 from unittest.mock import patch
+from urllib.error import HTTPError
 
 from brutils.cnpj import (
+    CNPJNotFound,
+    InvalidCNPJ,
     _checksum,
     _hashdigit,
     display,
     format_cnpj,
     generate,
+    get_cnpj_information,
     is_valid,
     remove_symbols,
     sieve,
@@ -107,6 +111,128 @@ class TestIsValidToFormat(TestCase):
 
         # When cnpj isn't valid, returns None
         self.assertIsNone(format_cnpj("01838723000127"))
+
+
+@patch("brutils.cnpj.urlopen")
+class TestCNPJAPICalls(TestCase):
+    @patch("brutils.cnpj.loads")
+    def test_get_cnpj_information_success(self, mock_loads, mock_urlopen):
+        mock_data = {
+            "cnpj_raiz": "42064856",
+            "razao_social": "C D TIRABASSI JUNIOR TECNOLOGIA DA INFORMACAO LTDA",
+            "estabelecimento": {"nome_fantasia": "BITIZE"},
+        }
+        mock_loads.return_value = mock_data
+
+        result = get_cnpj_information("42.064.856/0001-70", True)
+        self.assertEqual(result["cnpj_raiz"], "42064856")
+        self.assertEqual(
+            result["razao_social"],
+            "C D TIRABASSI JUNIOR TECNOLOGIA DA INFORMACAO LTDA",
+        )
+
+    def test_get_cnpj_information_invalid_cnpj_not_raise(self, mock_urlopen):
+        self.assertIsNone(get_cnpj_information("invalid_cnpj"))
+
+    def test_get_cnpj_information_invalid_cnpj_raise_exception(
+        self, mock_urlopen
+    ):
+        with self.assertRaises(InvalidCNPJ):
+            get_cnpj_information("invalid_cnpj", True)
+
+    def test_get_cnpj_information_http_400_not_raise(self, mock_urlopen):
+        http_error = HTTPError(
+            url="https://publica.cnpj.ws/cnpj/42064856000170",
+            code=400,
+            msg="Bad Request",
+            hdrs={},
+            fp=None,
+        )
+        mock_urlopen.side_effect = http_error
+
+        self.assertIsNone(get_cnpj_information("42.064.856/0001-70"))
+
+    def test_get_cnpj_information_http_400_raise_exception(self, mock_urlopen):
+        http_error = HTTPError(
+            url="https://publica.cnpj.ws/cnpj/42064856000170",
+            code=400,
+            msg="Bad Request",
+            hdrs={},
+            fp=None,
+        )
+        mock_urlopen.side_effect = http_error
+
+        with self.assertRaises(InvalidCNPJ):
+            get_cnpj_information("42.064.856/0001-70", True)
+
+    def test_get_cnpj_information_http_404_not_raise(self, mock_urlopen):
+        http_error = HTTPError(
+            url="https://publica.cnpj.ws/cnpj/42064856000170",
+            code=404,
+            msg="Not Found",
+            hdrs={},
+            fp=None,
+        )
+        mock_urlopen.side_effect = http_error
+
+        self.assertIsNone(get_cnpj_information("42.064.856/0001-70"))
+
+    def test_get_cnpj_information_http_404_raise_exception(self, mock_urlopen):
+        http_error = HTTPError(
+            url="https://publica.cnpj.ws/cnpj/42064856000170",
+            code=404,
+            msg="Not Found",
+            hdrs={},
+            fp=None,
+        )
+        mock_urlopen.side_effect = http_error
+
+        with self.assertRaises(CNPJNotFound):
+            get_cnpj_information("42.064.856/0001-70", True)
+
+    def test_get_cnpj_information_other_http_error_not_raise(
+        self, mock_urlopen
+    ):
+        http_error = HTTPError(
+            url="https://publica.cnpj.ws/cnpj/42064856000170",
+            code=500,
+            msg="Internal Server Error",
+            hdrs={},
+            fp=None,
+        )
+        mock_urlopen.side_effect = http_error
+
+        self.assertIsNone(get_cnpj_information("42.064.856/0001-70"))
+
+    def test_get_cnpj_information_other_http_error_raise_exception(
+        self, mock_urlopen
+    ):
+        http_error = HTTPError(
+            url="https://publica.cnpj.ws/cnpj/42064856000170",
+            code=500,
+            msg="Internal Server Error",
+            hdrs={},
+            fp=None,
+        )
+        mock_urlopen.side_effect = http_error
+
+        with self.assertRaises(HTTPError):
+            get_cnpj_information("42.064.856/0001-70", True)
+
+    def test_get_cnpj_information_generic_exception_not_raise(
+        self, mock_urlopen
+    ):
+        mock_urlopen.side_effect = Exception("Generic error")
+
+        self.assertIsNone(get_cnpj_information("42.064.856/0001-70"))
+
+    def test_get_cnpj_information_generic_exception_raise_exception(
+        self, mock_urlopen
+    ):
+        mock_urlopen.side_effect = Exception("Generic error")
+
+        with self.assertRaises(CNPJNotFound):
+            get_cnpj_information("42.064.856/0001-70", True)
 
 
 if __name__ == "__main__":
