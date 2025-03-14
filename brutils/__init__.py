@@ -89,6 +89,7 @@ __all__ = [
     "generate_cnpj",
     "is_valid_cnpj",
     "remove_symbols_cnpj",
+    "get_cnpj_information",
     # CPF
     "format_cpf",
     "generate_cpf",
