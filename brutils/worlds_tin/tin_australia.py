@@ -61,7 +61,7 @@ def is_valid_abn(abn):  # type: (str) -> str
     if checksum % 89 == 0:
         return "Valid ABN"
     return "Invalid ABN: Failed checksum validation."
-    
+
 
 # FORMAT FUNCTIONS
 def format_tfn(tfn):  # type: (str) -> str
@@ -97,7 +97,7 @@ def format_abn(abn):  # type: (str) -> str
     if is_valid_abn(abn) == "Valid ABN":
         return f"{abn[:2]} {abn[2:5]} {abn[5:8]} {abn[8:]}"
     return None
-    
+
 
 # GENERATE FUNCTIONS
 def generate_tfn():  # type: () -> str
