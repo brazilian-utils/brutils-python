@@ -2,12 +2,13 @@ from unittest import TestCase, main
 from unittest.mock import patch
 
 from tin_australia import (
-    format_tfn,
-    generate_abn,
-    generate_tfn,
-    is_valid_abn,
-    is_valid_tfn,
     remove_symbols,
+    is_valid_tfn,
+    is_valid_abn,
+    format_tfn,
+    format_abn,
+    generate_tfn,
+    generate_abn,
 )
 
 
@@ -19,24 +20,13 @@ class TestTFNABN(TestCase):
 
     def test_is_valid_tfn(self):
         self.assertEqual(is_valid_tfn("123456782"), "Valid TFN")
-        self.assertEqual(
-            is_valid_tfn("12345678"), "Invalid TFN: Failed checksum validation."
-        )
-        self.assertEqual(
-            is_valid_tfn("A23456789"),
-            "Invalid TFN: Must be 8 or 9 numeric digits.",
-        )
+        self.assertEqual(is_valid_tfn("12345678"), "Invalid TFN: Failed checksum validation.")
+        self.assertEqual(is_valid_tfn("A23456789"), "Invalid TFN: Must be 8 or 9 numeric digits.")
 
     def test_is_valid_abn(self):
         self.assertEqual(is_valid_abn("51824753556"), "Valid ABN")
-        self.assertEqual(
-            is_valid_abn("12345678901"),
-            "Invalid ABN: Failed checksum validation.",
-        )
-        self.assertEqual(
-            is_valid_abn("A2345678901"),
-            "Invalid ABN: Must be exactly 11 numeric digits.",
-        )
+        self.assertEqual(is_valid_abn("12345678901"), "Invalid ABN: Failed checksum validation.")
+        self.assertEqual(is_valid_abn("A2345678901"), "Invalid ABN: Must be exactly 11 numeric digits.")
 
     def test_generate_tfn(self):
         for _ in range(100):
@@ -52,12 +42,13 @@ class TestTFNABN(TestCase):
     def test_format_tfn(self, mock_is_valid_tfn):
         mock_is_valid_tfn.return_value = "Valid TFN"
         self.assertEqual(format_tfn("123456782"), "12 345 6782")
+        self.assertIsNone(format_tfn("123"))
 
-    def test_format_tin(self, mock_is_valid):
-        mock_is_valid.return_value = "Valid Anguilla TIN"
-        self.assertEqual(format_tin("AB12345678"), "AB-12345678")
-        self.assertEqual(format_tin("ABC1234567"), "ABC-1234567")
-        self.assertIsNone(format_tin("A123"))
+    @patch("tin_australia.is_valid_abn")
+    def test_format_abn(self, mock_is_valid_abn):
+        mock_is_valid_abn.return_value = "Valid ABN"
+        self.assertEqual(format_abn("51824753556"), "51 824 753 556")
+        self.assertIsNone(format_abn("123"))
 
 
 if __name__ == "__main__":
