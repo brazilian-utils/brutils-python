@@ -46,7 +46,7 @@ False
   - [is\_valid\_individual](#is_valid_individual)
   - [is\_valid\_company](#is_valid_company)
   - [is\_valid](#is_valid)
-  - [format\_tin](#generate)
+  - [format\_tin](#format_tin)
   - [generate](#generate)
   - [example\_usage](#example_usage)
 
@@ -71,7 +71,7 @@ Valida o TIN da pessoa física (cidadão / indivíduo) para garantir que esteja 
 
 Argumentos:
 
-- tin (str): Um string com 10 caracteres, sendo os 2 primeiros letras e os demais dígitos.
+- tin (str): Uma string com 10 caracteres, sendo os 2 primeiros letras e os demais dígitos.
 
 Retorna:
 
@@ -91,7 +91,7 @@ Valida o TIN da pessoa jurírica (empresa) para garantir que esteja dentro das e
 
 Argumentos:
 
-- tin (str): Um string entre 10 e 12 caracteres, com letras e dígitos.
+- tin (str): Uma string entre 10 e 12 caracteres, com letras e dígitos.
 
 Retorna:
 
