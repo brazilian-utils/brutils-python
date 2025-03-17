@@ -46,7 +46,7 @@ False
   - [is\_valid\_individual](#is_valid_individual)
   - [is\_valid\_company](#is_valid_company)
   - [is\_valid](#is_valid)
-  - [format\_tin](#generate)
+  - [format\_tin](#format_tin)
   - [generate](#generate)
   - [example\_usage](#example_usage)
 
