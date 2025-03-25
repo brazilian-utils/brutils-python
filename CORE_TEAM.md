@@ -1,7 +1,7 @@
 <div align="center">
 <h1>🇧🇷 Core Team brutils-python</h1>
 </div>
-
+hola!
 O _Core Team_ do `brazilian-utils/brutils-python` é composto por um conjunto de colaboradores que manifestaram um entusiasmo notável pelo projeto e pela comunidade. Essa equipe possui privilégios administrativos no GitHub específicos para o repositório.
 
 ## Responsabilidades
@@ -32,4 +32,3 @@ O procedimento para incorporar novos membros ao _Core Team_ `brutils-python`  é
 * Um integrante já existente da equipe entra em contato de forma privada para averiguar o interesse da pessoa. Se houver interesse, é aberto um pull request adicionando o novo membro à lista.
 
 * Os outros integrantes da equipe revisam o pull request. A pessoa responsável por efetuar o merge no PR é também encarregada de incluir o novo membro no grupo Core Team no GitHub.
-
