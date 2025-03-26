@@ -41,7 +41,7 @@ False
 
 # Utilities
 
-- [TIN Australia](#tin_Australia)
+- [TIN Australia](#tin_australia)
   - [remove\_symbols](#remove_symbols)
   - [is\_valid\_tfn](#is_valid_tfn)
   - [is\_valid\_abn](#is_valid_abn)
