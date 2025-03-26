@@ -42,17 +42,17 @@ False
 # Utilitários
 
 
-- [TIN Australia](#tin_Australia)
+- [TIN United States](#tin_united_states_of_america)
   - [remove\_symbols](#remove_symbols)
-  - [is\_valid\_tfn](#is_valid_tfn)
-  - [is\_valid\_abn](#is_valid_abn)
-  - [format\_tfn](#format_tfn)
-  - [format\_abn](#format_abn)
-  - [generate\_tfn](#generate_tfn)
-  - [generate\_abn](#generate_abn)
+  - [is\_valid\_ssn](#is_valid_ssn)
+  - [is\_valid\_ein](#is_valid_ein)
+  - [format\_ssn](#format_ssn)
+  - [format\_ein](#format_ein)
+  - [generate\_ssn](#generate_ssn)
+  - [generate\_ein](#generate_ein)
   - [example\_usage](#example_usage)
 
-## NIF Austrália
+## NIF Estados Unidos
 
 ### remove_symbols
 
@@ -60,20 +60,20 @@ Remove espaços, pontos e hifens da sequência de entrada (input) dado pelo usu�
 
 Argumentos:
 
-- tin (str): O TIN (NIF) a ser validado, uma string de 8 a 11 dígitos (números). 
+- tin (str): O TIN (NIF) a ser validado, uma string de 9 dígitos (números). 
 
 Retorna:
 
 - bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
           Falso caso contrário.
 
-### is_valid_tfn
+### is_valid_ssn
 
-Australian Tax File Number (TFN). Valida o TIN da pessoa física (cidadão / indivíduo) para garantir que esteja dentro das especificações do país passadas como parâmetros!
+Social Security Number (SSN). Valida o TIN da pessoa física (cidadão / indivíduo) para garantir que esteja dentro das especificações do país passadas como parâmetros!
 
 Argumentos:
 
-- tin (str): Uma string com 8 ou 9 dígitos (1 dígito de verificação).
+- tin (str): Uma string com 9 dígitos.
 
 Retorna:
 
@@ -82,18 +82,18 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import is_valid_tfn
->>> is_valid_tfn("123 456 789") => 'Valid Australia TIN'
->>> is_valid_tfn("1230 456 789") => 'Invalid Australia TIN'
+>>> from tin_united_states_of_america import is_valid_ssn
+>>> is_valid_ssn("123 45 6789") => 'Valid United States TIN'
+>>> is_valid_ssn("1230 456 789") => 'Invalid United States TIN'
 ```
 
-### is_valid_abn
+### is_valid_ein
 
-Australian Business Number (ABN) - Valida o TIN da pessoa jurírica (empresa) para garantir que esteja dentro das especificações do país passadas como parâmetros!
+Employer Identification Number (EIN) - Valida o TIN da pessoa jurírica (empresa) para garantir que esteja dentro das especificações do país passadas como parâmetros!
 
 Argumentos:
 
-- tin (str): Uma string de 11 dígitos (2 dígitos de verificação).
+- tin (str): Uma string de 9 dígitos.
 
 Retorna:
 
@@ -102,14 +102,14 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import is_valid_abn
->>> is_valid_abn("12 345 678 901") => 'Valid Australia TIN'
->>> is_valid_abn("120 345 678 901") => 'Invalid Australia TIN'
+>>> from tin_united_states_of_america import is_valid_ein
+>>> is_valid_ein("12-3456789") => 'Valid United States TIN'
+>>> is_valid_ein("120-3456789") => 'Invalid United States TIN'
 ```
 
-### format_tfn
+### format_ssn
 
-Australian Tax File Number (TFN) - Formata um TIN para exibição.
+Social Security Number (SSN) - Formata um TIN para exibição.
 
 Args:
 
@@ -122,13 +122,13 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import format_tfn
->>> format_tfn("123456789") => ("123 456 789")
+>>> from tin_united_states_of_america import format_ssn
+>>> format_ssn("123456789") => ("123 45 6789")
 ```
 
-### format_abn
+### format_ein
 
-Australian Business Number (ABN) - Formata um TIN para exibição.
+Employer Identification Number (EIN) - Formata um TIN para exibição.
 
 Args:
 
@@ -140,18 +140,18 @@ Retorna:
 
 Exemplo:
 ```python
->>> from tin_Australia import format_abn
->>> format_abn("12345678901") => ("12 345 678 901")
+>>> from tin_united_states_of_america import format_ein
+>>> format_ein("123456789") => ("12-3456789")
 ```
 
 
-### generate_tfn
+### generate_ssn
 
-Australian Tax File Number (TFN) - Gera um TIN de Australia válido.
+Social Security Number (SSN) - Gera um TIN válido.
 
 Args:
 
-- tin (str): Gera um TIN de Australia válido.
+- tin (str): Gera um TIN válido.
 
 Retorna:
 
@@ -160,19 +160,19 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import generate_tfn
->>> generate_tfn("123 456 789") => 'Valid Australia TIN'
->>> generate_tfn("1230 456 789") => 'Invalid Australia TIN'
+>>> from tin_united_states_of_america import generate_ssn
+>>> generate_ssn("123 45 6789") => 'Valid United States TIN'
+>>> generate_ssn("1230 456 789") => 'Invalid United States TIN'
 ```
 
 
-### generate_abn
+### generate_ein
 
-Australian Business Number (ABN) - Gera um TIN de Australia válido.
+Employer Identification Number (EIN) - Gera um TIN válido.
 
 Args:
 
-- tin (str): Gera um TIN de Australia válido.
+- tin (str): Gera um TIN válido.
 
 Retorna:
 
@@ -181,9 +181,9 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import generate_abn
->>> generate_abn("12 345 678 901") => 'Valid Australia TIN'
->>> generate_abn("120 345 678 901") => 'Invalid Australia TIN'
+>>> from tin_united_states_of_america import generate_ein
+>>> generate_ein("12-3456789") => 'Valid United States TIN'
+>>> generate_ein("120-3456789") => 'Invalid United States TIN'
 ```
 
 
@@ -202,16 +202,16 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import example_usage
->>> tin_tfn("123456789") => 'Valid Australia TIN tfn'
->>> tin_abn("12345678901") => 'Valid Australia TIN abn'
+>>> from tin_united_states_of_america import example_usage
+>>> tin_ssn("123456789") => 'Valid United States TIN ssn'
+>>> tin_ein("123456789") => 'Valid United States TIN ein'
 
->>> is_valid(tin_tfn) => 'Valid Australia TIN abn'
->>> is_valid(tin_abn) => 'Valid Australia TIN abn'
+>>> is_valid(tin_ssn) => 'Valid United States TIN ein'
+>>> is_valid(tin_ein) => 'Valid United States TIN ein'
 
->>> is_valid(user_input)("36485987125") => 'Valid input - Australia TIN abn'
+>>> is_valid(user_input)("254789654") => 'Valid input - United States TIN ein'
 
->>> formatted_input = format_tin(user_input) => ("36 485 987 125")
+>>> formatted_input = format_tin(user_input) => ("25-4789654")
 ```
 
 ---
