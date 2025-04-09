@@ -1,10 +1,11 @@
 import unittest
+
 from tin_venezuela import (
-    remove_symbols,
-    is_valid_tin,
+    _calculate_digit,
     format_tin,
     generate,
-    _calculate_digit,
+    is_valid,
+    remove_symbols,
 )
 
 
@@ -17,19 +18,19 @@ class TestVenezuelanTIN(unittest.TestCase):
 
     def test_valid_tin(self):
         valid_tin = generate()
-        self.assertTrue(is_valid_tin(valid_tin))
+        self.assertTrue(is_valid(valid_tin))
 
     def test_invalid_tin_structure(self):
-        self.assertFalse(is_valid_tin("X12345678"))  # Invalid prefix
-        self.assertFalse(is_valid_tin("V1234A6789"))  # Non-digit character
-        self.assertFalse(is_valid_tin("V123"))  # Too short
-        self.assertFalse(is_valid_tin("V1234567890"))  # Too long
+        self.assertFalse(is_valid("X12345678"))  # Invalid prefix
+        self.assertFalse(is_valid("V1234A6789"))  # Non-digit character
+        self.assertFalse(is_valid("V123"))  # Too short
+        self.assertFalse(is_valid("V1234567890"))  # Too long
 
     def test_invalid_check_digit(self):
         valid_base = "V12345678"
         wrong_digit = (_calculate_digit(valid_base) + 1) % 10
         invalid_tin = valid_base + str(wrong_digit)
-        self.assertFalse(is_valid_tin(invalid_tin))
+        self.assertFalse(is_valid(invalid_tin))
 
     def test_format_tin(self):
         self.assertEqual(format_tin("V123456789"), "V-12345678-9")
@@ -47,7 +48,7 @@ class TestVenezuelanTIN(unittest.TestCase):
     def test_generate_produces_valid_tin(self):
         for _ in range(10):
             tin = generate()
-            self.assertTrue(is_valid_tin(tin))
+            self.assertTrue(is_valid(tin))
 
 
 if __name__ == "__main__":

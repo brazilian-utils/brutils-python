@@ -15,7 +15,7 @@ def remove_symbols(dirty_tin):  # type: (str) -> str
 # VALIDATION
 #############
 
-def is_valid_tin(tin):  # type: (str) -> bool
+def is_valid(tin):  # type: (str) -> bool
     """
     Validates a Venezuelan tin based on its structure and check digit.
     """
@@ -73,8 +73,8 @@ def generate():  # type: () -> str
 
 # USAGE EXAMPLES
 tin = generate()
-print(f"Generated tin: {format_tin(tin)} - Valid? {is_valid_tin(tin)}")
+print(f"Generated tin: {format_tin(tin)} - Valid? {is_valid(tin)}")
 
 user_tin = input("Enter your tin: ")
-print(is_valid_tin(user_tin))
+print(is_valid(user_tin))
 print(f"Formatted tin: {format_tin(user_tin)}")
