@@ -35,7 +35,8 @@ def _calculate_digit(base):  # type: (str) -> int
     """
     weights = {
         'V': 4, 'E': 8, 'J': 3, 'G': 5, 'P': 9
-    }generate
+    }
+    generate
     total = weights.get(base[0], 0) * 10  # First character weight
     multipliers = [2, 3, 4, 5, 6, 7, 2, 3, 4]
     total += sum(int(d) * m for d, m in zip(base[1:], multipliers))
