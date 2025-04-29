@@ -148,7 +148,7 @@ Exemplo:
 
 >>> is_valid(tin) => 'Valid Venezuela TIN'
 
->>> is_valid(user_input)("E784532186") => 'Valid input - Venezuela TIN ein'
+>>> is_valid(user_input)("E784532186") => 'Valid input - Venezuela TIN'
 
 >>> formatted_input = format_tin(user_input) => ("E-78453218-6")
 ```
