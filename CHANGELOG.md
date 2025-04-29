@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `tin_australia` [#512](https://github.com/brazilian-utils/brutils-python/pull/512)
 - Utilitário `tin_united_states_of_america` [#517](https://github.com/brazilian-utils/brutils-python/pull/517)
 - Utilitário `tin_venezuela` [#520](https://github.com/brazilian-utils/brutils-python/pull/520)
+- Utilitário `tin_angola` [#520](https://github.com/brazilian-utils/brutils-python/pull/523)
 
 
 ## [Unreleased]
