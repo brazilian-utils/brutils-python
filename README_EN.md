@@ -40,7 +40,7 @@ False
 ```
 
 
-- [TIN Venezuela](#tin_venezuela)
+- [TIN Angola](#tin_angola)
   - [remove\_symbols](#remove_symbols)
   - [is\_valid](#is_valid)
   - [\_calculate\_digit](#_calculate_digit)
@@ -48,7 +48,7 @@ False
   - [generate\_ein](#generate_ein)
   - [example\_usage](#example_usage)
 
-## TIN Venezuela
+## TIN Angola
 
 ### remove_symbols
 
@@ -56,7 +56,7 @@ Remove spaces, dots, and hyphens from the input string.
 
 Args:
 
-- tin (str): The TIN (NIF) to be validated, a string starting with a letter, followed by 8 numbers and a check digit.
+- tin (str): The TIN (NIF) to be validated, a string with 9 numeric digits, the first being used to define the type of taxpayer (1, 5, 6 or 8) and the last being a check digit.
 
 Returns:
 
@@ -70,7 +70,7 @@ Validates the TIN to ensure that it is within the country specifications passed 
 
 Args:
 
-- tin (str): A string with 10 digits.
+- tin (str): A string with 9 digits.
 
 Returns:
 
@@ -79,9 +79,9 @@ Returns:
 Example:
 
 ```python
->>> from tin_venezuela import is_valid
->>> is_valid("V-12345678-9") => 'Valid Venezuela TIN'
->>> is_valid("A-12345678-9") => 'Invalid Venezuela TIN'
+>>> from tin_angola import is_valid
+>>> is_valid("612.345.678") => 'Valid Angola TIN'
+>>> is_valid("012.345.678") => 'Invalid Angola TIN'
 ```
 
 
@@ -100,9 +100,22 @@ Returns:
 Example:
 
 ```python
->>> from tin_venezuela import format_tin
->>> format_tin("V123456789") => ("V-12345678-9")
+>>> from tin_angola import format_tin
+>>> format_tin("612345678") => ("612.345.678")
 ```
+
+### _calculate_digit
+
+Calculates the check digit for an TIN.
+
+Args:
+
+- tin (str): Calculates the check digit of the input.
+
+Returns:
+
+- str: If the calculation of the input passed by the user is not correct due to the last digit (checker), it returns an "invalid" message as an error. If it is correct, it states that it is "valid"
+
 
 ### generate
 
@@ -119,9 +132,9 @@ Returns:
 Example:
 
 ```python
->>> from tin_venezuela import generate
->>> generate("V-12345678-9") => 'Valid Venezuela TIN'
->>> generate("A-12345678-9") => 'Invalid Venezuela TIN'
+>>> from tin_angola import generate
+>>> generate("612.345.678") => 'Valid Angola TIN'
+>>> generate("012.345.678") => 'Invalid Angola TIN'
 ```
 
 
@@ -140,14 +153,14 @@ Returns:
 Example:
 
 ```python
->>> from tin_venezuela import example_usage
->>> tin("E784532186") => 'Valid Venezuela TIN'
+>>> from tin_angola import example_usage
+>>> tin("612.345.678") => 'Valid Angola TIN'
 
->>> is_valid(tin) => 'Valid Venezuela TIN'
+>>> is_valid(tin) => 'Valid Angola TIN'
 
->>> is_valid(user_input)("E784532186") => 'Valid input - Venezuela TIN ein'
+>>> is_valid(user_input)("683844300") => 'Valid input - Angola TIN'
 
->>> formatted_input = format_tin(user_input) => ("E-78453218-6")
+>>> formatted_input = format_tin(user_input) => ("683.844.300")
 ```
 
 ---
