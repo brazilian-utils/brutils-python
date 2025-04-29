@@ -45,7 +45,7 @@ False
   - [is\_valid](#is_valid)
   - [\_calculate\_digit](#_calculate_digit)
   - [format\_tin](#format_tin)
-  - [generate\_ein](#generate_ein)
+  - [generate](#generate)
   - [example\_usage](#example_usage)
 
 ## TIN Venezuela
@@ -145,7 +145,7 @@ Example:
 
 >>> is_valid(tin) => 'Valid Venezuela TIN'
 
->>> is_valid(user_input)("E784532186") => 'Valid input - Venezuela TIN ein'
+>>> is_valid(user_input)("E784532186") => 'Valid input - Venezuela TIN'
 
 >>> formatted_input = format_tin(user_input) => ("E-78453218-6")
 ```
