@@ -5,11 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## World's TIN
+### Added
+
+- Utilitário `tin_anguilla` [#506](https://github.com/brazilian-utils/brutils-python/pull/506)
+- Utilitário `tin_australia` [#512](https://github.com/brazilian-utils/brutils-python/pull/512)
+- Utilitário `tin_united_states_of_america` [#517](https://github.com/brazilian-utils/brutils-python/pull/517)
+- Utilitário `tin_venezuela` [#520](https://github.com/brazilian-utils/brutils-python/pull/520)
+
+
 ## [Unreleased]
 ### Added
 
 - Utilitário `convert_code_to_uf` [#397](https://github.com/brazilian-utils/brutils-python/pull/410)
+- Utilitário `is_holiday` [#446](https://github.com/brazilian-utils/brutils-python/pull/446)
+- Utilitário `convert_date_to_text`[#394](https://github.com/brazilian-utils/brutils-python/pull/415)
 - Utilitário `get_municipality_by_code` [412](https://github.com/brazilian-utils/brutils-python/pull/412)
+- Utilitário `get_code_by_municipality_name` [#399](https://github.com/brazilian-utils/brutils-python/issues/399)
+- Utilitário `format_currency` [#426](https://github.com/brazilian-utils/brutils-python/issues/426)
 
 ## [2.2.0] - 2024-09-12
 
