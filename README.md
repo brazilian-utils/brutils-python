@@ -47,7 +47,7 @@ False
   - [is\_valid](#is_valid)
   - [\_calculate\_digit](#_calculate_digit)
   - [format\_tin](#format_tin)
-  - [generate\_ein](#generate_ein)
+  - [generate](#generate)
   - [example\_usage](#example_usage)
 
 ## NIF Venezuela
