@@ -42,17 +42,15 @@ False
 # Utilitários
 
 
-- [TIN Australia](#tin_Australia)
+- [TIN Venezuela](#tin_venezuela)
   - [remove\_symbols](#remove_symbols)
-  - [is\_valid\_tfn](#is_valid_tfn)
-  - [is\_valid\_abn](#is_valid_abn)
-  - [format\_tfn](#format_tfn)
-  - [format\_abn](#format_abn)
-  - [generate\_tfn](#generate_tfn)
-  - [generate\_abn](#generate_abn)
+  - [is\_valid](#is_valid)
+  - [\_calculate\_digit](#_calculate_digit)
+  - [format\_tin](#format_tin)
+  - [generate\_ein](#generate_ein)
   - [example\_usage](#example_usage)
 
-## NIF Austrália
+## NIF Venezuela
 
 ### remove_symbols
 
@@ -60,20 +58,21 @@ Remove espaços, pontos e hifens da sequência de entrada (input) dado pelo usu�
 
 Argumentos:
 
-- tin (str): O TIN (NIF) a ser validado, uma string de 8 a 11 dígitos (números). 
+- tin (str): O TIN (NIF) a ser validado, uma string que começa com uma letra, seguida por 8 números e um dígito verificador.
 
 Retorna:
 
 - bool: Verdadeiro se os dígitos de verificação corresponderem ao número base,
           Falso caso contrário.
 
-### is_valid_tfn
 
-Australian Tax File Number (TFN). Valida o TIN da pessoa física (cidadão / indivíduo) para garantir que esteja dentro das especificações do país passadas como parâmetros!
+### is_valid
+
+Valida o TIN para garantir que esteja dentro das especificações do país passadas como parâmetros!
 
 Argumentos:
 
-- tin (str): Uma string com 8 ou 9 dígitos (1 dígito de verificação).
+- tin (str): Uma string com 10 dígitos.
 
 Retorna:
 
@@ -82,34 +81,15 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import is_valid_tfn
->>> is_valid_tfn("123 456 789") => 'Valid Australia TIN'
->>> is_valid_tfn("1230 456 789") => 'Invalid Australia TIN'
+>>> from tin_venezuela import is_valid
+>>> is_valid("V-12345678-9") => 'Valid Venezuela TIN'
+>>> is_valid("A-12345678-9") => 'Invalid Venezuela TIN'
 ```
 
-### is_valid_abn
 
-Australian Business Number (ABN) - Valida o TIN da pessoa jurírica (empresa) para garantir que esteja dentro das especificações do país passadas como parâmetros!
+### format_tin
 
-Argumentos:
-
-- tin (str): Uma string de 11 dígitos (2 dígitos de verificação).
-
-Retorna:
-
-- str: Se o input passado pelo usuário conter qualquer coisa diferente do argumento acima, retorna uma mensagem de "inválido", como erro.
-
-Exemplo:
-
-```python
->>> from tin_Australia import is_valid_abn
->>> is_valid_abn("12 345 678 901") => 'Valid Australia TIN'
->>> is_valid_abn("120 345 678 901") => 'Invalid Australia TIN'
-```
-
-### format_tfn
-
-Australian Tax File Number (TFN) - Formata um TIN para exibição.
+Formata um TIN para exibição.
 
 Args:
 
@@ -122,36 +102,18 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import format_tfn
->>> format_tfn("123456789") => ("123 456 789")
-```
-
-### format_abn
-
-Australian Business Number (ABN) - Formata um TIN para exibição.
-
-Args:
-
-- tin (str): Adiciona os separados corretos conforme os parâmetros do país.
-
-Retorna:
-
-- str: Um TIN formatado com os separadores no lugar certo!
-
-Exemplo:
-```python
->>> from tin_Australia import format_abn
->>> format_abn("12345678901") => ("12 345 678 901")
+>>> from tin_venezuela import format_tin
+>>> format_tin("V123456789") => ("V-12345678-9")
 ```
 
 
-### generate_tfn
+### generate
 
-Australian Tax File Number (TFN) - Gera um TIN de Australia válido.
+Gera um TIN válido.
 
 Args:
 
-- tin (str): Gera um TIN de Australia válido.
+- tin (str): Gera um TIN válido.
 
 Retorna:
 
@@ -160,58 +122,35 @@ Retorna:
 Exemplo:
 
 ```python
->>> from tin_Australia import generate_tfn
->>> generate_tfn("123 456 789") => 'Valid Australia TIN'
->>> generate_tfn("1230 456 789") => 'Invalid Australia TIN'
-```
-
-
-### generate_abn
-
-Australian Business Number (ABN) - Gera um TIN de Australia válido.
-
-Args:
-
-- tin (str): Gera um TIN de Australia válido.
-
-Retorna:
-
-- str: Gera um número válido dados os parâmetros corretos.
-
-Exemplo:
-
-```python
->>> from tin_Australia import generate_abn
->>> generate_abn("12 345 678 901") => 'Valid Australia TIN'
->>> generate_abn("120 345 678 901") => 'Invalid Australia TIN'
+>>> from tin_venezuela import generate
+>>> generate("V-12345678-9") => 'Valid Venezuela TIN'
+>>> generate("A-12345678-9") => 'Invalid Venezuela TIN'
 ```
 
 
 ### example_usage
 
-Gera TIN válido aleatoriamente como exemplo para pessoas físicas e jurídicas, analisa o input do usuário, além de formatá-los.
+Gera TIN válido aleatoriamente como exemplo, analisa o input do usuário, além de formatá-los.
 
 Argumentos:
 
-- str: Um TIN válido gerado aleatoriamente como exemplo para pessoas físicas e jurídicas, input do usuário.
+- str: Um TIN válido gerado aleatoriamente como exemplo, input do usuário.
 
 Retorna:
 
-- str: Um TIN válido gerado aleatoriamente como exemplo para pessoas físicas e jurídicas, input do usuário analisado e formatado com símbolos visuais se for válido, None se não for válido.
+- str: Um TIN válido gerado aleatoriamente como exemplo, input do usuário analisado e formatado com símbolos visuais se for válido, None se não for válido.
 
 Exemplo:
 
 ```python
->>> from tin_Australia import example_usage
->>> tin_tfn("123456789") => 'Valid Australia TIN tfn'
->>> tin_abn("12345678901") => 'Valid Australia TIN abn'
+>>> from tin_venezuela import example_usage
+>>> tin("E784532186") => 'Valid Venezuela TIN'
 
->>> is_valid(tin_tfn) => 'Valid Australia TIN abn'
->>> is_valid(tin_abn) => 'Valid Australia TIN abn'
+>>> is_valid(tin) => 'Valid Venezuela TIN'
 
->>> is_valid(user_input)("36485987125") => 'Valid input - Australia TIN abn'
+>>> is_valid(user_input)("E784532186") => 'Valid input - Venezuela TIN ein'
 
->>> formatted_input = format_tin(user_input) => ("36 485 987 125")
+>>> formatted_input = format_tin(user_input) => ("E-78453218-6")
 ```
 
 ---
