@@ -1260,7 +1260,7 @@ None
 Converte um valor monetário em Reais para sua representação por extenso em português, seguindo as regras gramaticais e monetárias do Brasil. A função trata valores com ou sem centavos, números negativos, e grandes valores até trilhões.
 
 Argumentos:
-  * float, str ou Decimal: Um número representando um valor em reais com até duas casas decimais.
+  * Decimal: Um número representando um valor em reais com até duas casas decimais.
 
 Retorna:
   * str ou None: O valor convertido por extenso, ou None se o valor for inválido.

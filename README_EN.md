@@ -1263,7 +1263,7 @@ None
 Converts a monetary value in Brazilian Reais into its full-text representation in Portuguese, following Brazilian grammatical and monetary rules. The function handles values with or without cents, negative numbers, and large values up to trillions.
 
 Arguments:
-  * float, str, or Decimal: A number representing a value in reais, with up to two decimal places.
+  * Decimal: A number representing a value in reais, with up to two decimal places.
 
 Returns:
   * str or None: The value written out in full, or None if the input is invalid
