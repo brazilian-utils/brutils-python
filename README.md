@@ -97,6 +97,7 @@ False
   - [is_holiday](#is_holiday)
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
+  - [convert\_real\_to\_text](#convert_real_to_text)
 
 ## CPF
 
@@ -1251,6 +1252,32 @@ Exemplo:
 >>> format_currency(0)
 'R$ 0,00'
 >>> format_currency("not a number")
+None
+```
+
+### convert_real_to_text
+
+Converte um valor monetário em Reais para sua representação por extenso em português, seguindo as regras gramaticais e monetárias do Brasil. A função trata valores com ou sem centavos, números negativos, e grandes valores até trilhões.
+
+Argumentos:
+  * float, str ou Decimal: Um número representando um valor em reais com até duas casas decimais.
+
+Retorna:
+  * str ou None: O valor convertido por extenso, ou None se o valor for inválido.
+
+Exemplo:
+
+```python
+>>> from brutils.currency import convert_real_to_text
+>>> convert_real_to_text(1523.45)
+'Mil, quinhentos e vinte e três reais e quarenta e cinco centavos'
+>>> convert_real_to_text(0.01)
+'Um centavo'
+>>> convert_real_to_text(0.00)
+'Zero reais'
+>>> convert_real_to_text(-50.25)
+'Menos cinquenta reais e vinte e cinco centavos'
+>>> convert_real_to_text("invalid")
 None
 ```
 
