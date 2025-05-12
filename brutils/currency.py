@@ -99,6 +99,12 @@ def convert_real_to_text(amount: Decimal) -> str | None:
     parts = []
 
     if reais > 0:
+        """"
+        Note:
+        Although the `num2words` library provides a "to='currency'" feature, it has known
+        issues with the representation of "zero reais" and "zero centavos". Therefore, this
+        implementation uses only the traditional number-to-text conversion for better accuracy.
+        """
         reais_text = num2words(reais, lang="pt_BR")
         currency_text = "real" if reais == 1 else "reais"
         conector = "de " if reais_text.endswith(("lhão", "lhões")) else ""
