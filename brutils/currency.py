@@ -1,4 +1,5 @@
 from decimal import ROUND_DOWN, Decimal, InvalidOperation
+from typing import Union
 
 from num2words import num2words
 
@@ -42,7 +43,7 @@ def format_currency(value):  # type: (float) -> str | None
         return None
 
 
-def convert_real_to_text(amount: Decimal) -> str | None:
+def convert_real_to_text(amount: Decimal) -> Union[str, None]:
     """
     Converts a given monetary value in Brazilian Reais to its textual representation.
 
