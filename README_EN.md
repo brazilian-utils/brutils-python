@@ -1260,13 +1260,21 @@ None
 
 ### convert_real_to_text
 
-Converts a monetary value in Brazilian Reais into its full-text representation in Portuguese, following Brazilian grammatical and monetary rules. The function handles values with or without cents, negative numbers, and large values up to trillions.
+Converts a given monetary value in Brazilian Reais to its textual representation. It takes a decimal number representing a monetary value in Reais and converts it to a string with the amount written out in Brazilian Portuguese. It handles both the integer part (Reais) and the fractional part (centavos), respecting the correct grammar for singular and plural cases, as well as special cases like zero and negative values.
 
-Arguments:
-  * Decimal: A number representing a value in reais, with up to two decimal places.
+Args:
+
+- amount (decimal): The monetary value to be converted into text.
+  - The integer part represents Reais.
+  - The decimal part represents centavos.
+  - 2 decimal places
 
 Returns:
-  * str or None: The value written out in full, or None if the input is invalid
+
+- str: A string with the monetary value written out in Brazilian Portuguese.
+  - Returns "Zero reais" for a value of 0.00.
+  - Returns None if the amount is invalid or absolutely greater than 1 trillion.
+  - Handles negative values, adding "Menos" at the beginning of the string.
 
 Example:
 

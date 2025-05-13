@@ -1257,13 +1257,19 @@ None
 
 ### convert_real_to_text
 
-Converte um valor monetário em Reais para sua representação por extenso em português, seguindo as regras gramaticais e monetárias do Brasil. A função trata valores com ou sem centavos, números negativos, e grandes valores até trilhões.
+Converte um valor monetário em reais para sua representação por extenso. Esta função recebe um número decimal representando um valor monetário em reais e o converte para uma string com o valor escrito por extenso em português do Brasil. Ela trata tanto a parte inteira (reais) quanto a parte fracionária (centavos), respeitando a gramática correta para os casos de singular e plural, bem como casos especiais como zero e valores negativos.
 
 Argumentos:
-  * Decimal: Um número representando um valor em reais com até duas casas decimais.
+- amount (decimal): O valor monetário a ser convertido por extenso.
+  - A parte inteira representa os reais.
+  - A parte decimal representa os centavos.
+  - 2 casas decimais.
 
 Retorna:
-  * str ou None: O valor convertido por extenso, ou None se o valor for inválido.
+- str: Uma string com o valor monetário escrito por extenso em português do Brasil.
+  - Retorna "Zero reais" para o valor 0,00.
+  - Retorna None se o valor for inválido ou absolutamente maior que 1 trilhão.
+  - Trata valores negativos, adicionando "Menos" no início da string.
 
 Exemplo:
 
