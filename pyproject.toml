@@ -27,7 +27,9 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8.1"
-num2words = "0.5.13"
+holidays = "^0.58"
+num2words = "0.5.14"
+coverage = "^7.2.7"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.7"
