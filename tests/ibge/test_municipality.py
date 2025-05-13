@@ -1,5 +1,5 @@
 import gzip
-from json import JSONDecodeError
+from json import JSONDecodeError, dumps
 from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 from urllib.error import HTTPError
@@ -11,7 +11,47 @@ from brutils.ibge.municipality import (
 
 
 class TestIBGE(TestCase):
-    def test_get_municipality_by_code(self):
+    @patch("brutils.ibge.municipality.urlopen")
+    def test_get_municipality_by_code(self, mock):
+        def mock_response(url):
+            responses = {
+                "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308": dumps(
+                    {
+                        "nome": "São Paulo",
+                        "microrregiao": {
+                            "mesorregiao": {"UF": {"sigla": "SP"}}
+                        },
+                    }
+                ).encode("utf-8"),
+                "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3304557": dumps(
+                    {
+                        "nome": "Rio de Janeiro",
+                        "microrregiao": {
+                            "mesorregiao": {"UF": {"sigla": "RJ"}}
+                        },
+                    }
+                ).encode("utf-8"),
+                "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/5208707": dumps(
+                    {
+                        "nome": "Goiânia",
+                        "microrregiao": {
+                            "mesorregiao": {"UF": {"sigla": "GO"}}
+                        },
+                    }
+                ).encode("utf-8"),
+                "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/1234567": b"[]",
+            }
+
+            mock_file = MagicMock()
+            mock_file.__enter__.return_value = (
+                mock_file  # mock_file is a context manager
+            )
+            mock_file.read.return_value = responses.get(url, b"[]")
+            mock_file.info.return_value = {"Content-Encoding": None}
+            return mock_file
+
+        mock.side_effect = mock_response
+
         self.assertEqual(
             get_municipality_by_code("3550308"), ("São Paulo", "SP")
         )
