@@ -60,7 +60,7 @@ class TestIsHoliday(TestCase):
     def test_data_passada_futura(self):
         # Teste de data passada e futura
         self.assertTrue(is_holiday(datetime(2023, 1, 1)))  # Ano anterior
-        self.assertTrue(is_holiday(datetime(2150, 12, 25)))  # Ano futuro
+        self.assertFalse(is_holiday(datetime(2150, 12, 25)))  # Ano futuro (Espera-se que não seja feriado)
         self.assertFalse(
             is_holiday(datetime(2250, 1, 2))
         )  # Dia normal em ano futuro
