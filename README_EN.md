@@ -1273,8 +1273,12 @@ Returns:
 
 - str: A string with the monetary value written out in Brazilian Portuguese.
   - Returns "Zero reais" for a value of 0.00.
-  - Returns None if the amount is invalid or absolutely greater than 1 trillion.
+  - Returns None if the amount is invalid or absolutely greater than 1 quadrillion.
   - Handles negative values, adding "Menos" at the beginning of the string.
+
+Limitations:
+  - This function may lose precision by ±1 cent for cases where the absolute value
+    is beyond trillions due to floating-point rounding errors.
 
 Example:
 

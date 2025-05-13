@@ -27,7 +27,7 @@ class TestFormatCurrency(TestCase):
         assert format_currency("897L") is None
 
 
-class TestConvertRealTiText(TestCase):
+class TestConvertRealToText(TestCase):
     def test_convert_real_to_text(self):
         self.assertEqual(convert_real_to_text(0.00), "Zero reais")
         self.assertEqual(convert_real_to_text(0.01), "Um centavo")
@@ -83,7 +83,7 @@ class TestConvertRealTiText(TestCase):
             "Menos dois milhões de reais e cinquenta centavos",
         )
 
-        # bilions with cents
+        # billions with cents
         self.assertEqual(
             convert_real_to_text(1000000000.01),
             "Um bilhão de reais e um centavo",
@@ -93,16 +93,41 @@ class TestConvertRealTiText(TestCase):
             "Um bilhão de reais e noventa e nove centavos",
         )
 
+        self.assertEqual(
+            convert_real_to_text(999999999999.99),
+            "Novecentos e noventa e nove bilhões, novecentos e noventa e nove milhões, novecentos e noventa e nove mil, novecentos e noventa e nove reais e noventa e nove centavos",
+        )
+
+        # trillions with cents
+        self.assertEqual(
+            convert_real_to_text(1000000000000.01),
+            "Um trilhão de reais e um centavo",
+        )
+        self.assertEqual(
+            convert_real_to_text(1000000000000.99),
+            "Um trilhão de reais e noventa e nove centavos",
+        )
+        self.assertEqual(
+            convert_real_to_text(9999999999999.99),
+            "Nove trilhões, novecentos e noventa e nove bilhões, novecentos e noventa e nove milhões, novecentos e noventa e nove mil, novecentos e noventa e nove reais e noventa e nove centavos",
+        )
+
+        # 1 quadrillion
+        self.assertEqual(
+            convert_real_to_text(1000000000000000.00),
+            "Um quatrilhão de reais",
+        )
+
         # Edge cases should return None
         self.assertIsNone(
             convert_real_to_text("invalid_value")
         )  # invalid value
         self.assertIsNone(convert_real_to_text(None))  # None value
         self.assertIsNone(
-            convert_real_to_text(-1000000000000000.00)
+            convert_real_to_text(-1000000000000001.00)
         )  # less than -1 quadrillion
         self.assertIsNone(
-            convert_real_to_text(-1000000000000000.00)
+            convert_real_to_text(-1000000000000001.00)
         )  # more than 1 quadrillion
         self.assertIsNone(convert_real_to_text(float("inf")))  # Infinity
         self.assertIsNone(

@@ -1268,8 +1268,12 @@ Argumentos:
 Retorna:
 - str: Uma string com o valor monetário escrito por extenso em português do Brasil.
   - Retorna "Zero reais" para o valor 0,00.
-  - Retorna None se o valor for inválido ou absolutamente maior que 1 trilhão.
+  - Retorna None se o valor for inválido ou absolutamente maior que 1 quatrilhão.
   - Trata valores negativos, adicionando "Menos" no início da string.
+
+Limitações:
+  - Esta função pode perder precisão em ±1 centavo para casos em que o valor absoluto
+    ultrapasse trilhões devido a erros de arredondamento de ponto flutuante.
 
 Exemplo:
 

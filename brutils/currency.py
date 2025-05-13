@@ -62,8 +62,12 @@ def convert_real_to_text(amount: Decimal) -> Union[str, None]:
     Returns:
         str: A string with the monetary value written out in Brazilian Portuguese.
             - Returns "Zero reais" for a value of 0.00.
-            - Returns None if the amount is invalid or absolutely greater than 1 trillion.
+            - Returns None if the amount is invalid or absolutely greater than 1 quadrillion.
             - Handles negative values, adding "Menos" at the beginning of the string.
+
+    Limitations:
+        - This function may lose precision by ±1 cent for cases where the absolute value
+          is beyond trillions due to floating-point rounding errors.
 
     Example:
         >>> convert_real_to_text(1523.45)
@@ -88,7 +92,7 @@ def convert_real_to_text(amount: Decimal) -> Union[str, None]:
     if amount.is_nan() or amount.is_infinite():
         return None
 
-    if abs(amount) >= Decimal("1000000000000000.00"):  # 1 quadrillion
+    if abs(amount) > Decimal("1000000000000000.00"):  # 1 quadrillion
         return None
 
     negative = amount < 0
@@ -100,7 +104,7 @@ def convert_real_to_text(amount: Decimal) -> Union[str, None]:
     parts = []
 
     if reais > 0:
-        """"
+        """
         Note:
         Although the `num2words` library provides a "to='currency'" feature, it has known
         issues with the representation of "zero reais" and "zero centavos". Therefore, this
