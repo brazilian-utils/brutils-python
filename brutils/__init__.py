@@ -21,7 +21,7 @@ from brutils.cpf import is_valid as is_valid_cpf
 from brutils.cpf import remove_symbols as remove_symbols_cpf
 
 # Currency
-from brutils.currency import format_currency
+from brutils.currency import convert_real_to_text, format_currency
 
 # Date imports
 from brutils.date import convert_date_to_text
@@ -134,4 +134,5 @@ __all__ = [
     "is_holiday",
     # Currency
     "format_currency",
+    "convert_real_to_text",
 ]
