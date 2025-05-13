@@ -9,7 +9,7 @@ from brutils.cep import is_valid as is_valid_cep
 from brutils.cep import remove_symbols as remove_symbols_cep
 
 # CNPJ Imports
-from brutils.cnpj import format_cnpj
+from brutils.cnpj import format_cnpj, get_cnpj_information
 from brutils.cnpj import generate as generate_cnpj
 from brutils.cnpj import is_valid as is_valid_cnpj
 from brutils.cnpj import remove_symbols as remove_symbols_cnpj
@@ -89,6 +89,7 @@ __all__ = [
     "generate_cnpj",
     "is_valid_cnpj",
     "remove_symbols_cnpj",
+    "get_cnpj_information",
     # CPF
     "format_cpf",
     "generate_cpf",
