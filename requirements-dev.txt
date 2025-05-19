@@ -1,4 +1,4 @@
 holidays>=0.58
-num2words==0.5.13
+num2words==0.5.14
 coverage>=7.2.7
 ruff>=0.5.0,<0.7.0
