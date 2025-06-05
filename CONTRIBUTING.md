@@ -611,10 +611,11 @@ Este PR adiciona o utilitário convert_uf_to_text para converter códigos de est
 #### Verifique o Template de Descrição do PR
 - Certifique-se de que seu PR segue o template de descrição do repositório. Verifique todos os itens obrigatórios, como cobertura de testes, atualizações de documentação ou entradas no changelog.
 - **Exemplo de Checklist**: (mostrando como fica quando preenchido):
-[x] Alterações no código foram testadas.
-[x] Documentação (READMEs) foi atualizada.
-[ ] Entrada no changelog foi adicionada (marque apenas se aplicável).
-- **Nota sobre a Sintaxe**: Use [x] para marcar itens concluídos e [ ] para itens não concluídos, sem espaços dentro dos colchetes (ex.: [ x ] ou [x ] não será renderizado corretamente no GitHub).
+- [x] Alterações no código foram testadas.
+- [x] Documentação (READMEs) foi atualizada.
+- [ ] Entrada no changelog foi adicionada (marque apenas se aplicável).
+- **Nota sobre a Sintaxe**:
+- Use [x] para marcar itens concluídos e [ ] para itens não concluídos, sem espaços dentro dos colchetes (ex.: [ x ] ou [x ] não será renderizado corretamente no GitHub).
 - **Benefícios**:
 - Seguir o template garante que o PR esteja completo e pronto para revisão.
 - Reduz a necessidade de idas e vindas com revisores, acelerando o processo de mesclagem.
