@@ -583,7 +583,7 @@ _Este conteúdo é baseado no [site do keep a changelog][keep-a-changelog], já 
 [Crie um PR no GitHub][github-creating-a-pr] para enviar suas alterações para revisão. Para garantir que seu Pull Request (PR) seja claro, eficaz e revisado rapidamente, siga estas boas práticas:
 
 #### Escreva um Título Descritivo para o PR
-- Use títulos claros e específicos para descrever o propósito das suas alterações. Um bom título ajuda os mantenedores a entender a intenção do PR rapidamente e melhora a rastreabilidade do projeto.
+- Use títulos claros e específicos para descrever o propósito das suas alterações. Um bom título ajuda às pessoas mantenedoras a entender a intenção do PR rapidamente e melhora a rastreabilidade do projeto.
 - **Exemplo**: Em vez de “Corrigir problema”, use “Adiciona utilitário `convert_uf_to_text` para lidar com códigos de estados brasileiros.”
 - **Benefícios**:
   - Títulos claros facilitam a priorização e o entendimento pelos revisores.
