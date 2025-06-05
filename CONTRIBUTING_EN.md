@@ -570,10 +570,11 @@ This PR adds the convert_uf_to_text utility to convert Brazilian state codes (e.
 
 #### Verify the PR Description Template
 - Ensure your PR follows the repository’s PR description template (if provided). Check all required items, such as test coverage, documentation updates, or changelog entries.
-- **Example Checklist**:
-- [ ] Code changes are tested.
-- [ ] Documentation (READMEs) is updated.
+- **Example Checklist**: (showing how it looks when completed):
+- [x] Code changes are tested.
+- [x] Documentation (READMEs) is updated.
 - [ ] Changelog entry is added.
+- **Syntax Note**: Use [x] to mark completed items and [ ] for incomplete ones, with no spaces inside the brackets (e.g., [ x ] or [x ] will not render correctly on GitHub).
 - **Benefits**:
 - Adhering to the template ensures your PR is complete and ready for review.
 - It reduces back-and-forth with reviewers, speeding up the merge process.
