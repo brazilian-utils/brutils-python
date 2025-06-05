@@ -609,7 +609,7 @@ Este PR adiciona o utilitário convert_uf_to_text para converter códigos de est
 - Para mais detalhes, consulte a [documentação do GitHub sobre fechamento automático de issues](https://docs.github.com/pt/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue).
 
 #### Verifique o Template de Descrição do PR
-- Certifique-se de que seu PR segue o template de descrição do repositório (se fornecido). Verifique todos os itens obrigatórios, como cobertura de testes, atualizações de documentação ou entradas no changelog.
+- Certifique-se de que seu PR segue o template de descrição do repositório. Verifique todos os itens obrigatórios, como cobertura de testes, atualizações de documentação ou entradas no changelog.
 - **Exemplo de Checklist**:
 - [ ] Alterações no código foram testadas.
 - [ ] Documentação (READMEs) foi atualizada.
