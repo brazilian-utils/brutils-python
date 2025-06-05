@@ -574,7 +574,8 @@ This PR adds the convert_uf_to_text utility to convert Brazilian state codes (e.
 - [x] Code changes are tested.
 - [x] Documentation (READMEs) is updated.
 - [ ] Changelog entry is added.
-- **Syntax Note**: Use [x] to mark completed items and [ ] for incomplete ones, with no spaces inside the brackets (e.g., [ x ] or [x ] will not render correctly on GitHub).
+- **Syntax Note**:
+- Use [x] to mark completed items and [ ] for incomplete ones, with no spaces inside the brackets (e.g., [ x ] or [x ] will not render correctly on GitHub).
 - **Benefits**:
 - Adhering to the template ensures your PR is complete and ready for review.
 - It reduces back-and-forth with reviewers, speeding up the merge process.
