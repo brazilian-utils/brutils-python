@@ -171,7 +171,6 @@ class TestCEPAPICalls(TestCase):
 
 @patch("brutils.cep.urlopen")
 class TestGetAddressFromCEP_MC_DC(TestCase):
-
     def test_ct1_cep_invalido_com_excecao(self, mock_urlopen):
         """CT1: cep inválido e raise_exceptions=True → lança InvalidCEP"""
         with self.assertRaises(InvalidCEP):
@@ -189,13 +188,13 @@ class TestGetAddressFromCEP_MC_DC(TestCase):
         # A função get_address_from_cep faz dois loads() no mesmo JSON
         mock_loads.side_effect = [
             {"cep": "01001-000"},  # Primeiro loads para verificar "erro"
-            {"cep": "01001-000"}   # Segundo loads para retornar Address
+            {"cep": "01001-000"},  # Segundo loads para retornar Address
         ]
 
         # Simula a resposta da API ViaCEP
         mock_response = MagicMock()
         mock_response.read.return_value = b'{"cep": "01001-000"}'
-        
+
         # Corrige o mock para suportar o contexto "with urlopen(...) as f"
         mock_urlopen.return_value.__enter__.return_value = mock_response
 
@@ -206,7 +205,6 @@ class TestGetAddressFromCEP_MC_DC(TestCase):
         self.assertIsInstance(result, dict)
         self.assertEqual(result.get("cep"), "01001-000")
 
-
     def test_ct4_erro_na_api_com_excecao(self, mock_urlopen):
         """CT4: cep válido mas inexistente + raise_exceptions=True → lança CEPNotFound"""
         mock_response = MagicMock()
@@ -216,7 +214,6 @@ class TestGetAddressFromCEP_MC_DC(TestCase):
         with self.assertRaises(CEPNotFound):
             get_address_from_cep("99999999", raise_exceptions=True)
 
-
     def test_ct5_erro_na_api_sem_excecao(self, mock_urlopen):
         """CT5: cep válido mas inexistente + raise_exceptions=False → retorna None"""
         mock_response = mock_urlopen.return_value
@@ -225,7 +222,9 @@ class TestGetAddressFromCEP_MC_DC(TestCase):
         result = get_address_from_cep("99999999", raise_exceptions=False)
         self.assertIsNone(result)
 
-    def test_ct6_viacep_responde_com_erro_e_raise_exceptions_true(self, mock_urlopen):
+    def test_ct6_viacep_responde_com_erro_e_raise_exceptions_true(
+        self, mock_urlopen
+    ):
         """
         CT6: cobre a linha 172 e a decisão CD2 (data.get("erro", True))
         """
