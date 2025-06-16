@@ -143,7 +143,10 @@ pip install -r requirements-dev.txt
 
 Agora você pode usá-lo [da mesma forma descrita no arquivo README.md](/README.md#utilização).
 
-#### Testes
+
+
+
+# Testes 
 
 Execute os testes através do seguinte comando:
 
@@ -161,6 +164,65 @@ OK
 ```
 
 Certifique-se de que o retorno é `OK`, o quê indica todos os testes estão passando e que não tem nenhum falhando.
+
+---
+
+## Testes no Windows
+
+Caso os testes não funcionem ou se você precisar configurar o ambiente do zero, siga as etapas abaixo para preparar o ambiente no Windows.
+
+### Instalar o Chocolatey
+
+Primeiro, abra o PowerShell como administrador e execute o seguinte comando para instalar o **Chocolatey**, que é um gerenciador de pacotes para o Windows:
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
+
+### Instalar o `make`
+
+Após a instalação do Chocolatey, instale o **make** com o seguinte comando:
+
+```powershell
+choco install make
+```
+
+Verifique se o `make` foi instalado corretamente com:
+
+```powershell
+where.exe make
+```
+
+### Instalar o Poetry
+
+Instale o **Poetry**, que é uma ferramenta de gerenciamento de dependências e ambientes Python, usando o comando:
+
+```powershell
+choco install poetry
+```
+
+### Instalar as dependências do projeto
+
+Dentro do diretório do seu projeto, abra o terminal e instale as dependências do projeto usando o **Poetry**:
+
+```powershell
+poetry install
+```
+
+### Verificar e configurar o `Makefile`
+
+No arquivo `Makefile` do seu projeto, verifique se a seção de testes está configurada corretamente. Se estiver no Windows, use a seguinte configuração para o alvo `test`:
+
+```makefile
+test:
+ifeq ($(OS),Windows_NT)
+	@set PYTHONDONTWRITEBYTECODE=1 && poetry run python -m unittest discover tests/ -v
+else
+	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
+endif
+```
+
+
 
 ### 8. Faça as Suas Alterações
 
