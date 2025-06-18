@@ -103,6 +103,26 @@ class TestLicensePlate(TestCase):
         # When invalid format is provided, returns None
         self.assertIsNone(generate("LNLNLNL"))
 
+    def test_generate_mcdc(self):
+        # Caso 1: format = "LLLNLNN" (Mercosul)
+        placa = generate(format="LLLNLNN")
+        self.assertIsInstance(placa, str)
+        self.assertEqual(len(placa), 7)
+        self.assertTrue(placa[:3].isalpha())  # LLL
+        self.assertTrue(placa[3].isdigit())   # N
+        self.assertTrue(placa[4].isalpha())   # L
+        self.assertTrue(placa[5:].isdigit())  # NN
+
+        # Caso 2: format = "LLLNNNN" (Antiga)
+        placa = generate(format="LLLNNNN")
+        self.assertIsInstance(placa, str)
+        self.assertEqual(len(placa), 7)
+        self.assertTrue(placa[:3].isalpha())  # LLL
+        self.assertTrue(placa[3:].isdigit())  # NNNN
+
+        # Caso 3: format = "LNLNLNL" (inválido)
+        self.assertIsNone(generate(format="LNLNLNL"))
+
 
 if __name__ == "__main__":
     main()
