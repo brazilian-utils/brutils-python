@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Identify and notify inactive issues
-        uses: actions/github-script@v6
+        uses: actions/github-script@v7
         with:
           script: |
             const inactiveDays = 60;
@@ -32,7 +32,16 @@ jobs:
               const daysInactive = Math.floor((now - lastUpdate) / (1000 * 60 * 60 * 24));
 
               if (daysInactive >= inactiveDays && issue.assignees.length > 0) {
-                const warningComment = issue.comments.some(comment => comment.body.includes('[PT-BR] Os assignees serão removidos. \n\n[EN] The assignees will be removed.'));
+                const comments = await github.paginate(github.rest.issues.listComments, {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: issue.number
+                });
+
+                const warningComment = comments.some(comment => 
+                  comment.body.includes('[PT-BR] Os assignees serão removidos.') ||
+                  comment.body.includes('[EN] The assignees will be removed.')
+                );
 
                 if (!warningComment) {
                   await github.rest.issues.createComment({
@@ -58,4 +67,3 @@ jobs:
                 });
               }
             }
-
