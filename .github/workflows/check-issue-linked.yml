@@ -1,0 +1,56 @@
+name: check-issue-linked
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+  issues:
+    types: [opened, reopened]
+
+jobs:
+  check-issue-linked:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check if issue is linked to PR
+        if: github.event_name == 'pull_request' && !contains(github.event.pull_request.body, 'close') && !contains(github.event.pull_request.body, 'fix')
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🇧🇷🇧🇷🇧🇷  
+            **A descrição do seu PR não menciona o fechamento da issue relacionada.** Para fechar a issue automaticamente quando este PR for mergeado, você pode adicionar um termo como `Fixes #<número-da-issue>` ou `Closes #<número-da-issue>` na descrição.
+
+            Isso ajuda a manter o repositório mais organizado e garante que a issue seja fechada automaticamente assim que o código for integrado. Para saber mais sobre como isso funciona, você pode consultar a [documentação oficial do GitHub sobre fechamento automático de issues](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue-using-a-keyword).
+
+            Então basta editar a descrição do seu PR clicando em edit
+
+            ![image](https://github.com/user-attachments/assets/19f4ab6e-e4c5-4ac5-8139-02dafedeb044)
+
+            Adicionando a linha:
+
+            > Closes #número_da_issue
+
+            E finalmente, clicando em update comment:
+
+            <img width="149" alt="image" src="https://github.com/user-attachments/assets/234b5981-5031-4f49-a387-bb0b8fe8c359" />
+
+            Se precisar de ajuda para fazer isso ou tiver dúvidas, é só avisar! 😊
+
+            ---
+            🇬🇧 🇬🇧 🇬🇧
+
+            **The description of your PR does not mention closing the related issue.** To close the issue automatically when this PR is merged, you can add a keyword like `Fixes #<issue-number>` or `Closes #<issue-number>` in the description.
+
+            This helps keep the repository more organized and ensures that the issue is automatically closed as soon as the code is merged. To learn more about how this works, you can check out the [official GitHub documentation on automatic issue closing](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue-using-a-keyword).
+
+            Then simply edit your PR description by clicking on "Edit."
+
+            ![image](https://github.com/user-attachments/assets/19f4ab6e-e4c5-4ac5-8139-02dafedeb044)
+
+            Add the line:
+
+            > Closes #issue_number
+
+            And finally, click "Update Comment":
+
+            <img width="149" alt="image" src="https://github.com/user-attachments/assets/234b5981-5031-4f49-a387-bb0b8fe8c359" />
+
+            If you need help with this or have any questions, feel free to reach out! 😊
