@@ -76,7 +76,7 @@ False
   - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
   - [get\_format\_license\_plate](#get_format_license_plate)
 - [PIS](#pis)
-  - [is\_valid\_pis](#is_valid_pis)
+  - [is\_valid\_pis\_pasep](#is_valid_pis_pasep)
   - [format\_pis](#format_pis)
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
@@ -842,7 +842,7 @@ None
 
 ## PIS
 
-### is_valid_pis
+### is_valid_pis_pasep
 
 Verifies if the PIS/PASEP number is valid. Only numbers, formatted as a string. It does not check if the PIS/PASEP actually exists.
 
@@ -852,20 +852,26 @@ References:
 
 Args:
 
-- pis (str): PIS number as a string with the proper length.
+Args:
+
+- pis_pasep (str): The PIS/Pasep number to be validated.
 
 Returns:
 
-- bool: True if the PIS is valid, False otherwise.
+- bool: True if the PIS/Pasep number is valid, False otherwise.
 
 Example:
 
 ```python
-from brutils import is_valid_pis
->>> is_valid_pis("82178537464")
-False
->>> is_valid_pis("12082043519")
+>>> from brutils import is_valid_pis_pasep
+>>> is_valid_pis_pasep('123.45678.90-1')
 True
+>>> is_valid_pis_pasep('12345678901')
+True
+>>> is_valid_pis_pasep('PIS inválido')
+False
+>>> is_valid_pis_pasep('123.45678.90-0')
+False
 ```
 
 ### format_pis
