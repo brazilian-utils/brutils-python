@@ -67,7 +67,7 @@ from brutils.phone import is_valid as is_valid_phone
 # PIS Imports
 from brutils.pis import format_pis
 from brutils.pis import generate as generate_pis
-from brutils.pis import is_valid as is_valid_pis
+from brutils.pis import is_valid_pis_pasep as is_valid_pis_pasep
 from brutils.pis import remove_symbols as remove_symbols_pis
 
 # Voter ID Imports
