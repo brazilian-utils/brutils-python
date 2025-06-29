@@ -60,31 +60,43 @@ def format_pis(pis: str) -> str:
 ############
 
 
-def is_valid(pis: str) -> bool:
+def is_valid_pis_pasep(pis_pasep: str) -> bool: # Renomeada de is_valid
     """
-    Returns whether or not the verifying checksum digit of the
-    given `PIS` match its base number.
+    Validates a given PIS/Pasep number.
+
+    This function checks if the provided PIS/Pasep number is valid according to the official
+    validation rules. It returns True if the number is valid, and False otherwise.
 
     Args:
-        pis (str): PIS number as a string of proper length.
+        pis_pasep (str): The PIS/Pasep number to be validated.
 
     Returns:
-        bool: True if PIS is valid, False otherwise.
+        bool: True if the PIS/Pasep number is valid, False otherwise.
 
     Example:
-    >>> is_valid_pis("82178537464")
-    True
-    >>> is_valid_pis("55550207753")
-    True
-
+        >>> is_valid_pis_pasep('123.45678.90-1')
+        True
+        >>> is_valid_pis_pasep('12345678901')
+        True
+        >>> is_valid_pis_pasep('PIS inválido')
+        False
+        >>> is_valid_pis_pasep('123.45678.90-0')
+        False
     """
+    if not isinstance(pis_pasep, str):
+        return False
 
-    return (
-        isinstance(pis, str)
-        and len(pis) == 11
-        and pis.isdigit()
-        and pis[-1] == str(_checksum(pis[:-1]))
-    )
+    cleaned_pis = remove_symbols(pis_pasep)
+
+    if not (len(cleaned_pis) == 11 and cleaned_pis.isdigit()):
+        return False
+
+    base_pis = cleaned_pis[:-1]
+    check_digit_given = int(cleaned_pis[-1])
+    
+    calculated_check_digit = _checksum(base_pis)
+
+    return check_digit_given == calculated_check_digit
 
 
 def generate() -> str:
