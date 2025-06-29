@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `get_code_by_municipality_name` [#399](https://github.com/brazilian-utils/brutils-python/issues/399)
 - Utilitário `format_currency` [#426](https://github.com/brazilian-utils/brutils-python/issues/426)
 - Utilitário `convert_real_to_text` [#387](https://github.com/brazilian-utils/brutils-python/pull/525)
+- Utilitário `is_valid_pis_pasep` para validação de números PIS/Pasep. [#432](https://github.com/brazilian-utils/brutils-python/issues/432)
 
 ## [2.2.0] - 2024-09-12
 
