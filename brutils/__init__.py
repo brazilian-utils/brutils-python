@@ -119,7 +119,7 @@ __all__ = [
     # PIS
     "format_pis",
     "generate_pis",
-    "is_valid_pis",
+    "is_valid_pis_pasep",
     "remove_symbols_pis",
     # Voter ID
     "format_voter_id",
