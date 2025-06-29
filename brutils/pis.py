@@ -50,7 +50,7 @@ def format_pis(pis: str) -> str:
         '987.65432.10-0'
     """
 
-    if not is_valid(pis):
+    if is_valid_pis_pasep(pis):
         return None
 
     return "{}.{}.{}-{}".format(pis[:3], pis[3:8], pis[8:10], pis[10:11])
@@ -60,7 +60,7 @@ def format_pis(pis: str) -> str:
 ############
 
 
-def is_valid_pis_pasep(pis_pasep: str) -> bool: # Renomeada de is_valid
+def is_valid_pis_pasep(pis_pasep: str) -> bool:  # Renomeada de is_valid
     """
     Validates a given PIS/Pasep number.
 
@@ -93,7 +93,7 @@ def is_valid_pis_pasep(pis_pasep: str) -> bool: # Renomeada de is_valid
 
     base_pis = cleaned_pis[:-1]
     check_digit_given = int(cleaned_pis[-1])
-    
+
     calculated_check_digit = _checksum(base_pis)
 
     return check_digit_given == calculated_check_digit
