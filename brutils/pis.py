@@ -50,7 +50,7 @@ def format_pis(pis: str) -> str:
         '987.65432.10-0'
     """
 
-    if is_valid_pis_pasep(pis):
+    if not is_valid_pis_pasep(pis):
         return None
 
     return "{}.{}.{}-{}".format(pis[:3], pis[3:8], pis[8:10], pis[10:11])
