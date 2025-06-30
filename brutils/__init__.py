@@ -38,11 +38,8 @@ from brutils.ibge.municipality import (
     get_municipality_by_code,
 )
 
-#UF Imports
-from brutils.ibge.uf import (
-    convert_code_to_uf,
-    convert_text_to_uf
-)
+# UF Imports
+from brutils.ibge.uf import convert_code_to_uf, convert_text_to_uf
 
 # Legal Process Imports
 from brutils.legal_process import format_legal_process
@@ -134,7 +131,7 @@ __all__ = [
     "convert_code_to_uf",
     "get_municipality_by_code",
     "get_code_by_municipality_name",
-    #UF
+    # UF
     "convert_text_to_uf",
     # Date Utils
     "is_holiday",
