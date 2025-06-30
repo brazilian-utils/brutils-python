@@ -22,4 +22,8 @@ check:
 	@poetry run ruff check .
 
 test:
+ifeq ($(OS),Windows_NT)
+	@set PYTHONDONTWRITEBYTECODE=1 && poetry run python -m unittest discover tests/ -v
+else
 	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
+endif
