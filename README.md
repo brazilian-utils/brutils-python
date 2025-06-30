@@ -41,63 +41,72 @@ False
 
 # Utilitários
 
-- [CPF](#cpf)
-  - [is\_valid\_cpf](#is_valid_cpf)
-  - [format\_cpf](#format_cpf)
-  - [remove\_symbols\_cpf](#remove_symbols_cpf)
-  - [generate\_cpf](#generate_cpf)
-- [CNPJ](#cnpj)
-  - [is\_valid\_cnpj](#is_valid_cnpj)
-  - [format\_cnpj](#format_cnpj)
-  - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
-  - [generate\_cnpj](#generate_cnpj)
-- [CEP](#cep)
-  - [is\_valid\_cep](#is_valid_cep)
-  - [format\_cep](#format_cep)
-  - [remove\_symbols\_cep](#remove_symbols_cep)
-  - [generate\_cep](#generate_cep)
-  - [get\_address\_from\_cep](#get_address_from_cep)
-  - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
-- [Telefone](#telefone)
-  - [is\_valid\_phone](#is_valid_phone)
-  - [format\_phone](#format_phone)
-  - [remove\_symbols\_phone](#remove_symbols_phone)
-  - [remove\_international\_dialing\_code](#remove_international_dialing_code)
-  - [generate\_phone](#generate_phone)
-- [Email](#email)
-  - [is\_valid\_email](#is_valid_email)
-- [Data](#date)
-  - [convert\_date\_to_text](#convert_date_to_text) 
-- [Placa de Carro](#placa-de-carro)
-  - [is\_valid\_license\_plate](#is_valid_license_plate)
-  - [format\_license\_plate](#format_license_plate)
-  - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
-  - [generate\_license\_plate](#generate_license_plate)
-  - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
-  - [get\_format\_license\_plate](#get_format_license_plate)
-- [PIS](#pis)
-  - [is\_valid\_pis](#is_valid_pis)
-  - [format\_pis](#format_pis)
-  - [remove\_symbols\_pis](#remove_symbols_pis)
-  - [generate\_pis](#generate_pis)
-- [Processo Jurídico](#processo-jurídico)
-- [is\_valid\_legal\_process](#is_valid_legal_process)
-  - [format\_legal\_process](#format_legal_process)
-  - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
-  - [generate\_legal\_process](#generate_legal_process)
-- [Titulo Eleitoral](#titulo-eleitoral)
-  - [is\_valid\_voter\_id](#is_valid_voter_id)
-  - [format\_voter\_id](#format_voter_id)
-  - [generate\_voter\_id](#generate_voter_id)
-- [IBGE](#ibge)
-  - [get_code_by_municipality_name](#get_code_by_municipality_name)
-  - [convert_code_to_uf](#convert_code_to_uf)
-  - [get\_municipality\_by\_code](#get_municipality_by_code)
-- [Feriados](#feriados)
-  - [is_holiday](#is_holiday)
-- [Monetário](#monetário)
-  - [format\_currency](#format_currency)
-  - [convert\_real\_to\_text](#convert_real_to_text)
+- [Introdução](#introdução)
+- [Instalação](#instalação)
+- [Utilização](#utilização)
+- [Utilitários](#utilitários)
+  - [CPF](#cpf)
+    - [is\_valid\_cpf](#is_valid_cpf)
+    - [format\_cpf](#format_cpf)
+    - [remove\_symbols\_cpf](#remove_symbols_cpf)
+    - [generate\_cpf](#generate_cpf)
+  - [CNPJ](#cnpj)
+    - [is\_valid\_cnpj](#is_valid_cnpj)
+    - [format\_cnpj](#format_cnpj)
+    - [remove\_symbols\_cnpj](#remove_symbols_cnpj)
+    - [generate\_cnpj](#generate_cnpj)
+  - [CEP](#cep)
+    - [is\_valid\_cep](#is_valid_cep)
+    - [format\_cep](#format_cep)
+    - [remove\_symbols\_cep](#remove_symbols_cep)
+    - [generate\_cep](#generate_cep)
+    - [get\_address\_from\_cep](#get_address_from_cep)
+    - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
+  - [Telefone](#telefone)
+    - [is\_valid\_phone](#is_valid_phone)
+    - [format\_phone](#format_phone)
+    - [remove\_symbols\_phone](#remove_symbols_phone)
+    - [remove\_international\_dialing\_code](#remove_international_dialing_code)
+    - [generate\_phone](#generate_phone)
+  - [Email](#email)
+    - [is\_valid\_email](#is_valid_email)
+  - [Data](#data)
+  - [convert\_date\_to\_text](#convert_date_to_text)
+  - [Placa de Carro](#placa-de-carro)
+    - [is\_valid\_license\_plate](#is_valid_license_plate)
+    - [format\_license\_plate](#format_license_plate)
+    - [remove\_symbols\_license\_plate](#remove_symbols_license_plate)
+    - [generate\_license\_plate](#generate_license_plate)
+    - [convert\_license\_plate\_to\_mercosul](#convert_license_plate_to_mercosul)
+    - [get\_format\_license\_plate](#get_format_license_plate)
+  - [PIS](#pis)
+    - [is\_valid\_pis](#is_valid_pis)
+    - [format\_pis](#format_pis)
+    - [remove\_symbols\_pis](#remove_symbols_pis)
+    - [generate\_pis](#generate_pis)
+  - [Processo Jurídico](#processo-jurídico)
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
+    - [format\_legal\_process](#format_legal_process)
+    - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
+    - [generate\_legal\_process](#generate_legal_process)
+  - [Titulo Eleitoral](#titulo-eleitoral)
+    - [is\_valid\_voter\_id](#is_valid_voter_id)
+    - [format\_voter\_id](#format_voter_id)
+    - [generate\_voter\_id](#generate_voter_id)
+  - [IBGE](#ibge)
+    - [convert\_text\_to\_uf](#convert_text_to_uf)
+    - [convert\_code\_to\_uf](#convert_code_to_uf)
+    - [get\_municipality\_by\_code](#get_municipality_by_code)
+    - [get\_code\_by\_municipality\_name](#get_code_by_municipality_name)
+  - [Feriados](#feriados)
+    - [is\_holiday](#is_holiday)
+  - [Monetário](#monetário)
+    - [format\_currency](#format_currency)
+    - [convert\_real\_to\_text](#convert_real_to_text)
+- [Novos Utilitários e Reportar Bugs](#novos-utilitários-e-reportar-bugs)
+- [Dúvidas? Ideias?](#dúvidas-ideias)
+- [Contribuindo com o Código do Projeto](#contribuindo-com-o-código-do-projeto)
+  - [❤️ Quem já Contribuiu](#️-quem-já-contribuiu)
 
 ## CPF
 
@@ -1123,6 +1132,34 @@ Exemplo:
 ```
 
 ## IBGE
+
+### convert_text_to_uf
+
+Converte o nome completo de um estado brasileiro para sua respectiva sigla UF.
+
+Esta função recebe o nome completo de um estado brasileiro e retorna a correspondente sigla de 2 letras (UF). Ela contempla todos os estados brasileiros e o Distrito Federal.
+
+Args:
+  * code (str): O nome completo do estado a ser convertido.
+
+Retorno:
+  * str ou None: A sigla UF correspondente ao nome completo do estado, ou None caso o nome informado seja inválido.
+
+Exemplo:
+
+```python
+>>> from brutils.ibge.uf import convert_text_to_uf
+>>> convert_text_to_uf('São Paulo')
+"SP"
+>>> convert_text_to_uf('Rio de Janeiro')
+"RJ"
+>>> convert_text_to_uf('Minas Gerais')
+"MG"
+>>> convert_text_to_uf('Distrito Federal')
+"DF"
+>>> convert_text_to_uf('Estado Inexistente')
+None
+```
 
 ### convert_code_to_uf
 Converte um determinado código do IBGE (string de 2 dígitos) para sua UF (abreviatura estadual) correspondente.
