@@ -195,11 +195,10 @@ Example:
 
 ### is_valid_cnpj
 
-Returns whether or not the verifying checksum digits of the given CNPJ
-(Brazilian Company Registration Number) match its base number.
-Input should be a digit string of proper length.
-This function does not verify the existence of the CNPJ; it only
-validates the format of the string.
+Returns whether the verifying checksum digits of the given CNPJ (Brazilian Company Registration Number) match its base number.
+Now accepts both the old format (14 numeric digits) and the new alphanumeric format (12 alphanumeric characters + 2 check digits).
+
+The check digit calculation for the new format follows the Modulo 11 method, considering the ASCII value of each character (ord(char) - 48).
 
 Args:
 
@@ -207,89 +206,84 @@ Args:
 
 Returns:
 
-- bool: True if the checksum digits match the base number,
-          False otherwise.
+- bool: True if the check digits match the base number, False otherwise.
 
 Example:
 
 ```python
->>> from brutils import is_valid_cnpj
->>> is_valid_cnpj('03560714000142')
+>>> from brutils import is_valid_cnpj, generate_cnpj
+>>> is_valid_cnpj('03560714000142')  # old format
 True
->>> is_valid_cnpj('00111222000133')
-False
+>>> cnpj_new = generate_cnpj(new_format=True)
+>>> is_valid_cnpj(cnpj_new)
+True
 ```
 
 ### format_cnpj
 
-Formats a CNPJ (Brazilian Company Registration Number) string for visual
-display.
-This function takes a CNPJ string as input, validates its format, and
-formats it with standard visual aid symbols for display purposes.
+Formats a CNPJ (old or new) for visual display in the pattern `XX.XXX.XXX/XXXX-XX`.
 
 Args:
 
-- cnpj (str): The CNPJ string to be formatted for display.
+- cnpj (str): The CNPJ to be formatted.
 
 Returns:
 
-- str: The formatted CNPJ with visual aid symbols if it's valid,
-         None if it's not valid.
+- str: The formatted CNPJ or None if invalid.
 
 Example:
 
 ```python
->>> from brutils import format_cnpj
->>> format_cnpj("03560714000142")
+>>> from brutils import format_cnpj, generate_cnpj
+>>> format_cnpj('03560714000142')
 '03.560.714/0001-42'
->>> format_cnpj("98765432100100")
-None
+>>> cnpj_new = generate_cnpj(new_format=True)
+>>> format_cnpj(cnpj_new)
+'XX.XXX.XXX/XXXX-XX'
 ```
 
 ### remove_symbols_cnpj
 
-Removes specific symbols from a CNPJ (Brazilian Company Registration Number)
-string.
-This function takes a CNPJ string as input and removes all occurrences of
-the '.', '/' and '-' characters from it.
+Removes symbols from a CNPJ in any format.
 
 Args:
 
-- cnpj (str): The CNPJ string containing symbols to be removed.
+- cnpj (str): The CNPJ to be cleaned.
 
 Returns:
 
-- str: A new string with the specified symbols removed.
+- str: The CNPJ without symbols.
 
 Example:
 
 ```python
 >>> from brutils import remove_symbols_cnpj
->>> remove_symbols_cnpj('00.111.222/0001-00')
-'00111222000100'
+>>> remove_symbols_cnpj('03.560.714/0001-42')
+'03560714000142'
+>>> remove_symbols_cnpj('AB.CDE.FGHI/JKL-12')
+'ABCDEFGHIJKL12'
 ```
 
 ### generate_cnpj
 
-Generates a random valid CNPJ (Brazilian Company Registration Number) digit
-string. An optional branch number parameter can be given; it defaults to 1.
+Generates a valid CNPJ in the old format (numbers only) or new (alphanumeric).
 
 Args:
 
-- branch (int): An optional branch number to be included in the CNPJ.
+- new_format (bool): If True, generates in the new format.
 
 Returns:
 
-- str: A randomly generated valid CNPJ string.
+- str: A valid CNPJ.
 
 Example:
 
 ```python
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
-'34665388000161'
->>> generate_cnpj(1234)
-"01745284123455"
+'30180536000105'
+>>> generate_cnpj(new_format=True)
+'AB12CD34EF56G7'  # example, always valid
 ```
 
 ## CEP
@@ -470,7 +464,7 @@ Return:
 
 Example:
 
-````python
+```python
 >>> from brutils import convert_date_to_text
 >>> convert_date_to_text("25/12/2000")
 "Vinte e cinco de dezembro de dois mil"
@@ -480,7 +474,7 @@ None
 "Vinte e nove de fevereiro de dois mil e vinte e quatro"
 >>> convert_date_to_text("1/08/2024")
 "Primeiro de agosto de dois mil e vinte e quatro"
-````
+```
 
 ## Phone
 
@@ -1205,7 +1199,7 @@ None
 
 Checks if a given date is a national or state holiday in Brazil.
 
-This function takes a `datetime` object as the date and an optional state abbreviation (UF) to specify state holidays. It returns `True` if the date is a holiday, `False` if it’s not, or `None` if the date or UF are invalid. Note that the function does not cover municipal holidays.
+This function takes a `datetime` object as the date and an optional state abbreviation (UF) to specify state holidays. It returns `True` if the date is a holiday, `False` if it's not, or `None` if the date or UF are invalid. Note that the function does not cover municipal holidays.
 
 Args:
 
@@ -1214,7 +1208,7 @@ Args:
 
 Returns:
 
-- `bool | None`: `True` if the date is a holiday, `False` if it’s not, or `None` if the date or UF are invalid.
+- `bool | None`: `True` if the date is a holiday, `False` if it's not, or `None` if the date or UF are invalid.
 
 Example:
 
