@@ -194,10 +194,10 @@ Exemplo:
 
 ### is_valid_cnpj
 
-Verifica se os dígitos de verificação do CNPJ (Cadastro Nacional da Pessoa
-Jurídica) fornecido correspondem ao seu número base. A entrada deve ser uma
-string de dígitos com o comprimento apropriado. Esta função não verifica a
-existência do CNPJ; ela só valida o formato da string.
+Verifica se os dígitos de verificação do CNPJ (Cadastro Nacional da Pessoa Jurídica) fornecido correspondem ao seu número base.
+Agora aceita tanto o formato antigo (14 dígitos numéricos) quanto o novo formato alfanumérico (12 caracteres alfanuméricos + 2 dígitos verificadores).
+
+O cálculo do dígito verificador para o novo formato segue o Módulo 11, considerando o valor ASCII de cada caractere (ord(char) - 48).
 
 Argumentos:
 
@@ -205,88 +205,84 @@ Argumentos:
 
 Retorna:
 
-- bool: True se os dígitos de verificação corresponderem ao número base,
-        False caso contrário.
+- bool: True se os dígitos de verificação corresponderem ao número base, False caso contrário.
 
 Exemplo:
 
 ```python
->>> from brutils import is_valid_cnpj
->>> is_valid_cnpj('03560714000142')
+>>> from brutils import is_valid_cnpj, generate_cnpj
+>>> is_valid_cnpj('03560714000142')  # formato antigo
 True
->>> is_valid_cnpj('00111222000133')
-False
+>>> cnpj_novo = generate_cnpj(new_format=True)
+>>> is_valid_cnpj(cnpj_novo)
+True
 ```
 
 ### format_cnpj
 
-Formata uma string de CNPJ (Cadastro Nacional da Pessoa Jurídica) para exibição
-visual.
-Esta função recebe uma string de CNPJ como entrada, valida seu formato e a
-formata com símbolos visuais padrão para fins de exibição.
+Formata um CNPJ (antigo ou novo) para exibição visual no padrão `XX.XXX.XXX/XXXX-XX`.
 
 Argumentos:
 
-- cnpj (str): A string de CNPJ a ser formatada para exibição.
+- cnpj (str): O CNPJ a ser formatado.
 
 Retorna:
 
-- str: O CNPJ formatado com símbolos visuais se for válido, None se não for válido.
+- str: O CNPJ formatado ou None se inválido.
 
 Exemplo:
 
 ```python
->>> from brutils import format_cnpj
->>> format_cnpj("03560714000142")
+>>> from brutils import format_cnpj, generate_cnpj
+>>> format_cnpj('03560714000142')
 '03.560.714/0001-42'
->>> format_cnpj("98765432100100")
-None
+>>> cnpj_novo = generate_cnpj(new_format=True)
+>>> format_cnpj(cnpj_novo)
+'XX.XXX.XXX/XXXX-XX'
 ```
 
 ### remove_symbols_cnpj
 
-Remove símbolos específicos de uma string de CNPJ (Cadastro Nacional da Pessoa
-Jurídica).
-Esta função recebe uma string de CNPJ como entrada e remove todas as
-ocorrências dos caracteres '.', '/' e '-' dela.
+Remove símbolos de um CNPJ em qualquer formato.
 
 Argumentos:
 
-- cnpj (str): A string de CNPJ que contém os símbolos a serem removidos.
+- cnpj (str): O CNPJ a ser limpo.
 
 Retorna:
 
-- str: Uma nova string com os símbolos especificados removidos.
+- str: O CNPJ sem símbolos.
 
 Exemplo:
 
 ```python
 >>> from brutils import remove_symbols_cnpj
->>> remove_symbols_cnpj('00.111.222/0001-00')
-'00111222000100'
+>>> remove_symbols_cnpj('03.560.714/0001-42')
+'03560714000142'
+>>> remove_symbols_cnpj('AB.CDE.FGHI/JKL-12')
+'ABCDEFGHIJKL12'
 ```
 
 ### generate_cnpj
 
-Gera uma string de dígitos CNPJ válida aleatória. Um número de filial
-opcional pode ser fornecido; o padrão é 1.
+Gera um CNPJ válido no formato antigo (apenas números) ou novo (alfanumérico).
 
 Argumentos:
 
-- branch (int): Um número de filial opcional a ser incluído no CNPJ.
+- new_format (bool): Se True, gera no novo formato.
 
 Retorna:
 
-- str: Um CNPJ válido gerado aleatoriamente.
+- str: Um CNPJ válido.
 
 Exemplo:
 
 ```python
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
-'34665388000161'
->>> generate_cnpj(1234)
-"01745284123455"
+'30180536000105'
+>>> generate_cnpj(new_format=True)
+'AB12CD34EF56G7'  # exemplo, sempre válido
 ```
 
 ## CEP

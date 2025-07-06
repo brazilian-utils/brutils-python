@@ -11,6 +11,9 @@ from brutils.cnpj import (
     remove_symbols,
     sieve,
     validate,
+    is_valid_cnpj,
+    remove_symbols_cnpj,
+    generate_cnpj,
 )
 
 
@@ -107,6 +110,55 @@ class TestIsValidToFormat(TestCase):
 
         # When cnpj isn't valid, returns None
         self.assertIsNone(format_cnpj("01838723000127"))
+
+
+def test_is_valid_cnpj_new_format():
+    from brutils.cnpj import is_valid_cnpj, generate_cnpj
+    # Gerar exemplos válidos
+    for _ in range(10):
+        cnpj = generate_cnpj(new_format=True)
+        assert is_valid_cnpj(cnpj)
+        # Alterar o último dígito para garantir que fique inválido
+        cnpj_invalido = cnpj[:-1] + ("0" if cnpj[-1] != "0" else "1")
+        assert not is_valid_cnpj(cnpj_invalido)
+    # Exemplos inválidos
+    assert not is_valid_cnpj("A1B2C3D4E5F6GZ")  # Último caractere não pode ser letra
+    assert not is_valid_cnpj("A1B2C3D4E5F6G")   # Menos de 14 caracteres
+    assert not is_valid_cnpj("A1B2C3D4E5F6G789") # Mais de 14 caracteres
+    assert not is_valid_cnpj("A1B2C3D4E5F6G!")  # Símbolo inválido
+    assert not is_valid_cnpj("A1B2C3D4E5F6G7A") # Último caractere letra
+    assert not is_valid_cnpj("A1B2C3D4E5F6G7 ") # Espaço
+
+
+def test_format_cnpj_new_format():
+    from brutils.cnpj import format_cnpj, generate_cnpj
+    # Gerar exemplos válidos
+    for _ in range(10):
+        cnpj = generate_cnpj(new_format=True)
+        formatted = format_cnpj(cnpj)
+        # Deve seguir o padrão XX.XXX.XXX/XXXX-XX
+        assert formatted is not None
+        # Remover símbolos e comparar
+        from brutils.cnpj import remove_symbols_cnpj
+        assert remove_symbols_cnpj(formatted) == cnpj
+    # Inválidos
+    assert format_cnpj("A1B2C3D4E5F6GZ") is None
+    assert format_cnpj("A1B2C3D4E5F6G") is None
+
+
+def test_remove_symbols_cnpj_new_format():
+    assert remove_symbols_cnpj("A1.B2C.3D4/E5F6-G7") == "A1B2C3D4E5F6G7"
+    assert remove_symbols_cnpj("12.345.678/90AB-12") == "1234567890AB12"
+    assert remove_symbols_cnpj("AB.CDE.FGHI/JKL-12") == "ABCDEFGHIJKL12"
+
+
+def test_generate_cnpj_new_format():
+    for _ in range(100):
+        cnpj = generate_cnpj(new_format=True)
+        assert len(cnpj) == 14
+        assert is_valid_cnpj(cnpj)
+        assert cnpj[:12].isalnum()
+        assert cnpj[-2:].isdigit()
 
 
 if __name__ == "__main__":

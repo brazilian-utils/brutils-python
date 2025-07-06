@@ -95,29 +95,23 @@ def format_cnpj(cnpj):  # type: (str) -> str
     Formats a CNPJ (Brazilian Company Registration Number) string for visual
     display.
 
-    This function takes a CNPJ string as input, validates its format, and
-    formats it with standard visual aid symbols for display purposes.
-
-    Args:
-        cnpj (str): The CNPJ string to be formatted for display.
+    Aceita tanto o formato antigo (14 dígitos) quanto o novo (12 alfanuméricos + 2 dígitos).
 
     Returns:
         str: The formatted CNPJ with visual aid symbols if it's valid,
              None if it's not valid.
-
-    Example:
-        >>> format_cnpj("03560714000142")
-        '03.560.714/0001-42'
-        >>> format_cnpj("98765432100100")
-        None
     """
-
-    if not is_valid(cnpj):
+    if not isinstance(cnpj, str) or len(cnpj) != 14:
         return None
-
-    return "{}.{}.{}/{}-{}".format(
-        cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]
-    )
+    # Formato antigo: só números
+    if cnpj.isdigit():
+        if not is_valid(cnpj):
+            return None
+        return f"{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}"
+    # Novo formato: 12 alfanuméricos + 2 dígitos
+    if cnpj[:12].isalnum() and cnpj[-2:].isdigit() and is_valid_cnpj(cnpj):
+        return f"{cnpj[:2]}.{cnpj[2:5]}.{cnpj[5:8]}/{cnpj[8:12]}-{cnpj[12:14]}"
+    return None
 
 
 # OPERATIONS
@@ -260,3 +254,74 @@ def _checksum(basenum):  # type: (str) -> str
     verifying_digits = str(_hashdigit(basenum, 13))
     verifying_digits += str(_hashdigit(basenum + verifying_digits, 14))
     return verifying_digits
+
+
+def _mod11_alfanumerico(cnpj_base: str) -> str:
+    """
+    Calcula os dois dígitos verificadores para o novo CNPJ alfanumérico.
+    Cada caractere é convertido para valor numérico: ord(CHAR) - 48.
+    """
+    def char_to_num(c):
+        return ord(c) - 48
+
+    pesos1 = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2]
+    pesos2 = [6] + pesos1
+    nums = [char_to_num(c) for c in cnpj_base]
+    # Primeiro DV
+    soma1 = sum(n * p for n, p in zip(nums, pesos1))
+    dv1 = 11 - (soma1 % 11)
+    if dv1 >= 10:
+        dv1 = 0
+    # Segundo DV
+    nums2 = nums + [dv1]
+    soma2 = sum(n * p for n, p in zip(nums2, pesos2))
+    dv2 = 11 - (soma2 % 11)
+    if dv2 >= 10:
+        dv2 = 0
+    return f"{dv1}{dv2}"
+
+
+def is_valid_cnpj(cnpj: str) -> bool:
+    """
+    Valida CNPJ nos dois formatos:
+    - Antigo: 14 dígitos numéricos
+    - Novo: 12 alfanuméricos (A-Z, 0-9) + 2 dígitos
+    """
+    if not isinstance(cnpj, str):
+        return False
+    cnpj = cnpj.strip()
+    if len(cnpj) != 14:
+        return False
+    # Formato antigo: só números
+    if cnpj.isdigit():
+        return is_valid(cnpj)
+    # Novo formato: 12 alfanuméricos + 2 dígitos
+    if not (cnpj[:12].isalnum() and cnpj[-2:].isdigit()):
+        return False
+    cnpj_base = cnpj[:12]
+    dv = cnpj[-2:]
+    dv_calc = _mod11_alfanumerico(cnpj_base)
+    return dv == dv_calc
+
+
+def remove_symbols_cnpj(cnpj: str) -> str:
+    """
+    Remove símbolos de um CNPJ em qualquer formato.
+    """
+    return ''.join(c for c in cnpj if c.isalnum())
+
+
+def generate_cnpj(new_format=False) -> str:
+    """
+    Gera CNPJ válido no formato antigo (apenas números) ou novo (alfanumérico).
+    """
+    from random import choice
+    import string
+    if not new_format:
+        # Geração padrão já existente
+        return generate()
+    # Novo formato: 12 alfanuméricos + 2 dígitos
+    alfanum = string.ascii_uppercase + string.digits
+    cnpj_base = ''.join(choice(alfanum) for _ in range(12))
+    dv = _mod11_alfanumerico(cnpj_base)
+    return cnpj_base + dv

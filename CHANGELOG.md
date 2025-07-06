@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `get_municipality_by_code` [412](https://github.com/brazilian-utils/brutils-python/pull/412)
 - Utilitário `get_code_by_municipality_name` [#399](https://github.com/brazilian-utils/brutils-python/issues/399)
 - Utilitário `format_currency` [#426](https://github.com/brazilian-utils/brutils-python/issues/426)
+- Suporte ao novo formato de CNPJ alfanumérico, incluindo validação, geração, formatação e remoção de símbolos, conforme a nova regra da Receita Federal. [#478](https://github.com/brazilian-utils/brutils-python/issues/478)
 
 ## [2.2.0] - 2024-09-12
 
