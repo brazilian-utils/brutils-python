@@ -98,6 +98,33 @@ False
 - [Monetary](#monetary)
   - [format_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [Angolan TIN](#angolan-tin)
+
+## Angolan TIN
+
+### validate_tin_angola
+
+Validates an Angolan Tax Identification Number (TIN).
+
+**Args**:
+
+- `tin` (str): a 9-digit numeric string.  
+  - The first digit must be one of `1`, `5`, `6`, or `8`.  
+  - The ninth digit is a check digit calculated using modulo 11 with weights `[9,8,7,6,5,4,3,2]`.
+
+**Returns**:
+
+- `bool`: `True` if the TIN is valid, otherwise `False`.
+
+**Examples**:
+
+```python
+>>> from brutils import validate_tin_angola
+>>> validate_tin_angola("123456782")
+True
+>>> validate_tin_angola("023456789")
+False
+```
 
 ## CPF
 

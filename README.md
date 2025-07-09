@@ -98,6 +98,33 @@ False
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [TIN Angola](#tin-angola)
+
+## TIN Angola
+
+### validate_tin_angola
+
+Valida um TIN (Número de Identificação Fiscal) de Angola.
+
+**Argumentos**:
+
+- `tin` (str): sequência de 9 dígitos numéricos.  
+  - Primeiro dígito: `1`, `5`, `6` ou `8`.  
+  - Nono dígito: dígito verificador por módulo 11 com pesos `[9,8,7,6,5,4,3,2]`.
+
+**Retorna**:
+
+- `bool`: `True` se o TIN for válido, `False` caso contrário.
+
+**Exemplos**:
+
+```python
+>>> from brutils import validate_tin_angola
+>>> validate_tin_angola("123456782")
+True
+>>> validate_tin_angola("023456789")
+False
+```
 
 ## CPF
 
