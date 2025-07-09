@@ -75,6 +75,9 @@ from brutils.voter_id import format_voter_id
 from brutils.voter_id import generate as generate_voter_id
 from brutils.voter_id import is_valid as is_valid_voter_id
 
+# TIN imports
+from .tin import validate_tin_angola
+
 # Defining __all__ to expose the public methods
 __all__ = [
     # CEP
@@ -134,4 +137,6 @@ __all__ = [
     # Currency
     "format_currency",
     "convert_real_to_text",
+    # TIN
+    "validate_tin_angola",
 ]
