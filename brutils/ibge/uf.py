@@ -54,12 +54,12 @@ def convert_uf_to_name(uf: str) -> str:
         'Rio de Janeiro'
     """
     if not uf or not isinstance(uf, str):
-        raise ValueError('UF must be a non-empty string.')
+        raise ValueError("UF must be a non-empty string.")
 
     federal_unit = uf.strip().upper()
 
     if federal_unit not in UF.__members__:
-        raise ValueError(f'Invalid UF: {uf}')
+        raise ValueError(f"Invalid UF: {uf}")
 
     result = UF[federal_unit].value
 
