@@ -37,7 +37,7 @@ from brutils.ibge.municipality import (
     get_code_by_municipality_name,
     get_municipality_by_code,
 )
-from brutils.ibge.uf import convert_code_to_uf
+from brutils.ibge.uf import convert_code_to_uf, convert_uf_to_name
 
 # Legal Process Imports
 from brutils.legal_process import format_legal_process
@@ -127,6 +127,7 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
+    "convert_uf_to_name",
     "get_municipality_by_code",
     "get_code_by_municipality_name",
     # Date Utils

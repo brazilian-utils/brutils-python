@@ -1,4 +1,4 @@
-from brutils.data.enums.uf import CODE_TO_UF
+from brutils.data.enums.uf import CODE_TO_UF, UF
 
 
 def convert_code_to_uf(code):  # type: (str) -> str | None
@@ -28,5 +28,39 @@ def convert_code_to_uf(code):  # type: (str) -> str | None
 
     if code in CODE_TO_UF.values:
         result = CODE_TO_UF(code).name
+
+    return result
+
+
+def convert_uf_to_name(uf: str) -> str:
+    """
+    Convert a Brazilian UF code (e.g., 'SP') to its full state name ('São Paulo').
+
+    The lookup is case-insensitive and ignores surrounding whitespace.
+
+    Args:
+        uf (str): Two-letter UF code.
+
+    Returns:
+        str: The full state name.
+
+    Raises:
+        ValueError: If `uf` is not a non-empty string or is not a valid UF code.
+
+    Examples:
+        >>> convert_uf_to_name('SP')
+        'São Paulo'
+        >>> convert_uf_to_name('rj')
+        'Rio de Janeiro'
+    """
+    if not uf or not isinstance(uf, str):
+        raise ValueError('UF must be a non-empty string.')
+
+    federal_unit = uf.strip().upper()
+
+    if federal_unit not in UF.__members__:
+        raise ValueError(f'Invalid UF: {uf}')
+
+    result = UF[federal_unit].value
 
     return result
