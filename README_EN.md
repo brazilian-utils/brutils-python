@@ -97,6 +97,7 @@ False
   - [is_holiday](#is_holiday)
 - [Monetary](#monetary)
   - [format_currency](#format_currency)
+  - [convert\_real\_to\_text](#convert_real_to_text)
 
 ## CPF
 
@@ -1254,6 +1255,44 @@ Example:
 >>> format_currency(0)
 'R$ 0,00'
 >>> format_currency("not a number")
+None
+```
+
+### convert_real_to_text
+
+Converts a given monetary value in Brazilian Reais to its textual representation. It takes a decimal number representing a monetary value in Reais and converts it to a string with the amount written out in Brazilian Portuguese. It handles both the integer part (Reais) and the fractional part (centavos), respecting the correct grammar for singular and plural cases, as well as special cases like zero and negative values.
+
+Args:
+
+- amount (decimal): The monetary value to be converted into text.
+  - The integer part represents Reais.
+  - The decimal part represents centavos.
+  - 2 decimal places
+
+Returns:
+
+- str: A string with the monetary value written out in Brazilian Portuguese.
+  - Returns "Zero reais" for a value of 0.00.
+  - Returns None if the amount is invalid or absolutely greater than 1 quadrillion.
+  - Handles negative values, adding "Menos" at the beginning of the string.
+
+Limitations:
+  - This function may lose precision by ±1 cent for cases where the absolute value
+    is beyond trillions due to floating-point rounding errors.
+
+Example:
+
+```python
+>>> from brutils.currency import convert_real_to_text
+>>> convert_real_to_text(1523.45)
+'Mil, quinhentos e vinte e três reais e quarenta e cinco centavos'
+>>> convert_real_to_text(0.01)
+'Um centavo'
+>>> convert_real_to_text(0.00)
+'Zero reais'
+>>> convert_real_to_text(-50.25)
+'Menos cinquenta reais e vinte e cinco centavos'
+>>> convert_real_to_text("invalid")
 None
 ```
 
