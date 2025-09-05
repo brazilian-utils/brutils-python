@@ -128,8 +128,8 @@ __all__ = [
     # IBGE
     "convert_code_to_uf",
     "convert_uf_to_name",
-    "get_municipality_by_code",
     "get_code_by_municipality_name",
+    "get_municipality_by_code",
     # Date Utils
     "is_holiday",
     # Currency
