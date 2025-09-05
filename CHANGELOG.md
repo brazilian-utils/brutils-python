@@ -8,13 +8,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 
-- Utilitário `convert_code_to_uf` [#397](https://github.com/brazilian-utils/brutils-python/pull/410)
+- Utilitário `convert_code_to_uf` [#410](https://github.com/brazilian-utils/brutils-python/pull/410)
 - Utilitário `is_holiday` [#446](https://github.com/brazilian-utils/brutils-python/pull/446)
-- Utilitário `convert_date_to_text`[#394](https://github.com/brazilian-utils/brutils-python/pull/415)
+- Utilitário `convert_date_to_text`[#415](https://github.com/brazilian-utils/brutils-python/pull/415)
 - Utilitário `get_municipality_by_code` [412](https://github.com/brazilian-utils/brutils-python/pull/412)
-- Utilitário `get_code_by_municipality_name` [#399](https://github.com/brazilian-utils/brutils-python/issues/399)
-- Utilitário `format_currency` [#426](https://github.com/brazilian-utils/brutils-python/issues/426)
-- Utilitário `convert_real_to_text` [#387](https://github.com/brazilian-utils/brutils-python/pull/525)
+- Utilitário `get_code_by_municipality_name` [#411](https://github.com/brazilian-utils/brutils-python/pull/411)
+- Utilitário `format_currency` [#434](https://github.com/brazilian-utils/brutils-python/pull/434)
+- Utilitário `convert_real_to_text` [#525](https://github.com/brazilian-utils/brutils-python/pull/525)
+- Utilitário `convert_uf_to_name` [#554](https://github.com/brazilian-utils/brutils-python/pull/554)
 
 ## [2.2.0] - 2024-09-12
 
@@ -22,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Utilitário `get_address_from_cep` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
 - Utilitário `get_cep_information_from_address` [#358](https://github.com/brazilian-utils/brutils-python/pull/358)
-- Utilitário `format_voter_id` [#221](https://github.com/brazilian-utils/brutils-python/issues/221)
+- Utilitário `format_voter_id` [#363](https://github.com/brazilian-utils/brutils-python/pull/363)
 - Utilitário `generate_voter_id` [#220](https://github.com/brazilian-utils/brutils-python/pull/220)
 
 ## [2.1.1] - 2024-01-06
@@ -64,7 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
-- Suporte ao Python 3.7 [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
+- **BREAKING CHANGE** Suporte ao Python 3.7 [#236](https://github.com/brazilian-utils/brutils-python/pull/236)
 
 ## [2.0.0] - 2023-07-23
 
