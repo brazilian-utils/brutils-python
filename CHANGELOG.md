@@ -17,6 +17,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `convert_real_to_text` [#525](https://github.com/brazilian-utils/brutils-python/pull/525)
 - Utilitário `convert_uf_to_name` [#554](https://github.com/brazilian-utils/brutils-python/pull/554)
 
+### Deprecated
+
+- **BREAKING CHANGES** Suporte ao Python 3.8 [#236](https://github.com/brazilian-utils/brutils-python/pull/561)
+- **BREAKING CHANGES** Suporte ao Python 3.9 [#236](https://github.com/brazilian-utils/brutils-python/pull/561)
+
 ## [2.2.0] - 2024-09-12
 
 ### Added
