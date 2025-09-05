@@ -81,7 +81,7 @@ False
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
 - [Processo Jurídico](#processo-jurídico)
-- [is\_valid\_legal\_process](#is_valid_legal_process)
+  - [is\_valid\_legal\_process](#is_valid_legal_process)
   - [format\_legal\_process](#format_legal_process)
   - [remove\_symbols\_legal\_process](#remove_symbols_legal_process)
   - [generate\_legal\_process](#generate_legal_process)
@@ -91,6 +91,7 @@ False
   - [generate\_voter\_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [convert_uf_to_name](#convert_uf_to_name)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
 - [Feriados](#feriados)
@@ -1194,6 +1195,27 @@ Example:
 >>> from brutils import get_municipality_by_code
 >>> get_municipality_by_code(3550308)
 ("São Paulo", "SP")
+```
+
+### convert_uf_to_name
+Converte um código de UF brasileiro (por exemplo, 'SP') no nome completo do estado ('São Paulo').
+
+A busca é case-insensitive (não diferencia maiúsculas de minúsculas) e ignora espaços em branco ao redor.
+
+Argumentos:
+  * uf (str): Código de UF com duas letras.
+
+Retorna:
+  * str | None: O nome completo do estado, ou ``None`` se o código for inválido.
+
+Exemplo:
+
+```python
+>>> from brutils.ibge.uf import convert_uf_to_name
+>>> convert_uf_to_name('SP')
+'São Paulo'
+>>> convert_uf_to_name('rj')
+'Rio de Janeiro'
 ```
 
 ## Feriados

@@ -93,6 +93,7 @@ False
   - [convert_code_to_uf](#convert_code_to_uf)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
+  - [convert_uf_to_name](#convert_uf_to_name)
 - [Holidays](#holidays)
   - [is_holiday](#is_holiday)
 - [Monetary](#monetary)
@@ -1198,6 +1199,27 @@ Example:
 >>> from brutils import get_municipality_by_code
 >>> get_municipality_by_code(3550308)
 ("São Paulo", "SP")
+```
+
+### convert_uf_to_name
+Converts a Brazilian UF code (e.g., 'SP') to the state's full name ('São Paulo').
+
+The lookup is case-insensitive and ignores surrounding whitespace.
+
+Args:
+  * uf (str): Two-letter UF code.
+
+Returns:
+  * str | None: The full state name if found, or ``None`` if the code is invalid.
+
+Example:
+
+```python
+>>> from brutils.ibge.uf import convert_uf_to_name
+>>> convert_uf_to_name('SP')
+'São Paulo'
+>>> convert_uf_to_name('rj')
+'Rio de Janeiro'
 ```
 
 ## Holidays

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from brutils.ibge.uf import convert_code_to_uf
+from brutils.ibge.uf import convert_code_to_uf, convert_uf_to_name
 
 
 class TestUF(TestCase):
@@ -16,3 +16,15 @@ class TestUF(TestCase):
         self.assertIsNone(convert_code_to_uf("00"))
         self.assertIsNone(convert_code_to_uf(""))
         self.assertIsNone(convert_code_to_uf("AB"))
+
+    def test_convert_uf_to_name(self):
+        # Testes para códigos válidos
+        self.assertEqual(convert_uf_to_name("SP"), "São Paulo")
+        self.assertEqual(convert_uf_to_name("RJ"), "Rio de Janeiro")
+        self.assertEqual(convert_uf_to_name("MG"), "Minas Gerais")
+        self.assertEqual(convert_uf_to_name("DF"), "Distrito Federal")
+        self.assertEqual(convert_uf_to_name("df"), "Distrito Federal")
+
+        # Testes para códigos inválidos
+        self.assertIsNone(convert_code_to_uf("XX"))
+        self.assertIsNone(convert_code_to_uf(""))
