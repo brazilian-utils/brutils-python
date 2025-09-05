@@ -127,8 +127,8 @@ __all__ = [
     "is_valid_voter_id",
     # IBGE
     "convert_code_to_uf",
-    "get_municipality_by_code",
     "get_code_by_municipality_name",
+    "get_municipality_by_code",
     # Date Utils
     "is_holiday",
     # Currency

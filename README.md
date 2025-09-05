@@ -67,7 +67,7 @@ False
 - [Email](#email)
   - [is\_valid\_email](#is_valid_email)
 - [Data](#date)
-  - [convert\_date\_to_text](#convert_date_to_text) 
+  - [convert\_date\_to_text](#convert_date_to_text)
 - [Placa de Carro](#placa-de-carro)
   - [is\_valid\_license\_plate](#is_valid_license_plate)
   - [format\_license\_plate](#format_license_plate)
@@ -90,8 +90,8 @@ False
   - [format\_voter\_id](#format_voter_id)
   - [generate\_voter\_id](#generate_voter_id)
 - [IBGE](#ibge)
-  - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [convert_code_to_uf](#convert_code_to_uf)
+  - [get_code_by_municipality_name](#get_code_by_municipality_name)
   - [get\_municipality\_by\_code](#get_municipality_by_code)
 - [Feriados](#feriados)
   - [is_holiday](#is_holiday)
@@ -1145,25 +1145,6 @@ Exemplo:
 >>>
 ```
 
-### get_municipality_by_code
-
-Retorna o nome do município e a UF para um código do IBGE.
-
-Args:
-  * code (str): O código do IBGE para o município.
-
-Returns:
-  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
-  * None: Retorna None se o código for inválido.
-
-Example:
-
-```python
->>> from brutils import get_municipality_by_code
->>> get_municipality_by_code(3550308)
-("São Paulo", "SP")
-```
-
 ### get_code_by_municipality_name
 
 Retorna o código IBGE para um dado nome de município e código de UF.
@@ -1193,6 +1174,25 @@ Exemplo:
 None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
 None
+```
+
+### get_municipality_by_code
+
+Retorna o nome do município e a UF para um código do IBGE.
+
+Args:
+  * code (str): O código do IBGE para o município.
+
+Returns:
+  * tuple: Retorna uma Tupla formatado como ("Município", "UF").
+  * None: Retorna None se o código for inválido.
+
+Example:
+
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
 ```
 
 ## Feriados
@@ -1233,7 +1233,7 @@ True
 ### format_currency
 
 Formata um número seguindo o padrão monetário brasileiro. O número será formatado
-adicionando o símbolo R$ como prefixo, vírgula como separador decimal, e ponto como 
+adicionando o símbolo R$ como prefixo, vírgula como separador decimal, e ponto como
 agrupador de milhar.
 
 Argumentos:
