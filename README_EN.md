@@ -59,7 +59,7 @@ False
   - [get\_address\_from\_cep](#get_address_from_cep)
   - [get\_cep\_information\_from\_address](#get_cep_information_from_address)
 - [Date](#date)
-  - [convert\_date\_to_text](#convert_date_to_text) 
+  - [convert\_date\_to_text](#convert_date_to_text)
 - [Phone](#phone)
   - [is\_valid\_phone](#is_valid_phone)
   - [format\_phone](#format_phone)
@@ -91,8 +91,8 @@ False
   - [generate_voter_id](#generate_voter_id)
 - [IBGE](#ibge)
   - [convert_code_to_uf](#convert_code_to_uf)
-  - [get\_municipality\_by\_code](#get_municipality_by_code)
   - [get_code_by_municipality_name](#get_code_by_municipality_name)
+  - [get\_municipality\_by\_code](#get_municipality_by_code)
 - [Holidays](#holidays)
   - [is_holiday](#is_holiday)
 - [Monetary](#monetary)
@@ -459,7 +459,7 @@ Example:
 
 ## Date
 
-### convert_date_to_text 
+### convert_date_to_text
 Convert a brazilian date (dd/mm/yyyy) format in their portuguese textual representation.
 
 Args:
@@ -467,7 +467,7 @@ Args:
 
 Return:
  - (str) | None: A portuguese textual representation of the date or None case a date is invalid.
- 
+
 
 Example:
 
@@ -1147,25 +1147,6 @@ Exemplo:
 >>>
 ```
 
-### get_municipality_by_code
-
-Returns the municipality name and UF for a given IBGE code.
-
-Args:
-  * code (str): The IBGE code of the municipality.
-
-Returns:
-  * tuple: Returns a tuple formatted as ("Município", "UF").
-  * None: Returns None if the code is not valid.
-
-Example:
-
-```python
->>> from brutils import get_municipality_by_code
->>> get_municipality_by_code(3550308)
-("São Paulo", "SP")
-```
-
 ### get_code_by_municipality_name
 
 Returns the IBGE code for a given municipality name and uf code.
@@ -1198,6 +1179,25 @@ Example:
 None
 >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
 None
+```
+
+### get_municipality_by_code
+
+Returns the municipality name and UF for a given IBGE code.
+
+Args:
+  * code (str): The IBGE code of the municipality.
+
+Returns:
+  * tuple: Returns a tuple formatted as ("Município", "UF").
+  * None: Returns None if the code is not valid.
+
+Example:
+
+```python
+>>> from brutils import get_municipality_by_code
+>>> get_municipality_by_code(3550308)
+("São Paulo", "SP")
 ```
 
 ## Holidays
@@ -1236,8 +1236,8 @@ True
 
 ### format_currency
 
-Formats a number following the Brazilian monetary standard. The number will be 
-formatted by adding the R$ symbol as a prefix, a comma as a decimal separator, and a 
+Formats a number following the Brazilian monetary standard. The number will be
+formatted by adding the R$ symbol as a prefix, a comma as a decimal separator, and a
 period as a thousands grouper.
 
 Args:
