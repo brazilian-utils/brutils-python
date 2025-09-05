@@ -79,7 +79,7 @@ Switched to a new branch '386'
 
 ### Requirements
 
-- [Python 3.8+][python]
+- [Python 3.10+][python]
 - [Poetry][poetry]
 
 Create a [virtualenv][virtualenv] for brutils and activate it:
@@ -118,7 +118,7 @@ If you prefer to use pip, you can install the project in development mode as fol
 
 ### Requirements
 
-- [Python 3.8+][python]
+- [Python 3.10+][python]
 - [pip][pip]
 
 Create a [virtualenv][virtualenv] for brutils and activate it using the following command:
