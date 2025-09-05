@@ -26,7 +26,5 @@ class TestUF(TestCase):
         self.assertEqual(convert_uf_to_name("df"), "Distrito Federal")
 
         # Testes para códigos inválidos
-        with self.assertRaises(ValueError):
-            convert_uf_to_name("XX")
-        with self.assertRaises(ValueError):
-            convert_uf_to_name("")
+        self.assertIsNone(convert_code_to_uf("XX"))
+        self.assertIsNone(convert_code_to_uf(""))

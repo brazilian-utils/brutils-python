@@ -1210,10 +1210,7 @@ Args:
   * uf (str): Two-letter UF code.
 
 Returns:
-  * str: The state's full name.
-
-Raises:
-  * ValueError: If `uf` is an empty string or is not a valid UF code.
+  * str | None: The full state name if found, or ``None`` if the code is invalid.
 
 Example:
 

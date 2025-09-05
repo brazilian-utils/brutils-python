@@ -1206,10 +1206,7 @@ Argumentos:
   * uf (str): Código de UF com duas letras.
 
 Retorna:
-  * str: O nome completo do estado.
-
-Lança:
-  * ValueError: Se `uf` for uma string vazia ou não for um código de UF válido.
+  * str | None: O nome completo do estado, ou ``None`` se o código for inválido.
 
 Exemplo:
 
