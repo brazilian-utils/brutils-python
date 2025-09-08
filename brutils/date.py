@@ -1,5 +1,4 @@
 import re
-from typing import Union
 
 from num2words import num2words
 
