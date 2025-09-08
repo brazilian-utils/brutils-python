@@ -45,10 +45,10 @@ class TestDate(TestCase):
         self.assertIsNone(convert_date_to_text("29/02/2019"), None)
 
         # Invalid date pattern.
-        self.assertRaises(ValueError, convert_date_to_text, "Invalid")
-        self.assertRaises(ValueError, convert_date_to_text, "25/1/2020")
-        self.assertRaises(ValueError, convert_date_to_text, "1924/08/20")
-        self.assertRaises(ValueError, convert_date_to_text, "5/09/2020")
+        self.assertIsNone(convert_date_to_text("Invalid"))
+        self.assertIsNone(convert_date_to_text("25/1/2020"))
+        self.assertIsNone(convert_date_to_text("1924/08/20"))
+        self.assertIsNone(convert_date_to_text("5/09/2020"))
 
         self.assertEqual(
             convert_date_to_text("29/02/2020"),

@@ -6,7 +6,7 @@ from num2words import num2words
 from brutils.data.enums.months import MonthsEnum
 
 
-def convert_date_to_text(date: str) -> Union[str, None]:
+def convert_date_to_text(date: str) -> str | None:
     """
     Converts a given date in Brazilian format (dd/mm/yyyy) to its textual representation.
 
@@ -24,9 +24,7 @@ def convert_date_to_text(date: str) -> Union[str, None]:
     """
     pattern = re.compile(r"\d{2}/\d{2}/\d{4}")
     if not re.match(pattern, date):
-        raise ValueError(
-            "Date is not a valid date. Please pass a date in the format dd/mm/yyyy."
-        )
+        return None
 
     day_str, month_str, year_str = date.split("/")
     day = int(day_str)
