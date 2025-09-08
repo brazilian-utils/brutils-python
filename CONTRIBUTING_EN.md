@@ -5,7 +5,17 @@ Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every littl
 - [First Contribution](#first-contribution)
 - [Release a New Version](#release-a-new-version)
 
-# First Contribution
+### 💌 Want to contribute, but don’t feel comfortable?
+
+Do you feel like contributing but feel uncomfortable opening issues, PRs, or asking questions publicly?
+
+We know how hard it can be to take the first step in an open space. Insecurity, the fear of making mistakes, or even wondering “is my question silly?” can weigh heavily. And it’s okay to feel that way. 💜
+
+We want you to know that no one has to face this journey alone. If you’d prefer a more private space, you can send an email to cumbucadev@gmail.com, and we’ll be happy to help. Whether it’s to clear up doubts, ask for guidance, or simply have someone to talk to about how to get started.
+
+What matters is that you know: your participation is very welcome, and every contribution, no matter how small it may seem, makes a big difference. ✨
+
+## First Contribution
 
 How to make your first contribution:
 
@@ -75,9 +85,9 @@ Switched to a new branch '386'
 
 ### 7. Run brutils locally
 
-## Installation with poetry
+#### Installation with poetry
 
-### Requirements
+##### Requirements
 
 - [Python 3.10+][python]
 - [Poetry][poetry]
@@ -112,11 +122,11 @@ Installing dependencies from lock file
 ...
 ```
 
-## Installation with pip
+#### Installation with pip
 
 If you prefer to use pip, you can install the project in development mode as follows:
 
-### Requirements
+##### Requirements
 
 - [Python 3.10+][python]
 - [pip][pip]
@@ -134,7 +144,7 @@ Use the pip command to install the dev and test dependencies through the require
 pip install -r requirements-dev.txt
 ```
 
-## Using locally
+#### Using locally
 
 Now, you can use it [in the same way described in the README.md file](/README_EN.md#usage).
 
@@ -584,7 +594,7 @@ This PR adds the convert_uf_to_text utility to convert Brazilian state codes (e.
 
 [Ensure your branch is up to date with main][github-sync-pr].
 
-# Release a New Version
+## Release a New Version
 
 Here you will find how to deploy a new production version of brutils:
 
