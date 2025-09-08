@@ -7,7 +7,7 @@ Thanks for taking the time to contribute! 🙇‍♀️🙇‍♂️ Every littl
 
 ### 💌 Want to contribute, but don’t feel comfortable?
 
-Do you feel like contributing but don’t feel comfortable opening issues, PRs, or asking questions publicly?
+Do you feel like contributing but feel uncomfortable opening issues, PRs, or asking questions publicly?
 
 We know how hard it can be to take the first step in an open space. Insecurity, the fear of making mistakes, or even wondering “is my question silly?” can weigh heavily. And it’s okay to feel that way. 💜
 
