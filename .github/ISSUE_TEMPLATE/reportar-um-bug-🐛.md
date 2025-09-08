@@ -26,12 +26,12 @@ Uma descrição clara e concisa do que você esperava que acontecesse.
 **Contexto adicional**
 Adicione qualquer outro contexto sobre o problema aqui.
 
-**💌 Want to contribute, but don’t feel comfortable?**
+**💌 Quer contribuir, mas não se sente à vontade?**
 
-Do you feel like contributing but don’t feel comfortable opening issues, PRs, or asking questions publicly?
+Você tem vontade de contribuir, mas não se sente à vontade em abrir issues, PRs ou fazer perguntas publicamente?
 
-We know how hard it can be to take the first step in an open space. Insecurity, the fear of making mistakes, or even wondering “is my question silly?” can weigh heavily. And it’s okay to feel that way. 💜
+Nós sabemos como pode ser difícil dar o primeiro passo em um espaço aberto. A insegurança, o medo de errar ou até a sensação de “será que minha dúvida é boba?” podem pesar bastante. E tá tudo bem sentir isso. 💜
 
-We want you to know that no one has to face this journey alone. If you’d prefer a more private space, you can send an email to cumbucadev@gmail.com, and we’ll be more than happy to help. Whether it’s to clear up doubts, ask for guidance, or simply have someone to talk to about how to get started.
+Queremos que você saiba que aqui ninguém precisa enfrentar esse caminho sem apoio. Se preferir um espaço mais reservado, você pode mandar um e-mail para cumbucadev@gmail.com e teremos o maior prazer em ajudar. Seja para tirar dúvidas, pedir orientação ou simplesmente ter alguém para conversar sobre como começar.
 
-What matters is that you know: your participation is very welcome, and every contribution, no matter how small it may seem, makes a big difference. ✨
+O importante é que você saiba: sua participação é muito bem-vinda, e cada contribuição, por menor que pareça, faz uma grande diferença. ✨
