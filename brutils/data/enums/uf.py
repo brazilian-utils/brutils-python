@@ -1,4 +1,4 @@
-from .better_enum import BetterEnum
+from brutils.data.enums.better_enum import BetterEnum
 
 
 class UF(BetterEnum):
@@ -31,7 +31,7 @@ class UF(BetterEnum):
     TO = "Tocantins"
 
 
-class CODE_TO_UF(BetterEnum):
+class UF_CODE(BetterEnum):
     AC = "12"
     AL = "27"
     AP = "16"
@@ -43,7 +43,7 @@ class CODE_TO_UF(BetterEnum):
     GO = "52"
     MA = "21"
     MT = "51"
-    MS = "52"
+    MS = "50"
     MG = "31"
     PA = "15"
     PB = "25"
