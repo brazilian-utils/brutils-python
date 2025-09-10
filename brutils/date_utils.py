@@ -1,10 +1,15 @@
+import re
 from datetime import datetime
-from typing import Union
 
 import holidays
+from num2words import num2words
+
+from brutils.data.enums.months import MonthsEnum
+
+DATE_REGEX = re.compile(r"^\d{2}/\d{2}/\d{4}$")
 
 
-def is_holiday(target_date: datetime, uf: str = None) -> Union[bool, None]:
+def is_holiday(target_date: datetime, uf: str = None) -> bool | None:
     """
     Checks if the given date is a national or state holiday in Brazil.
 
@@ -41,18 +46,50 @@ def is_holiday(target_date: datetime, uf: str = None) -> Union[bool, None]:
         >>> is_holiday(datetime(2024, 12, 25), uf="RJ")
         True
     """
-
     if not isinstance(target_date, datetime):
         return None
 
-    valid_ufs = holidays.Brazil().subdivisions
+    national_holidays = holidays.Brazil(years=target_date.year)
+    valid_ufs = national_holidays.subdivisions
+
     if uf is not None and uf not in valid_ufs:
         return None
-
-    national_holidays = holidays.Brazil(years=target_date.year)
 
     if uf is None:
         return target_date in national_holidays
 
     state_holidays = holidays.Brazil(prov=uf, years=target_date.year)
     return target_date in state_holidays
+
+
+def convert_date_to_text(date: str) -> str | None:
+    """
+    Converts a given date in Brazilian format (dd/mm/yyyy) to its textual representation.
+
+    This function takes a date as a string in the format dd/mm/yyyy and converts it
+    to a string with the date written out in Brazilian Portuguese, including the full
+    month name and the year.
+
+    Args:
+        date (str): The date to be converted into text. Expected format: dd/mm/yyyy.
+
+    Returns:
+        str | None: A string with the date written out in Brazilian Portuguese,
+        or None if the date is invalid.
+
+    """
+    if not DATE_REGEX.match(date):
+        return None
+
+    try:
+        dt = datetime.strptime(date, "%d/%m/%Y")
+    except ValueError:
+        return None
+
+    day, month, year = dt.day, dt.month, dt.year
+
+    day_str = "Primeiro" if day == 1 else num2words(day, lang="pt")
+    month_enum = MonthsEnum(month)
+    year_str = num2words(year, lang="pt")
+
+    return f"{day_str.capitalize()} de {month_enum.month_name} de {year_str}"

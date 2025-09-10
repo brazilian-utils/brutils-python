@@ -23,11 +23,8 @@ from brutils.cpf import remove_symbols as remove_symbols_cpf
 # Currency
 from brutils.currency import convert_real_to_text, format_currency
 
-# Date imports
-from brutils.date import convert_date_to_text
-
 # Date Utils Import
-from brutils.date_utils import is_holiday
+from brutils.date_utils import convert_date_to_text, is_holiday
 
 # Email Import
 from brutils.email import is_valid as is_valid_email
@@ -94,8 +91,6 @@ __all__ = [
     "generate_cpf",
     "is_valid_cpf",
     "remove_symbols_cpf",
-    # Date
-    "convert_date_to_text",
     # Email
     "is_valid_email",
     # Legal Process
@@ -132,6 +127,7 @@ __all__ = [
     "get_municipality_by_code",
     # Date Utils
     "is_holiday",
+    "convert_date_to_text",
     # Currency
     "format_currency",
     "convert_real_to_text",
