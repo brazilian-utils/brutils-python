@@ -27,4 +27,5 @@ class TestUF(TestCase):
 
         # Testes para códigos inválidos
         self.assertIsNone(convert_code_to_uf("XX"))
+        self.assertIsNone(convert_code_to_uf("XXX"))
         self.assertIsNone(convert_code_to_uf(""))

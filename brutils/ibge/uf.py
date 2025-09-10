@@ -1,7 +1,7 @@
-from brutils.data.enums.uf import CODE_TO_UF, UF
+from brutils.data.enums.uf import UF, UF_CODE
 
 
-def convert_code_to_uf(code):  # type: (str) -> str | None
+def convert_code_to_uf(code: str) -> str | None:
     """
     Converts a given IBGE code (2-digit string) to its corresponding UF (state abbreviation).
 
@@ -23,13 +23,10 @@ def convert_code_to_uf(code):  # type: (str) -> str | None
         >>> convert_code_to_uf('99')
         >>>
     """
+    if code not in UF_CODE.values:
+        return None
 
-    result = None
-
-    if code in CODE_TO_UF.values:
-        result = CODE_TO_UF(code).name
-
-    return result
+    return UF_CODE(code).name
 
 
 def convert_uf_to_name(uf: str) -> str | None:
@@ -51,12 +48,12 @@ def convert_uf_to_name(uf: str) -> str | None:
         >>> convert_uf_to_name('rj')
         'Rio de Janeiro'
     """
-    if not uf or not isinstance(uf, str):
+    if not uf or not isinstance(uf, str) or len(uf.strip()) != 2:
         return None
 
     federal_unit = uf.strip().upper()
 
-    if federal_unit not in UF.__members__:
+    if federal_unit not in UF.names:
         return None
 
     result = UF[federal_unit].value
