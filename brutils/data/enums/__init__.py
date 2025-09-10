@@ -1,1 +1,1 @@
-from .uf import CODE_TO_UF, UF
+from brutils.data.enums.uf import UF, UF_CODE
