@@ -114,6 +114,7 @@ def format_passport(passport):  # type: (str) -> str
 
     return None
 
+
 # OPERATIONS
 ############
 
