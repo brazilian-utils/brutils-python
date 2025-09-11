@@ -1320,43 +1320,46 @@ None
 
 ### is_valid_cnh
 
-Retorna se os dígitos verificadores da CNH fornecida correspondem ao seu número base.
+Retorna se a CNH fornecida atende às regras básicas de formatação.
 
 Observações:
 
-- Esta função não consulta bases oficiais (BINCO/SENATRAN). Ela apenas realiza a validação aritmética dos dígitos verificadores (pré-validação).
+- Esta função não consulta bases oficiais (Detran/Senatran).
+- Não realiza cálculo de dígitos verificadores.
 - Rejeita sequências onde todos os dígitos são iguais.
-
-Regras (módulo 11 – prática comum em documentos brasileiros):
-
-1) Considere os 9 primeiros dígitos como base.  
-2) Primeiro dígito verificador (10º dígito):  
-   `soma1 = Σ base[i] * peso decrescente (9..1)`  
-   `dv1 = soma1 % 11; se dv1 >= 10 → dv1 = 0`  
-3) Segundo dígito verificador (11º dígito):  
-   `soma2 = Σ base[i] * peso crescente (1..9) + dv1 * 2`  
-   `dv2 = soma2 % 11; se dv2 >= 10 → dv2 = 0`
+- Ignora símbolos comuns (pontos, hífens, espaços).
 
 Argumentos:
 
-- `cnh (str | None)`: String da CNH com 11 dígitos (símbolos serão ignorados).
+- `cnh (str | None)`: String da CNH (com ou sem símbolos).
 
 Retorna:
 
-- `bool`: `True` se os dígitos verificadores forem consistentes, `False` caso contrário.
+- `bool`: `True` se tiver 11 dígitos numéricos válidos e não for uma sequência repetida, `False` caso contrário.
 
 Exemplo:
 
 ```python
->>> from brutils import is_valid_cnh
->>> is_valid_cnh("270.694.311-77")
+from brutils.cnh import is_valid_cnh
+
+is_valid_cnh("02926434554")
 True
->>> is_valid_cnh("27069431170")  # dígito verificador alterado
+
+is_valid_cnh("12345678900")
+True
+
+is_valid_cnh("11111111111")
 False
->>> is_valid_cnh("11111111111")  # dígitos repetidos
+
+is_valid_cnh("029.264.345-54")
+True
+
+is_valid_cnh("12345678")
 False
->>> is_valid_cnh("123")          # tamanho inválido
+
+is_valid_cnh(None)
 False
+
 ```
 
 ### remove_symbols_cnh
