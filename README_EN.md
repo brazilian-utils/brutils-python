@@ -484,6 +484,34 @@ None
 "Primeiro de agosto de dois mil e vinte e quatro"
 ````
 
+## RG
+
+### format_rg
+
+Formats a Brazilian RG (Registro Geral) based on the state (UF).
+
+This function takes a Brazilian RG and formats it according to the specific requirements of the given UF. It handles various input formats and ensures the output is standardized.
+
+Args:
+
+- `rg` (str): The RG to be formatted.  
+- `uf` (str): The state (UF) for which the RG should be formatted.
+
+Returns:
+
+- `str` or `None`: The formatted RG if valid, or `None` if the input is invalid.
+
+Example:
+
+```python
+format_rg('12.345.678-9', 'SP')  # Returns "12.345.678-9"
+format_rg('MG-12.345.678', 'MG')  # Returns "MG-12.345.678"
+format_rg('123456789', 'RJ')  # Returns "12.345.678-9"
+format_rg('A12345678', 'SP')  # Returns None
+format_rg('12.345.678', 'SP')  # Returns None
+
+
+
 ## Phone
 
 ### is_valid_phone
