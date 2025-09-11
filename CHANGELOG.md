@@ -16,6 +16,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Utilitário `format_currency` [#434](https://github.com/brazilian-utils/brutils-python/pull/434)
 - Utilitário `convert_real_to_text` [#525](https://github.com/brazilian-utils/brutils-python/pull/525)
 - Utilitário `convert_uf_to_name` [#554](https://github.com/brazilian-utils/brutils-python/pull/554)
+- Utilitário `is_valid_passport` [#579](https://github.com/brazilian-utils/brutils-python/issues/579)
+- Utilitário `format_passport` [#579](https://github.com/brazilian-utils/brutils-python/issues/579)
+- Utilitário `remove_symbols_passport` [#579](https://github.com/brazilian-utils/brutils-python/issues/579)
+- Utilitário `generate_passport` [#579](https://github.com/brazilian-utils/brutils-python/issues/579)
 
 ### Deprecated
 
