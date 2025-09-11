@@ -1322,12 +1322,12 @@ None
 
 Retorna se os dígitos verificadores da CNH fornecida correspondem ao seu número base.
 
-**Observações:**
+Observações:
 
-- Esta função **não** consulta bases oficiais (BINCO/SENATRAN). Ela apenas realiza a validação aritmética dos dígitos verificadores (pré-validação).
+- Esta função não consulta bases oficiais (BINCO/SENATRAN). Ela apenas realiza a validação aritmética dos dígitos verificadores (pré-validação).
 - Rejeita sequências onde todos os dígitos são iguais.
 
-**Regras (módulo 11 – prática comum em documentos brasileiros):**
+Regras (módulo 11 – prática comum em documentos brasileiros):
 
 1) Considere os 9 primeiros dígitos como base.  
 2) Primeiro dígito verificador (10º dígito):  
@@ -1337,15 +1337,15 @@ Retorna se os dígitos verificadores da CNH fornecida correspondem ao seu númer
    `soma2 = Σ base[i] * peso crescente (1..9) + dv1 * 2`  
    `dv2 = soma2 % 11; se dv2 >= 10 → dv2 = 0`
 
-**Argumentos:**
+Argumentos:
 
 - `cnh (str | None)`: String da CNH com 11 dígitos (símbolos serão ignorados).
 
-**Retorna:**
+Retorna:
 
 - `bool`: `True` se os dígitos verificadores forem consistentes, `False` caso contrário.
 
-**Exemplo:**
+Exemplo:
 
 ```python
 >>> from brutils import is_valid_cnh
@@ -1363,15 +1363,15 @@ False
 
 Remove qualquer caractere que não seja dígito de uma CNH.
 
-**Argumentos:**
+Argumentos:
 
 * `cnh (str | None)`: String contendo a CNH com ou sem símbolos.
 
-**Retorna:**
+Retorna:
 
 * `str | None`: A CNH contendo apenas dígitos, ou `None` se a entrada for inválida.
 
-**Exemplo:**
+Exemplo:
 
 ```python
 >>> from brutils import remove_symbols_cnh

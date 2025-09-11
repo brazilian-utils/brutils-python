@@ -1342,15 +1342,15 @@ Rules (modulo 11 – common practice in Brazilian documents):
    `sum2 = Σ base[i] * increasing weight (1..9) + dv1 * 2`  
    `dv2 = sum2 % 11; if dv2 >= 10 → dv2 = 0`
 
-**Args:**
+Args:
 
 - `cnh (str | None)`: CNH string with 11 digits (symbols will be ignored).
 
-**Returns:**
+Returns:
 
 - `bool`: `True` if the check digits are consistent, `False` otherwise.
 
-**Example:**
+Example:
 
 ```python
 >>> from brutils import is_valid_cnh
@@ -1368,15 +1368,15 @@ False
 
 Removes any character that is not a digit from a CNH.
 
-**Args:**
+Args:
 
 * `cnh (str | None)`: String containing the CNH with or without symbols.
 
-**Returns:**
+Returns:
 
 * `str | None`: The CNH containing only digits, or `None` if the input is invalid.
 
-**Example:**
+Example:
 
 ```python
 >>> from brutils import remove_symbols_cnh
