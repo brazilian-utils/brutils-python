@@ -1340,24 +1340,18 @@ Retorna:
 Exemplo:
 
 ```python
-from brutils.cnh import is_valid_cnh
-
-is_valid_cnh("02926434554")
+>>> from brutils.cnh import is_valid_cnh
+>>> is_valid_cnh("02926434554")
 True
-
-is_valid_cnh("12345678900")
+>>> is_valid_cnh("12345678900")
 True
-
-is_valid_cnh("11111111111")
+>>> is_valid_cnh("11111111111")
 False
-
-is_valid_cnh("029.264.345-54")
+>>> is_valid_cnh("029.264.345-54")
 True
-
-is_valid_cnh("12345678")
+>>> is_valid_cnh("12345678")
 False
-
-is_valid_cnh(None)
+>>> is_valid_cnh(None)
 False
 
 ```
