@@ -1325,42 +1325,37 @@ None
 
 ### is_valid_cnh
 
-Returns whether the check digits of the provided CNH match its base number.
+Returns whether the provided CNH meets the basic formatting rules.
 
 Notes:
 
-- This function does not query official databases (BINCO/SENATRAN). It only performs the arithmetic validation of the check digits (pre-validation).
+- This function does not query official databases (Detran/Senatran).
+- It does not perform check digit calculations.
 - Rejects sequences where all digits are the same.
+- Ignores common symbols (dots, hyphens, spaces).
 
-Rules (modulo 11 – common practice in Brazilian documents):
+Arguments:
 
-1) Consider the first 9 digits as the base.  
-2) First check digit (10th digit):  
-   `sum1 = Σ base[i] * decreasing weight (9..1)`  
-   `dv1 = sum1 % 11; if dv1 >= 10 → dv1 = 0`  
-3) Second check digit (11th digit):  
-   `sum2 = Σ base[i] * increasing weight (1..9) + dv1 * 2`  
-   `dv2 = sum2 % 11; if dv2 >= 10 → dv2 = 0`
-
-Args:
-
-- `cnh (str | None)`: CNH string with 11 digits (symbols will be ignored).
+- `cnh (str | None)`: CNH string (with or without symbols).
 
 Returns:
 
-- `bool`: `True` if the check digits are consistent, `False` otherwise.
+- `bool`: `True` if it has 11 valid numeric digits and is not a repeated sequence, `False` otherwise.
 
 Example:
 
 ```python
->>> from brutils import is_valid_cnh
->>> is_valid_cnh("270.694.311-77")
+>>> from brutils.cnh import is_valid_cnh
+
+>>> is_valid_cnh("02926434554")
 True
->>> is_valid_cnh("27069431170")  # changed check digit
+>>> is_valid_cnh("11111111111")
 False
->>> is_valid_cnh("11111111111")  # repeated digits
+>>> is_valid_cnh("029.264.345-54")
+True
+>>> is_valid_cnh("12345678")
 False
->>> is_valid_cnh("123")          # wrong length
+>>> is_valid_cnh(None)
 False
 ```
 
@@ -1379,7 +1374,7 @@ Returns:
 Example:
 
 ```python
->>> from brutils import remove_symbols_cnh
+>>> from brutils.cnh import remove_symbols_cnh
 >>> remove_symbols_cnh("270.694.311-77")
 '27069431177'
 >>> remove_symbols_cnh(None)
