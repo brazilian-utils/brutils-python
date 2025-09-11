@@ -99,6 +99,11 @@ False
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [Passaporte](#passaporte)
+  - [is_valid_passport](#is_valid_passport)
+  - [format_passport](#format_passport-1)
+  - [remove_symbols_passport](#remove_symbols_passport)
+  - [generate_passport](#generate_passport-1)
 
 ## CPF
 
@@ -1311,6 +1316,97 @@ Exemplo:
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
 None
+```
+## Passaporte
+
+### is_valid_passport
+
+Validate the format of a Brazilian Passport number.  
+The input must have exactly two letters followed by six digits.  
+This function does not check if the Passport actually exists.
+
+Args:
+
+- passport (str): A Passport string.
+
+Returns:
+
+- bool: True if the format is valid, False otherwise.
+
+Example:
+
+```python
+>>> from brutils import is_valid_passport
+>>> is_valid_passport("CS265436")
+True
+>>> is_valid_passport("CS-265.436")
+False
+```
+
+### format_passport
+
+Normaliza uma string de Passaporte para exibição.
+
+Esta função recebe uma string de Passaporte (possivelmente com símbolos visuais como espaços, pontos ou traços), remove esses símbolos se necessário, e retorna a string em maiúsculas se for válida.
+
+Argumentos:
+
+- passport (str): Uma string de Passaporte com ou sem símbolos.
+
+Retorna:
+
+- str: Uma string de Passaporte em maiúsculas sem símbolos se for válida,  
+       `None` se for inválida.
+
+Exemplo:
+
+```python
+>>> from brutils import format_passport
+>>> format_passport("cs 265436")
+"CS265436"
+>>> format_passport("C-5265436")
+None
+>>> format_passport("aa123456")
+"AA123456"
+```
+
+### remove_symbols_passport
+
+Remove símbolos de formatação de uma string de Passaporte.  
+Remove `"."`, `"-"` e espaços.
+
+Argumentos:
+
+- passport (str): A string de Passaporte contendo símbolos a serem removidos.
+
+Retorna:
+
+- str: A string de Passaporte limpa com os símbolos removidos.
+
+Exemplo:
+
+```python
+>>> from brutils import remove_symbols_passport
+>>> remove_symbols_passport("CS-265.436")
+"CS265436"
+```
+
+### generate_passport
+
+Gera uma string de Passaporte sintaticamente válida de forma aleatória.  
+Cria duas letras maiúsculas seguidas de seis dígitos.  
+O Passaporte não corresponde a um documento real.
+
+Retorna:
+
+- str: Uma string de Passaporte sintaticamente válida gerada aleatoriamente.
+
+Exemplo:
+
+```python
+>>> from brutils import generate_passport
+>>> generate_passport()
+"HU546394"
 ```
 
 # Novos Utilitários e Reportar Bugs
