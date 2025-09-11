@@ -7,7 +7,69 @@ from urllib.error import HTTPError
 from urllib.request import urlopen
 
 
-def get_municipality_by_code(code):  # type: (str) -> Tuple[str, str] | None
+def _fetch_municipality_data_on_json_file(code: str) -> tuple[str, str] | None:
+    abs_path = pathlib.Path(__file__).resolve()
+    script_dir = abs_path.parent.parent
+
+    json_cities_code_path = script_dir / "data" / "cities_code.json"
+
+    if not json_cities_code_path.exists():
+        print(f"Arquivo local não encontrado: {json_cities_code_path}")
+        return None
+
+    with open(json_cities_code_path, "r", encoding="utf-8") as f:
+        try:
+            json_data = json.load(f)
+            return _get_values(json_data)
+        except json.JSONDecodeError as e:
+            print(f"Erro ao decodificar os dados JSON: {e}")
+            return None
+
+
+def _fetch_municipality_data_on_api(code: str) -> dict | None:
+    base_url = (
+        f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
+    )
+    try:
+        with urlopen(base_url) as response:
+            compressed_data = response.read()
+            decompressed_data = compressed_data
+
+            if _is_empty(decompressed_data):
+                print(f"{code} é um código inválido")
+                return None
+
+            if response.info().get("Content-Encoding") == "gzip":
+                try:
+                    with gzip.GzipFile(
+                        fileobj=io.BytesIO(compressed_data)
+                    ) as gzip_file:
+                        decompressed_data = gzip_file.read()
+                except OSError as e:
+                    print(f"Erro ao descomprimir os dados: {e}")
+                    return None
+                except Exception as e:
+                    print(f"Erro desconhecido ao descomprimir os dados: {e}")
+                    return None
+
+        return decompressed_data
+
+    except HTTPError as e:
+        if e.code == 404:
+            print(f"{code} é um código inválido")
+            return None
+        if e.code >= 500:
+            print(
+                f"Erro HTTP ao buscar o código {code}: {e}, tentando buscar localmente."
+            )
+            return _fetch_municipality_data_on_json_file(code)
+
+    except Exception as e:
+        print(f"Erro desconhecido ao buscar o código {code}: {e}")
+        return None
+
+
+def get_municipality_by_code(code: str) -> tuple[str, str] | None:
     """
     Returns the municipality name and UF for a given IBGE code.
 
@@ -25,41 +87,10 @@ def get_municipality_by_code(code):  # type: (str) -> Tuple[str, str] | None
         >>> get_municipality_by_code("3550308")
         ("São Paulo", "SP")
     """
-    baseUrl = (
-        f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
-    )
-    try:
-        with urlopen(baseUrl) as f:
-            compressed_data = f.read()
-            if f.info().get("Content-Encoding") == "gzip":
-                try:
-                    with gzip.GzipFile(
-                        fileobj=io.BytesIO(compressed_data)
-                    ) as gzip_file:
-                        decompressed_data = gzip_file.read()
-                except OSError as e:
-                    print(f"Erro ao descomprimir os dados: {e}")
-                    return None
-                except Exception as e:
-                    print(f"Erro desconhecido ao descomprimir os dados: {e}")
-                    return None
-            else:
-                decompressed_data = compressed_data
 
-            if _is_empty(decompressed_data):
-                print(f"{code} é um código inválido")
-                return None
+    decompressed_data = _fetch_municipality_data_on_api(code)
 
-    except HTTPError as e:
-        if e.code == 404:
-            print(f"{code} é um código inválido")
-            return None
-        else:
-            print(f"Erro HTTP ao buscar o código {code}: {e}")
-            return None
-
-    except Exception as e:
-        print(f"Erro desconhecido ao buscar o código {code}: {e}")
+    if decompressed_data is None:
         return None
 
     try:
@@ -71,6 +102,9 @@ def get_municipality_by_code(code):  # type: (str) -> Tuple[str, str] | None
     except KeyError as e:
         print(f"Erro ao acessar os dados do município: {e}")
         return None
+
+
+get_municipality_by_code("3550308")
 
 
 def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (str, str) -> str | None
