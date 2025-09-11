@@ -1,35 +1,28 @@
 from decimal import ROUND_DOWN, Decimal, InvalidOperation
-from typing import Union
 
 from num2words import num2words
 
 
-def format_currency(value):  # type: (float) -> str | None
+def format_currency(value: float | int | str | Decimal) -> str | None:
     """
-    Formats a given float as Brazilian currency (R$).
-
-    This function takes a float value and returns a formatted string representing
-    the value as Brazilian currency, using the correct thousand and decimal separators.
+    Format a numeric value as Brazilian currency (R$).
 
     Args:
-        value (float or Decimal): The numeric value to be formatted.
+        value: The numeric value to format. Accepts float, int, str, or Decimal.
 
     Returns:
-        str or None: A string formatted as Brazilian currency, or None if the input is invalid.
+        Formatted currency string (e.g., "R$ 1.234,56") or None if invalid.
 
-    Example:
+    Examples:
         >>> format_currency(1234.56)
-        "R$ 1.234,56"
+        'R$ 1.234,56'
         >>> format_currency(0)
-        "R$ 0,00"
+        'R$ 0,00'
         >>> format_currency(-9876.54)
-        "R$ -9.876,54"
-        >>> format_currency(None)
-        None
-        >>> format_currency("not a number")
+        'R$ -9.876,54'
+        >>> format_currency("invalid")
         None
     """
-
     try:
         decimal_value = Decimal(value)
         formatted_value = (
@@ -37,56 +30,41 @@ def format_currency(value):  # type: (float) -> str | None
             .replace(".", ",")
             .replace("_", ".")
         )
-
         return formatted_value
-    except InvalidOperation:
+    except (InvalidOperation, TypeError, ValueError):
         return None
 
 
-def convert_real_to_text(amount: Decimal) -> Union[str, None]:
+def convert_real_to_text(amount: Decimal | float | int | str) -> str | None:
     """
-    Converts a given monetary value in Brazilian Reais to its textual representation.
-
-    This function takes a decimal number representing a monetary value in Reais
-    and converts it to a string with the amount written out in Brazilian Portuguese. It
-    handles both the integer part (Reais) and the fractional part (centavos), respecting
-    the correct grammar for singular and plural cases, as well as special cases like zero
-    and negative values.
+    Convert a monetary value in Brazilian Reais to textual representation.
 
     Args:
-        amount (decimal): The monetary value to be converted into text.
-            - The integer part represents Reais.
-            - The decimal part represents centavos.
-            - 2 decimal places
+        amount: Monetary value to convert. Accepts Decimal, float, int, or str.
 
     Returns:
-        str: A string with the monetary value written out in Brazilian Portuguese.
-            - Returns "Zero reais" for a value of 0.00.
-            - Returns None if the amount is invalid or absolutely greater than 1 quadrillion.
-            - Handles negative values, adding "Menos" at the beginning of the string.
+        Textual representation in Brazilian Portuguese, or None if invalid.
 
-    Limitations:
-        - This function may lose precision by ±1 cent for cases where the absolute value
-          is beyond trillions due to floating-point rounding errors.
+    Note:
+        - Values are rounded down to 2 decimal places
+        - Maximum supported value is 1 quadrillion reais
+        - Negative values are prefixed with "Menos"
 
-    Example:
+    Examples:
         >>> convert_real_to_text(1523.45)
-        "Mil, quinhentos e vinte e três reais e quarenta e cinco centavos"
+        'Mil, quinhentos e vinte e três reais e quarenta e cinco centavos'
         >>> convert_real_to_text(1.00)
-        "Um real"
+        'Um real'
         >>> convert_real_to_text(0.50)
-        "Cinquenta centavos"
+        'Cinquenta centavos'
         >>> convert_real_to_text(0.00)
-        "Zero reais"
-        >>> convert_real_to_text(-50.25)
-        "Menos cinquenta reais e vinte e cinco centavos"
+        'Zero reais'
     """
-
     try:
         amount = Decimal(str(amount)).quantize(
             Decimal("0.01"), rounding=ROUND_DOWN
         )
-    except InvalidOperation:
+    except (InvalidOperation, TypeError, ValueError):
         return None
 
     if amount.is_nan() or amount.is_infinite():
