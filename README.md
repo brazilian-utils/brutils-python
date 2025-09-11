@@ -99,6 +99,9 @@ False
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
+  - [remove\_symbols\_cnh](#remove_symbols_cnh)
 
 ## CPF
 
@@ -1310,6 +1313,73 @@ Exemplo:
 >>> convert_real_to_text(-50.25)
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
+None
+```
+
+## CNH
+
+### is_valid_cnh
+
+Retorna se os dígitos verificadores da CNH fornecida correspondem ao seu número base.
+
+**Observações:**
+
+- Esta função **não** consulta bases oficiais (BINCO/SENATRAN). Ela apenas realiza a validação aritmética dos dígitos verificadores (pré-validação).
+- Rejeita sequências onde todos os dígitos são iguais.
+
+**Regras (módulo 11 – prática comum em documentos brasileiros):**
+
+1) Considere os 9 primeiros dígitos como base.  
+2) Primeiro dígito verificador (10º dígito):  
+   `soma1 = Σ base[i] * peso decrescente (9..1)`  
+   `dv1 = soma1 % 11; se dv1 >= 10 → dv1 = 0`  
+3) Segundo dígito verificador (11º dígito):  
+   `soma2 = Σ base[i] * peso crescente (1..9) + dv1 * 2`  
+   `dv2 = soma2 % 11; se dv2 >= 10 → dv2 = 0`
+
+**Argumentos:**
+
+- `cnh (str | None)`: String da CNH com 11 dígitos (símbolos serão ignorados).
+
+**Retorna:**
+
+- `bool`: `True` se os dígitos verificadores forem consistentes, `False` caso contrário.
+
+**Exemplo:**
+
+```python
+>>> from brutils import is_valid_cnh
+>>> is_valid_cnh("270.694.311-77")
+True
+>>> is_valid_cnh("27069431170")  # dígito verificador alterado
+False
+>>> is_valid_cnh("11111111111")  # dígitos repetidos
+False
+>>> is_valid_cnh("123")          # tamanho inválido
+False
+```
+
+### remove_symbols_cnh
+
+Remove qualquer caractere que não seja dígito de uma CNH.
+
+**Argumentos:**
+
+* `cnh (str | None)`: String contendo a CNH com ou sem símbolos.
+
+**Retorna:**
+
+* `str | None`: A CNH contendo apenas dígitos, ou `None` se a entrada for inválida.
+
+**Exemplo:**
+
+```python
+>>> from brutils import remove_symbols_cnh
+>>> remove_symbols_cnh("270.694.311-77")
+'27069431177'
+>>> remove_symbols_cnh(None)
+None
+>>> remove_symbols_cnh(12345678901)  # não é string
 None
 ```
 

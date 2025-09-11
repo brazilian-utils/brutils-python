@@ -99,6 +99,9 @@ False
 - [Monetary](#monetary)
   - [format_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
+  - [remove\_symbols\_cnh](#remove_symbols_cnh)
 
 ## CPF
 
@@ -1315,6 +1318,73 @@ Example:
 >>> convert_real_to_text(-50.25)
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
+None
+```
+
+## CNH
+
+### is_valid_cnh
+
+Returns whether the check digits of the provided CNH match its base number.
+
+Notes:
+
+- This function does not query official databases (BINCO/SENATRAN). It only performs the arithmetic validation of the check digits (pre-validation).
+- Rejects sequences where all digits are the same.
+
+Rules (modulo 11 – common practice in Brazilian documents):
+
+1) Consider the first 9 digits as the base.  
+2) First check digit (10th digit):  
+   `sum1 = Σ base[i] * decreasing weight (9..1)`  
+   `dv1 = sum1 % 11; if dv1 >= 10 → dv1 = 0`  
+3) Second check digit (11th digit):  
+   `sum2 = Σ base[i] * increasing weight (1..9) + dv1 * 2`  
+   `dv2 = sum2 % 11; if dv2 >= 10 → dv2 = 0`
+
+**Args:**
+
+- `cnh (str | None)`: CNH string with 11 digits (symbols will be ignored).
+
+**Returns:**
+
+- `bool`: `True` if the check digits are consistent, `False` otherwise.
+
+**Example:**
+
+```python
+>>> from brutils import is_valid_cnh
+>>> is_valid_cnh("270.694.311-77")
+True
+>>> is_valid_cnh("27069431170")  # changed check digit
+False
+>>> is_valid_cnh("11111111111")  # repeated digits
+False
+>>> is_valid_cnh("123")          # wrong length
+False
+```
+
+### remove_symbols_cnh
+
+Removes any character that is not a digit from a CNH.
+
+**Args:**
+
+* `cnh (str | None)`: String containing the CNH with or without symbols.
+
+**Returns:**
+
+* `str | None`: The CNH containing only digits, or `None` if the input is invalid.
+
+**Example:**
+
+```python
+>>> from brutils import remove_symbols_cnh
+>>> remove_symbols_cnh("270.694.311-77")
+'27069431177'
+>>> remove_symbols_cnh(None)
+None
+>>> remove_symbols_cnh(12345678901)  # not a string
 None
 ```
 

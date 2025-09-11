@@ -8,6 +8,9 @@ from brutils.cep import generate as generate_cep
 from brutils.cep import is_valid as is_valid_cep
 from brutils.cep import remove_symbols as remove_symbols_cep
 
+# CNH Imports
+from brutils.cnh import is_valid_cnh, remove_symbols_cnh
+
 # CNPJ Imports
 from brutils.cnpj import format_cnpj
 from brutils.cnpj import generate as generate_cnpj
@@ -131,4 +134,7 @@ __all__ = [
     # Currency
     "format_currency",
     "convert_real_to_text",
+    # CNH
+    "is_valid_cnh",
+    "remove_symbols_cnh",
 ]
