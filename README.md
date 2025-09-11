@@ -1371,7 +1371,7 @@ Retorna:
 Exemplo:
 
 ```python
->>> from brutils import remove_symbols_cnh
+>>> from brutils.cnh import remove_symbols_cnh
 >>> remove_symbols_cnh("270.694.311-77")
 '27069431177'
 >>> remove_symbols_cnh(None)
