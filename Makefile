@@ -27,3 +27,9 @@ ifeq ($(OS),Windows_NT)
 else
 	@PYTHONDONTWRITEBYTECODE=1 poetry run python3 -m unittest discover tests/ -v
 endif
+
+coverage:
+	@poetry run coverage run --source=brutils -m unittest discover tests/
+	@poetry run coverage report -m
+	@poetry run coverage html
+	@echo "Relatório de cobertura gerado em htmlcov/index.html"
