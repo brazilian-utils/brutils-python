@@ -42,8 +42,14 @@ def _fetch_municipality_data_on_json_file(code: str) -> dict | None:
         logger.error(f"Arquivo local não encontrado: {json_cities_code_path}")
         return None
 
-    with open(json_cities_code_path, "r", encoding="utf-8") as file:
-        content = json.load(file)
+    try:
+        with open(json_cities_code_path, "r", encoding="utf-8") as file:
+            content = json.load(file)
+    except json.JSONDecodeError as e:
+        logger.error(
+            f"Erro ao decodificar o arquivo local {json_cities_code_path}: {e}"
+        )
+        return None
 
     if not content:
         logger.error(f"Arquivo local vazio: {json_cities_code_path}")
@@ -139,10 +145,10 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
     try:
         return _get_values(municipality_data, data_source)
     except json.JSONDecodeError as e:
-        print(f"Erro ao decodificar os dados JSON: {e}")
+        logger.error(f"Erro ao decodificar os dados JSON: {e}")
         return None
     except KeyError as e:
-        print(f"Erro ao acessar os dados do município: {e}")
+        logger.error(f"Erro ao acessar os dados do município: {e}")
         return None
 
 
