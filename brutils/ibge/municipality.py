@@ -66,7 +66,9 @@ def _fetch_municipality_data_on_json_file(code: str) -> dict | None:
     return None
 
 
-def _fetch_municipality_data(code: str) -> tuple[dict, str] | tuple[None, str]:
+def _fetch_municipality_data(
+    code: str, attempts: int = 0
+) -> tuple[dict, str] | tuple[None, str]:
     """
     Retrieves municipality data from the IBGE API or a local JSON file.
 
@@ -80,25 +82,43 @@ def _fetch_municipality_data(code: str) -> tuple[dict, str] | tuple[None, str]:
         tuple[dict, str] | None: A tuple containing the municipality data and the data source ('api' or 'json_file'),
             or None if the data could not be retrieved.
     """
+    logger.debug(f"Buscando dados do município para o código {code}")
 
     base_url = (
         f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
     )
-    response = requests.get(base_url)
-    content = {}
     data_source = "api"
+
+    try:
+        response = requests.get(base_url, timeout=5)
+    except requests.Timeout as e:
+        logger.warning(
+            f"Timeout ao buscar o código {code}: {e}. Tentando buscar localmente."
+        )
+        # Try again once before fetching locally
+        if attempts < 2:
+            attempts += 1
+            return _fetch_municipality_data(code, attempts)
+
+        data_source = "json_file"
+        return _fetch_municipality_data_on_json_file(code), data_source
+    except requests.RequestException as e:
+        logger.error(f"Erro ao buscar o código {code}: {e}")
+        return None, data_source
+
+    content = {}
 
     with suppress(Exception):
         content = json.loads(response.content)
 
-    # Not Found ou OK com conteúdo vazio
+    # Not Found or OK with empty content
     if response.status_code == HTTPStatus.NOT_FOUND or (
         response.status_code == HTTPStatus.OK and _is_empty(content)
     ):
         logger.error(f"{code} é um código inválido")
         return None, data_source
 
-    # Server Error: tentar buscar localmente
+    # Server Error: try to fetch locally
     if response.status_code >= HTTPStatus.INTERNAL_SERVER_ERROR:
         logger.warning(
             f"Erro HTTP ao buscar o código {code}: ({response.status_code}) {response.reason}."
