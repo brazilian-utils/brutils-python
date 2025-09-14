@@ -29,6 +29,7 @@ python = "^3.10"
 holidays = "^0.58"
 num2words = "0.5.14"
 coverage = "^7.2.7"
+requests = "^2.32.5"
 
 [tool.poetry.group.test.dependencies]
 coverage = "^7.2.7"
