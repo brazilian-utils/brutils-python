@@ -1,72 +1,111 @@
-import gzip
-import io
 import json
 import pathlib
 import unicodedata
-from urllib.error import HTTPError
-from urllib.request import urlopen
+from contextlib import suppress
+from http import HTTPStatus
+
+import requests
+
+from brutils.logger import logger
 
 
-def _fetch_municipality_data_on_json_file(code: str) -> tuple[str, str] | None:
-    abs_path = pathlib.Path(__file__).resolve()
-    script_dir = abs_path.parent.parent
+def __get_cities_code_file_path() -> pathlib.Path:
+    """
+    Returns the path to the local cities code JSON file.
 
-    json_cities_code_path = script_dir / "data" / "cities_code.json"
+    This function resolves and returns the path to the 'cities_code.json' file
+    located in the data directory of the project.
+
+    Returns:
+        pathlib.Path: The path to the 'cities_code.json' file.
+    """
+    current_file_path = pathlib.Path(__file__).resolve()
+    return current_file_path.parent.parent / "data" / "cities_code.json"
+
+
+def _fetch_municipality_data_on_json_file(code: str) -> dict | None:
+    """
+    Retrieves municipality data from a local JSON file by code.
+
+    This function searches for the municipality data in a local JSON file using the provided code.
+    If the file does not exist, is empty, or the code is not found, it returns None and logs an error.
+
+    Args:
+        code (str): The IBGE code of the municipality.
+
+    Returns:
+        dict | None: A dictionary with the municipality name and UF, or None if not found.
+    """
+    json_cities_code_path = __get_cities_code_file_path()
 
     if not json_cities_code_path.exists():
-        print(f"Arquivo local não encontrado: {json_cities_code_path}")
+        logger.error(f"Arquivo local não encontrado: {json_cities_code_path}")
         return None
 
-    with open(json_cities_code_path, "r", encoding="utf-8") as f:
-        try:
-            json_data = json.load(f)
-            return _get_values(json_data)
-        except json.JSONDecodeError as e:
-            print(f"Erro ao decodificar os dados JSON: {e}")
-            return None
+    with open(json_cities_code_path, "r", encoding="utf-8") as file:
+        content = json.load(file)
+
+    if not content:
+        logger.error(f"Arquivo local vazio: {json_cities_code_path}")
+        return None
+
+    for uf, cities in content.items():
+        for city, city_code in cities.items():
+            if code == city_code:
+                return {"city_name": city.title(), "uf": uf}
+
+    logger.error(f"Código {code} não encontrado no arquivo local: {json_cities_code_path}")
+    return None
 
 
-def _fetch_municipality_data_on_api(code: str) -> dict | None:
+def _fetch_municipality_data(code: str) -> tuple[dict, str] | tuple[None, str]:
+    """
+    Retrieves municipality data from the IBGE API or a local JSON file.
+
+    This function attempts to fetch municipality data from the IBGE API using the provided code.
+    If the API returns an error or empty result, it will attempt to fetch the data from a local JSON file.
+
+    Args:
+        code (str): The IBGE code of the municipality.
+
+    Returns:
+        tuple[dict, str] | None: A tuple containing the municipality data and the data source ('api' or 'json_file'),
+            or None if the data could not be retrieved.
+    """
+
     base_url = (
         f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
     )
-    try:
-        with urlopen(base_url) as response:
-            compressed_data = response.read()
-            decompressed_data = compressed_data
+    response = requests.get(base_url)
+    content = {}
+    data_source = 'api'
 
-            if _is_empty(decompressed_data):
-                print(f"{code} é um código inválido")
-                return None
+    with suppress(Exception):
+        content = json.loads(response.content)
 
-            if response.info().get("Content-Encoding") == "gzip":
-                try:
-                    with gzip.GzipFile(
-                        fileobj=io.BytesIO(compressed_data)
-                    ) as gzip_file:
-                        decompressed_data = gzip_file.read()
-                except OSError as e:
-                    print(f"Erro ao descomprimir os dados: {e}")
-                    return None
-                except Exception as e:
-                    print(f"Erro desconhecido ao descomprimir os dados: {e}")
-                    return None
+    # Not Found ou OK com conteúdo vazio
+    if response.status_code == HTTPStatus.NOT_FOUND or response.status_code == HTTPStatus.OK and _is_empty(content):
+        logger.error(f"{code} é um código inválido")
+        return None, data_source
 
-        return decompressed_data
+    # Server Error: tentar buscar localmente
+    if response.status_code >= HTTPStatus.INTERNAL_SERVER_ERROR:
+        logger.warning(
+            f"Erro HTTP ao buscar o código {code}: ({response.status_code}) {response.reason}."
+            " Tentando buscar localmente."
+        )
+        data_source = 'json_file'
+        return _fetch_municipality_data_on_json_file(code), data_source
 
-    except HTTPError as e:
-        if e.code == 404:
-            print(f"{code} é um código inválido")
-            return None
-        if e.code >= 500:
-            print(
-                f"Erro HTTP ao buscar o código {code}: {e}, tentando buscar localmente."
-            )
-            return _fetch_municipality_data_on_json_file(code)
+    # Happy path
+    if response.ok and content:
+        return content, data_source
 
-    except Exception as e:
-        print(f"Erro desconhecido ao buscar o código {code}: {e}")
-        return None
+    # Some other errors
+    logger.error(
+        f"Erro desconhecido ao buscar o código {code}: {response.reason}"
+    )
+    return None, data_source
 
 
 def get_municipality_by_code(code: str) -> tuple[str, str] | None:
@@ -88,14 +127,13 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
         ("São Paulo", "SP")
     """
 
-    decompressed_data = _fetch_municipality_data_on_api(code)
+    municipality_data, data_source = _fetch_municipality_data(code)
 
-    if decompressed_data is None:
+    if municipality_data is None:
         return None
 
     try:
-        json_data = json.loads(decompressed_data)
-        return _get_values(json_data)
+        return _get_values(municipality_data, data_source)
     except json.JSONDecodeError as e:
         print(f"Erro ao decodificar os dados JSON: {e}")
         return None
@@ -104,10 +142,7 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
         return None
 
 
-get_municipality_by_code("3550308")
-
-
-def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (str, str) -> str | None
+def get_code_by_municipality_name(municipality_name: str, uf: str) -> str | None:
     """
     Returns the IBGE code for a given municipality name and uf code.
 
@@ -139,10 +174,7 @@ def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (st
         None
     """
 
-    abs_path = pathlib.Path(__file__).resolve()
-    script_dir = abs_path.parent.parent
-
-    json_cities_code_path = script_dir / "data" / "cities_code.json"
+    json_cities_code_path = __get_cities_code_file_path()
     uf = uf.upper()
 
     with open(json_cities_code_path, "r", encoding="utf-8") as file:
@@ -154,41 +186,48 @@ def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (st
     cities_code = cities_uf_code.get(uf)
     name_city = _transform_text(municipality_name)
 
-    if name_city not in cities_code.keys():
-        return None
-
-    code = cities_code.get(name_city)
-
-    return code
+    return (
+        cities_code.get(name_city) if name_city in cities_code.keys() else None
+    )
 
 
-def _get_values(data):
-    municipio = data["nome"]
-    estado = data["microrregiao"]["mesorregiao"]["UF"]["sigla"]
-    return (municipio, estado)
+def _get_values(data: dict, source: str = "api") -> tuple[str, str]:
+    if source not in ("api", "json_file"):
+        message = f"Opção {source} inválida. As opções disponíveis são 'api' ou 'json_file'"
+        logger.error(message)
+        raise ValueError(message)
+    
+    values = ('', '')
+
+    if source == 'api':
+        values = (data["nome"], data["microrregiao"]["mesorregiao"]["UF"]["sigla"])
+    elif source == 'json_file':
+        values = (data["city_name"], data["uf"])
+
+    return values
 
 
 def _is_empty(zip):
     return zip == b"[]" or len(zip) == 0
 
 
-def _transform_text(municipality_name: str):  # type: (str) -> str
+def _transform_text(municipality_name: str) -> str:
     """
     Normalize municipality name and returns the normalized string.
 
     Args:
-         municipality_name (str): The name of the municipality.
+        municipality_name (str): The name of the municipality.
 
-     Returns:
-         str: The normalized string
+    Returns:
+        str: The normalized string
 
-     Example:
-         >>> _transform_text("São Paulo")
-         "sao paulo"
-         >>> _transform_text("Goiânia")
-         "goiania"
-         >>> _transform_text("Conceição do Coité")
-         "'conceicao do coite'
+    Example:
+        >>> _transform_text("São Paulo")
+        "sao paulo"
+        >>> _transform_text("Goiânia")
+        "goiania"
+        >>> _transform_text("Conceição do Coité")
+        "'conceicao do coite'
     """
 
     normalized_string = (
@@ -196,6 +235,4 @@ def _transform_text(municipality_name: str):  # type: (str) -> str
         .encode("ascii", "ignore")
         .decode("ascii")
     )
-    case_fold_string = normalized_string.casefold()
-
-    return case_fold_string
+    return normalized_string.casefold()
