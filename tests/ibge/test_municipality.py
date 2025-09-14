@@ -147,22 +147,6 @@ class TestIBGE(TestCase):
                 )
             )
 
-    # Os próximos dois testes são para gzip, que não usam requests.get, então não precisam de ajuste:
-    # @patch("gzip.GzipFile.read", side_effect=OSError("Erro na descompressão"))
-    # def test_error_decompression(self, mock_gzip_read):
-    #     result = get_municipality_by_code("3550308")
-    #     self.assertIsNone(result)
-
-    # @patch("json.loads", side_effect=JSONDecodeError("error", "city.json", 1))
-    # def test_error_json_load(self, mock_json_loads):
-    #     result = get_municipality_by_code("3550308")
-    #     self.assertIsNone(result)
-
-    # @patch("json.loads", side_effect=KeyError)
-    # def test_error_json_key_error(self, mock_json_loads):
-    #     result = get_municipality_by_code("3550308")
-    #     self.assertIsNone(result)
-
     def test_get_code_by_municipality_name(self):
         self.assertEqual(
             get_code_by_municipality_name("Florianópolis", "sc"), "4205407"
