@@ -6,6 +6,8 @@ from json import JSONDecodeError, dumps
 from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 
+import requests
+
 from brutils.ibge import municipality
 from brutils.ibge.municipality import (
     _get_values,
@@ -18,6 +20,9 @@ class TestIBGE(TestCase):
     @patch("requests.get")
     def test_get_municipality_by_code(self, mock_get):
         def mock_response(url, *args, **kwargs):
+            # Verifica se o timeout foi passado corretamente
+            self.assertIn("timeout", kwargs)
+            self.assertEqual(kwargs["timeout"], 5)
             responses = {
                 "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/3550308": {
                     "content": dumps(
@@ -91,6 +96,65 @@ class TestIBGE(TestCase):
         )
         self.assertEqual(get_municipality_by_code("5208707"), ("Goiânia", "GO"))
         self.assertIsNone(get_municipality_by_code("1234567"))
+
+    @patch("requests.get")
+    def test_timeout_and_request_exception_handling(self, mock_get):
+        # 92-107: Testa timeout e request exception
+        # Simula Timeout na primeira chamada, depois sucesso na segunda
+        call_count = {"count": 0}
+
+        def side_effect(*args, **kwargs):
+            if call_count["count"] == 0:
+                call_count["count"] += 1
+                raise requests.Timeout("timeout!")
+            else:
+                mock_resp = MagicMock()
+                mock_resp.status_code = 200
+                mock_resp.content = b'{"nome": "Test City", "microrregiao": {"mesorregiao": {"UF": {"sigla": "TC"}}}}'
+                mock_resp.ok = True
+                mock_resp.reason = "OK"
+                return mock_resp
+
+        mock_get.side_effect = side_effect
+
+        with self.assertLogs("BrutilsLogger", level="WARNING") as log:
+            result, source = municipality._fetch_municipality_data("1234567")
+            self.assertEqual(result["nome"], "Test City")
+            self.assertEqual(source, "api")
+            self.assertTrue(
+                any("Timeout ao buscar o código" in msg for msg in log.output)
+            )
+
+        # Simula Timeout em todas as tentativas, depois busca localmente
+        mock_get.side_effect = requests.Timeout("timeout!")
+        with patch(
+            "brutils.ibge.municipality._fetch_municipality_data_on_json_file",
+            return_value={"city_name": "Local City", "uf": "LC"},
+        ):
+            with self.assertLogs("BrutilsLogger", level="WARNING") as log:
+                result, source = municipality._fetch_municipality_data(
+                    "9999999", attempts=2
+                )
+                self.assertEqual(
+                    result, {"city_name": "Local City", "uf": "LC"}
+                )
+                self.assertEqual(source, "json_file")
+                self.assertTrue(
+                    any(
+                        "Timeout ao buscar o código" in msg
+                        for msg in log.output
+                    )
+                )
+
+        # Simula RequestException
+        mock_get.side_effect = requests.RequestException("erro de rede")
+        with self.assertLogs("BrutilsLogger", level="ERROR") as log:
+            result, source = municipality._fetch_municipality_data("9999999")
+            self.assertIsNone(result)
+            self.assertEqual(source, "api")
+            self.assertTrue(
+                any("Erro ao buscar o código" in msg for msg in log.output)
+            )
 
     def test_get_values_json_file(self):
         # 219-220: Test _get_values with source 'json_file'
