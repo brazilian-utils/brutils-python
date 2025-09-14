@@ -54,7 +54,9 @@ def _fetch_municipality_data_on_json_file(code: str) -> dict | None:
             if code == city_code:
                 return {"city_name": city.title(), "uf": uf}
 
-    logger.error(f"Código {code} não encontrado no arquivo local: {json_cities_code_path}")
+    logger.error(
+        f"Código {code} não encontrado no arquivo local: {json_cities_code_path}"
+    )
     return None
 
 
@@ -78,13 +80,15 @@ def _fetch_municipality_data(code: str) -> tuple[dict, str] | tuple[None, str]:
     )
     response = requests.get(base_url)
     content = {}
-    data_source = 'api'
+    data_source = "api"
 
     with suppress(Exception):
         content = json.loads(response.content)
 
     # Not Found ou OK com conteúdo vazio
-    if response.status_code == HTTPStatus.NOT_FOUND or response.status_code == HTTPStatus.OK and _is_empty(content):
+    if response.status_code == HTTPStatus.NOT_FOUND or (
+        response.status_code == HTTPStatus.OK and _is_empty(content)
+    ):
         logger.error(f"{code} é um código inválido")
         return None, data_source
 
@@ -94,7 +98,7 @@ def _fetch_municipality_data(code: str) -> tuple[dict, str] | tuple[None, str]:
             f"Erro HTTP ao buscar o código {code}: ({response.status_code}) {response.reason}."
             " Tentando buscar localmente."
         )
-        data_source = 'json_file'
+        data_source = "json_file"
         return _fetch_municipality_data_on_json_file(code), data_source
 
     # Happy path
@@ -142,7 +146,9 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
         return None
 
 
-def get_code_by_municipality_name(municipality_name: str, uf: str) -> str | None:
+def get_code_by_municipality_name(
+    municipality_name: str, uf: str
+) -> str | None:
     """
     Returns the IBGE code for a given municipality name and uf code.
 
@@ -196,12 +202,15 @@ def _get_values(data: dict, source: str = "api") -> tuple[str, str]:
         message = f"Opção {source} inválida. As opções disponíveis são 'api' ou 'json_file'"
         logger.error(message)
         raise ValueError(message)
-    
-    values = ('', '')
 
-    if source == 'api':
-        values = (data["nome"], data["microrregiao"]["mesorregiao"]["UF"]["sigla"])
-    elif source == 'json_file':
+    values = ("", "")
+
+    if source == "api":
+        values = (
+            data["nome"],
+            data["microrregiao"]["mesorregiao"]["UF"]["sigla"],
+        )
+    elif source == "json_file":
         values = (data["city_name"], data["uf"])
 
     return values
