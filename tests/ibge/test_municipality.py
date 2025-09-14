@@ -1,9 +1,14 @@
+import json
+import pathlib
+import tempfile
 from http import HTTPStatus
 from json import JSONDecodeError, dumps
 from unittest import TestCase, main
 from unittest.mock import MagicMock, patch
 
+from brutils.ibge import municipality
 from brutils.ibge.municipality import (
+    _get_values,
     get_code_by_municipality_name,
     get_municipality_by_code,
 )
@@ -86,6 +91,53 @@ class TestIBGE(TestCase):
         )
         self.assertEqual(get_municipality_by_code("5208707"), ("Goiânia", "GO"))
         self.assertIsNone(get_municipality_by_code("1234567"))
+
+    def test_get_values_json_file(self):
+        # 219-220: Test _get_values with source 'json_file'
+        data = {"city_name": "sao paulo", "uf": "SP"}
+        result = _get_values(data, "json_file")
+        self.assertEqual(result, ("sao paulo", "SP"))
+
+    @patch(
+        "brutils.ibge.municipality._get_values",
+        side_effect=json.JSONDecodeError("msg", "doc", 1),
+    )
+    def test_get_municipality_by_code_json_decode_error(self, mock_get_values):
+        # Test handling of JSONDecodeError in get_municipality_by_code
+        with self.assertLogs(
+            "BrutilsLogger", level="ERROR"
+        ) as logger_called, patch(
+            "brutils.ibge.municipality._fetch_municipality_data",
+            return_value=({}, "api"),
+        ):
+            result = get_municipality_by_code("3550308")
+            self.assertIsNone(result)
+            self.assertTrue(
+                any(
+                    "Erro ao decodificar os dados JSON" in msg
+                    for msg in logger_called.output
+                )
+            )
+
+    @patch(
+        "brutils.ibge.municipality._get_values", side_effect=KeyError("nome")
+    )
+    def test_get_municipality_by_code_key_error(self, mock_get_values):
+        # Test handling of KeyError in get_municipality_by_code
+        with self.assertLogs(
+            "BrutilsLogger", level="ERROR"
+        ) as logger_called, patch(
+            "brutils.ibge.municipality._fetch_municipality_data",
+            return_value=({}, "api"),
+        ):
+            result = get_municipality_by_code("3550308")
+            self.assertIsNone(result)
+            self.assertTrue(
+                any(
+                    "Erro ao acessar os dados do município" in msg
+                    for msg in logger_called.output
+                )
+            )
 
     @patch("requests.get")
     def test_get_municipality_http_error(self, mock_get):
@@ -189,18 +241,114 @@ class TestIBGE(TestCase):
 if __name__ == "__main__":
     main()
 
-    @patch("gzip.GzipFile.read", side_effect=OSError("Erro na descompressão"))
-    def test_error_decompression(self, mock_gzip_read):
-        result = get_municipality_by_code("3550308")
-        self.assertIsNone(result)
 
-    @patch(
-        "gzip.GzipFile.read",
-        side_effect=Exception("Erro desconhecido na descompressão"),
-    )
-    def test_error_decompression_generic_exception(self, mock_gzip_read):
-        result = get_municipality_by_code("3550308")
-        self.assertIsNone(result)
+class TestMunicipalityFileScenarios(TestCase):
+    def setUp(self):
+        # Patch the __get_cities_code_file_path to use a temp file
+        self.temp_dir = tempfile.TemporaryDirectory()
+        self.json_path = pathlib.Path(self.temp_dir.name) / "cities_code.json"
+        self.patcher = patch(
+            "brutils.ibge.municipality.__get_cities_code_file_path",
+            return_value=self.json_path,
+        )
+        self.patcher.start()
+
+    def tearDown(self):
+        self.patcher.stop()
+        self.temp_dir.cleanup()
+
+    def test_code_found_returns_city_and_uf(self):
+        # Test happy path where municipality code is found
+        with open(self.json_path, "w", encoding="utf-8") as f:
+            json.dump(
+                {"SP": {"sao paulo": "3550308", "campinas": "3509502"}}, f
+            )
+        result = municipality._fetch_municipality_data_on_json_file("3550308")
+        self.assertEqual(result, {"city_name": "Sao Paulo", "uf": "SP"})
+        result2 = municipality._fetch_municipality_data_on_json_file("3509502")
+        self.assertEqual(result2, {"city_name": "Campinas", "uf": "SP"})
+
+    def test_file_not_exists_logs_and_returns_none(self):
+        # 42-43: File does not exist
+        if self.json_path.exists():
+            self.json_path.unlink()
+        with self.assertLogs("BrutilsLogger", level="ERROR") as logger_called:
+            result = municipality._fetch_municipality_data_on_json_file(
+                "9999999"
+            )
+            self.assertIsNone(result)
+            self.assertTrue(
+                "Arquivo local não encontrado" in logger_called.output[0]
+            )
+
+    def test_file_empty_logs_and_returns_none(self):
+        # 49-50: File exists but is empty
+        with open(self.json_path, "w", encoding="utf-8") as f:
+            f.write("")
+        with self.assertLogs("BrutilsLogger", level="ERROR") as logger_called:
+            result = municipality._fetch_municipality_data_on_json_file(
+                "9999999"
+            )
+            self.assertIsNone(result)
+            self.assertTrue(
+                "Erro ao decodificar o arquivo local "
+                in logger_called.output[0]
+            )
+
+    def test_file_is_blank_logs_and_returns_none(self):
+        # 49-50: File exists but is blank
+        with open(self.json_path, "w", encoding="utf-8") as f:
+            f.write("{}")
+        with self.assertLogs("BrutilsLogger", level="ERROR") as logger_called:
+            result = municipality._fetch_municipality_data_on_json_file(
+                "9999999"
+            )
+            self.assertIsNone(result)
+            self.assertTrue("Arquivo local vazio" in logger_called.output[0])
+
+    def test_code_not_found_logs_and_returns_none(self):
+        # 55: Code not found in file
+        with open(self.json_path, "w", encoding="utf-8") as f:
+            json.dump({"SP": {"sao paulo": "3550308"}}, f)
+        with self.assertLogs("BrutilsLogger", level="ERROR") as logger_called:
+            result = municipality._fetch_municipality_data_on_json_file(
+                "9999999"
+            )
+            self.assertIsNone(result)
+            self.assertTrue(
+                "não encontrado no arquivo local" in logger_called.output[0]
+            )
+
+
+class TestGetValues(TestCase):
+    def test_invalid_source_raises_and_logs(self):
+        # 202-204: source not in ("api", "json_file")
+        with self.assertLogs("BrutilsLogger", level="ERROR") as logger_called:
+            with self.assertRaises(ValueError):
+                _get_values({}, "invalid_source")
+            self.assertIn(
+                "Opção invalid_source inválida. As opções disponíveis são 'api' ou 'json_file'",
+                logger_called.output[0],
+            )
+
+
+class TestFetchMunicipalityData(TestCase):
+    @patch("requests.get")
+    def test_unexpected_error_logs_and_returns_none(self, mock_get):
+        # 213-214: unexpected error (e.g., status_code=400)
+        mock_resp = MagicMock()
+        mock_resp.status_code = 400
+        mock_resp.content = b"[]"
+        mock_resp.ok = False
+        mock_resp.reason = "Bad Request"
+        mock_get.return_value = mock_resp
+        with self.assertLogs("BrutilsLogger", level="ERROR") as logger_called:
+            result, source = municipality._fetch_municipality_data("9999999")
+            self.assertIsNone(result)
+            self.assertEqual(source, "api")
+            self.assertIn(
+                "Erro desconhecido ao buscar o código", logger_called.output[0]
+            )
 
     @patch("json.loads", side_effect=JSONDecodeError("error", "city.json", 1))
     def test_error_json_load(self, mock_json_loads):
