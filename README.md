@@ -462,6 +462,41 @@ Exemplo:
 ]
 ```
 
+## RG
+
+### format_rg
+
+Formata um RG (Registro Geral) brasileiro de acordo com o estado (UF).
+
+Esta função recebe um RG brasileiro e o formata conforme os requisitos específicos da UF informada. Ela deve lidar com diversos formatos de entrada e garantir que a saída esteja padronizada.
+
+Argumentos:
+
+- `rg` (str): O RG a ser formatado.  
+- `uf` (str): A unidade federativa (UF) para a qual o RG deve ser formatado.
+
+Retorna:
+
+- `str` ou `None`: Retorna o RG formatado se válido, ou `None` se a entrada for inválida.
+
+Exemplo:
+
+```python
+>>> format_rg('12.345.678-9', 'SP')
+"12.345.678-9"
+
+>>> format_rg('MG-12.345.678', 'MG')
+"MG-12.345.678"
+
+>>> format_rg('123456789', 'RJ')
+"12.345.678-9"
+
+>>> format_rg('A12345678', 'SP')
+None
+
+>>> format_rg('12.345.678', 'SP')
+None
+
 ## Telefone
 
 ### is_valid_phone
