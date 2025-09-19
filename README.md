@@ -99,6 +99,9 @@ False
 - [Monetário](#monetário)
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
+  - [remove\_symbols\_cnh](#remove_symbols_cnh)
 
 ## CPF
 
@@ -1310,6 +1313,70 @@ Exemplo:
 >>> convert_real_to_text(-50.25)
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
+None
+```
+
+## CNH
+
+### is_valid_cnh
+
+Retorna se a CNH fornecida atende às regras básicas de formatação.
+
+Observações:
+
+- Esta função não consulta bases oficiais (Detran/Senatran).
+- Não realiza cálculo de dígitos verificadores.
+- Rejeita sequências onde todos os dígitos são iguais.
+- Ignora símbolos comuns (pontos, hífens, espaços).
+
+Argumentos:
+
+- `cnh (str | None)`: String da CNH (com ou sem símbolos).
+
+Retorna:
+
+- `bool`: `True` se tiver 11 dígitos numéricos válidos e não for uma sequência repetida, `False` caso contrário.
+
+Exemplo:
+
+```python
+>>> from brutils.cnh import is_valid_cnh
+>>> is_valid_cnh("02926434554")
+True
+>>> is_valid_cnh("12345678900")
+True
+>>> is_valid_cnh("11111111111")
+False
+>>> is_valid_cnh("029.264.345-54")
+True
+>>> is_valid_cnh("12345678")
+False
+>>> is_valid_cnh(None)
+False
+
+```
+
+### remove_symbols_cnh
+
+Remove qualquer caractere que não seja dígito de uma CNH.
+
+Argumentos:
+
+* `cnh (str | None)`: String contendo a CNH com ou sem símbolos.
+
+Retorna:
+
+* `str | None`: A CNH contendo apenas dígitos, ou `None` se a entrada for inválida.
+
+Exemplo:
+
+```python
+>>> from brutils.cnh import remove_symbols_cnh
+>>> remove_symbols_cnh("270.694.311-77")
+'27069431177'
+>>> remove_symbols_cnh(None)
+None
+>>> remove_symbols_cnh(12345678901)  # não é string
 None
 ```
 

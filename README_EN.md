@@ -99,6 +99,9 @@ False
 - [Monetary](#monetary)
   - [format_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
+- [CNH](#cnh)
+  - [is\_valid\_cnh](#is_valid_cnh)
+  - [remove\_symbols\_cnh](#remove_symbols_cnh)
 
 ## CPF
 
@@ -1315,6 +1318,68 @@ Example:
 >>> convert_real_to_text(-50.25)
 'Menos cinquenta reais e vinte e cinco centavos'
 >>> convert_real_to_text("invalid")
+None
+```
+
+## CNH
+
+### is_valid_cnh
+
+Returns whether the provided CNH meets the basic formatting rules.
+
+Notes:
+
+- This function does not query official databases (Detran/Senatran).
+- It does not perform check digit calculations.
+- Rejects sequences where all digits are the same.
+- Ignores common symbols (dots, hyphens, spaces).
+
+Arguments:
+
+- `cnh (str | None)`: CNH string (with or without symbols).
+
+Returns:
+
+- `bool`: `True` if it has 11 valid numeric digits and is not a repeated sequence, `False` otherwise.
+
+Example:
+
+```python
+>>> from brutils.cnh import is_valid_cnh
+
+>>> is_valid_cnh("02926434554")
+True
+>>> is_valid_cnh("11111111111")
+False
+>>> is_valid_cnh("029.264.345-54")
+True
+>>> is_valid_cnh("12345678")
+False
+>>> is_valid_cnh(None)
+False
+```
+
+### remove_symbols_cnh
+
+Removes any character that is not a digit from a CNH.
+
+Args:
+
+* `cnh (str | None)`: String containing the CNH with or without symbols.
+
+Returns:
+
+* `str | None`: The CNH containing only digits, or `None` if the input is invalid.
+
+Example:
+
+```python
+>>> from brutils.cnh import remove_symbols_cnh
+>>> remove_symbols_cnh("270.694.311-77")
+'27069431177'
+>>> remove_symbols_cnh(None)
+None
+>>> remove_symbols_cnh(12345678901)  # not a string
 None
 ```
 
