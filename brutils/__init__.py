@@ -52,6 +52,20 @@ from brutils.license_plate import get_format as get_format_license_plate
 from brutils.license_plate import is_valid as is_valid_license_plate
 from brutils.license_plate import remove_symbols as remove_symbols_license_plate
 
+# Passport Imports
+from brutils.passport import (
+    format_passport,
+)
+from brutils.passport import (
+    generate as generate_passport,
+)
+from brutils.passport import (
+    is_valid as is_valid_passport,
+)
+from brutils.passport import (
+    remove_symbols as remove_symbols_passport,
+)
+
 # Phone Imports
 from brutils.phone import (
     format_phone,
@@ -131,4 +145,9 @@ __all__ = [
     # Currency
     "format_currency",
     "convert_real_to_text",
+    # Passport
+    "format_passport",
+    "generate_passport",
+    "is_valid_passport",
+    "remove_symbols_passport",
 ]
