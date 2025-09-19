@@ -13,7 +13,7 @@ def format_currency(value: float | int | str | Decimal) -> str | None:
     Returns:
         Formatted currency string (e.g., "R$ 1.234,56") or None if invalid.
 
-    Examples:
+    Example:
         >>> format_currency(1234.56)
         'R$ 1.234,56'
         >>> format_currency(0)
@@ -50,7 +50,7 @@ def convert_real_to_text(amount: Decimal | float | int | str) -> str | None:
         - Maximum supported value is 1 quadrillion reais
         - Negative values are prefixed with "Menos"
 
-    Examples:
+    Example:
         >>> convert_real_to_text(1523.45)
         'Mil, quinhentos e vinte e três reais e quarenta e cinco centavos'
         >>> convert_real_to_text(1.00)
