@@ -1,3 +1,10 @@
+"""
+Custom colored logger using built-in lib
+Usage: from brutils.logger import logger
+
+logger.info("This is an info message")
+"""
+
 import logging
 
 
@@ -17,14 +24,14 @@ class ColoredFormatter(logging.Formatter):
         return f"{color}{message}{self.RESET}"
 
 
-logger = logging.getLogger("BrutilsLogger")
+logger = logging.getLogger("BR_Utils_Logger")
 logger.setLevel(logging.DEBUG)
 
 if not logger.hasHandlers():
     ch = logging.StreamHandler()
     ch.setLevel(logging.DEBUG)
     formatter = ColoredFormatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+        "[%(name)s - %(levelname)s] %(asctime)s - %(message)s"
     )
     ch.setFormatter(formatter)
     logger.addHandler(ch)
