@@ -1,15 +1,20 @@
 import json
-import pathlib
 import unicodedata
 from contextlib import suppress
 from http import HTTPStatus
+from pathlib import Path
+from warnings import deprecated
 
 import requests
 
 from brutils.logger import logger
 
 
-def __get_cities_code_file_path() -> pathlib.Path:
+@deprecated(
+    "Fetching data from a local JSON file is deprecated until further notice. "
+    "Use the _fetch_municipality_data function instead."
+)
+def __get_cities_code_file_path() -> Path:  # pragma: no cover
     """
     Returns the path to the local cities code JSON file.
 
@@ -17,13 +22,19 @@ def __get_cities_code_file_path() -> pathlib.Path:
     located in the data directory of the project.
 
     Returns:
-        pathlib.Path: The path to the 'cities_code.json' file.
+        Path: The path to the 'cities_code.json' file.
     """
-    current_file_path = pathlib.Path(__file__).resolve()
+    current_file_path = Path(__file__).resolve()
     return current_file_path.parent.parent / "data" / "cities_code.json"
 
 
-def _fetch_municipality_data_on_json_file(code: str) -> dict | None:
+@deprecated(
+    "Fetching data from a local JSON file is deprecated until further notice. "
+    "Use the _fetch_municipality_data function instead."
+)
+def _fetch_municipality_data_on_json_file(
+    code: str,
+) -> dict | None:  # pragma: no cover
     """
     Retrieves municipality data from a local JSON file by code.
 
@@ -66,76 +77,134 @@ def _fetch_municipality_data_on_json_file(code: str) -> dict | None:
     return None
 
 
-def _fetch_municipality_data(
-    code: str, attempts: int = 0
-) -> tuple[dict, str] | tuple[None, str]:
+def _fetch_municipality_data(**kwargs: dict) -> dict | None:
     """
-    Retrieves municipality data from the IBGE API or a local JSON file.
+    Fetches municipality data from the IBGE API using either a code or a municipality name and UF.
 
-    This function attempts to fetch municipality data from the IBGE API using the provided code.
-    If the API returns an error or empty result, it will attempt to fetch the data from a local JSON file.
+    This function retrieves municipality data from the IBGE API. It accepts either a code or a combination
+    of municipality name and UF as input. The function validates the input, builds the appropriate API URL,
+    and handles request errors, timeouts, and response status codes. It returns the municipality data as a
+    dictionary if found, or None otherwise.
 
     Args:
-        code (str): The IBGE code of the municipality.
+        **kwargs (dict): Keyword arguments that may include:
+            - code (str): The IBGE code of the municipality.
+            - municipality_name (str): The name of the municipality.
+            - uf (str): The UF (state) code.
 
     Returns:
-        tuple[dict, str] | None: A tuple containing the municipality data and the data source ('api' or 'json_file'),
-            or None if the data could not be retrieved.
+        dict | None: The municipality data as a dictionary, or None if not found or on error.
     """
-    logger.debug(f"Buscando dados do município para o código {code}")
+    code = kwargs.get("code", "").strip()
+    municipality_name = kwargs.get("municipality_name", "").strip()
+    uf = kwargs.get("uf", "").strip()
+
+    if code and (not code.isdigit() or len(code) != 7):
+        logger.error(
+            f"Código inválido: {code}. Deve conter exatamente 7 dígitos."
+        )
+        return None
+
+    if any([municipality_name and not uf, uf and not municipality_name]):
+        logger.error("Necessário informar nome da cidade e UF")
+        return None
+
+    logger_message = (
+        f"Buscando dados do município para o código {code}"
+        if code and not (municipality_name and uf)
+        else (
+            f"Buscando dados do município para o nome '{municipality_name}' e UF '{uf}'"
+        )
+    )
+    logger.debug(logger_message)
 
     base_url = (
         f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
     )
-    data_source = "api"
+    if municipality_name and uf:
+        base_url = f"https://servicodados.ibge.gov.br/api/v1/localidades/estados/{uf}/municipios"
 
     try:
-        response = requests.get(base_url, timeout=5)
-    except requests.Timeout as e:
-        logger.warning(
-            f"Timeout ao buscar o código {code}: {e}. Tentando buscar localmente."
-        )
-        # Try again once before fetching locally
-        if attempts < 2:
-            attempts += 1
-            return _fetch_municipality_data(code, attempts)
+        response = requests.get(base_url, timeout=30)
 
-        data_source = "json_file"
-        return _fetch_municipality_data_on_json_file(code), data_source
+    except requests.Timeout as e:
+        logger.warning(f"Timeout ao buscar o código {code}: {e}.")
+        return None
+
     except requests.RequestException as e:
         logger.error(f"Erro ao buscar o código {code}: {e}")
-        return None, data_source
+        return None
 
-    content = {}
-
-    with suppress(Exception):
-        content = json.loads(response.content)
+    content = _get_content_from_response(code, municipality_name, uf, response)
 
     # Not Found or OK with empty content
-    if response.status_code == HTTPStatus.NOT_FOUND or (
-        response.status_code == HTTPStatus.OK and _is_empty(content)
+    if any(
+        [
+            response.status_code == HTTPStatus.NOT_FOUND,
+            response.status_code == HTTPStatus.OK and _is_empty(content),
+        ]
     ):
         logger.error(f"{code} é um código inválido")
-        return None, data_source
+        return None
 
-    # Server Error: try to fetch locally
     if response.status_code >= HTTPStatus.INTERNAL_SERVER_ERROR:
-        logger.warning(
+        logger.error(
             f"Erro HTTP ao buscar o código {code}: ({response.status_code}) {response.reason}."
-            " Tentando buscar localmente."
         )
-        data_source = "json_file"
-        return _fetch_municipality_data_on_json_file(code), data_source
+        return None
 
     # Happy path
     if response.ok and content:
-        return content, data_source
+        return content
 
     # Some other errors
     logger.error(
         f"Erro desconhecido ao buscar o código {code}: {response.reason}"
     )
-    return None, data_source
+    return None
+
+
+def _get_content_from_response(
+    code: str,
+    municipality_name: str,
+    uf: str,
+    response: requests.Response,
+) -> dict | None:
+    """
+    Extracts and returns the relevant municipality content from the API response.
+
+    This function parses the API response content and returns either the municipality data
+    for a given code or the matching municipality from a list when searching by name and UF.
+
+    Args:
+        code (str): The IBGE code of the municipality.
+        municipality_name (str): The name of the municipality.
+        uf (str): The UF (state) code.
+        response: The HTTP response object from the API.
+
+    Returns:
+        dict or None: The municipality data as a dictionary, or None if not found or on error.
+    """
+    content = None
+
+    with suppress(Exception):
+        if code:
+            content = json.loads(response.content)
+        elif municipality_name and uf and response.ok:
+            municipalities = json.loads(response.content)
+            content = next(
+                (
+                    municipality
+                    for municipality in municipalities
+                    if (
+                        _transform_text(municipality["nome"])
+                        == _transform_text(municipality_name)
+                    )
+                ),
+                None,
+            )
+
+    return content
 
 
 def get_municipality_by_code(code: str) -> tuple[str, str] | None:
@@ -157,13 +226,13 @@ def get_municipality_by_code(code: str) -> tuple[str, str] | None:
         ("São Paulo", "SP")
     """
 
-    municipality_data, data_source = _fetch_municipality_data(code)
+    municipality_data = _fetch_municipality_data(code=code)
 
     if municipality_data is None:
         return None
 
     try:
-        return _get_values(municipality_data, data_source)
+        return _get_values(municipality_data)
     except json.JSONDecodeError as e:
         logger.error(f"Erro ao decodificar os dados JSON: {e}")
         return None
@@ -205,45 +274,22 @@ def get_code_by_municipality_name(
         >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
         None
     """
+    municipality_data = _fetch_municipality_data(
+        municipality_name=municipality_name, uf=uf
+    )
 
-    json_cities_code_path = __get_cities_code_file_path()
-    uf = uf.upper()
+    return str(municipality_data["id"]) if municipality_data else None
 
-    with open(json_cities_code_path, "r", encoding="utf-8") as file:
-        cities_uf_code = json.load(file)
 
-    if uf not in cities_uf_code.keys():
-        return None
-
-    cities_code = cities_uf_code.get(uf)
-    name_city = _transform_text(municipality_name)
-
+def _get_values(data: dict) -> tuple[str, str]:
     return (
-        cities_code.get(name_city) if name_city in cities_code.keys() else None
+        data["nome"],
+        data["microrregiao"]["mesorregiao"]["UF"]["sigla"],
     )
 
 
-def _get_values(data: dict, source: str = "api") -> tuple[str, str]:
-    if source not in ("api", "json_file"):
-        message = f"Opção {source} inválida. As opções disponíveis são 'api' ou 'json_file'"
-        logger.error(message)
-        raise ValueError(message)
-
-    values = ("", "")
-
-    if source == "api":
-        values = (
-            data["nome"],
-            data["microrregiao"]["mesorregiao"]["UF"]["sigla"],
-        )
-    elif source == "json_file":
-        values = (data["city_name"], data["uf"])
-
-    return values
-
-
 def _is_empty(zip):
-    return zip == b"[]" or len(zip) == 0
+    return zip is None or zip == b"[]" or len(zip) == 0
 
 
 def _transform_text(municipality_name: str) -> str:
