@@ -135,13 +135,21 @@ def _fetch_municipality_data(**kwargs: dict) -> dict | None:
             response.status_code == HTTPStatus.OK and _is_empty(content),
         ]
     ):
-        logger.error(f"{code} é um código inválido")
+        message = (
+            f"{code} é um código inválido"
+            if code
+            else (f"{municipality_name} - {uf} é um município inválido")
+        )
+        logger.error(message)
         return None
 
     if response.status_code >= HTTPStatus.INTERNAL_SERVER_ERROR:
-        logger.error(
-            f"Erro HTTP ao buscar o código {code}: ({response.status_code}) {response.reason}."
+        message = (
+            f"Erro HTTP ao buscar o código {code}"
+            if code
+            else (f"Erro HTTP ao buscar o município {municipality_name} - {uf}")
         )
+        logger.error(f"{message}: ({response.status_code}) {response.reason}.")
         return None
 
     # Happy path
@@ -149,9 +157,14 @@ def _fetch_municipality_data(**kwargs: dict) -> dict | None:
         return content
 
     # Some other errors
-    logger.error(
-        f"Erro desconhecido ao buscar o código {code}: {response.reason}"
+    message = (
+        f"Erro desconhecido ao buscar o código {code}"
+        if code
+        else (
+            f"Erro desconhecido ao buscar o município {municipality_name} - {uf}"
+        )
     )
+    logger.error(f"{message}: {response.reason}")
     return None
 
 

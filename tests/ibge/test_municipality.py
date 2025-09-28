@@ -213,40 +213,148 @@ class TestIBGE(TestCase):
                 )
             )
 
-    def test_get_code_by_municipality_name(self):
+    @patch("requests.get")
+    def test_get_code_by_municipality_name(self, mock_get):
+        # Florianópolis, SC
+        mock_resp_1 = MagicMock()
+        mock_resp_1.status_code = 200
+        mock_resp_1.content = json.dumps(
+            [{"id": "4205407", "nome": "Florianópolis"}]
+        ).encode("utf-8")
+        mock_resp_1.ok = True
+        mock_get.return_value = mock_resp_1
         self.assertEqual(
             get_code_by_municipality_name("Florianópolis", "sc"), "4205407"
         )
+
+        # São Paulo, SP
+        mock_resp_2 = MagicMock()
+        mock_resp_2.status_code = 200
+        mock_resp_2.content = json.dumps(
+            [{"id": "3550308", "nome": "São Paulo"}]
+        ).encode("utf-8")
+        mock_resp_2.ok = True
+        mock_get.return_value = mock_resp_2
         self.assertEqual(
             get_code_by_municipality_name("São Paulo", "sp"), "3550308"
         )
+
+        # GOIANIA, GO
+        mock_resp_3 = MagicMock()
+        mock_resp_3.status_code = 200
+        mock_resp_3.content = json.dumps(
+            [{"id": "5208707", "nome": "GOIANIA"}]
+        ).encode("utf-8")
+        mock_resp_3.ok = True
+        mock_get.return_value = mock_resp_3
         self.assertEqual(
             get_code_by_municipality_name("GOIANIA", "GO"), "5208707"
         )
+
+        # Conceição do Coité, BA
+        mock_resp_4 = MagicMock()
+        mock_resp_4.status_code = 200
+        mock_resp_4.content = json.dumps(
+            [{"id": "2908408", "nome": "Conceição do Coité"}]
+        ).encode("utf-8")
+        mock_resp_4.ok = True
+        mock_get.return_value = mock_resp_4
         self.assertEqual(
             get_code_by_municipality_name("Conceição do Coité", "BA"), "2908408"
         )
+
+        # conceicao do Coite, Ba (variação sem acento)
+        mock_resp_5 = MagicMock()
+        mock_resp_5.status_code = 200
+        mock_resp_5.content = json.dumps(
+            [{"id": "2908408", "nome": "Conceição do Coité"}]
+        ).encode("utf-8")
+        mock_resp_5.ok = True
+        mock_get.return_value = mock_resp_5
         self.assertEqual(
             get_code_by_municipality_name("conceicao do Coite", "Ba"), "2908408"
         )
+
+        # rio de janeiro, rj
+        mock_resp_6 = MagicMock()
+        mock_resp_6.status_code = 200
+        mock_resp_6.content = json.dumps(
+            [{"id": "3304557", "nome": "Rio de Janeiro"}]
+        ).encode("utf-8")
+        mock_resp_6.ok = True
+        mock_get.return_value = mock_resp_6
         self.assertEqual(
             get_code_by_municipality_name("rio de janeiro", "rj"), "3304557"
         )
+
+        # Lauro Müller, sc
+        mock_resp_7 = MagicMock()
+        mock_resp_7.status_code = 200
+        mock_resp_7.content = json.dumps(
+            [{"id": "4209607", "nome": "Lauro Müller"}]
+        ).encode("utf-8")
+        mock_resp_7.ok = True
+        mock_get.return_value = mock_resp_7
         self.assertEqual(
             get_code_by_municipality_name("Lauro Müller", "sc"), "4209607"
         )
+
+        # Tôrres, rs
+        mock_resp_8 = MagicMock()
+        mock_resp_8.status_code = 200
+        mock_resp_8.content = json.dumps(
+            [{"id": "4321501", "nome": "Tôrres"}]
+        ).encode("utf-8")
+        mock_resp_8.ok = True
+        mock_get.return_value = mock_resp_8
         self.assertEqual(
             get_code_by_municipality_name("Tôrres", "rs"), "4321501"
         )
+
+        # aurora, ce
+        mock_resp_9 = MagicMock()
+        mock_resp_9.status_code = 200
+        mock_resp_9.content = json.dumps(
+            [{"id": "2301703", "nome": "Aurora"}]
+        ).encode("utf-8")
+        mock_resp_9.ok = True
+        mock_get.return_value = mock_resp_9
         self.assertEqual(
             get_code_by_municipality_name("aurora", "ce"), "2301703"
         )
+
+        # aurora, sc
+        mock_resp_10 = MagicMock()
+        mock_resp_10.status_code = 200
+        mock_resp_10.content = json.dumps(
+            [{"id": "4201901", "nome": "Aurora"}]
+        ).encode("utf-8")
+        mock_resp_10.ok = True
+        mock_get.return_value = mock_resp_10
         self.assertEqual(
             get_code_by_municipality_name("aurora", "sc"), "4201901"
         )
+
+        # Municipio Inexistente, RS
+        mock_resp_11 = MagicMock()
+        mock_resp_11.status_code = 200
+        mock_resp_11.content = json.dumps(
+            [{"id": "4205407", "nome": "Florianópolis"}]
+        ).encode("utf-8")
+        mock_resp_11.ok = True
+        mock_get.return_value = mock_resp_11
         self.assertIsNone(
             get_code_by_municipality_name("Municipio Inexistente", "RS")
         )
+
+        # Municipio Inexistente, ""
+        mock_resp_12 = MagicMock()
+        mock_resp_12.status_code = 200
+        mock_resp_12.content = json.dumps(
+            [{"id": "4205407", "nome": "Florianópolis"}]
+        ).encode("utf-8")
+        mock_resp_12.ok = True
+        mock_get.return_value = mock_resp_12
         self.assertIsNone(
             get_code_by_municipality_name("Municipio Inexistente", "")
         )
