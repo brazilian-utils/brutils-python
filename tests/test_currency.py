@@ -15,7 +15,6 @@ class TestFormatCurrency(TestCase):
         assert format_currency(-123236.70) == "R$ -123.236,70"
 
     def test_when_value_is_zero(self):
-        print(format_currency(0))
         assert format_currency(0) == "R$ 0,00"
 
     def test_value_decimal_replace_rounding(self):
