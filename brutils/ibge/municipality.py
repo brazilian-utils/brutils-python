@@ -3,17 +3,12 @@ import unicodedata
 from contextlib import suppress
 from http import HTTPStatus
 from pathlib import Path
-from warnings import deprecated
 
 import requests
 
 from brutils.logger import logger
 
 
-@deprecated(
-    "Fetching data from a local JSON file is deprecated until further notice. "
-    "Use the _fetch_municipality_data function instead."
-)
 def __get_cities_code_file_path() -> Path:  # pragma: no cover
     """
     Returns the path to the local cities code JSON file.
@@ -28,10 +23,6 @@ def __get_cities_code_file_path() -> Path:  # pragma: no cover
     return current_file_path.parent.parent / "data" / "cities_code.json"
 
 
-@deprecated(
-    "Fetching data from a local JSON file is deprecated until further notice. "
-    "Use the _fetch_municipality_data function instead."
-)
 def _fetch_municipality_data_on_json_file(
     code: str,
 ) -> dict | None:  # pragma: no cover
