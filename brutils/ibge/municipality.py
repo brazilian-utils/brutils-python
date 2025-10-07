@@ -1,13 +1,17 @@
 import gzip
 import io
 import json
-import pathlib
 import unicodedata
 from urllib.error import HTTPError
 from urllib.request import urlopen
 
+IBGE_MUNICIPALITY_BY_CODE_URL = (
+    "https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
+)
+IBGE_MUNICIPALITIES_BY_UF_URL = "https://servicodados.ibge.gov.br/api/v1/localidades/estados/{uf}/municipios"
 
-def get_municipality_by_code(code):  # type: (str) -> Tuple[str, str] | None
+
+def get_municipality_by_code(code: str) -> tuple[str, str] | None:
     """
     Returns the municipality name and UF for a given IBGE code.
 
@@ -18,62 +22,34 @@ def get_municipality_by_code(code):  # type: (str) -> Tuple[str, str] | None
         code (str): The IBGE code of the municipality.
 
     Returns:
-        tuple: A tuple formatted as ("Município", "UF").
-            - Returns None if the code is not valid.
+        tuple: A tuple formatted as ("Município", "UF") or
+               None if the code is not valid.
 
     Example:
         >>> get_municipality_by_code("3550308")
         ("São Paulo", "SP")
+        >>> get_municipality_by_code("3304557")
+        ("Rio de Janeiro", "RJ")
+        >>> get_municipality_by_code("1234567")
+        None
     """
-    baseUrl = (
-        f"https://servicodados.ibge.gov.br/api/v1/localidades/municipios/{code}"
-    )
-    try:
-        with urlopen(baseUrl) as f:
-            compressed_data = f.read()
-            if f.info().get("Content-Encoding") == "gzip":
-                try:
-                    with gzip.GzipFile(
-                        fileobj=io.BytesIO(compressed_data)
-                    ) as gzip_file:
-                        decompressed_data = gzip_file.read()
-                except OSError as e:
-                    print(f"Erro ao descomprimir os dados: {e}")
-                    return None
-                except Exception as e:
-                    print(f"Erro desconhecido ao descomprimir os dados: {e}")
-                    return None
-            else:
-                decompressed_data = compressed_data
+    base_url = IBGE_MUNICIPALITY_BY_CODE_URL.format(code=code)
 
-            if _is_empty(decompressed_data):
-                print(f"{code} é um código inválido")
-                return None
+    decompressed_data = _fetch_ibge_data(base_url)
 
-    except HTTPError as e:
-        if e.code == 404:
-            print(f"{code} é um código inválido")
-            return None
-        else:
-            print(f"Erro HTTP ao buscar o código {code}: {e}")
-            return None
-
-    except Exception as e:
-        print(f"Erro desconhecido ao buscar o código {code}: {e}")
+    if decompressed_data is None:
         return None
 
     try:
         json_data = json.loads(decompressed_data)
         return _get_values(json_data)
-    except json.JSONDecodeError as e:
-        print(f"Erro ao decodificar os dados JSON: {e}")
-        return None
-    except KeyError as e:
-        print(f"Erro ao acessar os dados do município: {e}")
+    except (json.JSONDecodeError, KeyError):
         return None
 
 
-def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (str, str) -> str | None
+def get_code_by_municipality_name(
+    municipality_name: str, uf: str
+) -> str | None:
     """
     Returns the IBGE code for a given municipality name and uf code.
 
@@ -87,76 +63,109 @@ def get_code_by_municipality_name(municipality_name: str, uf: str):  # type: (st
         uf (str): The uf code of the state.
 
     Returns:
-        str: The IBGE code of the municipality.
-            - Returns None if the name is not valid or does not exist.
+        str: The IBGE code of the municipality or
+             None if the name is not valid or does not exist.
 
     Example:
         >>> get_code_by_municipality_name("São Paulo", "SP")
         "3550308"
-        >>> get_code_by_municipality_name("goiania", "go")
-        "5208707"
-        >>> get_code_by_municipality_name("Conceição do Coité", "BA")
+        >>> get_code_by_municipality_name("Conceição do Coité", "Ba")
         "2908408"
-        >>> get_code_by_municipality_name("conceicao do Coite", "Ba")
-        "2908408"
-        >>> get_code_by_municipality_name("Municipio Inexistente", "")
-        None
         >>> get_code_by_municipality_name("Municipio Inexistente", "RS")
         None
     """
-
-    abs_path = pathlib.Path(__file__).resolve()
-    script_dir = abs_path.parent.parent
-
-    json_cities_code_path = script_dir / "data" / "cities_code.json"
     uf = uf.upper()
 
-    with open(json_cities_code_path, "r", encoding="utf-8") as file:
-        cities_uf_code = json.load(file)
+    base_url = IBGE_MUNICIPALITIES_BY_UF_URL.format(uf=uf)
 
-    if uf not in cities_uf_code.keys():
+    decompressed_data = _fetch_ibge_data(base_url)
+    if decompressed_data is None:
         return None
 
-    cities_code = cities_uf_code.get(uf)
-    name_city = _transform_text(municipality_name)
+    try:
+        json_data = json.loads(decompressed_data)
+        normalized_municipality_name = _transform_text(municipality_name)
 
-    if name_city not in cities_code.keys():
+        for municipality in json_data:
+            municipality_name_from_api = municipality.get("nome", "")
+            normalized_name_from_api = _transform_text(
+                municipality_name_from_api
+            )
+
+            if normalized_name_from_api == normalized_municipality_name:
+                return str(municipality.get("id"))
+
         return None
 
-    code = cities_code.get(name_city)
+    except (json.JSONDecodeError, KeyError):
+        return None
 
-    return code
+
+def _fetch_ibge_data(url: str) -> bytes | None:
+    """
+    Fetch data from IBGE API with gzip decompression support.
+
+    Args:
+        url (str): The URL to fetch data from.
+
+    Returns:
+        bytes | None: The decompressed data or None if failed.
+    """
+    try:
+        with urlopen(url) as f:
+            compressed_data = f.read()
+            if f.info().get("Content-Encoding") == "gzip":
+                try:
+                    with gzip.GzipFile(
+                        fileobj=io.BytesIO(compressed_data)
+                    ) as gzip_file:
+                        decompressed_data = gzip_file.read()
+                except (OSError, Exception):
+                    return None
+            else:
+                decompressed_data = compressed_data
+
+            if _is_empty(decompressed_data):
+                return None
+
+            return decompressed_data
+
+    except HTTPError:
+        return None
+    except Exception:
+        return None
 
 
-def _get_values(data):
+def _get_values(data: dict) -> tuple[str, str]:
+    """Extract municipality name and UF from IBGE API response."""
     municipio = data["nome"]
     estado = data["microrregiao"]["mesorregiao"]["UF"]["sigla"]
     return (municipio, estado)
 
 
-def _is_empty(zip):
-    return zip == b"[]" or len(zip) == 0
+def _is_empty(data: bytes) -> bool:
+    """Check if the response data is empty."""
+    return data == b"[]" or len(data) == 0
 
 
-def _transform_text(municipality_name: str):  # type: (str) -> str
+def _transform_text(municipality_name: str) -> str:
     """
     Normalize municipality name and returns the normalized string.
 
     Args:
-         municipality_name (str): The name of the municipality.
+        municipality_name (str): The name of the municipality.
 
-     Returns:
-         str: The normalized string
+    Returns:
+        str: The normalized string
 
-     Example:
-         >>> _transform_text("São Paulo")
-         "sao paulo"
-         >>> _transform_text("Goiânia")
-         "goiania"
-         >>> _transform_text("Conceição do Coité")
-         "'conceicao do coite'
+    Example:
+        >>> _transform_text("São Paulo")
+        'sao paulo'
+        >>> _transform_text("Goiânia")
+        'goiania'
+        >>> _transform_text("Conceição do Coité")
+        'conceicao do coite'
     """
-
     normalized_string = (
         unicodedata.normalize("NFKD", municipality_name)
         .encode("ascii", "ignore")
