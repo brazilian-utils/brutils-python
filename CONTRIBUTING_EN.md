@@ -42,7 +42,7 @@ Ensure you have a [GitHub account][github-join] and you are logged in.
 
 Visit the [brutils issues page][brutils-issues] and find an issue that interests you and hasn't been assigned yet.
 
-Leave a comment in the issue with "bora!". A bot will assign the issue to you. Once assigned, proceed to the next step.
+Leave a comment in the issue with "bora!" (in Brazilian Portuguese, that means "let's go!"). A bot will assign the issue to you. Once assigned, proceed to the next step.
 
 Feel free to ask any questions in the issue's page before or during the development process.
 
