@@ -711,6 +711,12 @@ Para a criação da issue, pode ser utilizado o template de feature, sendo o nom
 
 O nome da branch criada para o release é relacionado ao número da Issue, como mostra [este exemplo](https://github.com/brazilian-utils/brutils-python/pull/326)
 
+#### Faça o Commit
+
+A mensagem do commit deve seguir a estrutura `chore: release <versão>`
+
+Exemplo: `chore: release 2.3.0`
+
 ### 2. Criar um Release PR
 
 #### Atualizar a Versão da Biblioteca
@@ -729,9 +735,9 @@ E adicione os links da versão, como [neste exemplo](https://github.com/antoniam
 
 #### Crie o PR
 
-Crie um PR com o nome `Release v<versão>` contendo as duas alterações acima. Na descrição da Pull Request, adicione o trecho do changelog alterado.
+Crie um PR com o nome `chore: release <versão>` contendo as duas alterações acima. Na descrição da Pull Request, adicione o trecho do changelog alterado.
 
-[Exemplo de Release PR][release-pr-example]
+Exemplo de Release PR: https://github.com/brazilian-utils/brutils-python/pull/596
 
 #### Faça o Merge do PR
 
