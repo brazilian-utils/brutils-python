@@ -158,8 +158,43 @@ class TestIBGE(TestCase):
         result = get_municipality_by_code("3550308")
         self.assertIsNone(result)
 
-    def test_get_code_by_municipality_name_success(self):
+    @patch("brutils.ibge.municipality.urlopen")
+    def test_get_code_by_municipality_name_success(self, mock_urlopen):
         """Test successful municipality code retrieval by name and UF."""
+
+        def mock_response(url):
+            mock_responses = {
+                f"{IBGE_BASE_URL}/estados/SC/municipios": [
+                    {"nome": "Florianópolis", "id": 4205407},
+                    {"nome": "Aurora", "id": 4201901},
+                    {"nome": "Lauro Müller", "id": 4209607},
+                ],
+                f"{IBGE_BASE_URL}/estados/SP/municipios": [
+                    {"nome": "São Paulo", "id": 3550308},
+                ],
+                f"{IBGE_BASE_URL}/estados/RJ/municipios": [
+                    {"nome": "Rio de Janeiro", "id": 3304557},
+                ],
+                f"{IBGE_BASE_URL}/estados/GO/municipios": [
+                    {"nome": "Goiânia", "id": 5208707},
+                ],
+                f"{IBGE_BASE_URL}/estados/BA/municipios": [
+                    {"nome": "Conceição do Coité", "id": 2908408},
+                ],
+                f"{IBGE_BASE_URL}/estados/RS/municipios": [
+                    {"nome": "Tôrres", "id": 4321501},
+                ],
+                f"{IBGE_BASE_URL}/estados/CE/municipios": [
+                    {"nome": "Aurora", "id": 2301703},
+                ],
+            }
+
+            response_data = mock_responses.get(url, [])
+            json_data = dumps(response_data).encode("utf-8")
+            return self._create_mock_response(json_data)
+
+        mock_urlopen.side_effect = mock_response
+
         self.assertEqual(
             get_code_by_municipality_name("Florianópolis", "sc"), "4205407"
         )
