@@ -67,6 +67,11 @@ from brutils.pis import generate as generate_pis
 from brutils.pis import is_valid as is_valid_pis
 from brutils.pis import remove_symbols as remove_symbols_pis
 
+# RG Imports
+from brutils.rg import (
+    format_rg,
+)
+
 # Voter ID Imports
 from brutils.voter_id import format_voter_id
 from brutils.voter_id import generate as generate_voter_id
@@ -131,4 +136,6 @@ __all__ = [
     # Currency
     "format_currency",
     "convert_real_to_text",
+    # RG
+    "format_rg",
 ]
