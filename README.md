@@ -1,7 +1,8 @@
-<div align="center">
-<h1>🇧🇷 Brazilian Utils</h1>
+![Logo do Brazilian Utils](https://github.com/brazilian-utils/brand/raw/main/github-hero/github-hero-python.png)
 
-<p>Utils library for Brazilian-specific businesses.</p>
+<div align="center">
+
+<p>Biblioteca de utilitários projetada para validar, gerar e manipular dados de acordo com as particularidades do Brasil</p>
 
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
 [![Downloads per Month](https://shields.io/pypi/dm/brutils)](https://pypistats.org/packages/brutils)
