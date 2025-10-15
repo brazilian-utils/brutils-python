@@ -1,6 +1,6 @@
-<div align="center">
-<h1>🇧🇷 Brazilian Utils</h1>
+![Brazilian Utils Logo](https://github.com/brazilian-utils/brand/raw/main/github-hero/github-hero-python.png)
 
+<div align="center">
 <p>Utils library for Brazilian-specific businesses.</p>
 
 [![codecov](https://codecov.io/gh/brazilian-utils/brutils-python/branch/main/graph/badge.svg?token=5KNECS8JYF)](https://codecov.io/gh/brazilian-utils/brutils-python)
