@@ -1,0 +1,60 @@
+name: Create Release PR
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-release-pr:
+    name: Create Release PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Generate changelog and detect next version
+        id: git-cliff
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: pyproject.toml
+          args: --verbose --bump --github-token ${{ secrets.GITHUB_TOKEN }}
+        env:
+          OUTPUT: CHANGELOG.md
+          GITHUB_REPO: ${{ github.repository }}
+
+      - name: Setup Poetry
+        uses: snok/install-poetry@v1
+
+      - name: Update version in pyproject.toml
+        run: |
+          poetry version ${{ steps.git-cliff.outputs.version }}
+
+      - name: Create release branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -b release-v${{ steps.git-cliff.outputs.version }}
+
+      - name: Commit changes
+        run: |
+          git add pyproject.toml CHANGELOG.md
+          git commit -m "chore: release ${{ steps.git-cliff.outputs.version }}"
+          git push origin release-v${{ steps.git-cliff.outputs.version }}
+
+      - name: Create Pull Request
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh pr create \
+            --title "chore: release ${{ steps.git-cliff.outputs.version }}" \
+            --body "## Release v${{ steps.git-cliff.outputs.version }}
+
+          This PR prepares the release for version ${{ steps.git-cliff.outputs.version }}." \
+            --base main \
+            --head release-v${{ steps.git-cliff.outputs.version }}
