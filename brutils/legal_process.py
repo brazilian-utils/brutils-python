@@ -3,10 +3,11 @@ import os
 import re
 from datetime import datetime
 from random import randint
+from typing import Final
 
-ROOT_DIR: str = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR: str = f"{ROOT_DIR}/data"
-VALID_IDS_FILE: str = f"{DATA_DIR}/legal_process_ids.json"
+ROOT_DIR: Final[str] = os.path.dirname(os.path.abspath(__file__))
+DATA_DIR: Final[str] = f"{ROOT_DIR}/data"
+VALID_IDS_FILE: Final[str] = f"{DATA_DIR}/legal_process_ids.json"
 
 # FORMATTING
 ############
