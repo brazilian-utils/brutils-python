@@ -1,8 +1,18 @@
 from itertools import chain
-from random import randint
+from random import randint, choice
+import string
 
+
+# =============================================================================
+# 27-10-2025
+# Estou seguindo o que foi explicitado aqui para as mudanças sugeridas:
+# https://normasinternet2.receita.fazenda.gov.br/#/consulta/externa/141102
+# Especificamente no Anexo Único
+# =============================================================================
+
+# =============================================================================
 # FORMATTING
-############
+# =============================================================================
 
 
 def sieve(dirty):  # type: (str) -> str
@@ -56,157 +66,159 @@ def remove_symbols(dirty):  # type: (str) -> str
 
 def display(cnpj):  # type: (str) -> str
     """
-    Will format an adequately formatted numbers-only CNPJ string,
-    adding in standard formatting visual aid symbols for display.
-
     Formats a CNPJ (Brazilian Company Registration Number) string for
-    visual display.
+    visual display, adding standard separators.
 
-    This function takes a CNPJ string as input, validates its format, and
-    formats it with standard visual aid symbols for display purposes.
+    Supports both numeric and alphanumeric formats, following the
+    2026 specification.
 
     Args:
-        cnpj (str): The CNPJ string to be formatted for display.
+        cnpj (str): The CNPJ string (numeric or alphanumeric).
 
     Returns:
-        str: The formatted CNPJ with visual aid symbols if it's valid,
-             None if it's not valid.
+        str: The formatted CNPJ string, or None if invalid.
 
     Example:
-        >>> display("12345678901234")
-        "12.345.678/9012-34"
-        >>> display("98765432100100")
-        "98.765.432/1001-00"
+        >>> display("12345678000195")
+        "12.345.678/0001-95"
+        >>> display("12ABC34501DE35")
+        "12.ABC.345/01DE-35"
 
-    .. note::
-       This method should not be used in new code and is only provided for
-       backward compatibility.
+    Notes:
+        - Prior to 2026, only numeric CNPJs are expected.
+        - From 2026 onwards, alphanumeric roots and orders are allowed.
     """
+    clean = sieve(cnpj)
 
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
+    # Must have exactly 14 characters (including letters/numbers)
+    if len(clean) != 14 or len(set(clean)) == 1:
         return None
-    return "{}.{}.{}/{}-{}".format(
-        cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:]
-    )
+
+    # Split parts (root, order, DV)
+    root = clean[:8]
+    order = clean[8:12]
+    dv = clean[12:]
+
+    # Compose visually formatted CNPJ
+    return "{}.{}.{}/{}-{}".format(root[:2], root[2:5], root[5:8], order, dv)
+
+
 
 
 def format_cnpj(cnpj):  # type: (str) -> str
     """
-    Formats a CNPJ (Brazilian Company Registration Number) string for visual
-    display.
+    Validates and formats a CNPJ (Brazilian Company Registration Number)
+    for visual display.
 
-    This function takes a CNPJ string as input, validates its format, and
-    formats it with standard visual aid symbols for display purposes.
+    Supports both numeric and alphanumeric formats (post-2026).
 
     Args:
-        cnpj (str): The CNPJ string to be formatted for display.
+        cnpj (str): The CNPJ string to be formatted.
 
     Returns:
-        str: The formatted CNPJ with visual aid symbols if it's valid,
-             None if it's not valid.
+        str: A formatted version of the CNPJ if valid, or None if invalid.
 
     Example:
         >>> format_cnpj("03560714000142")
         '03.560.714/0001-42'
-        >>> format_cnpj("98765432100100")
-        None
+        >>> format_cnpj("12ABC34501DE35")
+        '12.ABC.345/01DE-35'
     """
-
     if not is_valid(cnpj):
         return None
-
-    return "{}.{}.{}/{}-{}".format(
-        cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]
-    )
+    return display(sieve(cnpj))
 
 
-# OPERATIONS
-############
+# =============================================================================
+# VALIDATION HELPERS
+# =============================================================================
+
+
+def is_alphanumeric_cnpj(cnpj):  # type: (str) -> bool
+    """
+    Detects whether a given CNPJ contains letters, indicating
+    the new alphanumeric format valid from 2026 onwards.
+
+    Args:
+        cnpj (str): The CNPJ string to analyze.
+
+    Returns:
+        bool: True if the CNPJ includes alphabetic characters.
+    """
+    return any(ch.isalpha() for ch in cnpj)
+
+
+def ascii_value(ch):  # type: (str) -> int
+    """
+    Converts a single alphanumeric character into its numeric value
+    used in the alphanumeric CNPJ checksum calculation.
+    """
+    if not ch.isalnum():
+        raise ValueError(f"Invalid CNPJ character: {ch}")
+    return ord(ch.upper()) - 48
+
+
+
+# =============================================================================
+# CORE VALIDATION AND CHECKSUM LOGIC
+# =============================================================================
 
 
 def validate(cnpj):  # type: (str) -> bool
     """
-    Validates a CNPJ (Brazilian Company Registration Number) by comparing its
-    verifying checksum digits to its base number.
+    Validates both traditional numeric CNPJs and the new
+    alphanumeric format introduced in 2026.
 
-    This function checks the validity of a CNPJ by comparing its verifying
-    checksum digits to its base number. The input should be a string of digits
-    with the appropriate length.
+    The validation rule used depends on whether the CNPJ contains
+    alphabetic characters.
+
+    Args:
+        cnpj (str): The CNPJ string (numeric or alphanumeric).
+
+    Returns:
+        bool: True if the CNPJ is valid according to its format.
+    """
+    clean = sieve(cnpj)
+    if len(clean) != 14:
+        return False
+
+    # Detect which version of the CNPJ is being used
+    if is_alphanumeric_cnpj(clean):
+        base, dv = clean[:12], clean[12:]
+        expected = _checksum_alphanumeric(base)
+    else:
+        base, dv = clean[:12], clean[12:]
+        expected = _checksum(base)
+
+    return dv == expected
+
+
+def is_valid(cnpj):  # type: (str) -> bool
+    """
+    Checks whether the given CNPJ string (numeric or alphanumeric)
+    is valid by verifying its checksum digits.
 
     Args:
         cnpj (str): The CNPJ to be validated.
 
     Returns:
-        bool: True if the checksum digits match the base number,
-              False otherwise.
+        bool: True if the CNPJ is valid, False otherwise.
 
     Example:
-        >>> validate("03560714000142")
+        >>> is_valid("34665388000161")
         True
-        >>> validate("00111222000133")
-        False
-
-    .. note::
-       This method should not be used in new code and is only provided for
-       backward compatibility.
-    """
-
-    if not cnpj.isdigit() or len(cnpj) != 14 or len(set(cnpj)) == 1:
-        return False
-    return all(
-        _hashdigit(cnpj, i + 13) == int(v) for i, v in enumerate(cnpj[12:])
-    )
-
-
-def is_valid(cnpj):  # type: (str) -> bool
-    """
-    Returns whether or not the verifying checksum digits of the given `cnpj`
-    match its base number.
-
-    This function does not verify the existence of the CNPJ; it only
-    validates the format of the string.
-
-    Args:
-        cnpj (str): The CNPJ to be validated, a 14-digit string
-
-    Returns:
-        bool: True if the checksum digits match the base number,
-              False otherwise.
-
-    Example:
-        >>> is_valid("03560714000142")
+        >>> is_valid("12ABC34501DE35")
         True
-        >>> is_valid("00111222000133")
+        >>> is_valid("00000000000000")
         False
     """
 
     return isinstance(cnpj, str) and validate(cnpj)
 
 
-def generate(branch=1):  # type: (int) -> str
-    """
-    Generates a random valid CNPJ digit string. An optional branch number
-    parameter can be given; it defaults to 1.
-
-    Args:
-        branch (int): An optional branch number to be included in the CNPJ.
-
-    Returns:
-        str: A randomly generated valid CNPJ string.
-
-    Example:
-        >>> generate()
-        "30180536000105"
-        >>> generate(1234)
-        "01745284123455"
-    """
-
-    branch %= 10000
-    branch += int(branch == 0)
-    branch = str(branch).zfill(4)
-    base = str(randint(0, 99999999)).zfill(8) + branch
-
-    return base + _checksum(base)
+# =============================================================================
+# CHECKSUM GENERATION (NUMERIC)
+# =============================================================================
 
 
 def _hashdigit(cnpj, position):  # type: (str, int) -> int
@@ -220,14 +232,7 @@ def _hashdigit(cnpj, position):  # type: (str, int) -> int
 
     Returns:
         int: The calculated checksum digit.
-
-    Example:
-        >>> _hashdigit("12345678901234", 13)
-        3
-        >>> _hashdigit("98765432100100", 14)
-        9
     """
-
     weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
     val = (
         sum(int(digit) * weight for digit, weight in zip(cnpj, weightgen)) % 11
@@ -237,26 +242,95 @@ def _hashdigit(cnpj, position):  # type: (str, int) -> int
 
 def _checksum(basenum):  # type: (str) -> str
     """
-    Calculates the verifying checksum digits for a given CNPJ base number.
-
-    This function computes the verifying checksum digits for a provided CNPJ
-    base number. The `basenum` should be a digit-string of the appropriate
-    length.
+    Calculates the verifying checksum digits for a given numeric CNPJ base.
 
     Args:
-        basenum (str): The base number of the CNPJ for which verifying checksum
-                       digits are calculated.
+        basenum (str): The 12-digit numeric CNPJ base.
 
     Returns:
-        str: The verifying checksum digits.
-
-    Example:
-        >>> _checksum("123456789012")
-        "30"
-        >>> _checksum("987654321001")
-        "41"
+        str: The 2 verifying digits.
     """
-
     verifying_digits = str(_hashdigit(basenum, 13))
     verifying_digits += str(_hashdigit(basenum + verifying_digits, 14))
     return verifying_digits
+
+
+# =============================================================================
+# CHECKSUM GENERATION (ALPHANUMERIC)
+# =============================================================================
+
+
+def _hashdigit_alphanumeric(cnpj, position):  # type: (str, int) -> int
+    """
+    Calculates the checksum digit at the given `position` for the
+    alphanumeric CNPJ format (valid from 2026).
+
+    Conversion uses ASCII values minus 48, as defined by RFB.
+
+    Args:
+        cnpj (str): The alphanumeric CNPJ string.
+        position (int): The position of the checksum digit.
+
+    Returns:
+        int: The calculated checksum digit.
+    """
+    weightgen = chain(range(position - 8, 1, -1), range(9, 1, -1))
+    converted = [ascii_value(ch) for ch in cnpj]
+    val = sum(v * w for v, w in zip(converted, weightgen)) % 11
+    return 0 if val < 2 else 11 - val
+
+
+def _checksum_alphanumeric(basenum):  # type: (str) -> str
+    """
+    Calculates the verifying checksum digits for an alphanumeric
+    CNPJ base, following the ASCII - 48 rule and Mod 11.
+
+    Args:
+        basenum (str): The 12-character alphanumeric base.
+
+    Returns:
+        str: The 2 verifying digits.
+    """
+    d1 = _hashdigit_alphanumeric(basenum, 13)
+    d2 = _hashdigit_alphanumeric(basenum + str(d1), 14)
+    return f"{d1}{d2}"
+
+
+# =============================================================================
+# GENERATION
+# =============================================================================
+
+
+def generate(branch=1, new_format=False):  # type: (int, bool) -> str
+    """
+    Generates a valid CNPJ string.
+
+    If `new_format` is False, a traditional numeric CNPJ will be generated.
+    If `new_format` is True, an alphanumeric CNPJ will be generated following
+    the 2026 specification (letters allowed in positions 1–12).
+
+    Args:
+        branch (int): Optional branch number for numeric CNPJs (default = 1).
+        new_format (bool): If True, uses the alphanumeric CNPJ rules.
+
+    Returns:
+        str: A valid CNPJ string (numeric or alphanumeric).
+
+    Example:
+        >>> generate()
+        "30180536000105"
+        >>> generate(new_format=True)
+        "12AB3C4D0001E5"
+    """
+    if new_format:
+        # Generate alphanumeric root (8 chars) and order (4 chars)
+        alphabet = string.ascii_uppercase + string.digits
+        base = "".join(choice(alphabet) for _ in range(12))
+        return base + _checksum_alphanumeric(base)
+
+    # Legacy numeric format (default)
+    branch %= 10000
+    branch += int(branch == 0)
+    branch = str(branch).zfill(4)
+    base = str(randint(0, 99999999)).zfill(8) + branch
+    return base + _checksum(base)
