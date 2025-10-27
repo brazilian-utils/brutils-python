@@ -141,7 +141,7 @@ Args:
 Returns:
 
 - str: A formatted CPF string with standard visual aid symbols or
-         None if the input is invalid.
+         raises ValueError if the input is a invalid CPF.
 
 Example:
 

@@ -141,7 +141,7 @@ Argumentos:
 Retorna:
 
 - str: O CPF formatado com símbolos visuais se for válido,
-         None se não for válido.
+         lança ValueError se o CPF não for válido.
 
 Exemplo:
 
