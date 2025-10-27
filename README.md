@@ -710,7 +710,7 @@ Argumentos:
 Retorna:
 
 - str: A string da placa de carro formatada ou
-         'None' se a entrada for inválida.
+         lança ValueError se a entrada for inválida.
 
 Exemplo:
 
@@ -727,9 +727,6 @@ Exemplo:
 # formato mercosul
 >>> format_license_plate("abc1d23")
 "ABC1D23"
-# formato mercosul
->>> format_license_plate("ABCD123")
-None
 ```
 
 ### remove_symbols_license_plate

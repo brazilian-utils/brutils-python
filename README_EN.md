@@ -703,7 +703,7 @@ Args:
 Returns:
 
 - str: The formatted license plate string or
-         'None' if the input is invalid.
+         raises ValueError if the input is invalid.
 
 Example:
 
@@ -720,9 +720,6 @@ Example:
 # mercosul format
 >>> format_license_plate("abc1d23")
 "ABC1D23"
-# mercosul format
->>> format_license_plate("ABCD123")
-None
 ```
 
 ### remove_symbols_license_plate
