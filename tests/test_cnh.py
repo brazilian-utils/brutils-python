@@ -1,5 +1,4 @@
-from unittest import TestCase, main
-from unittest.mock import MagicMock, patch
+from unittest import TestCase
 
 from brutils.cnh import is_valid_cnh
 
@@ -11,6 +10,3 @@ class TestCNH(TestCase):
         self.assertFalse(is_valid_cnh("6619558737912"))
         self.assertTrue(is_valid_cnh("097703047-34"))
         self.assertTrue(is_valid_cnh("09770304734"))
-
-
-
