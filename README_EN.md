@@ -874,7 +874,7 @@ Args:
 
 Returns:
 
-- str: A formatted PIS string with standard visual aid symbols or None if the input is invalid.
+- str: A formatted PIS string with standard visual aid symbols or raises ValueError if the input is invalid.
 
 Example:
 

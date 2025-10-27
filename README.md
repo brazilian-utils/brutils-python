@@ -874,7 +874,7 @@ Argumentos:
 
 Retorna:
 
-- str: Uma string de PIS formatada com símbolos visuais padrão ou None se a entrada for inválida.
+- str: Uma string de PIS formatada com símbolos visuais padrão ou lança ValueError se a entrada for inválida.
 
 Exemplo:
 
