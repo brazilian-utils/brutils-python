@@ -107,7 +107,7 @@ class TestIsValidToFormat(TestCase):
 
         # When cpf isn't valid, raises ValueError
         with self.assertRaises(ValueError):
-          format_cpf("11144477735")
+            format_cpf("11144477735")
 
 
 if __name__ == "__main__":

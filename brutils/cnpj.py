@@ -113,7 +113,9 @@ def format_cnpj(cnpj):  # type: (str) -> str
     """
 
     if not is_valid(cnpj):
-        raise ValueError("CPNJ inválido: formato incorreto ou digito de verificação inválido.")
+        raise ValueError(
+            "CPNJ inválido: formato incorreto ou digito de verificação inválido."
+        )
 
     return "{}.{}.{}/{}-{}".format(
         cnpj[:2], cnpj[2:5], cnpj[5:8], cnpj[8:12], cnpj[12:14]

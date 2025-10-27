@@ -99,7 +99,9 @@ def format_cpf(cpf):  # type: (str) -> str
     """
 
     if not is_valid(cpf):
-        raise ValueError("CPF inválido: formato incorreto ou dígitos de verificação inválidos.")
+        raise ValueError(
+            "CPF inválido: formato incorreto ou dígitos de verificação inválidos."
+        )
 
     return "{}.{}.{}-{}".format(cpf[:3], cpf[3:6], cpf[6:9], cpf[9:11])
 

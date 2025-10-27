@@ -335,7 +335,7 @@ Args:
 Returns:
 
 - str: The formatted CEP in the "12345-678" format if it's valid,
-         None if it's not valid.
+    raises ValueError if it's not valid.
 
 Example:
 
@@ -345,8 +345,6 @@ Example:
 '01310-200'
 >>> format_cep("12345678")
 "12345-678"
->>> format_cep("12345")
-None
 ```
 
 ### remove_symbols_cep

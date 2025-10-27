@@ -107,7 +107,7 @@ class TestIsValidToFormat(TestCase):
 
         # When cnpj isn't valid, raises ValueError
         with self.assertRaises(ValueError):
-          format_cnpj("01838723000127")
+            format_cnpj("01838723000127")
 
 
 if __name__ == "__main__":
