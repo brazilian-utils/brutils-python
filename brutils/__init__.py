@@ -20,6 +20,9 @@ from brutils.cpf import generate as generate_cpf
 from brutils.cpf import is_valid as is_valid_cpf
 from brutils.cpf import remove_symbols as remove_symbols_cpf
 
+#CNH Imports
+from brutils.cnh import is_valid_cnh as is_valid_cnh
+
 # Currency
 from brutils.currency import convert_real_to_text, format_currency
 
@@ -91,6 +94,8 @@ __all__ = [
     "generate_cpf",
     "is_valid_cpf",
     "remove_symbols_cpf",
+    #CNH
+    "is_valid_cnh",
     # Email
     "is_valid_email",
     # Legal Process
