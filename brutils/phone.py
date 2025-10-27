@@ -4,7 +4,7 @@ from random import choice, randint
 
 # FORMATTING
 ############
-def format_phone(phone: str) -> str:
+def format_phone(phone: str) -> str | None:
     """
     Function responsible for formatting a telephone number
 
