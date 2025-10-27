@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- Tratando CNPJ formato 2026 nos métodos do utilitário cnpj (https://github.com/brazilian-utils/python/issues/478)
+
 ## [2.3.0] - 2025-10-07
 
 ### Added

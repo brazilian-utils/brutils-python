@@ -201,6 +201,7 @@ Verifica se os dígitos de verificação do CNPJ (Cadastro Nacional da Pessoa
 Jurídica) fornecido correspondem ao seu número base. A entrada deve ser uma
 string de dígitos com o comprimento apropriado. Esta função não verifica a
 existência do CNPJ; ela só valida o formato da string.
+OBS.: Já está tratando CNPJs no novo formato (2026)
 
 Argumentos:
 
@@ -216,6 +217,8 @@ Exemplo:
 ```python
 >>> from brutils import is_valid_cnpj
 >>> is_valid_cnpj('03560714000142')
+True
+>>> is_valid_cnpj('12ABC34501DE')
 True
 >>> is_valid_cnpj('00111222000133')
 False
@@ -242,6 +245,8 @@ Exemplo:
 >>> from brutils import format_cnpj
 >>> format_cnpj("03560714000142")
 '03.560.714/0001-42'
+>>> format_cnpj("12ABC34501DE35")
+'12.ABC.345/01DE-35'
 >>> format_cnpj("98765432100100")
 None
 ```
@@ -277,6 +282,7 @@ opcional pode ser fornecido; o padrão é 1.
 Argumentos:
 
 - branch (int): Um número de filial opcional a ser incluído no CNPJ.
+- new_format (bool): Boolean para definir se o CNPJ será no novo formato (2026).
 
 Retorna:
 
@@ -288,6 +294,8 @@ Exemplo:
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
+>>> generate_cnpj(new_format=True)
+'BDPDVE7250ZX31'
 >>> generate_cnpj(1234)
 "01745284123455"
 ```
