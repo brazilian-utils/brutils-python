@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Utilitários `format_cpf`, `format_cnpj`, `format_cep`, `format_license_place` e `format_pis` lançam ValueError quando input inválido [#627](https://github.com/brazilian-utils/brutils-python/issues/627)
+
 ## [2.3.0] - 2025-10-07
 
 ### Added
