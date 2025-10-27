@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Utilitário `convert_name_to_uf`
+
 ### Fixed
 
 - Suporte a anotações modernas `voter_id` [#623](https://github.com/brazilian-utils/brutils-python/pull/638)
