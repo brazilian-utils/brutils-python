@@ -202,6 +202,7 @@ Returns whether or not the verifying checksum digits of the given CNPJ
 Input should be a digit string of proper length.
 This function does not verify the existence of the CNPJ; it only
 validates the format of the string.
+P.S.: It's already included the new CNPJ version (2026)
 
 Args:
 
@@ -217,6 +218,8 @@ Example:
 ```python
 >>> from brutils import is_valid_cnpj
 >>> is_valid_cnpj('03560714000142')
+True
+>>> is_valid_cnpj('12ABC34501DE')
 True
 >>> is_valid_cnpj('00111222000133')
 False
@@ -244,6 +247,8 @@ Example:
 >>> from brutils import format_cnpj
 >>> format_cnpj("03560714000142")
 '03.560.714/0001-42'
+>>> format_cnpj("12ABC34501DE35")
+'12.ABC.345/01DE-35'
 >>> format_cnpj("98765432100100")
 None
 ```
@@ -279,6 +284,7 @@ string. An optional branch number parameter can be given; it defaults to 1.
 Args:
 
 - branch (int): An optional branch number to be included in the CNPJ.
+- new_format (bool): Bool to use the new CNPJ version format (2026).
 
 Returns:
 
@@ -290,6 +296,8 @@ Example:
 >>> from brutils import generate_cnpj
 >>> generate_cnpj()
 '34665388000161'
+>>> generate_cnpj(new_format=True)
+'BDPDVE7250ZX31'
 >>> generate_cnpj(1234)
 "01745284123455"
 ```
