@@ -96,6 +96,50 @@ class TestIsValidWithTypeNone(TestCase):
         mock__is_valid_mercosul.assert_called_once_with("ABC1234")
 
 
+@patch("brutils.license_plate._is_valid_mercosul")
+@patch("brutils.license_plate._is_valid_old_format")
+class TestIsValidWithInvalidType(TestCase):
+    def test_when_mercosul_valid_old_format_invalid(
+        self, mock__is_valid_old_format, mock__is_valid_mercosul
+    ):
+        mock__is_valid_mercosul.return_value = True
+        mock__is_valid_old_format.return_value = False
+
+        self.assertIs(is_valid("ABC4E67", "invalid_type"), True)
+        mock__is_valid_old_format.assert_called_once_with("ABC4E67")
+        mock__is_valid_mercosul.assert_called_once_with("ABC4E67")
+
+    def test_when_mercosul_and_old_format_are_valids(
+        self, mock__is_valid_old_format, mock__is_valid_mercosul
+    ):
+        mock__is_valid_mercosul.return_value = True
+        mock__is_valid_old_format.return_value = True
+
+        self.assertIs(is_valid("ABC1234", "invalid_type"), True)
+        mock__is_valid_mercosul.assert_not_called()
+        mock__is_valid_old_format.assert_called_once_with("ABC1234")
+
+    def test_when_mercosul_invalid_old_format_valid(
+        self, mock__is_valid_old_format, mock__is_valid_mercosul
+    ):
+        mock__is_valid_mercosul.return_value = False
+        mock__is_valid_old_format.return_value = True
+
+        self.assertIs(is_valid("ABC1234", "invalid_type"), True)
+        mock__is_valid_old_format.assert_called_once_with("ABC1234")
+        mock__is_valid_mercosul.assert_not_called()
+
+    def test_when_mercosul_and_old_format_are_invalid(
+        self, mock__is_valid_old_format, mock__is_valid_mercosul
+    ):
+        mock__is_valid_old_format.return_value = False
+        mock__is_valid_mercosul.return_value = False
+
+        self.assertIs(is_valid("ABC1234", "invalid_type"), False)
+        mock__is_valid_old_format.assert_called_once_with("ABC1234")
+        mock__is_valid_mercosul.assert_called_once_with("ABC1234")
+
+
 class TestIsValidOldFormat(TestCase):
     def test__is_valid_old_format(self):
         # When license plate is valid, returns True
