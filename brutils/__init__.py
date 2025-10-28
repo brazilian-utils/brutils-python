@@ -123,7 +123,7 @@ __all__ = [
     "generate_pis",
     "is_valid_pis",
     "remove_symbols_pis",
-    #RENAVAM
+    # RENAVAM
     "is_valid_renavam",
     # Voter ID
     "format_voter_id",
