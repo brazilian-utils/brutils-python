@@ -11,7 +11,9 @@ def is_valid_cnh(cnh: str) -> bool:
     Returns:
         bool: True if CNH has a valid format.
     """
-    cnh = "".join(filter(str.isdigit, cnh)) # clean the input and check for numbers only
+    cnh = "".join(
+        filter(str.isdigit, cnh)
+    )  # clean the input and check for numbers only
 
     if not cnh:
         return False
@@ -24,19 +26,23 @@ def is_valid_cnh(cnh: str) -> bool:
         return False
 
     # cast digits to list of integers
-    digits : list[int] =  [int(ch) for ch in cnh]
+    digits: list[int] = [int(ch) for ch in cnh]
     first_verificator = digits[9]
     second_verificator = digits[10]
 
-    if not _check_first_verificator(digits, first_verificator): # checking the 10th digit, if not already invalid
+    if not _check_first_verificator(
+        digits, first_verificator
+    ):  # checking the 10th digit
         return False
-    
-    return _check_second_verificator(digits, second_verificator, first_verificator) # checking the 11th digit
+
+    return _check_second_verificator(
+        digits, second_verificator, first_verificator
+    )  # checking the 11th digit
 
 
-def _check_first_verificator(digits : list[int], first_verificator : int) -> bool:
-    """ 
-        Generates the first verification digit and uses it  to verify the 10th digit of the CNH 
+def _check_first_verificator(digits: list[int], first_verificator: int) -> bool:
+    """
+    Generates the first verification digit and uses it  to verify the 10th digit of the CNH
     """
 
     sum = 0
@@ -49,9 +55,11 @@ def _check_first_verificator(digits : list[int], first_verificator : int) -> boo
     return result == first_verificator
 
 
-def _check_second_verificator(digits : list[int], second_verificator : int, first_verificator : int) -> bool:
-    """ 
-        Generates the second verification  and uses it to verify the 11th digit of the CNH 
+def _check_second_verificator(
+    digits: list[int], second_verificator: int, first_verificator: int
+) -> bool:
+    """
+    Generates the second verification  and uses it to verify the 11th digit of the CNH
     """
     sum = 0
     for i in range(9):
@@ -60,11 +68,7 @@ def _check_second_verificator(digits : list[int], second_verificator : int, firs
     result = sum % 11
 
     if first_verificator > 9:
-        result = (
-            result + 9
-            if (result - 2) < 0
-            else result - 2
-        )
+        result = result + 9 if (result - 2) < 0 else result - 2
 
     if result > 9:
         result = 0
