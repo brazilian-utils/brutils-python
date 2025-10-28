@@ -23,8 +23,8 @@ def is_valid_cnh(cnh: str) -> bool:
     if cnh == cnh[0] * 11:
         return False
 
-    # cast digits as list of integers
-    digits =  [int(ch) for ch in cnh]
+    # cast digits to list of integers
+    digits : list[int] =  [int(ch) for ch in cnh]
     first_verificator = digits[9]
     second_verificator = digits[10]
 
@@ -35,7 +35,9 @@ def is_valid_cnh(cnh: str) -> bool:
 
 
 def _check_first_verificator(digits : list[int], first_verificator : int) -> bool:
-    """ generating the first verification digit, which is used to verify the 10th digit of the CNH"""
+    """ 
+        Generates the first verification digit and uses it  to verify the 10th digit of the CNH 
+    """
 
     sum = 0
     for i in range(9):
@@ -48,21 +50,23 @@ def _check_first_verificator(digits : list[int], first_verificator : int) -> boo
 
 
 def _check_second_verificator(digits : list[int], second_verificator : int, first_verificator : int) -> bool:
-    """ generating the second verification digit, which is used to verify the 11th digit of the CNH """
+    """ 
+        Generates the second verification  and uses it to verify the 11th digit of the CNH 
+    """
     sum = 0
     for i in range(9):
         sum += digits[i] * (i + 1)
 
-    second_verificator = sum % 11
+    result = sum % 11
 
     if first_verificator > 9:
-        second_verificator = (
-            second_verificator + 9
-            if (second_verificator - 2) < 0
-            else second_verificator - 2
+        result = (
+            result + 9
+            if (result - 2) < 0
+            else result - 2
         )
 
-    if second_verificator > 9:
-        second_verificator = 0
+    if result > 9:
+        result = 0
 
-    return second_verificator
+    return result == second_verificator
