@@ -80,6 +80,8 @@ False
   - [format\_pis](#format_pis)
   - [remove\_symbols\_pis](#remove_symbols_pis)
   - [generate\_pis](#generate_pis)
+- [RENAVAM](#renavam)
+  - [is_valid_renavam](#is_valid_renavam)
 - [Legal Process](#legal-process)
   - [is\_valid\_legal\_process](#is_valid_legal_process)
   - [format\_legal\_process](#format_legal_process)
@@ -1345,6 +1347,36 @@ Example:
 >>> convert_real_to_text("invalid")
 None
 ```
+
+## RENAVAM
+
+### is_valid_renavam
+
+Validates whether the verification digit of the given RENAVAM
+matches its first 10 digits. This function does not check if the vehicle exists;
+it only validates the string format and the verification digit.
+
+Arguments:
+
+- renavam (str): The RENAVAM to be validated, a string of 11 digits.
+
+Returns:
+
+- bool: True if the verification digit matches the first 10 digits,  
+  False otherwise.
+
+Raises:
+
+- ValueError: If the input is not a string, is not numeric, or does not have exactly 11 digits.
+
+Example:
+
+```python
+>>> from brutils import is_valid_renavam
+>>> is_valid_renavam("86769597308")
+True
+>>> is_valid_renavam("12345678901")
+False
 
 # Feature Request and Bug Report
 
