@@ -1,7 +1,7 @@
 def is_valid_cnh(cnh: str) -> bool:
     """
     Validates the registration number for the Brazilian CNH (Carteira Nacional de Habilitação) that was created in 2022.
-    Previous versions of the CNH are not in this version.
+    Previous versions of the CNH are not supported in this version.
     This function checks if the given CNH is valid based on the format and allowed characters,
     verifying the verification digits.
 
@@ -10,6 +10,16 @@ def is_valid_cnh(cnh: str) -> bool:
 
     Returns:
         bool: True if CNH has a valid format.
+
+    Examples:
+        >>> is_valid_cnh("12345678901")
+        False
+        >>> is_valid_cnh("A2C45678901")
+        False
+        >>> is_valid_cnh("98765432100")
+        True
+        >>> is_valid_cnh("987654321-00")
+        True
     """
     cnh = "".join(
         filter(str.isdigit, cnh)
