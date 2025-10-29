@@ -1358,12 +1358,8 @@ Argumentos:
 
 Retorna:
 
-- bool: Verdadeiro se o dígito de verificação corresponder aos 10 dígitos iniciais,  
+- bool: Verdadeiro se o RENAVAM for válido  
   Falso caso contrário.
-
-Levanta:
-
-- ValueError: Se a entrada não for uma string, não for numérica ou não tiver exatamente 11 dígitos.
 
 Exemplo:
 

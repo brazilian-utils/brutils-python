@@ -3,11 +3,12 @@ RENAVAM_DV_WEIGHTS = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3]
 
 def _validate_renavam_format(renavam: str):
     if not isinstance(renavam, str):
-        raise ValueError("Invalid RENAVAM: must be a string.")
+        return False
     if len(renavam) != 11 or not renavam.isdigit():
-        raise ValueError(
-            "Invalid RENAVAM: must contain exactly 11 numeric digits."
-        )
+        return False
+    if len(set(renavam)) == 1:
+        return False
+    return True
 
 
 def _sum_weighted_digits(renavam: str) -> int:
@@ -35,10 +36,21 @@ def is_valid_renavam(renavam: str) -> bool:
     Returns:
         bool: True if the RENAVAM is valid, False otherwise.
 
-    Raises:
-        ValueError: If the input is not a string, contains non-numeric
-                    characters, or does not have exactly 11 digits.
+    Example:
+        >>> is_valid_renavam('86769597308')
+        True
+        >>> is_valid_renavam('12345678901')
+        False
+        >>> is_valid_renavam('1234567890a')
+        False
+        >>> is_valid_renavam('12345678 901')
+        False
+        >>> is_valid_renavam('12345678')
+        False
+        >>> is_valid_renavam('')
+        False
     """
-    _validate_renavam_format(renavam)
+    if not _validate_renavam_format(renavam):
+        return False
 
     return _calculate_renavam_dv(renavam) == int(renavam[-1])

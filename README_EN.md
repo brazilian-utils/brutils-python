@@ -1362,12 +1362,8 @@ Arguments:
 
 Returns:
 
-- bool: True if the verification digit matches the first 10 digits,  
+- bool: True if RENAVAM is valid,  
   False otherwise.
-
-Raises:
-
-- ValueError: If the input is not a string, is not numeric, or does not have exactly 11 digits.
 
 Example:
 
