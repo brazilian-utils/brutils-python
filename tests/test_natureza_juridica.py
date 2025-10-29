@@ -1,10 +1,10 @@
 from unittest import TestCase, main
 
-from brutils.natureza_juridica import (
-    is_valid,
+from brutils.legal_nature import (
+    LEGAL_NATURE,
     get_description,
+    is_valid,
     list_all,
-    NATUREZA_JURIDICA,
 )
 
 
@@ -33,14 +33,31 @@ class TestNaturezaJuridica(TestCase):
 
     def test_is_valid_known_codes_true(self):
         # A few known valid codes from different sections
-        for code in ("1015", "2062", "2143", "2305", "3034", "3131", "3212", "4014", "5002"):
+        for code in (
+            "1015",
+            "2062",
+            "2143",
+            "2305",
+            "3034",
+            "3131",
+            "3212",
+            "4014",
+            "5002",
+        ):
             self.assertTrue(is_valid(code))
 
     def test_get_description_known(self):
-        self.assertEqual(get_description("2062"), "Sociedade Empresária Limitada")
-        self.assertEqual(get_description("101-5"), "Órgão Público do Poder Executivo Federal")
+        self.assertEqual(
+            get_description("2062"), "Sociedade Empresária Limitada"
+        )
+        self.assertEqual(
+            get_description("101-5"), "Órgão Público do Poder Executivo Federal"
+        )
         self.assertEqual(get_description("2143"), "Cooperativa")
-        self.assertEqual(get_description("5002"), "Organização Internacional e Outras Instituições Extraterritoriais")
+        self.assertEqual(
+            get_description("5002"),
+            "Organização Internacional e Outras Instituições Extraterritoriais",
+        )
 
     def test_get_description_invalid(self):
         self.assertIsNone(get_description("9999"))
@@ -50,9 +67,11 @@ class TestNaturezaJuridica(TestCase):
 
     def test_table_integrity(self):
         # Dictionary should contain only 4-digit string keys and string descriptions
-        for k, v in NATUREZA_JURIDICA.items():
+        for k, v in LEGAL_NATURE.items():
             self.assertIsInstance(k, str)
-            self.assertTrue(k.isdigit() and len(k) == 4, msg=f"Invalid key: {k}")
+            self.assertTrue(
+                k.isdigit() and len(k) == 4, msg=f"Invalid key: {k}"
+            )
             self.assertIsInstance(v, str)
             self.assertTrue(len(v) > 0)
 
@@ -60,7 +79,7 @@ class TestNaturezaJuridica(TestCase):
         data = list_all()
         self.assertEqual(data["2062"], "Sociedade Empresária Limitada")
         data["2062"] = "X"
-        self.assertEqual(NATUREZA_JURIDICA["2062"], "Sociedade Empresária Limitada")
+        self.assertEqual(LEGAL_NATURE["2062"], "Sociedade Empresária Limitada")
 
 
 if __name__ == "__main__":

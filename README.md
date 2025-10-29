@@ -102,9 +102,9 @@ False
   - [format\_currency](#format_currency)
   - [convert\_real\_to\_text](#convert_real_to_text)
 - [Natureza Jurídica](#natureza-jurídica)
-  - [is_valid_natureza_juridica](#is_valid_natureza_juridica)
-  - [get_natureza_juridica_description](#get_natureza_juridica_description)
-  - [list_all_natureza_juridica](#list_all_natureza_juridica)
+  - [is_valid_legal_nature](#is_valid_legal_nature)
+  - [get_legal_nature_description](#get_legal_nature_description)
+  - [list_all_legal_nature](#list_all_legal_nature)
 
 ## CPF
 
@@ -1348,7 +1348,7 @@ None
 
 ## Natureza Jurídica
 
-### is_valid_natureza_juridica
+### is_valid_legal_nature
 
 Valida se o código informado existe na tabela oficial. Aceita `NNNN` ou `NNN-N`.  
 O valor é **normalizado** antes da checagem: remove espaços, mantém apenas dígitos e aceita hífen entre o 3º e 4º dígitos.
@@ -1361,16 +1361,16 @@ O valor é **normalizado** antes da checagem: remove espaços, mantém apenas d�
 
 **Exemplo**
 ```python
->>> from brutils import natureza_juridica
->>> natureza_juridica.is_valid("2062")   
+>>> from brutils import legal_nature
+>>> legal_nature.is_valid("2062")   
 True
->>> natureza_juridica.is_valid("206-2")  
+>>> legal_nature.is_valid("206-2")  
 True
->>> natureza_juridica.is_valid("9999")   
+>>> legal_nature.is_valid("9999")   
 False
 ```
 
-### get_natureza_juridica_description
+### get_legal_nature_description
 
 Retorna a **descrição oficial** do código de Natureza Jurídica. Aceita `NNNN` ou `NNN-N`. Aplica a mesma normalização do `is_valid`.
 
@@ -1385,16 +1385,16 @@ Retorna a **descrição oficial** do código de Natureza Jurídica. Aceita `NNNN
 **Exemplo**
 
 ```python
->>> from brutils import natureza_juridica
->>> natureza_juridica.get_description("2062")   
+>>> from brutils import legal_nature
+>>> legal_nature.get_description("2062")   
 'Sociedade Empresária Limitada'
->>> natureza_juridica.get_description("101-5")  
+>>> legal_nature.get_description("101-5")  
 'Órgão Público do Poder Executivo Federal'
->>> natureza_juridica.get_description("0000")   
+>>> legal_nature.get_description("0000")   
 None
 ```
 
-### list_all_natureza_juridica
+### list_all_legal_nature
 
 Retorna uma cópia do dicionário completo `{codigo: descricao}`.
 
@@ -1405,8 +1405,8 @@ Retorna uma cópia do dicionário completo `{codigo: descricao}`.
 **Exemplo**
 
 ```python
->>> from brutils import natureza_juridica 
->>> data = natureza_juridica.list_all()
+>>> from brutils import legal_nature 
+>>> data = legal_nature.list_all()
 >>> len(data) > 0               
 True
 >>> data["2062"]                 

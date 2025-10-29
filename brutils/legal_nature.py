@@ -1,5 +1,5 @@
 """
-brutils.natureza_juridica
+brutils.legal_nature
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Utilities for consulting and validating the official
@@ -23,6 +23,7 @@ from typing import Dict, Optional
 # FORMATTING
 ############
 
+
 # Helper to normalize inputs like "101-5" => "1015"
 def _normalize(code: str) -> Optional[str]:
     if not isinstance(code, str):
@@ -33,7 +34,7 @@ def _normalize(code: str) -> Optional[str]:
     return digits if len(digits) == 4 else None
 
 
-NATUREZA_JURIDICA: Dict[str, str] = {
+LEGAL_NATURE: Dict[str, str] = {
     # 1. ADMINISTRAÇÃO PÚBLICA
     "1015": "Órgão Público do Poder Executivo Federal",
     "1023": "Órgão Público do Poder Executivo Estadual ou do Distrito Federal",
@@ -52,7 +53,6 @@ NATUREZA_JURIDICA: Dict[str, str] = {
     "1163": "Órgão Público Autônomo da União",
     "1171": "Órgão Público Autônomo Estadual ou do Distrito Federal",
     "1180": "Órgão Público Autônomo Municipal",
-
     # 2. ENTIDADES EMPRESARIAIS
     "2011": "Empresa Pública",
     "2038": "Sociedade de Economia Mista",
@@ -79,7 +79,6 @@ NATUREZA_JURIDICA: Dict[str, str] = {
     "2267": "Sociedade em Comandita Simples",
     "2275": "Sociedade Simples em Conta de Participação",
     "2305": "Empresa Individual de Responsabilidade Limitada",
-
     # 3. ENTIDADES SEM FINS LUCRATIVOS
     "3034": "Serviço Notarial e Registral (Cartório)",
     "3042": "Organização Social",
@@ -95,18 +94,17 @@ NATUREZA_JURIDICA: Dict[str, str] = {
     "3204": "Estabelecimento, no Brasil, de Fundação ou Associação Estrangeiras",
     "3212": "Fundação ou Associação Domiciliada no Exterior",
     "3999": "Outras Formas de Associação",
-
     # 4. PESSOAS FÍSICAS
     "4014": "Empresa Individual Imobiliária",
     "4022": "Segurado Especial",
     "4081": "Contribuinte individual",
-
     # 5. ORGANIZAÇÕES INTERNACIONAIS E OUTRAS INSTITUIÇÕES EXTRATERRITORIAIS
     "5002": "Organização Internacional e Outras Instituições Extraterritoriais",
 }
 
 # OPERATIONS
 ############
+
 
 def is_valid(code: str) -> bool:
     """
@@ -132,7 +130,7 @@ def is_valid(code: str) -> bool:
         or registration of the entity.
     """
     normalized = _normalize(code)
-    return normalized in NATUREZA_JURIDICA if normalized else False
+    return normalized in LEGAL_NATURE if normalized else False
 
 
 def get_description(code: str) -> Optional[str]:
@@ -154,7 +152,7 @@ def get_description(code: str) -> Optional[str]:
         None
     """
     normalized = _normalize(code)
-    return NATUREZA_JURIDICA.get(normalized) if normalized else None
+    return LEGAL_NATURE.get(normalized) if normalized else None
 
 
 def list_all() -> Dict[str, str]:
@@ -164,4 +162,4 @@ def list_all() -> Dict[str, str]:
     Returns:
         dict[str, str]: Mapping from "NNNN" codes to descriptions.
     """
-    return dict(NATUREZA_JURIDICA)
+    return dict(LEGAL_NATURE)
