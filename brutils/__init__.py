@@ -39,9 +39,9 @@ from brutils.ibge.uf import (
     convert_name_to_uf,
     convert_uf_to_name,
 )
-from brutils.legal_nature import get_description as get_natureza_legal_nature
 
 # Legal Nature imports
+from brutils.legal_nature import get_description as get_natureza_legal_nature
 from brutils.legal_nature import is_valid as is_valid_legal_nature
 from brutils.legal_nature import list_all as list_all_legal_nature
 
